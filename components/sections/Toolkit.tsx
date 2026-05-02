@@ -2,6 +2,7 @@
 
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
+import Image from "next/image";
 import { tools } from "@/lib/data/toolkit";
 
 export default function Toolkit() {
@@ -38,10 +39,14 @@ export default function Toolkit() {
               transition={{ duration: 0.4, delay: i * 0.07 + 0.2 }}
               className="flex items-center gap-3 px-5 py-3 rounded-full border border-border bg-surface hover:border-accent/40 hover:bg-bg transition-all duration-200 cursor-default group"
             >
-              <div className="w-5 h-5 rounded-full bg-border flex items-center justify-center shrink-0 group-hover:bg-accent/10 transition-colors">
-                <span className="text-[10px] font-bold text-muted group-hover:text-accent">
-                  {tool.name[0]}
-                </span>
+              <div className="w-5 h-5 shrink-0 relative flex items-center justify-center">
+                <Image
+                  src={tool.logo}
+                  alt={tool.name}
+                  width={20}
+                  height={20}
+                  className="object-contain w-full h-full"
+                />
               </div>
               <span className="text-[--text-p] font-medium text-fg">{tool.name}</span>
             </motion.div>
