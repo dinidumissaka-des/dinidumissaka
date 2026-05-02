@@ -2,6 +2,13 @@
 
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
+import dynamic from "next/dynamic";
+
+import uxAnimation from "@/public/images/lotties/expertise-ux.json";
+import aiAnimation from "@/public/images/lotties/expertise-ai.json";
+import visualAnimation from "@/public/images/lotties/expertise-visual.json";
+
+const LottiePlayer = dynamic(() => import("@/components/ui/LottiePlayer"), { ssr: false });
 
 const pillars = [
   {
@@ -10,6 +17,7 @@ const pillars = [
     description:
       "Deep UX research, intuitive information architecture, and design systems built to scale. I make complex workflows feel effortless for the humans using them.",
     tags: ["UX Research", "UI Design", "Design Systems", "Prototyping"],
+    animation: uxAnimation,
   },
   {
     number: "02",
@@ -17,6 +25,7 @@ const pillars = [
     description:
       "Leveraging AI to accelerate design, automate repetitive work, and build smarter products. From AI-assisted workflows to designing for AI-native interfaces.",
     tags: ["AI Tools", "Workflow Automation", "Prompt Design", "AI UX"],
+    animation: aiAnimation,
   },
   {
     number: "03",
@@ -24,6 +33,7 @@ const pillars = [
     description:
       "Brand identities, visual storytelling, and motion that communicate with clarity and emotion. Every pixel is intentional, every detail considered.",
     tags: ["Branding", "Motion", "Typography", "Illustration"],
+    animation: visualAnimation,
   },
 ];
 
@@ -59,16 +69,20 @@ export default function Expertise() {
               initial={{ opacity: 0, y: 30 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: i * 0.1 + 0.2 }}
-              className="group p-6 rounded-2xl bg-bg border border-border hover:border-accent/30 hover:shadow-sm transition-all duration-300"
+              className="group p-6 rounded-2xl bg-bg border border-border hover:border-accent/30 hover:shadow-sm transition-all duration-300 flex flex-col"
             >
-              <span className="font-mono text-muted text-[--text-small]">{pillar.number}</span>
+              {/* Lottie animation */}
+              <div className="w-full h-44 rounded-xl overflow-hidden mb-5 bg-surface/50">
+                <LottiePlayer animationData={pillar.animation} />
+              </div>
+
               <h3
-                className="mt-4 font-semibold text-fg"
+                className="font-semibold text-fg"
                 style={{ fontSize: "var(--text-h6)" }}
               >
                 {pillar.title}
               </h3>
-              <p className="mt-3 text-muted leading-relaxed text-[--text-p]">
+              <p className="mt-3 text-muted leading-relaxed text-[--text-p] flex-1">
                 {pillar.description}
               </p>
               <div className="mt-5 flex flex-wrap gap-2">
