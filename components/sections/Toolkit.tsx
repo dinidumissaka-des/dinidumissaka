@@ -12,43 +12,35 @@ export default function Toolkit() {
   return (
     <section>
       <div className="container section-padding">
-        <motion.div
+        <motion.p
           ref={ref}
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 12 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.5 }}
-          className="mb-12"
+          className="italic text-muted text-center mb-12"
+          style={{ fontFamily: "var(--font-serif)", fontSize: "var(--text-p)" }}
         >
-          <p className="text-[--text-small] uppercase tracking-widest text-muted font-medium mb-3">
-            Design Toolkit
-          </p>
-          <h2
-            className="font-semibold text-fg max-w-lg"
-            style={{ fontSize: "var(--text-h3)" }}
-          >
-            Tools I work with
-          </h2>
-        </motion.div>
+          AI-driven design toolkit
+        </motion.p>
 
-        <div className="flex flex-wrap gap-4">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
           {tools.map((tool, i) => (
             <motion.div
               key={tool.name}
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={inView ? { opacity: 1, scale: 1 } : {}}
-              transition={{ duration: 0.4, delay: i * 0.07 + 0.2 }}
-              className="flex items-center gap-3 px-5 py-3 rounded-full border border-border bg-surface hover:border-accent/40 hover:bg-bg transition-all duration-200 cursor-default group"
+              initial={{ opacity: 0, y: 20 }}
+              animate={inView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.4, delay: i * 0.07 + 0.15 }}
+              className="flex items-center justify-center px-8 py-9 rounded-2xl bg-surface border border-border hover:border-accent/20 transition-all duration-200 cursor-default"
             >
-              <div className="w-5 h-5 shrink-0 relative flex items-center justify-center">
-                <Image
-                  src={tool.logo}
-                  alt={tool.name}
-                  width={20}
-                  height={20}
-                  className="object-contain w-full h-full"
-                />
-              </div>
-              <span className="text-[--text-p] font-medium text-fg">{tool.name}</span>
+              <Image
+                src={tool.logo}
+                alt={tool.name}
+                width={160}
+                height={40}
+                className="object-contain w-auto"
+                style={{ height: "34px", maxWidth: "160px" }}
+                unoptimized
+              />
             </motion.div>
           ))}
         </div>
