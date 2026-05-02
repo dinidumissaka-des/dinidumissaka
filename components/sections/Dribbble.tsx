@@ -29,7 +29,7 @@ export default function Dribbble() {
               Dribbble
             </p>
             <h2
-              className="font-light text-fg"
+              className="font-semibold text-fg"
               style={{ fontSize: "var(--text-h3)" }}
             >
               Design playground

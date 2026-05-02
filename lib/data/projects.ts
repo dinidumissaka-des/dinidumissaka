@@ -73,6 +73,6 @@ export const projects: Project[] = [
     tags: ["Branding", "Visual Design", "Motion"],
     description:
       "Developed the full visual identity and design language for Supr — from logo to motion assets.",
-    image: "/images/projects/supr.webp",
+    image: "/images/projects/supr.svg",
   },
 ];

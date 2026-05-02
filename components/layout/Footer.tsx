@@ -23,10 +23,10 @@ export default function Footer() {
               Let&apos;s build something great.
             </p>
             <a
-              href="mailto:hello@dinidumissaka.com"
+              href="mailto:dinidumissaka@gmail.com"
               className="inline-block text-accent hover:underline text-[--text-p] font-medium"
             >
-              hello@dinidumissaka.com
+              dinidumissaka@gmail.com
             </a>
           </div>
 

@@ -32,6 +32,7 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
             className="object-cover transition-transform duration-500 group-hover:scale-105"
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
             onError={() => setImgError(true)}
+            unoptimized={project.image.endsWith(".svg")}
           />
         ) : (
           <div className="absolute inset-0 bg-gradient-to-br from-accent/5 to-accent/15 flex items-center justify-center">
@@ -57,7 +58,7 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
             {project.tags.map((tag) => (
               <span
                 key={tag}
-                className="px-2 py-0.5 text-[--text-small] rounded-full border border-white/20 text-white/70"
+                className="px-2 py-0.5 text-[--text-small] rounded-full border border-white/20 text-white/70 font-mono uppercase tracking-wider"
               >
                 {tag}
               </span>
@@ -67,12 +68,17 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
       </div>
 
       {/* Card footer */}
-      <div className="p-5 flex items-start justify-between">
+      <div className="p-5 flex items-start justify-between gap-4">
         <div>
           <h3 className="font-semibold text-fg text-[--text-p]">{project.title}</h3>
           <p className="text-muted text-[--text-small] mt-0.5">{project.category}</p>
         </div>
-        <span className="text-muted group-hover:text-accent transition-colors mt-0.5">↗</span>
+        <a
+          href={project.url ?? "#"}
+          className="shrink-0 px-4 py-1.5 rounded-full border border-border text-[--text-small] font-medium text-muted hover:border-accent hover:text-accent transition-all duration-200 mt-0.5"
+        >
+          Learn More →
+        </a>
       </div>
     </motion.article>
   );

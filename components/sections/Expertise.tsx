@@ -89,7 +89,7 @@ export default function Expertise() {
                 {pillar.tags.map((tag) => (
                   <span
                     key={tag}
-                    className="px-2.5 py-1 text-[--text-small] rounded-full bg-surface border border-border text-muted uppercase tracking-wider"
+                    className="px-2.5 py-1 text-[--text-small] rounded-full bg-surface border border-border text-muted uppercase tracking-wider font-mono"
                   >
                     {tag}
                   </span>

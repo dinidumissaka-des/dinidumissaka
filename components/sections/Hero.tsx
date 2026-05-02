@@ -56,33 +56,21 @@ export default function Hero() {
     <section className="relative flex flex-col items-center text-center">
       {/* ── Text content ── */}
       <div className="container section-padding flex flex-col items-center pb-16" style={{ borderBottom: "none" }}>
-        {/* Italic tagline */}
-        <motion.p
-          initial={{ opacity: 0, y: 12 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.15 }}
-          className="italic text-muted mb-8 tracking-wide"
-          style={{ fontSize: "var(--text-p)", fontFamily: "var(--font-serif)" }}
-        >
-          AI-Driven Design&nbsp;|&nbsp;Scalable Systems&nbsp;|&nbsp;Visual Storyteller&nbsp;
-          <span className="not-italic text-accent-orange">●</span>
-        </motion.p>
-
-        {/* Main heading */}
+        {/* Main heading — per spec */}
         <h1
           ref={headingRef}
-          className="font-bold text-fg max-w-4xl opacity-0"
-          style={{ fontSize: "var(--text-h1)", lineHeight: 1.05 }}
+          className="font-bold text-fg max-w-4xl opacity-0 text-center"
+          style={{ fontSize: "var(--text-h1)", lineHeight: 1.05, letterSpacing: "-0.02em" }}
         >
-          Crafting people friendly digital journeys!
+          AI-Driven Design&nbsp;|&nbsp;Scalable Systems&nbsp;|&nbsp;Visual Storyteller
         </h1>
 
-        {/* Sub text */}
+        {/* Sub-heading — bio per spec */}
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.9 }}
-          className="mt-7 text-muted max-w-2xl leading-relaxed"
+          className="mt-7 text-muted max-w-2xl leading-relaxed text-center"
           style={{ fontSize: "var(--text-p)" }}
         >
           A Senior UX &amp; UI Designer based in Dubai, UAE with over 5 years of experience,
