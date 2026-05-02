@@ -45,7 +45,7 @@ export default function Expertise() {
             Expertise
           </p>
           <h2
-            className="font-light text-fg max-w-lg"
+            className="font-semibold text-fg max-w-lg"
             style={{ fontSize: "var(--text-h3)" }}
           >
             What I bring to the table
@@ -75,7 +75,7 @@ export default function Expertise() {
                 {pillar.tags.map((tag) => (
                   <span
                     key={tag}
-                    className="px-2.5 py-1 text-[--text-small] rounded-full bg-surface border border-border text-muted"
+                    className="px-2.5 py-1 text-[--text-small] rounded-full bg-surface border border-border text-muted uppercase tracking-wider"
                   >
                     {tag}
                   </span>

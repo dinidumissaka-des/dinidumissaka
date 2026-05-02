@@ -126,7 +126,7 @@ export default function Hero() {
       >
         <a
           href="#about"
-          className="px-8 py-3.5 rounded-full bg-accent text-white font-medium hover:opacity-85 transition-opacity"
+          className="px-8 py-3.5 rounded-full border border-accent text-accent font-medium bg-transparent hover:bg-accent hover:text-white transition-all duration-300"
           style={{ fontSize: "var(--text-p)" }}
         >
           Get to know me

@@ -17,6 +17,7 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
     <motion.article
       initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
+      whileHover={{ scale: 1.02 }}
       viewport={{ once: true, margin: "-60px" }}
       transition={{ duration: 0.5, delay: (index % 3) * 0.1 }}
       className="group relative overflow-hidden rounded-2xl bg-bg border border-border cursor-pointer"

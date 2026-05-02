@@ -24,7 +24,7 @@ export default function FAQ() {
               FAQ
             </p>
             <h2
-              className="font-light text-fg"
+              className="font-semibold text-fg"
               style={{ fontSize: "var(--text-h3)" }}
             >
               Common questions

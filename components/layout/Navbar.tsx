@@ -24,59 +24,59 @@ export default function Navbar() {
       initial={{ y: -20, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.5, ease: "easeOut" }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled ? "backdrop-blur-md border-b border-border" : ""
-      }`}
+      className="fixed top-0 left-0 right-0 z-50 flex justify-center pt-4 px-4 pointer-events-none"
     >
-      <div className="container px-6 md:px-8">
-        <div className="flex items-center justify-between h-16 md:h-20">
+      <div
+        className={`pointer-events-auto flex items-center justify-between gap-6 px-4 py-2.5 transition-all duration-300 ${
+          scrolled
+            ? "rounded-full backdrop-blur-md bg-neutral-00/70 border border-border shadow-lg w-full max-w-2xl"
+            : "w-full max-w-5xl"
+        }`}
+      >
+        {/* Logo */}
+        <Link
+          href="/"
+          className="px-3 py-1 border border-neutral-20 rounded-lg text-fg font-semibold tracking-tight hover:border-accent transition-colors shrink-0"
+          style={{ fontSize: "var(--text-p)" }}
+        >
+          Dinidu.
+        </Link>
 
-          {/* Logo — bordered box */}
-          <Link
-            href="/"
-            className="px-4 py-1.5 border border-neutral-20 rounded-lg text-fg font-semibold tracking-tight hover:border-accent transition-colors"
-            style={{ fontSize: "var(--text-p)" }}
-          >
-            Dinidu.
-          </Link>
+        {/* Center nav links */}
+        <nav className="flex items-center gap-1">
+          {navLinks.map((link) =>
+            link.external ? (
+              <a
+                key={link.label}
+                href={link.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-4 py-2 text-muted hover:text-fg transition-colors rounded-full hover:bg-surface"
+                style={{ fontSize: "var(--text-p)" }}
+              >
+                {link.label} ↗
+              </a>
+            ) : (
+              <a
+                key={link.label}
+                href={link.href}
+                className="px-4 py-2 text-muted hover:text-fg transition-colors rounded-full hover:bg-surface"
+                style={{ fontSize: "var(--text-p)" }}
+              >
+                {link.label}
+              </a>
+            )
+          )}
+        </nav>
 
-          {/* Center nav links */}
-          <nav className="flex items-center gap-1">
-            {navLinks.map((link) =>
-              link.external ? (
-                <a
-                  key={link.label}
-                  href={link.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="px-4 py-2 text-muted hover:text-fg transition-colors rounded-full hover:bg-surface"
-                  style={{ fontSize: "var(--text-p)" }}
-                >
-                  {link.label} ↗
-                </a>
-              ) : (
-                <a
-                  key={link.label}
-                  href={link.href}
-                  className="px-4 py-2 text-muted hover:text-fg transition-colors rounded-full hover:bg-surface"
-                  style={{ fontSize: "var(--text-p)" }}
-                >
-                  {link.label}
-                </a>
-              )
-            )}
-          </nav>
-
-          {/* Contact CTA */}
-          <a
-            href="#contact"
-            className="px-5 py-2 rounded-full bg-accent text-white font-medium hover:bg-brand-primary-dark transition-colors"
-            style={{ fontSize: "var(--text-p)" }}
-          >
-            Contact
-          </a>
-
-        </div>
+        {/* Contact CTA */}
+        <a
+          href="#contact"
+          className="px-5 py-2 rounded-full bg-accent text-white font-medium hover:bg-brand-primary-dark transition-colors shrink-0"
+          style={{ fontSize: "var(--text-p)" }}
+        >
+          Contact
+        </a>
       </div>
     </motion.header>
   );

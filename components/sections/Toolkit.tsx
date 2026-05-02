@@ -22,7 +22,7 @@ export default function Toolkit() {
             Design Toolkit
           </p>
           <h2
-            className="font-light text-fg max-w-lg"
+            className="font-semibold text-fg max-w-lg"
             style={{ fontSize: "var(--text-h3)" }}
           >
             Tools I work with

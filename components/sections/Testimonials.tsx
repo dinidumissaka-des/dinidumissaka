@@ -22,7 +22,7 @@ export default function Testimonials() {
             Kind Words
           </p>
           <h2
-            className="font-light text-fg"
+            className="font-semibold text-fg"
             style={{ fontSize: "var(--text-h3)" }}
           >
             What clients say
