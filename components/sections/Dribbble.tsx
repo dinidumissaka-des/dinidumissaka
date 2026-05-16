@@ -25,9 +25,10 @@ export default function Dribbble() {
           className="mb-12 flex flex-col md:flex-row md:items-end justify-between gap-6"
         >
           <div>
-            <p className="text-[--text-small] uppercase tracking-widest text-muted font-medium mb-3">
+            <div className="flex items-center gap-2 text-[--text-small] uppercase tracking-widest text-muted font-medium mb-3">
+              
               Dribbble
-            </p>
+            </div>
             <h2
               className="font-semibold text-fg"
               style={{ fontSize: "var(--text-h3)" }}
