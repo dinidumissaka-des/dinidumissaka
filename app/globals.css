@@ -195,8 +195,9 @@
   --color-neutral-00:  var(--neutral-00);
 
   /* Fonts */
-  --font-sans:  var(--font-manrope), system-ui, sans-serif;
-  --font-serif: var(--font-noto-serif), Georgia, serif;
+  --font-sans:    var(--font-manrope), system-ui, sans-serif;
+  --font-serif:   var(--font-noto-serif), Georgia, serif;
+  --font-display: var(--font-fraunces), Georgia, serif;
 
   /* Type scale */
   --text-h1:    var(--text-h1);
@@ -285,5 +286,27 @@ small { font-size: var(--text-small); }
   max-width: 1016px;
   margin-inline: auto;
   width: 100%;
-  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
 }
+
+/* Fixed vertical rails flanking the content column */
+body::before,
+body::after {
+  content: '';
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background-color: rgba(255, 255, 255, 0.15);
+  z-index: 9999;
+  pointer-events: none;
+}
+
+body::before {
+  left: max(0px, calc(50% - 508px));
+}
+
+body::after {
+  right: max(0px, calc(50% - 508px));
+}
+

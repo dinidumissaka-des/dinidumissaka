@@ -1,88 +1,117 @@
+"use client";
+
+import dynamic from "next/dynamic";
+import {
+  FlipButton,
+  FlipButtonFront,
+  FlipButtonBack,
+} from "@/components/animate-ui/components/buttons/flip";
+
+const Beams = dynamic(() => import("@/components/ui/Beams"), { ssr: false });
+
 const socialLinks = [
-  { label: "LinkedIn", href: "https://linkedin.com/in/dinidumissaka" },
-  { label: "Dribbble", href: "https://dribbble.com/dinidumissaka" },
-  { label: "Instagram", href: "https://instagram.com/dinidumissaka" },
-  { label: "X", href: "https://x.com/dinidumissaka" },
+  { label: "Email",     href: "mailto:dinidumissaka@gmail.com" },
+  { label: "LinkedIn",  href: "https://www.linkedin.com/in/dinidumissaka/", target: "_blank" },
+  { label: "Dribbble",  href: "https://dribbble.com/dinidumissaka",          target: "_blank" },
+  { label: "Instagram", href: "https://www.instagram.com/diniduu/",          target: "_blank" },
+  { label: "X",         href: "https://x.com/DiniduMissaka",                 target: "_blank" },
 ];
+
+const textStyle = {
+  fontFamily: "var(--font-manrope), sans-serif",
+  fontSize: "14px",
+  color: "rgba(255,255,255,0.4)",
+};
+
+const linkTextStyle = {
+  fontFamily: "var(--font-manrope), sans-serif",
+  fontSize: "14px",
+  fontWeight: 600,
+  color: "rgba(255,255,255,0.4)",
+};
 
 export default function Footer() {
   return (
     <footer id="contact">
-      <div className="container section-padding">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-8">
-          {/* Left — Availability */}
-          <div className="space-y-3">
-            <div className="flex items-center gap-2">
-              <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
-              <span className="text-[--text-small] text-muted">Available for work</span>
-            </div>
-            <p
-              className="font-semibold text-fg"
-              style={{ fontSize: "var(--text-h5)" }}
-            >
-              Let&apos;s build something great.
-            </p>
-            <a
-              href="mailto:dinidumissaka@gmail.com"
-              className="inline-block text-accent hover:underline text-[--text-p] font-medium"
-            >
-              dinidumissaka@gmail.com
-            </a>
-          </div>
-
-          {/* Middle — Navigation */}
-          <div className="space-y-4">
-            <p className="text-[--text-small] uppercase tracking-widest text-muted font-medium">
-              Navigate
-            </p>
-            <nav className="flex flex-col gap-2">
-              {[
-                { label: "Cases", href: "#projects" },
-                { label: "About", href: "#about" },
-                { label: "Resume", href: "/resume.pdf" },
-              ].map((link) => (
-                <a
-                  key={link.label}
-                  href={link.href}
-                  className="text-[--text-p] text-muted hover:text-fg transition-colors"
-                >
-                  {link.label}
-                </a>
-              ))}
-            </nav>
-          </div>
-
-          {/* Right — Socials + Location */}
-          <div className="space-y-4">
-            <p className="text-[--text-small] uppercase tracking-widest text-muted font-medium">
-              Connect
-            </p>
-            <nav className="flex flex-col gap-2">
-              {socialLinks.map((link) => (
-                <a
-                  key={link.label}
-                  href={link.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-[--text-p] text-muted hover:text-fg transition-colors"
-                >
-                  {link.label} ↗
-                </a>
-              ))}
-            </nav>
-            <p className="text-[--text-small] text-muted pt-2">
-              📍 Dubai, UAE · Remote worldwide
-            </p>
-          </div>
+      <div
+        className="container"
+        style={{
+          paddingBlock: "3rem",
+          paddingInline: 0,
+          position: "relative",
+          overflow: "hidden",
+        }}
+      >
+        {/* Dither — fills the container */}
+        <div
+          style={{
+            position: "absolute",
+            inset: 0,
+            width: "100%",
+            height: "100%",
+            zIndex: 0,
+          }}
+        >
+          <Beams
+            beamWidth={2}
+            beamHeight={15}
+            beamNumber={50}
+            lightColor="#ffffff"
+            speed={2}
+            noiseIntensity={1.75}
+            scale={0.2}
+            rotation={0}
+          />
         </div>
 
-        <div className="mt-16 pt-8 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
-          <p className="text-[--text-small] text-muted">
-            © {new Date().getFullYear()} Dinidu Missaka. All rights reserved.
-          </p>
-          <p className="text-[--text-small] text-muted">
-            Designed &amp; built with intention.
-          </p>
+        {/* Content above dither */}
+        <div style={{ position: "relative", zIndex: 1 }}>
+          {/* Row 1: social links + location */}
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "center",
+              marginBottom: "32px",
+            }}
+          >
+            <div style={{ display: "flex", gap: "32px" }}>
+              {socialLinks.map((link) => (
+                <FlipButton
+                  key={link.label}
+                  href={link.href}
+                  target={link.target}
+                  rel="noopener noreferrer"
+                >
+                  <FlipButtonFront style={linkTextStyle}>
+                    {link.label}
+                  </FlipButtonFront>
+                  <FlipButtonBack style={{ ...linkTextStyle, color: "rgba(255,255,255,0.8)" }}>
+                    {link.label}
+                  </FlipButtonBack>
+                </FlipButton>
+              ))}
+            </div>
+
+            <span style={textStyle}>Dubai, UAE · Remote worldwide</span>
+          </div>
+
+          {/* Row 2: copyright + build credit */}
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "center",
+            }}
+          >
+            <span style={{ ...textStyle, fontStyle: "normal" }}>
+              © {new Date().getFullYear()} · Dinidu Missaka.
+            </span>
+
+            <span style={{ ...textStyle, fontStyle: "normal" }}>
+              Build with Claude Code · Shipped on Vercel
+            </span>
+          </div>
         </div>
       </div>
     </footer>

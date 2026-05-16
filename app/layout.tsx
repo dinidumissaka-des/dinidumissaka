@@ -1,13 +1,19 @@
 import type { Metadata } from "next";
-import { Manrope, Noto_Serif_Display } from "next/font/google";
+import { Fraunces, Manrope, Noto_Serif_Display } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
-import InteractiveBackground from "@/components/ui/InteractiveBackground";
+
+const fraunces = Fraunces({
+  subsets: ["latin"],
+  axes: ["SOFT", "WONK", "opsz"],
+  variable: "--font-fraunces",
+  display: "swap",
+});
 
 const manrope = Manrope({
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700"],
+  weight: ["300", "400", "500", "600", "700", "800"],
   variable: "--font-manrope",
   display: "swap",
 });
@@ -45,10 +51,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${manrope.variable} ${notoSerifDisplay.variable}`}>
+    <html lang="en" className={`${fraunces.variable} ${manrope.variable} ${notoSerifDisplay.variable}`}>
       <body className="antialiased">
-        <InteractiveBackground />
-        <Navbar />
         <main>{children}</main>
         <Footer />
       </body>

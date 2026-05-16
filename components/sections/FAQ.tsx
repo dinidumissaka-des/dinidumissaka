@@ -2,7 +2,12 @@
 
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
-import AccordionItem from "@/components/ui/AccordionItem";
+import {
+  Accordion,
+  AccordionItem,
+  AccordionTrigger,
+  AccordionContent,
+} from "@/components/animate-ui/components/radix/accordion";
 import { faqItems } from "@/lib/data/faq";
 
 export default function FAQ() {
@@ -11,36 +16,60 @@ export default function FAQ() {
 
   return (
     <section>
-      <div className="container section-padding">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-20">
-          {/* Left — heading */}
-          <motion.div
-            ref={ref}
-            initial={{ opacity: 0, y: 20 }}
-            animate={inView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.5 }}
+      <div
+        className="container"
+        style={{ paddingBlock: "3rem", paddingInline: 0 }}
+      >
+        {/* Header */}
+        <motion.div
+          ref={ref}
+          initial={{ opacity: 0, y: 16 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.5 }}
+          style={{ marginBottom: "2rem" }}
+        >
+          <p
+            className="text-muted"
+            style={{
+              fontFamily: "var(--font-manrope), sans-serif",
+              fontSize: "12px",
+              marginBottom: "12px",
+            }}
           >
-            <p className="text-[--text-small] uppercase tracking-widest text-muted font-medium mb-3">
-              FAQ
-            </p>
-            <h2
-              className="font-semibold text-fg"
-              style={{ fontSize: "var(--text-h3)" }}
-            >
-              Common questions
-            </h2>
-            <p className="mt-4 text-[--text-p] text-muted leading-relaxed">
-              Things people usually ask before we work together.
-            </p>
-          </motion.div>
+            FAQ
+          </p>
+          <h2
+            style={{
+              fontFamily: "var(--font-fraunces), Georgia, serif",
+              fontSize: "32px",
+              fontWeight: 300,
+              lineHeight: 1.1,
+              color: "var(--neutral-95)",
+            }}
+          >
+            Common questions
+          </h2>
+        </motion.div>
 
-          {/* Right — accordion */}
-          <div className="md:col-span-2">
-            {faqItems.map((item, i) => (
-              <AccordionItem key={item.id} item={item} index={i} />
+        {/* Accordion */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6, delay: 0.15 }}
+        >
+          <Accordion type="single" collapsible>
+            {faqItems.map((item, index) => (
+              <AccordionItem
+                key={item.id}
+                value={`item-${index + 1}`}
+                style={index === faqItems.length - 1 ? { borderBottom: "none" } : undefined}
+              >
+                <AccordionTrigger showArrow>{item.question}</AccordionTrigger>
+                <AccordionContent>{item.answer}</AccordionContent>
+              </AccordionItem>
             ))}
-          </div>
-        </div>
+          </Accordion>
+        </motion.div>
       </div>
     </section>
   );
