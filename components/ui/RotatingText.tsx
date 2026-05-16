@@ -9,6 +9,7 @@ import {
   useState,
   CSSProperties,
 } from 'react';
+import type { Target, TargetAndTransition, Transition, VariantLabels } from 'framer-motion';
 import { motion, AnimatePresence } from 'framer-motion';
 import './RotatingText.css';
 
@@ -26,14 +27,14 @@ export interface RotatingTextRef {
 interface RotatingTextProps {
   texts: string[];
   rotationInterval?: number;
-  initial?: object;
-  animate?: object;
-  exit?: object;
+  initial?: Target | VariantLabels | boolean;
+  animate?: TargetAndTransition | VariantLabels;
+  exit?: TargetAndTransition | VariantLabels;
   animatePresenceMode?: 'wait' | 'sync' | 'popLayout';
   animatePresenceInitial?: boolean;
   staggerDuration?: number;
   staggerFrom?: 'first' | 'last' | 'center' | 'random' | number;
-  transition?: object;
+  transition?: Transition;
   loop?: boolean;
   auto?: boolean;
   splitBy?: 'characters' | 'words' | 'lines' | string;
