@@ -28,7 +28,7 @@ export default function FAQ() {
         <div className="flex flex-col md:flex-row gap-12" style={{ alignItems: "flex-start" }}>
 
           {/* Left: FAQ */}
-          <div style={{ flex: 1, minWidth: 0 }}>
+          <div style={{ flex: 1, minWidth: 0, maxWidth: "50%" }}>
             {/* Header */}
             <motion.div
               ref={ref}
@@ -86,7 +86,7 @@ export default function FAQ() {
             initial={{ opacity: 0, scale: 0.95 }}
             animate={inView ? { opacity: 1, scale: 1 } : {}}
             transition={{ duration: 0.6, delay: 0.25 }}
-            style={{ flexShrink: 0, width: "320px" }}
+            style={{ flex: 1, minWidth: 0 }}
             className="hidden md:block"
           >
             <div
@@ -101,7 +101,7 @@ export default function FAQ() {
                 gap: "20px",
               }}
             >
-              <div style={{ width: "240px", height: "240px" }}>
+              <div style={{ width: "100%", aspectRatio: "1 / 1" }}>
                 <Stack
                   randomRotation
                   sensitivity={180}
