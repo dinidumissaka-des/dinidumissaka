@@ -6,7 +6,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { projects } from "@/lib/data/projects";
 import RotatingText, { RotatingTextRef } from "@/components/ui/RotatingText";
-import { FolderInputIcon } from "@/components/ui/FolderInputIcon";
 
 export default function Projects() {
   const ref = useRef<HTMLDivElement>(null);
@@ -40,12 +39,8 @@ export default function Projects() {
               fontFamily: "var(--font-manrope), sans-serif",
               fontSize: "12px",
               marginBottom: "12px",
-              display: "flex",
-              alignItems: "center",
-              gap: "6px",
             }}
           >
-            <FolderInputIcon size={14} />
             Projects
           </p>
           <h2
