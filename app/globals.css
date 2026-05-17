@@ -341,13 +341,13 @@ small { font-size: var(--text-small); }
   max-width: 1016px;
   margin-inline: auto;
   width: 100%;
-  padding-inline: 16px;
+  padding-inline: 2px;
   border-bottom: 1px solid var(--border-section);
 }
 
-@media (min-width: 768px) {
+@media (max-width: 767px) {
   .container {
-    padding-inline: 2px;
+    padding-inline: 16px;
   }
 }
 
