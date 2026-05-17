@@ -58,7 +58,7 @@ export default function RootLayout({
         <ThemeProvider>
           <PageLoader />
           <ClientNav />
-          <main>{children}</main>
+          <main className="pt-16 md:pt-0">{children}</main>
           <Footer />
         </ThemeProvider>
       </body>
