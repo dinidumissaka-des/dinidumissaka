@@ -25,7 +25,7 @@ export default function FAQ() {
   return (
     <section>
       <div className="container" style={{ paddingBlock: "3rem" }}>
-        <div className="flex flex-col md:flex-row gap-12" style={{ alignItems: "flex-start" }}>
+        <div className="flex flex-col md:flex-row gap-12" style={{ alignItems: "stretch" }}>
 
           {/* Left: FAQ */}
           <div style={{ flex: 1, minWidth: 0, maxWidth: "50%" }}>
@@ -98,7 +98,9 @@ export default function FAQ() {
                 display: "flex",
                 flexDirection: "column",
                 alignItems: "center",
+                justifyContent: "center",
                 gap: "20px",
+                height: "100%",
               }}
             >
               <div style={{ width: "220px", height: "220px", margin: "0 auto" }}>
