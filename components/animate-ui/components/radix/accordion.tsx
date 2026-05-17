@@ -87,7 +87,7 @@ const AccordionTrigger = React.forwardRef<
             fontFamily: "var(--font-manrope), sans-serif",
             fontSize: "14px",
             fontWeight: 500,
-            color: "var(--color-fg)",
+            color: "var(--color-muted)",
             lineHeight: 1.5,
           }}
         >
