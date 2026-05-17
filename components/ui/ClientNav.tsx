@@ -55,7 +55,6 @@ export function ClientNav() {
           left: 0,
           right: 0,
           zIndex: 9999,
-          display: "flex",
           alignItems: "center",
           justifyContent: "flex-end",
           gap: "8px",
