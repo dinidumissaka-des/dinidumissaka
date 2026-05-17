@@ -107,31 +107,13 @@ export function ClientNav() {
               zIndex: 9998,
               background: "var(--color-bg)",
               overflow: "auto",
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "space-between",
             }}
           >
-            {navLinks.map((link) => (
-              <a
-                key={link.label}
-                href={link.href}
-                target={link.target}
-                rel="noopener noreferrer"
-                onClick={() => setOpen(false)}
-                style={{
-                  ...linkStyle,
-                  color: "var(--color-fg)",
-                  textDecoration: "none",
-                  padding: "14px 16px",
-                  display: "block",
-                  borderBottom: "1px solid var(--border-section)",
-                }}
-              >
-                {link.label}
-              </a>
-            ))}
-
-            {/* Social links */}
-            <div style={{ padding: "16px 16px 8px", display: "flex", flexWrap: "wrap", gap: "20px" }}>
-              {socialLinks.map((link) => (
+            <div>
+              {navLinks.map((link) => (
                 <a
                   key={link.label}
                   href={link.href}
@@ -142,15 +124,40 @@ export function ClientNav() {
                     ...linkStyle,
                     color: "var(--color-fg)",
                     textDecoration: "none",
+                    padding: "14px 16px",
+                    display: "block",
+                    borderBottom: "1px solid var(--border-section)",
                   }}
                 >
                   {link.label}
                 </a>
               ))}
             </div>
-            <p style={{ padding: "4px 16px 16px", fontFamily: "var(--font-manrope), sans-serif", fontSize: "12px", color: "var(--color-muted)", margin: 0 }}>
-              Dubai, UAE · Remote worldwide
-            </p>
+
+            {/* Social links — pinned to bottom */}
+            <div style={{ borderTop: "1px solid var(--border-section)", padding: "20px 16px 32px" }}>
+              <div style={{ display: "flex", flexWrap: "wrap", gap: "20px", marginBottom: "12px" }}>
+                {socialLinks.map((link) => (
+                  <a
+                    key={link.label}
+                    href={link.href}
+                    target={link.target}
+                    rel="noopener noreferrer"
+                    onClick={() => setOpen(false)}
+                    style={{
+                      ...linkStyle,
+                      color: "var(--color-fg)",
+                      textDecoration: "none",
+                    }}
+                  >
+                    {link.label}
+                  </a>
+                ))}
+              </div>
+              <p style={{ fontFamily: "var(--font-manrope), sans-serif", fontSize: "12px", color: "var(--color-muted)", margin: 0 }}>
+                Dubai, UAE · Remote worldwide
+              </p>
+            </div>
           </motion.div>
         )}
       </AnimatePresence>
