@@ -94,19 +94,19 @@ export function ClientNav() {
         {open && (
           <motion.div
             className="md:hidden"
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
+            initial={{ opacity: 0, y: -8 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -8 }}
             transition={{ duration: 0.22, ease: [0.4, 0, 0.2, 1] }}
             style={{
               position: "fixed",
               top: "52px",
               left: 0,
               right: 0,
+              bottom: 0,
               zIndex: 9998,
               background: "var(--color-bg)",
-              borderBottom: "1px solid var(--border-section)",
-              overflow: "hidden",
+              overflow: "auto",
             }}
           >
             {navLinks.map((link) => (
