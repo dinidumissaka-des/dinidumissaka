@@ -72,7 +72,7 @@ export default function RootLayout({
                       <FlipButtonFront style={{ fontFamily: "var(--font-manrope), sans-serif", fontSize: "14px", fontWeight: 600, color: "var(--color-fg)" }}>
                         {link.label}
                       </FlipButtonFront>
-                      <FlipButtonBack style={{ fontFamily: "var(--font-manrope), sans-serif", fontSize: "14px", fontWeight: 600, color: "var(--fg-40)" }}>
+                      <FlipButtonBack style={{ fontFamily: "var(--font-manrope), sans-serif", fontSize: "14px", fontWeight: 600, color: "var(--fg-80)" }}>
                         {link.label}
                       </FlipButtonBack>
                     </FlipButton>
