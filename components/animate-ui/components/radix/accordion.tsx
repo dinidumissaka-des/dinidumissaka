@@ -146,7 +146,7 @@ const AccordionContent = React.forwardRef<
                 fontFamily: "var(--font-manrope), sans-serif",
                 fontSize: "14px",
                 lineHeight: 1.75,
-                color: "var(--fg-50)",
+                color: "var(--color-fg)",
               }}
             >
               {children}
