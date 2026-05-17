@@ -32,7 +32,7 @@ export default function FAQ() {
         <div className="flex flex-col md:flex-row gap-12" style={{ alignItems: "stretch" }}>
 
           {/* Left: FAQ */}
-          <div style={{ flex: 1, minWidth: 0, maxWidth: "50%" }}>
+          <div style={{ flex: 1, minWidth: 0 }}>
             {/* Header */}
             <motion.div
               ref={ref}
@@ -91,7 +91,6 @@ export default function FAQ() {
             animate={inView ? { opacity: 1, scale: 1 } : {}}
             transition={{ duration: 0.6, delay: 0.25 }}
             style={{ flex: 1, minWidth: 0 }}
-            className="hidden md:block"
           >
             <div
               style={{
