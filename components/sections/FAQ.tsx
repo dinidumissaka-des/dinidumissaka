@@ -12,10 +12,10 @@ import Stack from "@/components/ui/Stack";
 import { faqItems } from "@/lib/data/faq";
 
 const journalImages = [
-  "/images/projects/project-planr.webp",
-  "/images/projects/project-ecobyte.webp",
-  "/images/projects/project-deriv.webp",
-  "/images/projects/project-minti.webp",
+  "/images/hero/6738d52e1229ecc84512efce_6.avif",
+  "/images/hero/68b1e9d4fb31e88ed00c8967_X9.avif",
+  "/images/hero/68b1ea78b1f942347cb4f61b_2.webp",
+  "/images/hero/68b1eb35bd4ac3a7682629b3_27.webp",
 ];
 
 export default function FAQ() {
