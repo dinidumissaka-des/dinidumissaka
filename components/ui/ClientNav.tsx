@@ -15,6 +15,14 @@ const navLinks = [
   { label: "Resume", href: "/resume.pdf", target: "_blank" },
 ];
 
+const socialLinks = [
+  { label: "Email",     href: "mailto:dinidumissaka@gmail.com" },
+  { label: "LinkedIn",  href: "https://www.linkedin.com/in/dinidumissaka/", target: "_blank" },
+  { label: "Dribbble",  href: "https://dribbble.com/dinidumissaka", target: "_blank" },
+  { label: "Instagram", href: "https://www.instagram.com/diniduu/", target: "_blank" },
+  { label: "X",         href: "https://x.com/DiniduMissaka", target: "_blank" },
+];
+
 const linkStyle = {
   fontFamily: "var(--font-manrope), sans-serif",
   fontSize: "14px",
@@ -120,6 +128,29 @@ export function ClientNav() {
                 {link.label}
               </a>
             ))}
+
+            {/* Social links */}
+            <div style={{ padding: "16px 16px 8px", display: "flex", flexWrap: "wrap", gap: "20px" }}>
+              {socialLinks.map((link) => (
+                <a
+                  key={link.label}
+                  href={link.href}
+                  target={link.target}
+                  rel="noopener noreferrer"
+                  onClick={() => setOpen(false)}
+                  style={{
+                    ...linkStyle,
+                    color: "var(--color-fg)",
+                    textDecoration: "none",
+                  }}
+                >
+                  {link.label}
+                </a>
+              ))}
+            </div>
+            <p style={{ padding: "4px 16px 16px", fontFamily: "var(--font-manrope), sans-serif", fontSize: "12px", color: "var(--color-muted)", margin: 0 }}>
+              Dubai, UAE · Remote worldwide
+            </p>
           </motion.div>
         )}
       </AnimatePresence>
