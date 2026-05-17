@@ -116,7 +116,6 @@ export default function Projects() {
                   auto={hoveredId === project.id}
                   rotationInterval={1800}
                   splitBy="words"
-                  animatePresenceMode="sync"
                   initial={{ y: "100%", opacity: 0 }}
                   animate={{ y: 0, opacity: 1 }}
                   exit={{ y: "-120%", opacity: 0 }}
