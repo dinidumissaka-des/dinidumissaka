@@ -21,57 +21,48 @@ const linkStyle = {
   fontWeight: 600,
 };
 
+const togglerProps = {
+  modes: ["light", "dark"] as ("light" | "dark")[],
+  variant: "ghost" as const,
+  size: "xs" as const,
+  style: {
+    background: "var(--bg-subtle)",
+    borderRadius: "8px",
+    width: "28px",
+    height: "28px",
+  },
+};
+
 export function ClientNav() {
   const [open, setOpen] = useState(false);
 
   return (
     <>
-      {/* Desktop: sidebar */}
-      <div className="hidden md:flex flex-col items-end gap-4">
-        <ClientThemeToggler
-          modes={["light", "dark"]}
-          variant="ghost"
-          size="xs"
-          style={{
-            background: "var(--bg-subtle)",
-            borderRadius: "8px",
-            width: "28px",
-            height: "28px",
-          }}
-        />
-        <nav style={{ display: "flex", flexDirection: "column", alignItems: "flex-end", gap: "4px" }}>
-          {navLinks.map((link) => (
-            <FlipButton key={link.label} href={link.href} target={link.target} rel="noopener noreferrer">
-              <FlipButtonFront style={{ ...linkStyle, color: "var(--color-fg)" }}>
-                {link.label}
-              </FlipButtonFront>
-              <FlipButtonBack style={{ ...linkStyle, color: "var(--fg-80)" }}>
-                {link.label}
-              </FlipButtonBack>
-            </FlipButton>
-          ))}
-        </nav>
-      </div>
-
-      {/* Mobile: theme toggler + hamburger */}
-      <div className="flex md:hidden flex-col items-end gap-3">
-        <ClientThemeToggler
-          modes={["light", "dark"]}
-          variant="ghost"
-          size="xs"
-          style={{
-            background: "var(--bg-subtle)",
-            borderRadius: "8px",
-            width: "28px",
-            height: "28px",
-          }}
-        />
+      {/* ── Mobile topnav ── */}
+      <div
+        className="md:hidden"
+        style={{
+          position: "fixed",
+          top: 0,
+          left: 0,
+          right: 0,
+          zIndex: 9999,
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "flex-end",
+          gap: "8px",
+          padding: "12px 16px",
+          background: "var(--color-bg)",
+          borderBottom: "1px solid var(--border-section)",
+        }}
+      >
+        <ClientThemeToggler {...togglerProps} />
         <button
           onClick={() => setOpen((v) => !v)}
           aria-label="Toggle menu"
           style={{
             background: "var(--bg-subtle)",
-            border: "none",
+            border: `1.5px solid ${open ? "#3B82F6" : "transparent"}`,
             borderRadius: "8px",
             width: "28px",
             height: "28px",
@@ -82,67 +73,82 @@ export function ClientNav() {
             color: "var(--color-fg)",
           }}
         >
-          <motion.svg
-            width="14"
-            height="14"
-            viewBox="0 0 14 14"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="1.5"
-            strokeLinecap="round"
-          >
-            <motion.line
-              x1="1" y1="3.5" x2="13" y2="3.5"
-              animate={open ? { y: 3, rotate: 45 } : { y: 0, rotate: 0 }}
-              transition={{ duration: 0.2 }}
-              style={{ originX: "50%", originY: "50%" }}
-            />
-            <motion.line
-              x1="1" y1="7" x2="13" y2="7"
-              animate={open ? { opacity: 0 } : { opacity: 1 }}
-              transition={{ duration: 0.15 }}
-            />
-            <motion.line
-              x1="1" y1="10.5" x2="13" y2="10.5"
-              animate={open ? { y: -3, rotate: -45 } : { y: 0, rotate: 0 }}
-              transition={{ duration: 0.2 }}
-              style={{ originX: "50%", originY: "50%" }}
-            />
+          <motion.svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round">
+            <motion.line x1="1" y1="3.5" x2="13" y2="3.5" animate={open ? { y: 3, rotate: 45 } : { y: 0, rotate: 0 }} transition={{ duration: 0.2 }} style={{ originX: "50%", originY: "50%" }} />
+            <motion.line x1="1" y1="7" x2="13" y2="7" animate={open ? { opacity: 0 } : { opacity: 1 }} transition={{ duration: 0.15 }} />
+            <motion.line x1="1" y1="10.5" x2="13" y2="10.5" animate={open ? { y: -3, rotate: -45 } : { y: 0, rotate: 0 }} transition={{ duration: 0.2 }} style={{ originX: "50%", originY: "50%" }} />
           </motion.svg>
         </button>
+      </div>
 
-        <AnimatePresence>
-          {open && (
-            <motion.nav
-              initial={{ opacity: 0, y: -8 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -8 }}
-              transition={{ duration: 0.18 }}
-              style={{
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "flex-end",
-                gap: "4px",
-              }}
-            >
+      {/* ── Mobile dropdown ── */}
+      <AnimatePresence>
+        {open && (
+          <motion.div
+            className="md:hidden"
+            initial={{ opacity: 0, y: -6 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -6 }}
+            transition={{ duration: 0.18 }}
+            style={{
+              position: "fixed",
+              top: "52px",
+              right: "16px",
+              zIndex: 9998,
+              background: "var(--color-bg)",
+              border: "1px solid var(--border-section)",
+              borderRadius: "10px",
+              padding: "8px 0",
+              minWidth: "140px",
+            }}
+          >
+            {navLinks.map((link) => (
+              <a
+                key={link.label}
+                href={link.href}
+                target={link.target}
+                rel="noopener noreferrer"
+                onClick={() => setOpen(false)}
+                style={{
+                  ...linkStyle,
+                  color: "var(--color-fg)",
+                  textDecoration: "none",
+                  padding: "10px 16px",
+                  display: "block",
+                }}
+              >
+                {link.label}
+              </a>
+            ))}
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* ── Desktop sidebar ── */}
+      <div
+        className="hidden md:block"
+        style={{
+          position: "fixed",
+          top: "3rem",
+          left: 0,
+          right: 0,
+          zIndex: 9999,
+          pointerEvents: "none",
+        }}
+      >
+        <div style={{ maxWidth: "1016px", margin: "0 auto", display: "flex", justifyContent: "flex-end" }}>
+          <div style={{ pointerEvents: "auto", display: "flex", flexDirection: "column", alignItems: "flex-end", gap: "16px", paddingRight: "2px" }}>
+            <ClientThemeToggler {...togglerProps} />
+            <nav style={{ display: "flex", flexDirection: "column", alignItems: "flex-end", gap: "4px" }}>
               {navLinks.map((link) => (
-                <FlipButton
-                  key={link.label}
-                  href={link.href}
-                  target={link.target}
-                  rel="noopener noreferrer"
-                >
-                  <FlipButtonFront style={{ ...linkStyle, color: "var(--color-fg)" }}>
-                    {link.label}
-                  </FlipButtonFront>
-                  <FlipButtonBack style={{ ...linkStyle, color: "var(--fg-80)" }}>
-                    {link.label}
-                  </FlipButtonBack>
+                <FlipButton key={link.label} href={link.href} target={link.target} rel="noopener noreferrer">
+                  <FlipButtonFront style={{ ...linkStyle, color: "var(--color-fg)" }}>{link.label}</FlipButtonFront>
+                  <FlipButtonBack style={{ ...linkStyle, color: "var(--fg-80)" }}>{link.label}</FlipButtonBack>
                 </FlipButton>
               ))}
-            </motion.nav>
-          )}
-        </AnimatePresence>
+            </nav>
+          </div>
+        </div>
       </div>
     </>
   );

@@ -57,13 +57,7 @@ export default function RootLayout({
       <body className="antialiased" suppressHydrationWarning>
         <ThemeProvider>
           <PageLoader />
-          <div style={{ position: "fixed", top: "3rem", left: 0, right: 0, zIndex: 9999, pointerEvents: "none" }}>
-            <div style={{ maxWidth: "1016px", margin: "0 auto", display: "flex", justifyContent: "flex-end", pointerEvents: "none" }}>
-              <div style={{ pointerEvents: "auto", paddingRight: "2px" }}>
-                <ClientNav />
-              </div>
-            </div>
-          </div>
+          <ClientNav />
           <main>{children}</main>
           <Footer />
         </ThemeProvider>
