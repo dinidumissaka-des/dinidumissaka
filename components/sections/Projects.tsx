@@ -85,7 +85,6 @@ export default function Projects() {
                   overflow: "hidden",
                   position: "relative",
                   marginBottom: "12px",
-                  border: "2px solid var(--border-item)",
                 }}
               >
                 <Image
