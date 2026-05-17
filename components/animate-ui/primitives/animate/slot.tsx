@@ -82,8 +82,10 @@ function Slot<T extends HTMLElement = HTMLElement>({
 
   const mergedProps = mergeProps(childProps, props);
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const AnyBase = Base as any;
   return (
-    <Base {...mergedProps} ref={mergeRefs(childRef as React.Ref<T>, ref)} />
+    <AnyBase {...mergedProps} ref={mergeRefs(childRef as React.Ref<T>, ref)} />
   );
 }
 
