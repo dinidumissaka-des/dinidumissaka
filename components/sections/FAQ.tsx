@@ -12,10 +12,14 @@ import Stack from "@/components/ui/Stack";
 import { faqItems } from "@/lib/data/faq";
 
 const journalImages = [
-  "/images/hero/6738d52e1229ecc84512efce_6.avif",
-  "/images/hero/68b1e9d4fb31e88ed00c8967_X9.avif",
-  "/images/hero/68b1ea78b1f942347cb4f61b_2.webp",
-  "/images/hero/68b1eb35bd4ac3a7682629b3_27.webp",
+  "/images/visual journal/image-1.avif",
+  "/images/visual journal/image-2.avif",
+  "/images/visual journal/image-3.avif",
+  "/images/visual journal/image-4.avif",
+  "/images/visual journal/image-5.avif",
+  "/images/visual journal/image-6.avif",
+  "/images/visual journal/image-7.avif",
+  "/images/visual journal/image-8.avif",
 ];
 
 export default function FAQ() {
