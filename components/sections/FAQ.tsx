@@ -101,7 +101,7 @@ export default function FAQ() {
                 gap: "20px",
               }}
             >
-              <div style={{ width: "100%", aspectRatio: "1 / 1" }}>
+              <div style={{ width: "220px", height: "220px", margin: "0 auto" }}>
                 <Stack
                   randomRotation
                   sensitivity={180}
