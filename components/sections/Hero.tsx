@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import CircularGallery from "@/components/ui/CircularGallery";
+import GradualBlur from "@/components/ui/GradualBlur";
 
 const galleryItems = [
   { image: "/images/hero/6738d52e1229ecc84512efce_6.avif",   text: "" },
@@ -62,7 +63,7 @@ export default function Hero() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.8, delay: 1 }}
-          style={{ height: "340px" }}
+          style={{ height: "340px", position: "relative", overflow: "hidden" }}
         >
           <CircularGallery
             items={galleryItems}
@@ -70,6 +71,16 @@ export default function Hero() {
             borderRadius={0.05}
             scrollSpeed={2}
             scrollEase={0.02}
+          />
+          <GradualBlur
+            target="parent"
+            position="bottom"
+            height="6rem"
+            strength={2}
+            divCount={5}
+            curve="bezier"
+            exponential={true}
+            opacity={1}
           />
         </motion.div>
       </div>
