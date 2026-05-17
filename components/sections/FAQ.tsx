@@ -91,7 +91,7 @@ export default function FAQ() {
           >
             <div
               style={{
-                border: "1px solid var(--border-item)",
+                background: "rgba(255, 255, 255, 0.02)",
                 borderRadius: "16px",
                 overflow: "hidden",
                 padding: "24px",
