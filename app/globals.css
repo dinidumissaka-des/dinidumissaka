@@ -89,17 +89,72 @@
   --color-muted:   var(--text-color-snow);  /* #8d8d8d */
   --color-accent:  var(--brand-primary);
   --color-border:  var(--neutral-20);     /* #444444 */
+
+  /* ── Alpha-based foreground steps (dark default) ── */
+  --fg-40: rgba(255, 255, 255, 0.4);
+  --fg-50: rgba(255, 255, 255, 0.5);
+  --fg-80: rgba(255, 255, 255, 0.8);
+
+  /* ── Border variants (dark default) ── */
+  --border-section: rgba(255, 255, 255, 0.15);
+  --border-item:    rgba(255, 255, 255, 0.1);
+
+  /* ── Subtle surface (dark default) ── */
+  --bg-subtle: rgba(255, 255, 255, 0.08);
 }
 
-/* ── Light Mode override ─────────────────────────────────────── */
+/* ── Light Mode token overrides ──────────────────────────────── */
+/* OS preference (no class override) */
 @media (prefers-color-scheme: light) {
-  :root {
+  html:not(.dark) {
     --color-bg:      var(--bg-white);
     --color-surface: var(--bg-n95);
     --color-fg:      var(--text-color-black);
-    --color-muted:   var(--text-color-grey);
+    --color-muted:   var(--neutral-20);
     --color-border:  var(--border-line);
+
+    --fg-40: rgba(0, 0, 0, 0.45);
+    --fg-50: rgba(0, 0, 0, 0.55);
+    --fg-80: rgba(0, 0, 0, 0.8);
+
+    --border-section: rgba(0, 0, 0, 0.1);
+    --border-item:    rgba(0, 0, 0, 0.08);
+    --bg-subtle:      rgba(0, 0, 0, 0.08);
   }
+}
+
+/* Explicit light class from next-themes */
+html.light {
+  --color-bg:      var(--bg-white);
+  --color-surface: var(--bg-n95);
+  --color-fg:      var(--text-color-black);
+  --color-muted:   var(--neutral-20);
+  --color-border:  var(--border-line);
+
+  --fg-40: rgba(0, 0, 0, 0.45);
+  --fg-50: rgba(0, 0, 0, 0.55);
+  --fg-80: rgba(0, 0, 0, 0.8);
+
+  --border-section: rgba(0, 0, 0, 0.1);
+  --border-item:    rgba(0, 0, 0, 0.08);
+  --bg-subtle:      rgba(0, 0, 0, 0.08);
+}
+
+/* Explicit dark class from next-themes — restores dark defaults */
+html.dark {
+  --color-bg:      var(--bg-layer-2);
+  --color-surface: var(--neutral-05);
+  --color-fg:      var(--text-color-white);
+  --color-muted:   var(--text-color-snow);
+  --color-border:  var(--neutral-20);
+
+  --fg-40: rgba(255, 255, 255, 0.4);
+  --fg-50: rgba(255, 255, 255, 0.5);
+  --fg-80: rgba(255, 255, 255, 0.8);
+
+  --border-section: rgba(255, 255, 255, 0.15);
+  --border-item:    rgba(255, 255, 255, 0.1);
+  --bg-subtle:      rgba(255, 255, 255, 0.08);
 }
 
 /* ════════════════════════════════════════════════════════════
@@ -286,7 +341,8 @@ small { font-size: var(--text-small); }
   max-width: 1016px;
   margin-inline: auto;
   width: 100%;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+  padding-inline: 2px;
+  border-bottom: 1px solid var(--border-section);
 }
 
 /* Fixed vertical rails flanking the content column */
@@ -297,7 +353,7 @@ body::after {
   top: 0;
   bottom: 0;
   width: 1px;
-  background-color: rgba(255, 255, 255, 0.15);
+  background-color: var(--border-section);
   z-index: 9999;
   pointer-events: none;
 }

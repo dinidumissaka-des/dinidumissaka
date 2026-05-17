@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
+import ThemeTogglerButton from "@/components/ui/ThemeTogglerButton";
 
 const navLinks = [
   { label: "Cases", href: "#projects" },
@@ -69,14 +70,17 @@ export default function Navbar() {
           )}
         </nav>
 
-        {/* Contact CTA */}
-        <a
-          href="#contact"
-          className="px-5 py-2 rounded-full bg-accent text-white font-medium hover:bg-brand-primary-dark transition-colors shrink-0"
-          style={{ fontSize: "var(--text-p)" }}
-        >
-          Contact
-        </a>
+        {/* Right: Contact + Theme toggle */}
+        <div className="flex items-center gap-3 shrink-0">
+          <ThemeTogglerButton />
+          <a
+            href="#contact"
+            className="px-5 py-2 rounded-full bg-accent text-white font-medium hover:bg-brand-primary-dark transition-colors"
+            style={{ fontSize: "var(--text-p)" }}
+          >
+            Contact
+          </a>
+        </div>
       </div>
     </motion.header>
   );

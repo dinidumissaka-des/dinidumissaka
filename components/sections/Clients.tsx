@@ -8,8 +8,8 @@ const logos = tools.map(t => ({ src: t.logo, alt: t.name }));
 export default function Clients() {
   return (
     <section>
-      <div className="container" style={{ paddingBlock: "3rem", paddingInline: 0 }}>
-        <div style={{ overflow: "hidden" }}>
+      <div className="container" style={{ paddingBlock: "3rem" }}>
+        <div style={{ overflow: "hidden", background: "#111111", padding: "20px 0" }}>
         <LogoLoop
           logos={logos}
           speed={35}
@@ -18,7 +18,7 @@ export default function Clients() {
           gap={56}
           hoverSpeed={0}
           fadeOut
-          fadeOutColor="#101010"
+          fadeOutColor="#111111"
           scaleOnHover
           ariaLabel="Tools I use"
         />

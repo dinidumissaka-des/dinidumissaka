@@ -42,7 +42,7 @@ const AccordionItem = React.forwardRef<
       <RadixAccordion.Item
         ref={combinedRef}
         style={{
-          borderBottom: "1px solid rgba(255,255,255,0.1)",
+          borderBottom: "1px solid var(--border-item)",
           ...style,
         }}
         {...props}
@@ -87,7 +87,7 @@ const AccordionTrigger = React.forwardRef<
             fontFamily: "var(--font-manrope), sans-serif",
             fontSize: "14px",
             fontWeight: 500,
-            color: "var(--neutral-95)",
+            color: "var(--color-fg)",
             lineHeight: 1.5,
           }}
         >
@@ -100,7 +100,7 @@ const AccordionTrigger = React.forwardRef<
             style={{
               display: "flex",
               flexShrink: 0,
-              color: "rgba(255,255,255,0.4)",
+              color: "var(--fg-40)",
             }}
           >
             <ChevronDown size={16} />
@@ -146,7 +146,7 @@ const AccordionContent = React.forwardRef<
                 fontFamily: "var(--font-manrope), sans-serif",
                 fontSize: "14px",
                 lineHeight: 1.75,
-                color: "rgba(255,255,255,0.5)",
+                color: "var(--fg-50)",
               }}
             >
               {children}

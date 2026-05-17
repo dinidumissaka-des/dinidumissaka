@@ -18,7 +18,7 @@ export default function FAQ() {
     <section>
       <div
         className="container"
-        style={{ paddingBlock: "3rem", paddingInline: 0 }}
+        style={{ paddingBlock: "3rem" }}
       >
         {/* Header */}
         <motion.div
@@ -44,7 +44,7 @@ export default function FAQ() {
               fontSize: "32px",
               fontWeight: 300,
               lineHeight: 1.1,
-              color: "var(--neutral-95)",
+              color: "var(--color-fg)",
             }}
           >
             Common questions

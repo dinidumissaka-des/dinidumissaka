@@ -1,13 +1,10 @@
 "use client";
 
-import dynamic from "next/dynamic";
 import {
   FlipButton,
   FlipButtonFront,
   FlipButtonBack,
 } from "@/components/animate-ui/components/buttons/flip";
-
-const Beams = dynamic(() => import("@/components/ui/Beams"), { ssr: false });
 
 const socialLinks = [
   { label: "Email",     href: "mailto:dinidumissaka@gmail.com" },
@@ -20,14 +17,14 @@ const socialLinks = [
 const textStyle = {
   fontFamily: "var(--font-manrope), sans-serif",
   fontSize: "14px",
-  color: "rgba(255,255,255,0.4)",
+  color: "var(--fg-40)",
 };
 
 const linkTextStyle = {
   fontFamily: "var(--font-manrope), sans-serif",
   fontSize: "14px",
   fontWeight: 600,
-  color: "rgba(255,255,255,0.4)",
+  color: "var(--color-fg)",
 };
 
 export default function Footer() {
@@ -37,35 +34,9 @@ export default function Footer() {
         className="container"
         style={{
           paddingBlock: "3rem",
-          paddingInline: 0,
-          position: "relative",
-          overflow: "hidden",
         }}
       >
-        {/* Dither — fills the container */}
-        <div
-          style={{
-            position: "absolute",
-            inset: 0,
-            width: "100%",
-            height: "100%",
-            zIndex: 0,
-          }}
-        >
-          <Beams
-            beamWidth={2}
-            beamHeight={15}
-            beamNumber={50}
-            lightColor="#ffffff"
-            speed={2}
-            noiseIntensity={1.75}
-            scale={0.2}
-            rotation={0}
-          />
-        </div>
-
-        {/* Content above dither */}
-        <div style={{ position: "relative", zIndex: 1 }}>
+        <div>
           {/* Row 1: social links + location */}
           <div
             style={{
@@ -86,7 +57,7 @@ export default function Footer() {
                   <FlipButtonFront style={linkTextStyle}>
                     {link.label}
                   </FlipButtonFront>
-                  <FlipButtonBack style={{ ...linkTextStyle, color: "rgba(255,255,255,0.8)" }}>
+                  <FlipButtonBack style={{ ...linkTextStyle, color: "var(--fg-80)" }}>
                     {link.label}
                   </FlipButtonBack>
                 </FlipButton>
@@ -108,7 +79,7 @@ export default function Footer() {
               © {new Date().getFullYear()} · Dinidu Missaka.
             </span>
 
-            <span style={{ ...textStyle, fontStyle: "normal" }}>
+            <span style={{ ...textStyle, fontFamily: "var(--font-fraunces), Georgia, serif", fontStyle: "italic" }}>
               Build with Claude Code · Shipped on Vercel
             </span>
           </div>

@@ -38,7 +38,7 @@ export default function Hero() {
               letterSpacing: "-0.02em",
               fontFamily: "var(--font-fraunces), Georgia, serif",
               fontWeight: 300,
-              color: "var(--neutral-95)",
+              color: "var(--color-fg)",
             }}
           >
             Crafting people friendly<br />digital journeys!

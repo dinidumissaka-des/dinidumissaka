@@ -15,7 +15,7 @@ export default function Expertise() {
       <div
         ref={ref}
         className="container"
-        style={{ paddingBlock: "3rem", paddingInline: 0 }}
+        style={{ paddingBlock: "3rem" }}
       >
         <div className="flex flex-col md:flex-row md:items-start gap-12" style={{ justifyContent: "space-between" }}>
 
@@ -65,15 +65,15 @@ export default function Expertise() {
                   overflow: "hidden",
                   fontSize: "16px",
                   lineHeight: 1.55,
-                  color: "var(--neutral-95)",
+                  color: "var(--color-muted)",
                 }}
               >
                 <VariableProximity label="My work lives at the intersection of three things: " fromFontVariationSettings="'wght' 300, 'opsz' 9" toFontVariationSettings="'wght' 450, 'opsz' 40" containerRef={containerRef} radius={120} falloff="gaussian" />
-                <VariableProximity label="user-centred design" fromFontVariationSettings="'wght' 600, 'opsz' 9" toFontVariationSettings="'wght' 700, 'opsz' 40" containerRef={containerRef} radius={120} falloff="gaussian" />
+                <span style={{ color: "var(--color-fg)" }}><VariableProximity label="user-centred design" fromFontVariationSettings="'wght' 300, 'opsz' 9" toFontVariationSettings="'wght' 450, 'opsz' 40" containerRef={containerRef} radius={120} falloff="gaussian" /></span>
                 <VariableProximity label=", " fromFontVariationSettings="'wght' 300, 'opsz' 9" toFontVariationSettings="'wght' 450, 'opsz' 40" containerRef={containerRef} radius={120} falloff="gaussian" />
-                <VariableProximity label="AI-powered systems" fromFontVariationSettings="'wght' 600, 'opsz' 9" toFontVariationSettings="'wght' 700, 'opsz' 40" containerRef={containerRef} radius={120} falloff="gaussian" />
+                <span style={{ color: "var(--color-fg)" }}><VariableProximity label="AI-powered systems" fromFontVariationSettings="'wght' 300, 'opsz' 9" toFontVariationSettings="'wght' 450, 'opsz' 40" containerRef={containerRef} radius={120} falloff="gaussian" /></span>
                 <VariableProximity label=", and " fromFontVariationSettings="'wght' 300, 'opsz' 9" toFontVariationSettings="'wght' 450, 'opsz' 40" containerRef={containerRef} radius={120} falloff="gaussian" />
-                <VariableProximity label="visual craft" fromFontVariationSettings="'wght' 600, 'opsz' 9" toFontVariationSettings="'wght' 700, 'opsz' 40" containerRef={containerRef} radius={120} falloff="gaussian" />
+                <span style={{ color: "var(--color-fg)" }}><VariableProximity label="visual craft" fromFontVariationSettings="'wght' 300, 'opsz' 9" toFontVariationSettings="'wght' 450, 'opsz' 40" containerRef={containerRef} radius={120} falloff="gaussian" /></span>
                 <VariableProximity label=". I create engaging, intuitive experiences through cohesive UX and design systems that elevate brands — spanning web, app, and end-to-end product design. I leverage AI to optimise design workflows, scale digital experiences, and explore what's possible at the edge of design and technology." fromFontVariationSettings="'wght' 300, 'opsz' 9" toFontVariationSettings="'wght' 450, 'opsz' 40" containerRef={containerRef} radius={120} falloff="gaussian" />
               </div>
             </div>
@@ -104,7 +104,7 @@ export default function Expertise() {
               <img
                 src="/images/dribbble/kidmograph.gif"
                 alt=""
-                style={{ width: "80px", height: "80px", objectFit: "cover", borderRadius: "50%" }}
+                style={{ width: "80px", height: "80px", objectFit: "cover", borderRadius: "50%", border: "2px solid var(--border-item)" }}
               />
             </div>
           </motion.div>

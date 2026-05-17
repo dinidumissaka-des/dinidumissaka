@@ -6,6 +6,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { projects } from "@/lib/data/projects";
 import RotatingText, { RotatingTextRef } from "@/components/ui/RotatingText";
+import { FolderInputIcon } from "@/components/ui/FolderInputIcon";
 
 export default function Projects() {
   const ref = useRef<HTMLDivElement>(null);
@@ -24,7 +25,7 @@ export default function Projects() {
 
   return (
     <section id="projects">
-      <div className="container" style={{ paddingBlock: "3rem", paddingInline: 0 }}>
+      <div className="container" style={{ paddingBlock: "3rem" }}>
         {/* Header */}
         <motion.div
           ref={ref}
@@ -39,8 +40,12 @@ export default function Projects() {
               fontFamily: "var(--font-manrope), sans-serif",
               fontSize: "12px",
               marginBottom: "12px",
+              display: "flex",
+              alignItems: "center",
+              gap: "6px",
             }}
           >
+            <FolderInputIcon size={14} />
             Projects
           </p>
           <h2
@@ -49,7 +54,7 @@ export default function Projects() {
               fontSize: "32px",
               fontWeight: 300,
               lineHeight: 1.1,
-              color: "var(--neutral-95)",
+              color: "var(--color-fg)",
             }}
           >
             Design highlights
@@ -85,6 +90,7 @@ export default function Projects() {
                   overflow: "hidden",
                   position: "relative",
                   marginBottom: "12px",
+                  border: "2px solid var(--border-item)",
                 }}
               >
                 <Image
@@ -109,7 +115,7 @@ export default function Projects() {
                   gap: "4px",
                 }}
               >
-                <span style={{ flexShrink: 0, color: "var(--neutral-95)" }}>{project.title} |</span>
+                <span style={{ flexShrink: 0, color: "var(--color-fg)" }}>{project.title} |</span>
                 <RotatingText
                   ref={(el) => { rotatingRefs.current[project.id] = el; }}
                   texts={project.rotatingTexts}
