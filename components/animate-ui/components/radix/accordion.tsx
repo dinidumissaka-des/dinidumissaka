@@ -62,11 +62,14 @@ const AccordionTrigger = React.forwardRef<
   AccordionTriggerProps
 >(({ children, showArrow = true, style, ...props }, ref) => {
   const isOpen = React.useContext(AccordionItemContext);
+  const [hovered, setHovered] = React.useState(false);
 
   return (
     <RadixAccordion.Header style={{ margin: 0 }}>
       <RadixAccordion.Trigger
         ref={ref}
+        onMouseEnter={() => setHovered(true)}
+        onMouseLeave={() => setHovered(false)}
         style={{
           display: "flex",
           alignItems: "center",
@@ -87,8 +90,9 @@ const AccordionTrigger = React.forwardRef<
             fontFamily: "var(--font-manrope), sans-serif",
             fontSize: "14px",
             fontWeight: 500,
-            color: "var(--color-muted)",
+            color: hovered ? "var(--color-fg)" : "var(--color-muted)",
             lineHeight: 1.5,
+            transition: "color 0.2s ease",
           }}
         >
           {children}
@@ -146,7 +150,7 @@ const AccordionContent = React.forwardRef<
                 fontFamily: "var(--font-manrope), sans-serif",
                 fontSize: "14px",
                 lineHeight: 1.75,
-                color: "var(--color-fg)",
+                color: "var(--color-muted)",
               }}
             >
               {children}
