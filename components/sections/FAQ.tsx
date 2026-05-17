@@ -107,7 +107,7 @@ export default function FAQ() {
                 height: "100%",
               }}
             >
-              <div style={{ width: "220px", height: "220px", margin: "0 auto" }}>
+              <div style={{ width: "180px", height: "240px", margin: "0 auto" }}>
                 <Stack
                   randomRotation
                   sensitivity={180}
