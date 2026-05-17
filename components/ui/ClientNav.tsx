@@ -48,7 +48,7 @@ export function ClientNav() {
     <>
       {/* ── Mobile topnav ── */}
       <div
-        className="md:hidden"
+        className="mobile-topnav"
         style={{
           position: "fixed",
           top: 0,
@@ -93,7 +93,7 @@ export function ClientNav() {
       <AnimatePresence>
         {open && (
           <motion.div
-            className="md:hidden"
+            className="mobile-topnav"
             initial={{ opacity: 0, y: -8 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -8 }}
@@ -164,7 +164,7 @@ export function ClientNav() {
 
       {/* ── Desktop sidebar ── */}
       <div
-        className="hidden md:block"
+        className="desktop-sidebar"
         style={{
           position: "fixed",
           top: "3rem",

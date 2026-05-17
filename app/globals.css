@@ -351,6 +351,17 @@ small { font-size: var(--text-small); }
   }
 }
 
+/* Nav visibility */
+.mobile-topnav { display: flex; }
+.desktop-sidebar { display: block; }
+
+@media (min-width: 768px) {
+  .mobile-topnav { display: none !important; }
+}
+@media (max-width: 767px) {
+  .desktop-sidebar { display: none !important; }
+}
+
 /* Fixed vertical rails flanking the content column */
 body::before,
 body::after {
