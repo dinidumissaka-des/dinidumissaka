@@ -72,18 +72,18 @@ export default function Hero() {
             scrollSpeed={2}
             scrollEase={0.02}
           />
-          <GradualBlur
-            target="parent"
-            position="bottom"
-            height="6rem"
-            strength={2}
-            divCount={5}
-            curve="bezier"
-            exponential={true}
-            opacity={1}
-          />
         </motion.div>
       </div>
+      <GradualBlur
+        target="parent"
+        position="bottom"
+        height="6rem"
+        strength={2}
+        divCount={5}
+        curve="bezier"
+        exponential={true}
+        opacity={1}
+      />
     </section>
   );
 }
