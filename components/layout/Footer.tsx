@@ -38,15 +38,8 @@ export default function Footer() {
       >
         <div>
           {/* Row 1: social links + location */}
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "space-between",
-              alignItems: "center",
-              marginBottom: "32px",
-            }}
-          >
-            <div style={{ display: "flex", gap: "32px" }}>
+          <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 md:gap-0" style={{ marginBottom: "32px" }}>
+            <div className="flex flex-wrap gap-6">
               {socialLinks.map((link) => (
                 <FlipButton
                   key={link.label}
@@ -68,13 +61,7 @@ export default function Footer() {
           </div>
 
           {/* Row 2: copyright + build credit */}
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "space-between",
-              alignItems: "center",
-            }}
-          >
+          <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-2 md:gap-0">
             <span style={{ ...textStyle, fontStyle: "normal" }}>
               © {new Date().getFullYear()} · Dinidu Missaka.
             </span>
