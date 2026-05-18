@@ -10,7 +10,7 @@ import {
 } from "@/components/animate-ui/components/buttons/flip";
 
 const navLinks = [
-  { label: "About", href: "#about" },
+  { label: "About", href: "/about" },
   { label: "Projects", href: "#projects" },
   { label: "Resume", href: "/resume.pdf", target: "_blank" },
 ];
