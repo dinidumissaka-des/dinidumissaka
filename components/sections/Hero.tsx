@@ -2,7 +2,6 @@
 
 import { motion } from "framer-motion";
 import CircularGallery from "@/components/ui/CircularGallery";
-import GradualBlur from "@/components/ui/GradualBlur";
 
 const galleryItems = [
   { image: "/images/hero/6738d52e1229ecc84512efce_6.avif",   text: "" },
@@ -74,16 +73,6 @@ export default function Hero() {
           />
         </motion.div>
       </div>
-      <GradualBlur
-        target="page"
-        position="bottom"
-        height="6rem"
-        strength={2}
-        divCount={5}
-        curve="bezier"
-        exponential={true}
-        opacity={1}
-      />
     </section>
   );
 }
