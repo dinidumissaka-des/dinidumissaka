@@ -146,7 +146,7 @@ export default function AboutPage() {
         style={{ paddingBottom: "4rem" }}
       >
         {/* Hero */}
-        <div style={{ paddingTop: "3rem", paddingBottom: "3rem", ...divider, display: "flex", alignItems: "flex-start", gap: "2rem", flexWrap: "wrap" }}>
+        <div style={{ paddingTop: "3rem", paddingBottom: "3rem", ...divider, display: "flex", gap: "2rem", flexWrap: "wrap" }}>
           {/* Text */}
           <div style={{ flex: 1, minWidth: 0 }}>
             <p className="text-muted mb-5" style={{ fontSize: "12px" }}>
