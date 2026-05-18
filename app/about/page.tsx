@@ -117,8 +117,7 @@ const certifications = [
 const sectionLabel: React.CSSProperties = {
   fontFamily: "var(--font-manrope), sans-serif",
   fontSize: "11px",
-  letterSpacing: "0.08em",
-  textTransform: "uppercase",
+  letterSpacing: "0.02em",
   color: "var(--color-muted)",
   marginBottom: "20px",
 };
