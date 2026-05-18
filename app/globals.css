@@ -388,3 +388,20 @@ body::after {
   body::after  { right: 16px; }
 }
 
+/* ════════════════════════════════════════════════════════════
+   Logo Strip
+   ════════════════════════════════════════════════════════════ */
+.logo-strip {
+  overflow: hidden;
+  background: #101010;
+  padding: 20px 0;
+}
+
+html.light .logo-strip { background: transparent; }
+html.light .logo-strip img { filter: brightness(0); }
+
+@media (prefers-color-scheme: light) {
+  html:not(.dark) .logo-strip { background: transparent; }
+  html:not(.dark) .logo-strip img { filter: brightness(0); }
+}
+

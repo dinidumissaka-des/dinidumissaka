@@ -18,7 +18,7 @@ export default function Clients() {
   return (
     <section>
       <div className="container" style={{ paddingBlock: "3rem" }}>
-        <div style={{ overflow: "hidden", background: "#101010", padding: "20px 0" }}>
+        <div className="logo-strip">
         <LogoLoop
           logos={logos}
           speed={35}
@@ -27,7 +27,6 @@ export default function Clients() {
           gap={56}
           hoverSpeed={0}
           fadeOut
-          fadeOutColor="#101010"
           scaleOnHover
           ariaLabel="Tools I use"
         />
