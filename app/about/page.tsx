@@ -180,7 +180,7 @@ export default function AboutPage() {
           <div
             style={{
               flexShrink: 0,
-              width: "220px",
+              width: "320px",
               alignSelf: "stretch",
               background: "var(--bg-card)",
               borderRadius: "16px",
