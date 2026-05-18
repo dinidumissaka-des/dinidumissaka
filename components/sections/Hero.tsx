@@ -75,7 +75,7 @@ export default function Hero() {
         </motion.div>
       </div>
       <GradualBlur
-        target="parent"
+        target="page"
         position="bottom"
         height="6rem"
         strength={2}
