@@ -221,6 +221,7 @@ export default function AboutPage() {
                     fontSize: "13px",
                     color: "var(--color-muted)",
                     lineHeight: 1.6,
+                    textAlign: "right",
                   }}
                 >
                   {group.items.join(" · ")}
