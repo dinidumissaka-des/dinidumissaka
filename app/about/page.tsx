@@ -194,7 +194,7 @@ export default function AboutPage() {
               alt="Dinidu Seneviratne"
               width={200}
               height={200}
-              style={{ objectFit: "cover", borderRadius: "12px", display: "block", width: "100%", height: "auto" }}
+              style={{ objectFit: "cover", borderRadius: "12px", display: "block", width: "100%", aspectRatio: "1 / 1" }}
             />
           </div>
           </div>
