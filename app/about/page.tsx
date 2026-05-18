@@ -145,26 +145,8 @@ export default function AboutPage() {
         className="container"
         style={{ paddingBlock: "4rem" }}
       >
-        {/* Back */}
-        <Link
-          href="/"
-          className="text-muted"
-          style={{
-            fontFamily: "var(--font-manrope), sans-serif",
-            fontSize: "12px",
-            display: "inline-flex",
-            alignItems: "center",
-            gap: "6px",
-            marginBottom: "3rem",
-            textDecoration: "none",
-          }}
-        >
-          ← Home
-        </Link>
-
         {/* Hero */}
         <div style={divider}>
-          <p style={sectionLabel}>About</p>
           <h1
             style={{
               fontFamily: "var(--font-fraunces), Georgia, serif",
