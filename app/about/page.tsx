@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -145,32 +146,46 @@ export default function AboutPage() {
         style={{ paddingBottom: "4rem" }}
       >
         {/* Hero */}
-        <div style={{ paddingTop: "3rem", paddingBottom: "16px", ...divider }}>
-          <p className="text-muted mb-5" style={{ fontSize: "12px" }}>
-            Senior UI/UX &amp; Product Designer&nbsp;|&nbsp;AI-Native Builder&nbsp;|&nbsp;Dubai, UAE
-          </p>
-          <h1
-            style={{
-              fontSize: "48px",
-              lineHeight: 1.05,
-              letterSpacing: "-0.02em",
-              fontFamily: "var(--font-fraunces), Georgia, serif",
-              fontWeight: 300,
-              color: "var(--color-fg)",
-            }}
-          >
-            Dinidu Seneviratne
-          </h1>
-          <p
-            className="mt-7 text-muted max-w-2xl leading-relaxed"
-            style={{ fontSize: "14px" }}
-          >
-            Senior UI/UX and Product Designer with 5+ years delivering end-to-end digital
-            experiences for fintech and SaaS — from user research and interaction design through to
-            shipped product, without engineering dependency. Uses Claude Code, Vibe Code, and
-            Webflow to own the full design-to-delivery flow, backed by a strong visual design craft
-            and deep expertise in design systems.
-          </p>
+        <div style={{ paddingTop: "3rem", paddingBottom: "3rem", ...divider, display: "flex", alignItems: "flex-start", gap: "2rem", flexWrap: "wrap" }}>
+          {/* Photo */}
+          <div style={{ flexShrink: 0 }}>
+            <Image
+              src="/98572959-1d4b-4264-9dfa-2db3720d06d6.png"
+              alt="Dinidu Seneviratne"
+              width={80}
+              height={80}
+              style={{ borderRadius: "50%", objectFit: "cover", display: "block" }}
+            />
+          </div>
+
+          {/* Text */}
+          <div style={{ flex: 1, minWidth: 0 }}>
+            <p className="text-muted mb-5" style={{ fontSize: "12px" }}>
+              Senior UI/UX &amp; Product Designer&nbsp;|&nbsp;AI-Native Builder&nbsp;|&nbsp;Dubai, UAE
+            </p>
+            <h1
+              style={{
+                fontSize: "48px",
+                lineHeight: 1.05,
+                letterSpacing: "-0.02em",
+                fontFamily: "var(--font-fraunces), Georgia, serif",
+                fontWeight: 300,
+                color: "var(--color-fg)",
+              }}
+            >
+              Dinidu Seneviratne
+            </h1>
+            <p
+              className="mt-7 text-muted max-w-2xl leading-relaxed"
+              style={{ fontSize: "14px" }}
+            >
+              Senior UI/UX and Product Designer with 5+ years delivering end-to-end digital
+              experiences for fintech and SaaS — from user research and interaction design through to
+              shipped product, without engineering dependency. Uses Claude Code, Vibe Code, and
+              Webflow to own the full design-to-delivery flow, backed by a strong visual design craft
+              and deep expertise in design systems.
+            </p>
+          </div>
         </div>
 
         {/* Skills */}
