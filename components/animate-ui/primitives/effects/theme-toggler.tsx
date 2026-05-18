@@ -106,6 +106,10 @@ function ThemeToggler({
             'dark',
             resolved === 'dark',
           );
+          document.documentElement.classList.toggle(
+            'light',
+            resolved === 'light',
+          );
         });
       }).ready;
 

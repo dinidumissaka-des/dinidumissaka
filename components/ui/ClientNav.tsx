@@ -60,7 +60,6 @@ export function ClientNav() {
           gap: "8px",
           padding: "12px 16px",
           background: "var(--color-bg)",
-          borderBottom: "1px solid var(--border-section)",
         }}
       >
         <ClientThemeToggler {...togglerProps} />

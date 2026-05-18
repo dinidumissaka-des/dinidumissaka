@@ -101,6 +101,7 @@
 
   /* ── Subtle surface (dark default) ── */
   --bg-subtle: rgba(255, 255, 255, 0.08);
+  --bg-card:   rgba(255, 255, 255, 0.04);
 }
 
 /* ── Light Mode token overrides ──────────────────────────────── */
@@ -120,6 +121,7 @@
     --border-section: rgba(0, 0, 0, 0.1);
     --border-item:    rgba(0, 0, 0, 0.08);
     --bg-subtle:      rgba(0, 0, 0, 0.08);
+    --bg-card:        rgba(0, 0, 0, 0.02);
   }
 }
 
@@ -138,6 +140,7 @@ html.light {
   --border-section: rgba(0, 0, 0, 0.1);
   --border-item:    rgba(0, 0, 0, 0.08);
   --bg-subtle:      rgba(0, 0, 0, 0.08);
+  --bg-card:        rgba(0, 0, 0, 0.02);
 }
 
 /* Explicit dark class from next-themes — restores dark defaults */
@@ -155,6 +158,7 @@ html.dark {
   --border-section: rgba(255, 255, 255, 0.15);
   --border-item:    rgba(255, 255, 255, 0.1);
   --bg-subtle:      rgba(255, 255, 255, 0.08);
+  --bg-card:        rgba(255, 255, 255, 0.02);
 }
 
 /* ════════════════════════════════════════════════════════════
@@ -354,7 +358,28 @@ small { font-size: var(--text-small); }
 }
 
 /* Nav visibility */
-.mobile-topnav { display: flex !important; }
+.mobile-topnav {
+  display: flex !important;
+  position: relative;
+}
+.mobile-topnav::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 16px;
+  width: 1px;
+  background-color: var(--border-section);
+}
+.mobile-topnav::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 16px;
+  right: 16px;
+  height: 1px;
+  background-color: var(--border-section);
+}
 .desktop-sidebar { display: block !important; }
 
 @media (min-width: 768px) {
@@ -378,16 +403,11 @@ body::after {
 }
 
 body::before {
-  left: max(0px, calc(50% - 508px));
+  left: max(16px, calc(50% - 508px));
 }
 
 body::after {
-  right: max(0px, calc(50% - 508px));
-}
-
-@media (max-width: 767px) {
-  body::before { left: 16px; }
-  body::after  { right: 16px; }
+  right: max(16px, calc(50% - 508px));
 }
 
 /* ════════════════════════════════════════════════════════════
