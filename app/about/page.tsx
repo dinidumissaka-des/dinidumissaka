@@ -146,45 +146,31 @@ export default function AboutPage() {
         style={{ paddingBlock: "4rem" }}
       >
         {/* Hero */}
-        <div style={divider}>
+        <div style={{ paddingTop: "3rem", paddingBottom: "16px", ...divider }}>
+          <p className="text-muted mb-5" style={{ fontSize: "12px" }}>
+            Senior UI/UX &amp; Product Designer&nbsp;|&nbsp;AI-Native Builder&nbsp;|&nbsp;Dubai, UAE
+          </p>
           <h1
             style={{
-              fontFamily: "var(--font-fraunces), Georgia, serif",
-              fontSize: "clamp(2.5rem, 6vw, 4rem)",
-              fontWeight: 300,
+              fontSize: "48px",
               lineHeight: 1.05,
               letterSpacing: "-0.02em",
+              fontFamily: "var(--font-fraunces), Georgia, serif",
+              fontWeight: 300,
               color: "var(--color-fg)",
-              marginBottom: "1.5rem",
             }}
           >
             Dinidu Seneviratne
           </h1>
           <p
-            style={{
-              fontFamily: "var(--font-manrope), sans-serif",
-              fontSize: "13px",
-              color: "var(--color-muted)",
-              marginBottom: "2rem",
-            }}
-          >
-            Senior UI/UX &amp; Product Designer · AI-Native Builder · Dubai, UAE
-          </p>
-          <p
-            style={{
-              fontSize: "16px",
-              lineHeight: 1.8,
-              color: "var(--color-fg)",
-              maxWidth: "680px",
-            }}
+            className="mt-7 text-muted max-w-2xl leading-relaxed"
+            style={{ fontSize: "14px" }}
           >
             Senior UI/UX and Product Designer with 5+ years delivering end-to-end digital
             experiences for fintech and SaaS — from user research and interaction design through to
             shipped product, without engineering dependency. Uses Claude Code, Vibe Code, and
             Webflow to own the full design-to-delivery flow, backed by a strong visual design craft
-            and deep expertise in design systems. An early, hands-on adopter of AI-powered
-            workflows integrating Claude, Google AI, and Figma AI to accelerate production and
-            reduce iteration cycles.
+            and deep expertise in design systems.
           </p>
         </div>
 
