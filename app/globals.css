@@ -432,3 +432,36 @@ html.light .logo-mode--dark  { display: none !important; }
   html:not(.dark) .logo-mode--dark  { display: none !important; }
 }
 
+/* ════════════════════════════════════════════════════════════
+   About page — hero grid
+   ════════════════════════════════════════════════════════════ */
+.about-hero-photo {
+  background: var(--bg-card);
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  height: 100%;
+}
+
+@media (max-width: 767px) {
+  .about-hero-grid {
+    grid-template-columns: 1fr !important;
+  }
+  .about-hero-photo {
+    order: -1;
+    height: auto;
+    width: fit-content;
+    background: transparent;
+    padding: 0;
+    border-radius: 0;
+  }
+  .about-hero-photo img {
+    width: 100px !important;
+    height: 100px !important;
+    border-radius: 50% !important;
+    aspect-ratio: 1 !important;
+  }
+}
+

@@ -147,7 +147,7 @@ export default function AboutPage() {
       >
         {/* Hero */}
         <div style={{ paddingTop: "3rem", paddingBottom: "3rem", ...divider }}>
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 280px", gap: "2rem", alignItems: "start" }}>
+          <div className="about-hero-grid" style={{ display: "grid", gridTemplateColumns: "1fr 280px", gap: "2rem", alignItems: "start" }}>
           {/* Text */}
           <div>
             <p className="text-muted mb-5" style={{ fontSize: "12px" }}>
@@ -178,17 +178,7 @@ export default function AboutPage() {
           </div>
 
           {/* Photo */}
-          <div
-            style={{
-              background: "var(--bg-card)",
-              borderRadius: "16px",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              padding: "24px",
-              height: "100%",
-            }}
-          >
+          <div className="about-hero-photo">
             <Image
               src="/98572959-1d4b-4264-9dfa-2db3720d06d6.png"
               alt="Dinidu Seneviratne"
