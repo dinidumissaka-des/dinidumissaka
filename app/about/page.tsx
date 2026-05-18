@@ -147,17 +147,6 @@ export default function AboutPage() {
       >
         {/* Hero */}
         <div style={{ paddingTop: "3rem", paddingBottom: "3rem", ...divider, display: "flex", alignItems: "flex-start", gap: "2rem", flexWrap: "wrap" }}>
-          {/* Photo */}
-          <div style={{ flexShrink: 0 }}>
-            <Image
-              src="/98572959-1d4b-4264-9dfa-2db3720d06d6.png"
-              alt="Dinidu Seneviratne"
-              width={80}
-              height={80}
-              style={{ borderRadius: "50%", objectFit: "cover", display: "block" }}
-            />
-          </div>
-
           {/* Text */}
           <div style={{ flex: 1, minWidth: 0 }}>
             <p className="text-muted mb-5" style={{ fontSize: "12px" }}>
@@ -185,6 +174,17 @@ export default function AboutPage() {
               Webflow to own the full design-to-delivery flow, backed by a strong visual design craft
               and deep expertise in design systems.
             </p>
+          </div>
+
+          {/* Photo */}
+          <div style={{ flexShrink: 0, width: "160px", height: "160px", borderRadius: "16px", overflow: "hidden" }}>
+            <Image
+              src="/98572959-1d4b-4264-9dfa-2db3720d06d6.png"
+              alt="Dinidu Seneviratne"
+              width={160}
+              height={160}
+              style={{ objectFit: "cover", width: "100%", height: "100%", display: "block" }}
+            />
           </div>
         </div>
 
