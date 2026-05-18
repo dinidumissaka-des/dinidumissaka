@@ -148,6 +148,17 @@ export default function AboutPage() {
         {/* Hero */}
         <div style={{ paddingTop: "3rem", paddingBottom: "3rem", ...divider }}>
           <div className="about-hero-grid" style={{ display: "grid", gridTemplateColumns: "1fr 280px", gap: "2rem", alignItems: "start" }}>
+          {/* Photo — first in DOM so mobile shows it above the label naturally */}
+          <div className="about-hero-photo">
+            <Image
+              src="/98572959-1d4b-4264-9dfa-2db3720d06d6.png"
+              alt="Dinidu Seneviratne"
+              width={200}
+              height={200}
+              style={{ objectFit: "cover", borderRadius: "12px", display: "block", width: "100%", aspectRatio: "1 / 1" }}
+            />
+          </div>
+
           {/* Text */}
           <div>
             <p className="text-muted mb-5" style={{ fontSize: "12px" }}>
@@ -175,17 +186,6 @@ export default function AboutPage() {
               Webflow to own the full design-to-delivery flow, backed by a strong visual design craft
               and deep expertise in design systems.
             </p>
-          </div>
-
-          {/* Photo */}
-          <div className="about-hero-photo">
-            <Image
-              src="/98572959-1d4b-4264-9dfa-2db3720d06d6.png"
-              alt="Dinidu Seneviratne"
-              width={200}
-              height={200}
-              style={{ objectFit: "cover", borderRadius: "12px", display: "block", width: "100%", aspectRatio: "1 / 1" }}
-            />
           </div>
           </div>
         </div>

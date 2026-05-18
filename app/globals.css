@@ -436,6 +436,8 @@ html.light .logo-mode--dark  { display: none !important; }
    About page — hero grid
    ════════════════════════════════════════════════════════════ */
 .about-hero-photo {
+  grid-column: 2;
+  grid-row: 1;
   background: var(--bg-card);
   border-radius: 16px;
   display: flex;
@@ -450,7 +452,8 @@ html.light .logo-mode--dark  { display: none !important; }
     grid-template-columns: 1fr !important;
   }
   .about-hero-photo {
-    order: -1;
+    grid-column: 1;
+    grid-row: auto;
     height: auto;
     width: fit-content;
     background: transparent;
