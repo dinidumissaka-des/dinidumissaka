@@ -376,10 +376,15 @@ body::after {
 }
 
 body::before {
-  left: max(0px, calc(50% - 508px));
+  left: max(16px, calc(50% - 508px));
 }
 
 body::after {
-  right: max(0px, calc(50% - 508px));
+  right: max(16px, calc(50% - 508px));
+}
+
+@media (min-width: 768px) {
+  body::before { left: max(0px, calc(50% - 508px)); }
+  body::after  { right: max(0px, calc(50% - 508px)); }
 }
 
