@@ -271,7 +271,7 @@ export default function AboutPage() {
                     {role.period}
                   </span>
                 </div>
-                <ul style={{ margin: 0, padding: "0 0 0 1rem", display: "flex", flexDirection: "column", gap: "6px" }}>
+                <ul style={{ margin: 0, padding: 0, listStyle: "none", display: "flex", flexDirection: "column", gap: "14px" }}>
                   {role.bullets.map((b, j) => (
                     <li
                       key={j}
@@ -331,7 +331,7 @@ export default function AboutPage() {
                 2017 – 2020
               </span>
             </div>
-            <ul style={{ margin: 0, padding: "0 0 0 1rem", display: "flex", flexDirection: "column", gap: "6px" }}>
+            <ul style={{ margin: 0, padding: 0, listStyle: "none", display: "flex", flexDirection: "column", gap: "14px" }}>
               <li style={{ fontFamily: "var(--font-manrope), sans-serif", fontSize: "13px", lineHeight: 1.7, color: "var(--color-muted)" }}>
                 First-Class Honors, GPA 3.86 · Dean&apos;s List for four semesters · Top performer in Media and Communication Design
               </li>
@@ -414,7 +414,7 @@ export default function AboutPage() {
         <div>
           <p style={sectionLabel}>Licenses &amp; Certifications</p>
           <h2 style={sectionTitle}>Credentials</h2>
-          <ul style={{ margin: 0, padding: "0 0 0 1rem", display: "flex", flexDirection: "column", gap: "8px" }}>
+          <ul style={{ margin: 0, padding: 0, listStyle: "none", display: "flex", flexDirection: "column", gap: "14px" }}>
             {certifications.map((cert, i) => (
               <li
                 key={i}
