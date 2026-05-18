@@ -146,9 +146,10 @@ export default function AboutPage() {
         style={{ paddingBottom: "4rem" }}
       >
         {/* Hero */}
-        <div style={{ paddingTop: "3rem", paddingBottom: "3rem", ...divider, display: "flex", gap: "2rem", flexWrap: "wrap" }}>
+        <div style={{ paddingTop: "3rem", paddingBottom: "3rem", ...divider }}>
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 280px", gap: "2rem", alignItems: "start" }}>
           {/* Text */}
-          <div style={{ flex: 1, minWidth: 0 }}>
+          <div>
             <p className="text-muted mb-5" style={{ fontSize: "12px" }}>
               Senior UI/UX &amp; Product Designer&nbsp;|&nbsp;AI-Native Builder&nbsp;|&nbsp;Dubai, UAE
             </p>
@@ -179,24 +180,23 @@ export default function AboutPage() {
           {/* Photo */}
           <div
             style={{
-              flexShrink: 0,
-              width: "320px",
-              alignSelf: "stretch",
               background: "var(--bg-card)",
               borderRadius: "16px",
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
               padding: "24px",
+              height: "100%",
             }}
           >
             <Image
               src="/98572959-1d4b-4264-9dfa-2db3720d06d6.png"
               alt="Dinidu Seneviratne"
-              width={140}
-              height={140}
-              style={{ objectFit: "cover", borderRadius: "12px", display: "block" }}
+              width={200}
+              height={200}
+              style={{ objectFit: "cover", borderRadius: "12px", display: "block", width: "100%", height: "auto" }}
             />
+          </div>
           </div>
         </div>
 
