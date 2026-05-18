@@ -3,7 +3,16 @@
 import LogoLoop from "@/components/ui/LogoLoop";
 import { tools } from "@/lib/data/toolkit";
 
-const logos = tools.map(t => ({ src: t.logo, alt: t.name }));
+const logoHeights: Record<string, number> = {
+  Webflow: 16,
+  "VS Code": 28,
+};
+
+// eslint-disable-next-line @next/next/no-img-element
+const logos = tools.map(t => ({
+  node: <img src={t.logo} alt={t.name} style={{ height: `${logoHeights[t.name] ?? 24}px`, width: "auto" }} />,
+  title: t.name,
+}));
 
 export default function Clients() {
   return (
