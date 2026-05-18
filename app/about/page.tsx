@@ -177,13 +177,25 @@ export default function AboutPage() {
           </div>
 
           {/* Photo */}
-          <div style={{ flexShrink: 0, width: "160px", height: "160px", borderRadius: "16px", overflow: "hidden" }}>
+          <div
+            style={{
+              flexShrink: 0,
+              width: "220px",
+              alignSelf: "stretch",
+              background: "var(--bg-card)",
+              borderRadius: "16px",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              padding: "24px",
+            }}
+          >
             <Image
               src="/98572959-1d4b-4264-9dfa-2db3720d06d6.png"
               alt="Dinidu Seneviratne"
-              width={160}
-              height={160}
-              style={{ objectFit: "cover", width: "100%", height: "100%", display: "block" }}
+              width={140}
+              height={140}
+              style={{ objectFit: "cover", borderRadius: "12px", display: "block" }}
             />
           </div>
         </div>
