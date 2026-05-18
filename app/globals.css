@@ -461,8 +461,8 @@ html.light .logo-mode--dark  { display: none !important; }
     border-radius: 0;
   }
   .about-hero-photo img {
-    width: 100px !important;
-    height: 100px !important;
+    width: 48px !important;
+    height: 48px !important;
     border-radius: 50% !important;
     aspect-ratio: 1 !important;
   }
