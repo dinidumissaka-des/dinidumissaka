@@ -1,17 +1,18 @@
 export interface Tool {
   name: string;
   logo: string;
+  logoLight?: string;
 }
 
 export const tools: Tool[] = [
-  { name: "Claude", logo: "/images/tools/claude.svg" },
-  { name: "Cursor", logo: "/images/tools/cursor.svg" },
-  { name: "VS Code", logo: "/images/tools/vscode.svg" },
-  { name: "Google AI", logo: "/images/tools/google-ai.svg" },
-  { name: "Figma", logo: "/images/tools/figma.svg" },
-  { name: "Adobe", logo: "/images/tools/adobe.svg" },
-  { name: "Webflow", logo: "/images/tools/webflow.svg" },
-  { name: "Framer", logo: "/images/tools/framer.svg" },
+  { name: "Claude",     logo: "/images/tools/claude.svg",     logoLight: "/images/tools/claude-light.svg" },
+  { name: "Cursor",     logo: "/images/tools/cursor.svg",     logoLight: "/images/tools/cursor-light.svg" },
+  { name: "VS Code",    logo: "/images/tools/vscode.svg",     logoLight: "/images/tools/vscode-light.svg" },
+  { name: "Google AI",  logo: "/images/tools/google-ai.svg",  logoLight: "/images/tools/google-ai-light.svg" },
+  { name: "Figma",      logo: "/images/tools/figma.svg",      logoLight: "/images/tools/figma-light.svg" },
+  { name: "Adobe",      logo: "/images/tools/adobe.svg" },
+  { name: "Webflow",    logo: "/images/tools/webflow.svg",    logoLight: "/images/tools/webflow-light.svg" },
+  { name: "Framer",     logo: "/images/tools/framer.svg",     logoLight: "/images/tools/framer-light.svg" },
 ];
 
 export const clients: { name: string; logo: string }[] = [
