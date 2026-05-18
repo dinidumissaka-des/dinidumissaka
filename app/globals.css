@@ -347,7 +347,9 @@ small { font-size: var(--text-small); }
 
 @media (max-width: 767px) {
   .container {
-    padding-inline: 16px;
+    padding-inline: 0;
+    margin-inline: 16px;
+    width: auto;
   }
 }
 
