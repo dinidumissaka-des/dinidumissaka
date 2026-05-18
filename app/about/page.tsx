@@ -140,10 +140,10 @@ const divider: React.CSSProperties = {
 
 export default function AboutPage() {
   return (
-    <main style={{ paddingTop: "4rem" }}>
+    <main>
       <div
         className="container"
-        style={{ paddingBlock: "4rem" }}
+        style={{ paddingBottom: "4rem" }}
       >
         {/* Hero */}
         <div style={{ paddingTop: "3rem", paddingBottom: "16px", ...divider }}>
