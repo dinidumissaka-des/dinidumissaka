@@ -397,16 +397,16 @@ body::after {
   padding: 20px 0;
 }
 
-.logo-mode--light { display: none; }
-.logo-mode--dark  { display: block; }
+.logo-mode--light { display: none !important; }
+.logo-mode--dark  { display: block !important; }
 
 html.light .logo-strip { background: transparent; }
-html.light .logo-mode--light { display: block; }
-html.light .logo-mode--dark  { display: none; }
+html.light .logo-mode--light { display: block !important; }
+html.light .logo-mode--dark  { display: none !important; }
 
 @media (prefers-color-scheme: light) {
   html:not(.dark) .logo-strip { background: transparent; }
-  html:not(.dark) .logo-mode--light { display: block; }
-  html:not(.dark) .logo-mode--dark  { display: none; }
+  html:not(.dark) .logo-mode--light { display: block !important; }
+  html:not(.dark) .logo-mode--dark  { display: none !important; }
 }
 
