@@ -143,7 +143,7 @@ export default function AboutPage() {
     <main style={{ paddingTop: "4rem" }}>
       <div
         className="container"
-        style={{ paddingBlock: "4rem", paddingInline: "clamp(1.5rem, 5vw, 3rem)" }}
+        style={{ paddingBlock: "4rem" }}
       >
         {/* Back */}
         <Link
