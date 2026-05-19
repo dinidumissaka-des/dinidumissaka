@@ -12,11 +12,13 @@ import { cn } from "@/lib/utils";
 export const CometCard = ({
   rotateDepth = 17.5,
   translateDepth = 20,
+  glare = true,
   className,
   children,
 }: {
   rotateDepth?: number;
   translateDepth?: number;
+  glare?: boolean;
   className?: string;
   children: React.ReactNode;
 }) => {
@@ -101,14 +103,16 @@ export const CometCard = ({
         className="relative rounded-2xl"
       >
         {children}
-        <motion.div
-          className="pointer-events-none absolute inset-0 z-50 h-full w-full rounded-[16px] mix-blend-overlay"
-          style={{
-            background: glareBackground,
-            opacity: 0.6,
-          }}
-          transition={{ duration: 0.2 }}
-        />
+        {glare && (
+          <motion.div
+            className="pointer-events-none absolute inset-0 z-50 h-full w-full rounded-[16px] mix-blend-overlay"
+            style={{
+              background: glareBackground,
+              opacity: 0.6,
+            }}
+            transition={{ duration: 0.2 }}
+          />
+        )}
       </motion.div>
     </div>
   );

@@ -147,15 +147,15 @@ export default function AboutPage() {
       >
         {/* Hero */}
         <div style={{ paddingTop: "3rem", paddingBottom: "3rem", ...divider }}>
-          <div className="about-hero-grid" style={{ display: "grid", gridTemplateColumns: "1fr 280px", gap: "2rem", alignItems: "start" }}>
+          <div className="about-hero-grid" style={{ display: "grid", gridTemplateColumns: "1fr 200px", gap: "2rem", alignItems: "start" }}>
           {/* Photo — first in DOM so mobile shows it above the label naturally */}
           <div className="about-hero-photo">
-            <CometCard className="w-full h-full">
+            <CometCard glare={false} className="w-full h-full">
               <Image
                 src="/avatar.png"
                 alt="Dinidu Seneviratne"
-                width={400}
-                height={400}
+                width={200}
+                height={200}
                 style={{ objectFit: "cover", borderRadius: "16px", display: "block", width: "100%", aspectRatio: "1 / 1" }}
               />
             </CometCard>
