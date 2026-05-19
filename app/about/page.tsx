@@ -151,13 +151,15 @@ export default function AboutPage() {
           {/* Photo — first in DOM so mobile shows it above the label naturally */}
           <div className="about-hero-photo">
             <CometCard glare={false} className="w-full h-full">
-              <Image
-                src="/avatar.png"
-                alt="Dinidu Seneviratne"
-                width={200}
-                height={200}
-                style={{ objectFit: "cover", borderRadius: "16px", display: "block", width: "100%", aspectRatio: "1 / 1" }}
-              />
+              <div style={{ display: "flex", alignItems: "center", justifyContent: "center", width: "100%", height: "100%", padding: "24px", background: "var(--bg-card)", borderRadius: "16px" }}>
+                <Image
+                  src="/avatar.png"
+                  alt="Dinidu Seneviratne"
+                  width={120}
+                  height={120}
+                  style={{ objectFit: "cover", borderRadius: "12px", display: "block", width: "100%", aspectRatio: "1 / 1" }}
+                />
+              </div>
             </CometCard>
           </div>
 
