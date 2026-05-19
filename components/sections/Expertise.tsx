@@ -103,7 +103,7 @@ export default function Expertise() {
               }}
             >
               <img
-                src="/98572959-1d4b-4264-9dfa-2db3720d06d6.png"
+                src="/images/dribbble/kidmograph.gif"
                 alt=""
                 style={{ width: "80px", height: "80px", objectFit: "cover", borderRadius: "50%", border: "2px solid var(--border-item)" }}
               />
