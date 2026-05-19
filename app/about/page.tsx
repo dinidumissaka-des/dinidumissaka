@@ -117,15 +117,14 @@ const certifications = [
 
 const sectionLabel: React.CSSProperties = {
   fontFamily: "var(--font-manrope), sans-serif",
-  fontSize: "11px",
-  letterSpacing: "0.02em",
+  fontSize: "12px",
   color: "var(--color-muted)",
-  marginBottom: "20px",
+  marginBottom: "12px",
 };
 
 const sectionTitle: React.CSSProperties = {
   fontFamily: "var(--font-fraunces), Georgia, serif",
-  fontSize: "clamp(1.5rem, 3vw, 2rem)",
+  fontSize: "32px",
   fontWeight: 300,
   lineHeight: 1.1,
   color: "var(--color-fg)",
