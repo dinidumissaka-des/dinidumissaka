@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import type { Metadata } from "next";
+import { CometCard } from "@/components/ui/comet-card";
 
 export const metadata: Metadata = {
   title: "About — Dinidu Seneviratne",
@@ -149,13 +150,15 @@ export default function AboutPage() {
           <div className="about-hero-grid" style={{ display: "grid", gridTemplateColumns: "1fr 280px", gap: "2rem", alignItems: "start" }}>
           {/* Photo — first in DOM so mobile shows it above the label naturally */}
           <div className="about-hero-photo">
-            <Image
-              src="/98572959-1d4b-4264-9dfa-2db3720d06d6.png"
-              alt="Dinidu Seneviratne"
-              width={200}
-              height={200}
-              style={{ objectFit: "cover", borderRadius: "12px", display: "block", width: "100%", aspectRatio: "1 / 1" }}
-            />
+            <CometCard className="w-full h-full">
+              <Image
+                src="/98572959-1d4b-4264-9dfa-2db3720d06d6.png"
+                alt="Dinidu Seneviratne"
+                width={400}
+                height={400}
+                style={{ objectFit: "cover", borderRadius: "16px", display: "block", width: "100%", aspectRatio: "1 / 1" }}
+              />
+            </CometCard>
           </div>
 
           {/* Text */}
