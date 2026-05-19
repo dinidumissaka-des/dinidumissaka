@@ -147,9 +147,9 @@ export default function AboutPage() {
       >
         {/* Hero */}
         <div style={{ paddingTop: "3rem", paddingBottom: "3rem", ...divider }}>
-          <div className="about-hero-grid" style={{ display: "grid", gridTemplateColumns: "1fr 200px", gap: "2rem", alignItems: "start" }}>
+          <div className="about-hero-grid" style={{ display: "grid", gridTemplateColumns: "1fr 200px", gap: "2rem", alignItems: "center" }}>
           {/* Photo — first in DOM so mobile shows it above the label naturally */}
-          <div className="about-hero-photo" style={{ paddingRight: "48px" }}>
+          <div className="about-hero-photo" style={{ paddingRight: "96px" }}>
             <CometCard glare={false} className="w-full h-full">
               <div style={{ display: "flex", alignItems: "center", justifyContent: "center", width: "100%", height: "100%", padding: "24px", background: "var(--bg-card)", borderRadius: "16px" }}>
                 <Image
