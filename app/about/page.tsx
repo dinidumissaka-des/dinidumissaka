@@ -252,8 +252,6 @@ export default function AboutPage() {
                     alignItems: "baseline",
                     flexWrap: "wrap",
                     gap: "8px",
-                    paddingBottom: "12px",
-                    borderBottom: "1px solid var(--border-item)",
                   }}
                 >
                   <div>
@@ -313,13 +311,7 @@ export default function AboutPage() {
         <div style={divider}>
           <p style={sectionLabel}>Education</p>
           <h2 style={sectionTitle}>Academic background</h2>
-          <div
-            style={{
-              paddingBottom: "12px",
-              borderBottom: "1px solid var(--border-item)",
-              marginBottom: "12px",
-            }}
-          >
+          <div>
             <div
               style={{
                 display: "flex",
@@ -370,7 +362,6 @@ export default function AboutPage() {
                 key={i}
                 style={{
                   paddingBottom: "2rem",
-                  borderBottom: i < awards.length - 1 ? "1px solid var(--border-item)" : "none",
                 }}
               >
                 <div
