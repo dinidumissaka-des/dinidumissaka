@@ -61,8 +61,9 @@ export default function Expertise() {
               <div
                 style={{
                   position: "absolute",
-                  inset: 0,
-                  overflow: "hidden",
+                  top: 0,
+                  left: 0,
+                  right: 0,
                   fontSize: "16px",
                   lineHeight: 1.55,
                   color: "var(--color-muted)",
@@ -102,7 +103,7 @@ export default function Expertise() {
               }}
             >
               <img
-                src="/images/dribbble/kidmograph.gif"
+                src="/98572959-1d4b-4264-9dfa-2db3720d06d6.png"
                 alt=""
                 style={{ width: "80px", height: "80px", objectFit: "cover", borderRadius: "50%", border: "2px solid var(--border-item)" }}
               />
