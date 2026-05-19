@@ -13,12 +13,16 @@ export const CometCard = ({
   rotateDepth = 17.5,
   translateDepth = 20,
   glare = true,
+  shadow = true,
+  rounded = "rounded-2xl",
   className,
   children,
 }: {
   rotateDepth?: number;
   translateDepth?: number;
   glare?: boolean;
+  shadow?: boolean;
+  rounded?: string;
   className?: string;
   children: React.ReactNode;
 }) => {
@@ -91,8 +95,9 @@ export const CometCard = ({
           rotateY,
           translateX,
           translateY,
-          boxShadow:
-            "rgba(0, 0, 0, 0.01) 0px 520px 146px 0px, rgba(0, 0, 0, 0.04) 0px 333px 133px 0px, rgba(0, 0, 0, 0.26) 0px 83px 83px 0px, rgba(0, 0, 0, 0.29) 0px 21px 46px 0px",
+          boxShadow: shadow
+            ? "rgba(0, 0, 0, 0.01) 0px 520px 146px 0px, rgba(0, 0, 0, 0.04) 0px 333px 133px 0px, rgba(0, 0, 0, 0.26) 0px 83px 83px 0px, rgba(0, 0, 0, 0.29) 0px 21px 46px 0px"
+            : "none",
         }}
         initial={{ scale: 1, z: 0 }}
         whileHover={{
@@ -100,7 +105,7 @@ export const CometCard = ({
           z: 50,
           transition: { duration: 0.2 },
         }}
-        className="relative rounded-2xl"
+        className={cn("relative", rounded)}
       >
         {children}
         {glare && (

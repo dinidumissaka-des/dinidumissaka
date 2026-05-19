@@ -13,7 +13,7 @@ const navLinks = [
   { label: "Home", href: "/" },
   { label: "About", href: "/about" },
   { label: "Projects", href: "#projects" },
-  { label: "Resume", href: "/resume.pdf", target: "_blank" },
+  { label: "Resume", href: "https://drive.google.com/file/d/1-5BZ6Otsbe70oSZJWtReqyWTn_M0VDlF/view?usp=sharing", target: "_blank" },
 ];
 
 const socialLinks = [

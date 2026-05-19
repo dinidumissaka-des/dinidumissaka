@@ -13,12 +13,22 @@ const experience = [
   {
     title: "Senior UI/UX Designer",
     company: "Deriv",
+    url: "https://deriv.com",
     location: "Dubai, UAE",
-    period: "Jan 2024 – Present",
+    period: "Feb 2026 – Present",
     bullets: [
-      "Led full visual redesign of Deriv.com, driving 25% increase in user engagement across 18 language markets",
-      "Migrated enterprise platform from Webflow to Vibe Code using AI-assisted development, reducing engineering dependency",
       "Engineered a scalable, token-driven design system in Claude Code, minimising design-to-development handoff",
+      "Built internal AI tooling to accelerate brand content production and reduce reliance on external resources",
+    ],
+  },
+  {
+    title: "Senior UI/UX Designer",
+    company: "Deriv",
+    url: "https://deriv.com",
+    location: "Cyberjaya, Malaysia",
+    period: "Jan 2024 – Feb 2026",
+    bullets: [
+      "Led full visual redesign of Deriv.com, driving 25% increase in user engagement across 18 languages",
       "Built internal AI tooling to accelerate brand content production and reduce reliance on external resources",
       "Delivered brand-consistent design across 8,000+ pages, 4 microsites, and a localised UAE market site",
     ],
@@ -26,17 +36,19 @@ const experience = [
   {
     title: "UI/UX Designer",
     company: "Deriv",
+    url: "https://deriv.com",
     location: "Cyberjaya, Malaysia",
     period: "Feb 2023 – Jan 2024",
     bullets: [
       "Developed modular component library enabling 3× faster page creation and reducing component development time by 30%",
-      "Contributed to design system evolution — defining typography standards, spacing guidelines, and token-based architecture",
-      "Collaborated with 15+ cross-functional stakeholders to deliver cohesive, user-centred designs",
+      "Contributed to design system evolution — defining typography standards, spacing guidelines, and token-based architecture for scalable implementation",
+      "Collaborated with 15+ cross-functional stakeholders (Product Managers, SEO specialists, content strategists, data analysts) to deliver cohesive, user-centred designs",
     ],
   },
   {
     title: "UI/UX Designer",
     company: "Revox",
+    url: null,
     location: "Colombo, Sri Lanka",
     period: "Feb 2022 – Jan 2023",
     bullets: [
@@ -48,6 +60,7 @@ const experience = [
   {
     title: "Junior UI/UX Designer",
     company: "Revox",
+    url: null,
     location: "Colombo, Sri Lanka",
     period: "Jul 2021 – Jan 2022",
     bullets: [
@@ -58,6 +71,7 @@ const experience = [
   {
     title: "UI/UX Designer (Contract)",
     company: "Synextic Global Business Solutions",
+    url: null,
     location: "Pune, India",
     period: "Aug 2020 – Jul 2021",
     bullets: [
@@ -67,6 +81,7 @@ const experience = [
   {
     title: "UI/UX Design Intern",
     company: "Amplifyn",
+    url: null,
     location: "Colombo, Sri Lanka",
     period: "Jan 2020 – May 2020",
     bullets: [
@@ -76,11 +91,11 @@ const experience = [
 ];
 
 const skills = [
-  { label: "Visual Design", items: ["Brand Identity", "Typography", "Illustration", "Creative Direction", "Visual Systems"] },
-  { label: "Design Tools", items: ["Figma", "Adobe Creative Suite"] },
-  { label: "Build Tools", items: ["Webflow", "Claude Code", "Cursor", "VS Code"] },
-  { label: "AI Tools", items: ["Claude", "Google AI", "ChatGPT", "Figma AI", "Freepik AI", "ImageFX", "Lovable"] },
+  { label: "AI Tools", items: ["Claude", "Google AI", "ChatGPT", "Figma AI", "Magnific AI"] },
+  { label: "Design Tools", items: ["Figma", "Adobe Creative Suite", "Claude Design"] },
   { label: "Methodologies", items: ["Design Thinking", "User Research", "Agile / Scrum", "Design Sprints"] },
+  { label: "Build Tools", items: ["Webflow", "Claude Code", "Cursor", "VS Code", "Vercel"] },
+  { label: "Visual Design", items: ["Brand Identity", "Typography", "Illustration", "Creative Direction", "Visual Systems"] },
 ];
 
 const awards = [
@@ -147,17 +162,17 @@ export default function AboutPage() {
       >
         {/* Hero */}
         <div style={{ paddingTop: "3rem", paddingBottom: "3rem", ...divider }}>
-          <div className="about-hero-grid" style={{ display: "grid", gridTemplateColumns: "1fr 200px", gap: "2rem", alignItems: "center" }}>
+          <div className="about-hero-grid" style={{ display: "grid", gridTemplateColumns: "1fr 320px", gap: "2rem", alignItems: "center" }}>
           {/* Photo — first in DOM so mobile shows it above the label naturally */}
           <div className="about-hero-photo" style={{ paddingRight: "96px" }}>
-            <CometCard glare={false} className="w-full h-full">
-              <div style={{ display: "flex", alignItems: "center", justifyContent: "center", width: "100%", height: "100%", padding: "24px", background: "var(--bg-card)", borderRadius: "16px" }}>
+            <CometCard glare={false} shadow={false} rounded="rounded-full" className="w-full h-full">
+              <div style={{ display: "flex", alignItems: "center", justifyContent: "center", width: "100%", height: "100%", padding: "24px", background: "var(--bg-card)", borderRadius: "9999px" }}>
                 <Image
                   src="/avatar.png"
                   alt="Dinidu Seneviratne"
                   width={120}
                   height={120}
-                  style={{ objectFit: "cover", borderRadius: "12px", display: "block", width: "100%", aspectRatio: "1 / 1" }}
+                  style={{ objectFit: "cover", borderRadius: "50%", display: "block", width: "100%", aspectRatio: "1 / 1" }}
                 />
               </div>
             </CometCard>
@@ -198,39 +213,20 @@ export default function AboutPage() {
         <div style={divider}>
           <p style={sectionLabel}>Skills</p>
           <h2 style={sectionTitle}>Craft &amp; tooling</h2>
-          <div style={{ display: "flex", flexDirection: "column", gap: "14px" }}>
+          <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
             {skills.map((group) => (
-              <div
+              <p
                 key={group.label}
                 style={{
-                  display: "grid",
-                  gridTemplateColumns: "140px 1fr",
-                  gap: "12px",
-                  alignItems: "baseline",
+                  fontFamily: "var(--font-manrope), sans-serif",
+                  fontSize: "13px",
+                  lineHeight: 1.6,
+                  margin: 0,
                 }}
               >
-                <span
-                  style={{
-                    fontFamily: "var(--font-manrope), sans-serif",
-                    fontSize: "12px",
-                    fontWeight: 600,
-                    color: "var(--color-fg)",
-                  }}
-                >
-                  {group.label}
-                </span>
-                <span
-                  style={{
-                    fontFamily: "var(--font-manrope), sans-serif",
-                    fontSize: "13px",
-                    color: "var(--color-muted)",
-                    lineHeight: 1.6,
-                    textAlign: "right",
-                  }}
-                >
-                  {group.items.join(" · ")}
-                </span>
-              </div>
+                <span style={{ fontWeight: 600, color: "var(--color-fg)" }}>{group.label}</span>
+                <span style={{ color: "var(--color-muted)" }}> · {group.items.join(" · ")}</span>
+              </p>
             ))}
           </div>
         </div>
@@ -277,7 +273,20 @@ export default function AboutPage() {
                         marginLeft: "8px",
                       }}
                     >
-                      · {role.company} — {role.location}
+                      ·{" "}
+                      {role.url ? (
+                        <a
+                          href={role.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          style={{ color: "inherit", textDecoration: "underline", textUnderlineOffset: "3px" }}
+                        >
+                          {role.company}
+                        </a>
+                      ) : (
+                        role.company
+                      )}{" "}
+                      — {role.location}
                     </span>
                   </div>
                   <span
