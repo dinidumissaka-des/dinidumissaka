@@ -152,7 +152,7 @@ export default function AboutPage() {
           <div className="about-hero-photo">
             <CometCard className="w-full h-full">
               <Image
-                src="/98572959-1d4b-4264-9dfa-2db3720d06d6.png"
+                src="/avatar.png"
                 alt="Dinidu Seneviratne"
                 width={400}
                 height={400}
