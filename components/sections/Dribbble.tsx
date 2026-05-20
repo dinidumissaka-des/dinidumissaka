@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef } from "react";
-import { motion, useInView } from "framer-motion";
+import { motion, useInView } from "motion/react";
 
 const dribbbleShots = Array.from({ length: 6 }, (_, i) => ({
   id: String(i + 1),

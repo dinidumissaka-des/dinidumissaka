@@ -9,7 +9,7 @@ import {
   RefObject,
   CSSProperties,
 } from "react";
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 import "./VariableProximity.css";
 
 type Falloff = "linear" | "exponential" | "gaussian";

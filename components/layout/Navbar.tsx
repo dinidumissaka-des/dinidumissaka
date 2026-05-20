@@ -1,9 +1,9 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 import Link from "next/link";
-import ThemeTogglerButton from "@/components/ui/ThemeTogglerButton";
+import { ClientThemeToggler } from "@/components/ui/ClientThemeToggler";
 
 const navLinks = [
   { label: "Cases", href: "#projects" },
@@ -72,7 +72,7 @@ export default function Navbar() {
 
         {/* Right: Contact + Theme toggle */}
         <div className="flex items-center gap-3 shrink-0">
-          <ThemeTogglerButton />
+          <ClientThemeToggler />
           <a
             href="#contact"
             className="px-5 py-2 rounded-full bg-accent text-white font-medium hover:bg-brand-primary-dark transition-colors"

@@ -2,7 +2,7 @@
 
 import * as React from "react";
 import * as RadixAccordion from "@radix-ui/react-accordion";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence } from "motion/react";
 import { ChevronDown } from "lucide-react";
 
 const Accordion = RadixAccordion.Root;

@@ -1,7 +1,7 @@
 "use client";
 
 import { createContext, useContext, useState, type ReactNode, type CSSProperties } from "react";
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 
 export type FlipButtonVariant = "default" | "ghost" | "outline" | "link";
 export type FlipButtonSize = "default" | "sm" | "lg" | "icon";

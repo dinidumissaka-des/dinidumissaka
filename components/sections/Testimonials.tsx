@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef } from "react";
-import { motion, useInView } from "framer-motion";
+import { motion, useInView } from "motion/react";
 import Masonry, { MasonryItem } from "@/components/ui/Masonry";
 import { testimonials, Testimonial } from "@/lib/data/testimonials";
 

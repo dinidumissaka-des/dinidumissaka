@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence } from "motion/react";
 import { ClientThemeToggler } from "@/components/ui/ClientThemeToggler";
 import {
   FlipButton,

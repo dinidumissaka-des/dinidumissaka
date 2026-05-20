@@ -2,6 +2,9 @@ import Link from "next/link";
 import Image from "next/image";
 import type { Metadata } from "next";
 import { CometCard } from "@/components/ui/comet-card";
+import { UserPresenceAvatar } from "@/components/animate-ui/components/community/user-presence-avatar";
+import { SkillIconRow } from "@/components/ui/SkillIconRow";
+import { AIProcessLoader } from "@/components/ui/AIProcessLoader";
 
 export const metadata: Metadata = {
   title: "About — Dinidu Seneviratne",
@@ -48,7 +51,7 @@ const experience = [
   {
     title: "UI/UX Designer",
     company: "Revox",
-    url: null,
+    url: "https://www.revox.io/",
     location: "Colombo, Sri Lanka",
     period: "Feb 2022 – Jan 2023",
     bullets: [
@@ -60,7 +63,7 @@ const experience = [
   {
     title: "Junior UI/UX Designer",
     company: "Revox",
-    url: null,
+    url: "https://www.revox.io/",
     location: "Colombo, Sri Lanka",
     period: "Jul 2021 – Jan 2022",
     bullets: [
@@ -71,7 +74,7 @@ const experience = [
   {
     title: "UI/UX Designer (Contract)",
     company: "Synextic Global Business Solutions",
-    url: null,
+    url: "https://synexticglobal.com/contact/",
     location: "Pune, India",
     period: "Aug 2020 – Jul 2021",
     bullets: [
@@ -81,7 +84,7 @@ const experience = [
   {
     title: "UI/UX Design Intern",
     company: "Amplifyn",
-    url: null,
+    url: "https://www.amplifyn.com/",
     location: "Colombo, Sri Lanka",
     period: "Jan 2020 – May 2020",
     bullets: [
@@ -102,33 +105,37 @@ const awards = [
   {
     title: "Google Creative Campus",
     org: "Google · Cannes Lions & Mountain View",
-    date: "Oct 2019",
-    desc: "Selected among global creative leaders to explore forward-thinking design perspectives and expand international creative networks.",
+    date: "2019",
+    desc: "Participated in the Google Creative Campus 2019 Cannes Lions and Mountain View Programme, benefiting from a global learning platform that introduced new, diverse, and forward-thinking perspectives. This experience facilitated the expansion of my professional network, connecting me with creatives worldwide.",
+    url: null,
   },
   {
     title: "Roger Hatchuel Academy",
     org: "Cannes Lions School of Creativity",
-    date: "Jun 2019",
-    desc: "Selected to represent Sri Lanka at Cannes Lions International Festival of Creativity, France. Collaborated with 40 students from 32 nations.",
+    date: "2019",
+    desc: "Represented Sri Lanka at Roger Hatchuel Academy 2019, part of the Cannes Lions International Festival of Creativity in France, among a group of 40 students from 32 nations. Explored diverse creative career avenues and gained valuable insights through a carefully curated learning program.",
+    url: "https://www.dailymirror.lk/press-releases/11-young-Sri-Lankan-advertising-professionals-will-vie-for-Gold-at-the-Cannes-Young-Lions-competitio/335-167830",
   },
   {
     title: "Best Student — Media and Communication Design",
     org: "University of Moratuwa",
     date: "Jul 2021",
     desc: "Awarded highest marks in the final year Comprehensive Design Project.",
+    url: null,
   },
 ];
 
 const certifications = [
-  "Claude Code in Action — Anthropic · Mar 2026",
-  "AI Fluency: Framework & Foundations — Anthropic · Nov 2025",
-  "UX Design Patterns with Checklist Design — Uxcel",
-  "Mobile Design — Uxcel",
-  "Foundations of User Experience (UX) Design — Google",
-  "UX Management: Strategy and Tactics — Interaction Design Foundation (IxDF)",
-  "Human-Computer Interaction (HCI) — Interaction Design Foundation (IxDF)",
-  "Accessibility: How to Design for All — Interaction Design Foundation (IxDF)",
-  "Service Design: Integrated Service Experience — Interaction Design Foundation (IxDF)",
+  { label: "Claude Code in Action — Anthropic · Mar 2026", url: "http://verify.skilljar.com/c/r6w7duybsqy2" },
+  { label: "AI Fluency: Framework & Foundations — Anthropic · Nov 2025", url: "https://verify.skilljar.com/c/6t9s4b3ot2oi" },
+  { label: "UX Design Patterns with Checklist Design — Uxcel", url: "https://app.uxcel.com/certificates/UXJ5TMD8IGKV" },
+  { label: "Mobile Design — Uxcel", url: "https://app.uxcel.com/certificates/53JMWUSHSE6E" },
+  { label: "Foundations of User Experience (UX) Design — Google", url: "https://www.coursera.org/account/accomplishments/verify/UC677G5MN2WZ" },
+  { label: "UX Management: Strategy and Tactics — Interaction Design Foundation (IxDF)", url: "https://www.interaction-design.org/dinidu-senevirathne/certificate/course/69e0aef2-2d4e-46ed-b81a-e07c766d1258?certificateType=course" },
+  { label: "Human-Computer Interaction (HCI) — Interaction Design Foundation (IxDF)", url: "https://www.interaction-design.org/dinidu-senevirathne/certificate/course/ba1afd23-55bd-421c-9b7c-9d7aed54829f" },
+  { label: "Accessibility: How to Design for All — Interaction Design Foundation (IxDF)", url: "https://www.linkedin.com/in/dinidumissaka/details/certifications/#:~:text=Credential%20ID%2086354-,Show%20credential,-Conducting%20Usability%20Testing" },
+  { label: "Service Design: Integrated Service Experience — Interaction Design Foundation (IxDF)", url: "https://www.interaction-design.org/dinidu-senevirathne/certificate/course/310e850a-e6ce-4ebc-8bbc-4b7c7d25f99f" },
+  { label: "Web Design for Usability — Interaction Design Foundation (IxDF) · Nov 2020", url: "https://www.interaction-design.org/dinidu-senevirathne/certificate/course/b1e361de-91c0-412f-a910-76b421ad94ef?certificateType=course" },
 ];
 
 const sectionLabel: React.CSSProperties = {
@@ -205,6 +212,9 @@ export default function AboutPage() {
               Webflow to own the full design-to-delivery flow, backed by a strong visual design craft
               and deep expertise in design systems.
             </p>
+            <div style={{ marginTop: "28px" }}>
+              <AIProcessLoader />
+            </div>
           </div>
           </div>
         </div>
@@ -213,22 +223,7 @@ export default function AboutPage() {
         <div style={divider}>
           <p style={sectionLabel}>Skills</p>
           <h2 style={sectionTitle}>Craft &amp; tooling</h2>
-          <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
-            {skills.map((group) => (
-              <p
-                key={group.label}
-                style={{
-                  fontFamily: "var(--font-manrope), sans-serif",
-                  fontSize: "13px",
-                  lineHeight: 1.6,
-                  margin: 0,
-                }}
-              >
-                <span style={{ fontWeight: 600, color: "var(--color-fg)" }}>{group.label}</span>
-                <span style={{ color: "var(--color-muted)" }}> · {group.items.join(" · ")}</span>
-              </p>
-            ))}
-          </div>
+          <SkillIconRow />
         </div>
 
         {/* Experience */}
@@ -325,42 +320,36 @@ export default function AboutPage() {
           <p style={sectionLabel}>Education</p>
           <h2 style={sectionTitle}>Academic background</h2>
           <div>
-            <div
-              style={{
-                display: "flex",
-                justifyContent: "space-between",
-                flexWrap: "wrap",
-                gap: "8px",
-                marginBottom: "10px",
-              }}
-            >
-              <span
-                style={{
-                  fontFamily: "var(--font-manrope), sans-serif",
-                  fontSize: "14px",
-                  fontWeight: 600,
-                  color: "var(--color-fg)",
-                }}
-              >
-                Honors Bachelor of Design · University of Moratuwa, Sri Lanka
+            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", flexWrap: "wrap", gap: "8px", marginBottom: "4px" }}>
+              <span style={{ fontFamily: "var(--font-manrope), sans-serif", fontSize: "14px", fontWeight: 600, color: "var(--color-fg)" }}>
+                University of Moratuwa
               </span>
-              <span
-                style={{
-                  fontFamily: "var(--font-manrope), sans-serif",
-                  fontSize: "11px",
-                  color: "var(--color-muted)",
-                }}
-              >
-                2017 – 2020
+              <span style={{ fontFamily: "var(--font-manrope), sans-serif", fontSize: "11px", color: "var(--color-muted)", whiteSpace: "nowrap" }}>
+                2017 – 2021
               </span>
             </div>
-            <ul style={{ margin: 0, padding: 0, listStyle: "none", display: "flex", flexDirection: "column", gap: "14px" }}>
-              <li style={{ fontFamily: "var(--font-manrope), sans-serif", fontSize: "13px", lineHeight: 1.7, color: "var(--color-muted)" }}>
-                First-Class Honors, GPA 3.86 · Dean&apos;s List for four semesters · Top performer in Media and Communication Design
-              </li>
-              <li style={{ fontFamily: "var(--font-manrope), sans-serif", fontSize: "13px", lineHeight: 1.7, color: "var(--color-muted)" }}>
-                Thesis: &quot;Enhancing Web Accessibility for Local Online Banking Applications&quot;
-              </li>
+            <div style={{ marginBottom: "12px" }}>
+              <span style={{ fontFamily: "var(--font-manrope), sans-serif", fontSize: "13px", color: "var(--color-muted)" }}>
+                Bachelor of Design Honors, Media and Communication Design
+              </span>
+            </div>
+            <div style={{ marginBottom: "16px" }}>
+              <span style={{ fontFamily: "var(--font-manrope), sans-serif", fontSize: "13px", color: "var(--color-muted)" }}>
+                Grade: First-Class Honors
+              </span>
+            </div>
+            <ul style={{ margin: 0, padding: 0, listStyle: "none", display: "flex", flexDirection: "column", gap: "10px" }}>
+              {[
+                "Graduated with First-Class Honors in Media and Communication Design with an GPA of 3.86.",
+                "Consistently recognized on the Dean's List for four semesters.",
+                "Outstanding student in Media and Communication Design, with top marks in the final year.",
+                "Successfully completed a final project focused on fostering creative thinking skills in young adolescents through a participatory design-driven mobile application.",
+                "Conducted a dissertation on the enhancement of web accessibility for local online banking web applications, with a particular focus on improving usability for visually impaired users.",
+              ].map((item, i) => (
+                <li key={i} style={{ fontFamily: "var(--font-manrope), sans-serif", fontSize: "13px", lineHeight: 1.7, color: "var(--color-muted)" }}>
+                  {item}
+                </li>
+              ))}
             </ul>
           </div>
         </div>
@@ -394,7 +383,18 @@ export default function AboutPage() {
                       color: "var(--color-fg)",
                     }}
                   >
-                    {award.title}
+                    {award.url ? (
+                      <a
+                        href={award.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        style={{ color: "inherit", textDecoration: "underline", textUnderlineOffset: "3px" }}
+                      >
+                        {award.title}
+                      </a>
+                    ) : (
+                      award.title
+                    )}
                   </span>
                   <span
                     style={{
@@ -447,7 +447,18 @@ export default function AboutPage() {
                   color: "var(--color-muted)",
                 }}
               >
-                {cert}
+                {cert.url ? (
+                  <a
+                    href={cert.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    style={{ color: "inherit", textDecoration: "underline", textUnderlineOffset: "3px" }}
+                  >
+                    {cert.label}
+                  </a>
+                ) : (
+                  cert.label
+                )}
               </li>
             ))}
           </ul>

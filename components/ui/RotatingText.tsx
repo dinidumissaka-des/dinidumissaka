@@ -9,8 +9,8 @@ import {
   useState,
   CSSProperties,
 } from 'react';
-import type { Target, TargetAndTransition, Transition, VariantLabels } from 'framer-motion';
-import { motion, AnimatePresence } from 'framer-motion';
+import type { Target, TargetAndTransition, Transition, VariantLabels } from 'motion/react';
+import { motion, AnimatePresence } from 'motion/react';
 import './RotatingText.css';
 
 function cn(...classes: (string | undefined | false)[]) {
