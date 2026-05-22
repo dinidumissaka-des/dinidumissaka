@@ -3,7 +3,6 @@
 import { useState } from "react";
 import { MultiStepLoader } from "./multi-step-loader";
 import { IconSquareRoundedX } from "@tabler/icons-react";
-import { ArrowUpRight } from "@phosphor-icons/react";
 
 const aiProcess = [
   { text: "Discover — research, brief & user interviews" },
@@ -57,11 +56,6 @@ export function AIProcessLoader() {
         onMouseLeave={e => (e.currentTarget.style.opacity = "1")}
       >
         <span>See my current design process</span>
-        <ArrowUpRight
-          size={22}
-          weight="light"
-          style={{ flexShrink: 0, fontStyle: "normal" }}
-        />
       </button>
     </div>
   );
