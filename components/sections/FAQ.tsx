@@ -8,6 +8,8 @@ import {
   AccordionTrigger,
   AccordionContent,
 } from "@/components/animate-ui/components/radix/accordion";
+import Link from "next/link";
+import { IconArrowUpRight } from "@tabler/icons-react";
 import Stack from "@/components/ui/Stack";
 import { faqItems } from "@/lib/data/faq";
 
@@ -92,7 +94,8 @@ export default function FAQ() {
             transition={{ duration: 0.6, delay: 0.25 }}
             style={{ flex: 1, minWidth: 0 }}
           >
-            <div
+            <Link
+              href="/visual-journal"
               style={{
                 background: "var(--bg-card)",
                 borderRadius: "16px",
@@ -104,6 +107,8 @@ export default function FAQ() {
                 justifyContent: "center",
                 gap: "20px",
                 height: "100%",
+                textDecoration: "none",
+                cursor: "pointer",
               }}
             >
               <div style={{ width: "180px", height: "240px", margin: "0 auto" }}>
@@ -132,11 +137,15 @@ export default function FAQ() {
                   fontWeight: 300,
                   color: "var(--color-muted)",
                   margin: 0,
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "4px",
                 }}
               >
                 Visual Journal
+                <IconArrowUpRight size={14} stroke={1.5} />
               </p>
-            </div>
+            </Link>
           </motion.div>
 
         </div>

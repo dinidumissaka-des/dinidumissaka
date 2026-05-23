@@ -4,6 +4,7 @@ import "./globals.css";
 import Footer from "@/components/layout/Footer";
 import { ThemeProvider } from "@/components/layout/ThemeProvider";
 import PageLoader from "@/components/ui/PageLoader";
+import SmoothScroll from "@/components/ui/SmoothScroll";
 import { ClientNav } from "@/components/ui/ClientNav";
 
 const fraunces = Fraunces({
@@ -56,6 +57,7 @@ export default function RootLayout({
     <html lang="en" className={`${fraunces.variable} ${manrope.variable} ${notoSerifDisplay.variable}`} suppressHydrationWarning>
       <body className="antialiased" suppressHydrationWarning>
         <ThemeProvider>
+          <SmoothScroll />
           <PageLoader />
           <ClientNav />
           <main className="pt-8 md:pt-0">{children}</main>

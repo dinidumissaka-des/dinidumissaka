@@ -1,5 +1,6 @@
 "use client";
 
+import { usePathname } from "next/navigation";
 import {
   FlipButton,
   FlipButtonFront,
@@ -28,6 +29,8 @@ const linkTextStyle = {
 };
 
 export default function Footer() {
+  const pathname = usePathname();
+  if (pathname === "/visual-journal") return null;
   return (
     <footer id="contact">
       <div

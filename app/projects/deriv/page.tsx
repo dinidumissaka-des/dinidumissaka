@@ -1,5 +1,6 @@
 import Link from "next/link";
 import type { Metadata } from "next";
+import { IconArrowLeft } from "@tabler/icons-react";
 
 export const metadata: Metadata = {
   title: "Deriv — Case Study",
@@ -26,6 +27,16 @@ const pageTitle: React.CSSProperties = {
   color: "var(--color-fg)",
   marginBottom: "3rem",
   maxWidth: "800px",
+};
+
+// 32px Fraunces 300 — matches homepage section h2
+const sectionTitle: React.CSSProperties = {
+  fontFamily: "var(--font-fraunces), Georgia, serif",
+  fontSize: "32px",
+  fontWeight: 300,
+  lineHeight: 1.1,
+  color: "var(--color-fg)",
+  marginBottom: "2rem",
 };
 
 // 24px Fraunces 300 — prose sub-headings within sections
@@ -58,6 +69,14 @@ const divider: React.CSSProperties = {
   borderBottom: "1px solid var(--border-section)",
   paddingBottom: "3rem",
   marginBottom: "3rem",
+};
+
+const b: React.CSSProperties = {
+  fontFamily: "var(--font-fraunces), Georgia, serif",
+  fontWeight: 400,
+  fontStyle: "italic",
+  color: "var(--color-fg)",
+  opacity: 0.7,
 };
 
 function ImagePlaceholder({ caption }: { caption: string }) {
@@ -149,7 +168,8 @@ export default function DerivCaseStudy() {
             marginBottom: "2.5rem",
           }}
         >
-          ← Back
+          <IconArrowLeft size={14} stroke={1.5} />
+          Back
         </Link>
 
         {/* Meta row */}
@@ -180,7 +200,8 @@ export default function DerivCaseStudy() {
         </h1>
 
         {/* Intro */}
-        <div style={{ ...divider, maxWidth: "720px" }}>
+        <div style={divider}>
+          <div style={{ maxWidth: "720px" }}>
           <p style={{ ...body, fontSize: "14px", marginBottom: "1.25rem" }}>
             Deriv.com is a global trading platform serving 21 million monthly
             visitors across 18 languages. I worked with the web design team at
@@ -203,11 +224,12 @@ export default function DerivCaseStudy() {
             Webflow builders, content, SEO, translation, data analytics teams, and
             client stakeholders across the project.
           </p>
+          </div>
         </div>
 
         {/* Before / After */}
         <div style={divider}>
-          <p style={{ ...sectionLabel, marginBottom: "1.5rem" }}>Before / After</p>
+          <h2 style={sectionTitle}>Before / After</h2>
           <div style={{ display: "flex", flexDirection: "column", gap: "1.5rem" }}>
             <div className="cs-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1.5rem" }}>
               <ImagePlaceholder caption="Legacy site — deriv.me (before)" />
@@ -220,9 +242,100 @@ export default function DerivCaseStudy() {
           </div>
         </div>
 
+        {/* Design decisions */}
+        <div style={divider}>
+          <h2 style={sectionTitle}>Design decisions</h2>
+          <div style={{ display: "flex", flexDirection: "column", gap: "3rem" }}>
+
+            <div
+              className="cs-prose-grid"
+              style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "3.5rem", alignItems: "start" }}
+            >
+              <div>
+                <h2 style={proseHeading}>Colour</h2>
+                <p style={body}>
+                  Coral red as the primary, Slate 700 as the secondary. Both are
+                  pulled directly from the Deriv brand — the decision was how to
+                  balance them across 6,000 pages without the site feeling like a
+                  brand exercise.{" "}
+                  <span style={b}>
+                    Red communicates energy and action; slate communicates stability
+                    and trust.
+                  </span>{" "}
+                  Action pages — sign-up, trading, conversion — lean red. Content
+                  pages — Academy, help, legal — lean slate. The system enforces
+                  this at the semantic token layer so the balance doesn't depend on
+                  individual designer decisions.
+                </p>
+              </div>
+              <ImagePlaceholder caption="Colour palette — semantic token assignments across action and content surfaces" />
+            </div>
+
+            <div
+              className="cs-prose-grid"
+              style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "3.5rem", alignItems: "start" }}
+            >
+              <div>
+                <h2 style={proseHeading}>Typography</h2>
+                <p style={body}>
+                  Type was defined responsively from the start. The design spec
+                  didn't just set font sizes — it set the full scale:
+                  line-height, letter-spacing, and measure at every breakpoint.
+                  Mobile-first meant designing the smallest viewport first and
+                  expanding up, not the other way around. With 18 languages, text
+                  expansion was a constant constraint — German headlines can run 40%
+                  longer than their English equivalents. The type scale was
+                  stress-tested in German and Arabic before being signed off.
+                </p>
+              </div>
+              <ImagePlaceholder caption="Responsive type scale — size, line-height, and measure defined per breakpoint" />
+            </div>
+
+            <div style={{ maxWidth: "640px" }}>
+              <h2 style={proseHeading}>Performance</h2>
+              <p style={body}>
+                Every design decision had a{" "}
+                <span style={b}>Lighthouse score implication</span>. Hero images
+                were sized and compressed to target formats before designs were
+                signed off. Animations were scoped to CSS transitions where
+                possible, avoiding JavaScript-driven motion that would block the
+                main thread. Third-party embeds — trading widgets, live charts —
+                were lazy-loaded and deferred. The performance targets were set
+                before the first component was built, not retrofitted after
+                launch.
+              </p>
+            </div>
+
+            <div
+              className="cs-prose-grid"
+              style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "3.5rem", alignItems: "start" }}
+            >
+              <div>
+                <h2 style={proseHeading}>Images and 3D assets</h2>
+                <p style={body}>
+                  3D visuals are central to Deriv's brand language. The challenge
+                  was using them at scale without them feeling inconsistent. I
+                  defined a{" "}
+                  <span style={b}>
+                    consistent lighting model, perspective, and colour grading
+                    across every asset
+                  </span>{" "}
+                  — so a 3D element on the homepage and one in the Academy section
+                  feel like they belong to the same world, even if they were
+                  produced months apart. The asset guidelines were documented in the
+                  component library so future production could follow the same spec
+                  without referencing earlier work.
+                </p>
+              </div>
+              <ImagePlaceholder caption="3D asset guidelines — lighting, perspective, and colour grading standards" />
+            </div>
+
+          </div>
+        </div>
+
         {/* Design System */}
         <div style={divider}>
-          <p style={{ ...sectionLabel, marginBottom: "1.5rem" }}>Design System</p>
+          <h2 style={sectionTitle}>Design System</h2>
           <div
             className="cs-prose-grid"
             style={{
@@ -277,7 +390,7 @@ export default function DerivCaseStudy() {
             </div>
           </div>
 
-          <div style={{ display: "flex", flexDirection: "column", gap: "1.5rem" }}>
+          <div style={{ display: "flex", flexDirection: "column", gap: "1.5rem", marginBottom: "3rem" }}>
             <ImagePlaceholder caption="Four-layer token architecture — each layer references only the one below it. Light and dark mode flips at the semantic layer." />
             <ImagePlaceholder caption="Modular component library — hero, cards, FAQs, stats, testimonials, CTA blocks" />
             <div className="cs-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1.5rem" }}>
@@ -285,11 +398,108 @@ export default function DerivCaseStudy() {
               <ImagePlaceholder caption="Layouts designed and tested at 360px and 1440px — every component is responsive by default" />
             </div>
           </div>
+
+          {/* Page templates */}
+          <div
+            className="cs-prose-grid"
+            style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "3.5rem", alignItems: "start" }}
+          >
+            <div>
+              <h2 style={proseHeading}>Page templates</h2>
+              <p style={body}>
+                The template layer was where the system became usable beyond the
+                design team. Instead of handing over a component library and
+                expecting content teams to compose pages correctly, I designed a
+                set of full-page templates — product pages, landing pages, Academy
+                articles, help centre layouts — that locked down the composition
+                decisions. Content teams filled in slots. They couldn't break the
+                layout because the layout wasn't exposed to them. New pages could
+                be created in 2–3 days rather than the 3–5 weeks the previous
+                process required.
+              </p>
+            </div>
+            <ImagePlaceholder caption="Page templates — product, landing, Academy, and help centre layouts" />
+          </div>
+        </div>
+
+        {/* Localisation */}
+        <div style={divider}>
+          <h2 style={sectionTitle}>Localisation</h2>
+          <div style={{ display: "flex", flexDirection: "column", gap: "3rem" }}>
+
+            <div
+              className="cs-prose-grid"
+              style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "3.5rem", alignItems: "start" }}
+            >
+              <div>
+                <h2 style={proseHeading}>Rest of World</h2>
+                <p style={body}>
+                  The primary audience for deriv.com is{" "}
+                  <span style={b}>
+                    African users in their late twenties, skewing female
+                  </span>
+                  . That shaped every visual decision — imagery, tone, and product
+                  emphasis. The homepage wasn't designed to reflect the brand's
+                  global ambitions; it was designed to speak to someone in Lagos or
+                  Nairobi opening the site for the first time. Imagery was sourced
+                  and art-directed to reflect that audience. Product emphasis shifted
+                  toward the instruments and entry points most relevant to that
+                  market.
+                </p>
+              </div>
+              <ImagePlaceholder caption="ROW homepage — imagery and product emphasis designed for the primary African audience" />
+            </div>
+
+            <div
+              className="cs-prose-grid"
+              style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "3.5rem", alignItems: "start" }}
+            >
+              <div>
+                <h2 style={proseHeading}>EU</h2>
+                <p style={body}>
+                  The EU variant operates under a different regulatory framework,
+                  which meant a different product set and different content
+                  requirements.{" "}
+                  Content, imagery, and product offerings were all adapted
+                  to reflect what is available and legally communicable in EU
+                  markets. Risk warnings, product restrictions, and compliance copy
+                  were integrated into the design rather than bolted on — they're
+                  part of the layout, not afterthoughts at the bottom of the page.
+                </p>
+              </div>
+              <ImagePlaceholder caption="EU localisation — regulatory-adapted product pages and integrated compliance copy" />
+            </div>
+
+            <div
+              className="cs-prose-grid"
+              style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "3.5rem", alignItems: "start" }}
+            >
+              <div>
+                <h2 style={proseHeading}>UAE</h2>
+                <p style={body}>
+                  deriv.ae is a full localisation —{" "}
+                  <span style={b}>
+                    Arabic language, right-to-left layout, adapted imagery, and a
+                    product set specific to the UAE market
+                  </span>
+                  . RTL wasn't a switch we flipped at the end; it was a design
+                  constraint from the start. Every component was built to support
+                  both directions. Text expansion behaves differently in Arabic than
+                  in European languages — shorter in most cases, but with different
+                  line-break and hyphenation behaviour. The component library handles
+                  directionality at the token level, so the same component renders
+                  correctly in both English and Arabic without modification.
+                </p>
+              </div>
+              <ImagePlaceholder caption="deriv.ae — full RTL layout, Arabic language, and UAE-specific product set" />
+            </div>
+
+          </div>
         </div>
 
         {/* Results */}
         <div style={divider}>
-          <p style={{ ...sectionLabel, marginBottom: "2.5rem" }}>Results</p>
+          <h2 style={sectionTitle}>Results</h2>
           <div
             style={{
               display: "grid",
@@ -311,7 +521,7 @@ export default function DerivCaseStudy() {
 
         {/* Scope of work */}
         <div style={divider}>
-          <p style={{ ...sectionLabel, marginBottom: "1.5rem" }}>Scope of work</p>
+          <h2 style={sectionTitle}>Scope of work</h2>
           <div className="cs-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1.5rem" }}>
             <ImagePlaceholder caption="Deriv Academy — redesigned education section" />
             <ImagePlaceholder caption="Deriv.ae — Arabic localisation (RTL)" />
@@ -319,21 +529,23 @@ export default function DerivCaseStudy() {
         </div>
 
         {/* What I'd do differently */}
-        <div style={{ maxWidth: "640px" }}>
-          <h2 style={{ ...proseHeading, marginBottom: "1.25rem" }}>
-            What I'd do differently
-          </h2>
-          <p style={body}>
-            The component library was designed for launch. It wasn't designed for
-            the rate at which the team would want to iterate after launch. Without
-            a clear process for proposing and reviewing new components, decisions
-            about the system started happening ad hoc. Some were fine. Others
-            reintroduced the inconsistency we'd spent months removing.
-          </p>
-          <p style={{ ...body, marginTop: "1rem" }}>
-            A design system without a contribution process is just a starting
-            point. I'd spend more time on that next time.
-          </p>
+        <div>
+          <div style={{ maxWidth: "640px" }}>
+            <h2 style={sectionTitle}>
+              What I'd do differently
+            </h2>
+            <p style={body}>
+              The component library was designed for launch. It wasn't designed for
+              the rate at which the team would want to iterate after launch. Without
+              a clear process for proposing and reviewing new components, decisions
+              about the system started happening ad hoc. Some were fine. Others
+              reintroduced the inconsistency we'd spent months removing.
+            </p>
+            <p style={{ ...body, marginTop: "1rem" }}>
+              A design system without a contribution process is just a starting
+              point. I'd spend more time on that next time.
+            </p>
+          </div>
 
           {/* Live links */}
           <div

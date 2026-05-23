@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "motion/react";
 import { ClientThemeToggler } from "@/components/ui/ClientThemeToggler";
 import {
@@ -44,6 +45,8 @@ const togglerProps = {
 
 export function ClientNav() {
   const [open, setOpen] = useState(false);
+  const pathname = usePathname();
+  if (pathname === "/visual-journal") return null;
 
   return (
     <>
