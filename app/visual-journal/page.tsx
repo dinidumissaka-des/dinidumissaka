@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
-import Link from "next/link";
-import { IconArrowLeft } from "@tabler/icons-react";
+import BackButton from "@/components/ui/BackButton";
 import DomeGallery from "@/components/ui/DomeGallery";
 
 export const metadata: Metadata = {
@@ -41,25 +40,11 @@ const images = [
 export default function VisualJournalPage() {
   return (
     <div style={{ position: "fixed", inset: 0, width: "100%", height: "100dvh", background: "#101010" }}>
-      <Link
+      <BackButton
         href="/"
-        style={{
-          position: "absolute",
-          top: "1.5rem",
-          left: "1.5rem",
-          zIndex: 50,
-          display: "inline-flex",
-          alignItems: "center",
-          gap: "6px",
-          fontFamily: "var(--font-manrope), sans-serif",
-          fontSize: "11px",
-          color: "var(--color-muted)",
-          textDecoration: "none",
-        }}
-      >
-        <IconArrowLeft size={14} stroke={1.5} />
-        Back
-      </Link>
+        color="#f8f8f8"
+        style={{ position: "absolute", top: "1.5rem", left: "1.5rem", zIndex: 50 }}
+      />
       <DomeGallery
         images={images}
         fit={0.75}

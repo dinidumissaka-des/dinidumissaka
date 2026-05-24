@@ -1,6 +1,5 @@
-import Link from "next/link";
 import type { Metadata } from "next";
-import { IconArrowLeft } from "@tabler/icons-react";
+import BackButton from "@/components/ui/BackButton";
 
 export const metadata: Metadata = {
   title: "EcoByte — Case Study",
@@ -129,21 +128,7 @@ export default function EcoByteCaseStudy() {
         className="container"
         style={{ paddingTop: "3rem", paddingBottom: "5rem" }}
       >
-        {/* Back */}
-        <Link
-          href="/#projects"
-          style={{
-            ...metaSmall,
-            textDecoration: "none",
-            display: "inline-flex",
-            alignItems: "center",
-            gap: "6px",
-            marginBottom: "2.5rem",
-          }}
-        >
-          <IconArrowLeft size={14} stroke={1.5} />
-          Back
-        </Link>
+        <BackButton style={{ marginBottom: "2.5rem" }} />
 
         {/* Meta row */}
         <div

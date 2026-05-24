@@ -1,6 +1,5 @@
-import Link from "next/link";
 import type { Metadata } from "next";
-import { IconArrowLeft } from "@tabler/icons-react";
+import BackButton from "@/components/ui/BackButton";
 
 export const metadata: Metadata = {
   title: "Planr — Case Study",
@@ -73,7 +72,7 @@ const b: React.CSSProperties = {
   opacity: 0.7,
 };
 
-function ImagePlaceholder({ caption }: { caption: string }) {
+function ImagePlaceholder({ caption, bg }: { caption: string; bg?: string }) {
   return (
     <figure style={{ margin: 0 }}>
       <div
@@ -82,7 +81,7 @@ function ImagePlaceholder({ caption }: { caption: string }) {
           aspectRatio: "16 / 9",
           borderRadius: "12px",
           border: "1px dashed var(--border-section)",
-          background: "var(--bg-subtle)",
+          background: bg ?? "var(--bg-subtle)",
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
@@ -118,17 +117,8 @@ function ImagePlaceholder({ caption }: { caption: string }) {
 
 function UserCard({ role, pain, consequence }: { role: string; pain: string; consequence: string }) {
   return (
-    <div
-      style={{
-        padding: "1.75rem",
-        border: "1px solid var(--border-item)",
-        borderRadius: "12px",
-        display: "flex",
-        flexDirection: "column",
-        gap: "1rem",
-      }}
-    >
-      <p style={{ ...sectionLabel, letterSpacing: "0.06em" }}>{role}</p>
+    <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
+      <h4 style={{ ...sectionLabel, letterSpacing: "0.06em", margin: 0 }}>{role}</h4>
       <div style={{ display: "flex", flexDirection: "column", gap: "0.5rem" }}>
         <p style={{ ...body, fontSize: "13px" }}>
           <span style={{ fontWeight: 600 }}>Pain: </span>
@@ -158,21 +148,7 @@ export default function PlanrCaseStudy() {
         className="container"
         style={{ paddingTop: "3rem", paddingBottom: "5rem" }}
       >
-        {/* Back */}
-        <Link
-          href="/#projects"
-          style={{
-            ...metaSmall,
-            textDecoration: "none",
-            display: "inline-flex",
-            alignItems: "center",
-            gap: "6px",
-            marginBottom: "2.5rem",
-          }}
-        >
-          <IconArrowLeft size={14} stroke={1.5} />
-          Back
-        </Link>
+        <BackButton style={{ marginBottom: "2.5rem" }} />
 
         {/* Meta row */}
         <div
@@ -314,7 +290,7 @@ export default function PlanrCaseStudy() {
             style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1.5rem" }}
           >
             <ImagePlaceholder caption="Client dashboard — upcoming consultations, AI nudge, project overview" />
-            <ImagePlaceholder caption="Consultant dashboard — booking requests and incoming sessions" />
+            <ImagePlaceholder caption="Consultant dashboard — booking requests and incoming sessions" bg="#003618" />
           </div>
         </div>
 
