@@ -78,34 +78,42 @@ const b: React.CSSProperties = {
   opacity: 0.7,
 };
 
-function ImagePlaceholder({ caption }: { caption: string }) {
+function ImagePlaceholder({ caption, src }: { caption: string; src?: string }) {
   return (
     <figure style={{ margin: 0 }}>
-      <div
-        style={{
-          width: "100%",
-          aspectRatio: "16 / 9",
-          borderRadius: "12px",
-          border: "1px dashed var(--border-section)",
-          background: "var(--bg-subtle)",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          padding: "2rem",
-        }}
-      >
-        <span
+      {src ? (
+        <img
+          src={src}
+          alt={caption}
+          style={{ width: "100%", borderRadius: "12px", display: "block" }}
+        />
+      ) : (
+        <div
           style={{
-            fontFamily: "var(--font-manrope), sans-serif",
-            fontSize: "12px",
-            color: "var(--color-muted)",
-            textAlign: "center",
-            opacity: 0.5,
+            width: "100%",
+            aspectRatio: "16 / 9",
+            borderRadius: "12px",
+            border: "1px dashed var(--border-section)",
+            background: "var(--bg-subtle)",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            padding: "2rem",
           }}
         >
-          {caption}
-        </span>
-      </div>
+          <span
+            style={{
+              fontFamily: "var(--font-manrope), sans-serif",
+              fontSize: "12px",
+              color: "var(--color-muted)",
+              textAlign: "center",
+              opacity: 0.5,
+            }}
+          >
+            {caption}
+          </span>
+        </div>
+      )}
       <figcaption
         style={{
           fontFamily: "var(--font-manrope), sans-serif",
@@ -237,30 +245,6 @@ export default function DerivCaseStudy() {
               style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "3.5rem", alignItems: "start" }}
             >
               <div>
-                <h2 style={proseHeading}>Colour</h2>
-                <p style={body}>
-                  Coral red as the primary, Slate 700 as the secondary. Both are
-                  pulled directly from the Deriv brand — the decision was how to
-                  balance them across 6,000 pages without the site feeling like a
-                  brand exercise.{" "}
-                  <span style={b}>
-                    Red communicates energy and action; slate communicates stability
-                    and trust.
-                  </span>{" "}
-                  Action pages — sign-up, trading, conversion — lean red. Content
-                  pages — Academy, help, legal — lean slate. The system enforces
-                  this at the semantic token layer so the balance doesn't depend on
-                  individual designer decisions.
-                </p>
-              </div>
-              <ImagePlaceholder caption="Colour palette — semantic token assignments across action and content surfaces" />
-            </div>
-
-            <div
-              className="cs-prose-grid"
-              style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "3.5rem", alignItems: "start" }}
-            >
-              <div>
                 <h2 style={proseHeading}>Typography</h2>
                 <p style={body}>
                   Type was defined responsively from the start. The design spec
@@ -273,7 +257,7 @@ export default function DerivCaseStudy() {
                   stress-tested in German and Arabic before being signed off.
                 </p>
               </div>
-              <ImagePlaceholder caption="Responsive type scale — size, line-height, and measure defined per breakpoint" />
+              <ImagePlaceholder caption="Responsive type scale — size, line-height, and measure defined per breakpoint" src="/images/projects/deriv/Responsive type scale.webp" />
             </div>
 
             <div style={{ maxWidth: "640px" }}>
@@ -312,7 +296,28 @@ export default function DerivCaseStudy() {
                   without referencing earlier work.
                 </p>
               </div>
-              <ImagePlaceholder caption="3D asset guidelines — lighting, perspective, and colour grading standards" />
+              <ImagePlaceholder caption="3D asset guidelines — lighting, perspective, and colour grading standards" src="/images/projects/deriv/3D asset guidelines.webp" />
+            </div>
+
+            <div
+              className="cs-prose-grid"
+              style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "3.5rem", alignItems: "start" }}
+            >
+              <div>
+                <h2 style={proseHeading}>Page templates</h2>
+                <p style={body}>
+                  The template layer was where the system became usable beyond the
+                  design team. Instead of handing over a component library and
+                  expecting content teams to compose pages correctly, I designed a
+                  set of full-page templates — product pages, landing pages, Academy
+                  articles, help centre layouts — that locked down the composition
+                  decisions. Content teams filled in slots. They couldn't break the
+                  layout because the layout wasn't exposed to them. New pages could
+                  be created in 2–3 days rather than the 3–5 weeks the previous
+                  process required.
+                </p>
+              </div>
+              <ImagePlaceholder caption="Page templates — product, landing, Academy, and help centre layouts" src="/images/projects/deriv/Page templates.webp" />
             </div>
 
           </div>
@@ -377,34 +382,13 @@ export default function DerivCaseStudy() {
 
           <div style={{ display: "flex", flexDirection: "column", gap: "1.5rem", marginBottom: "3rem" }}>
             <ImagePlaceholder caption="Four-layer token architecture — each layer references only the one below it. Light and dark mode flips at the semantic layer." />
-            <ImagePlaceholder caption="Modular component library — hero, cards, FAQs, stats, testimonials, CTA blocks" />
+            <ImagePlaceholder caption="Modular component library — hero, cards, FAQs, stats, testimonials, CTA blocks" src="/images/projects/deriv/Modular component library.webp" />
             <div className="cs-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1.5rem" }}>
-              <ImagePlaceholder caption="One card component, four variants — light, dark, brand, and image-led" />
-              <ImagePlaceholder caption="Layouts designed and tested at 360px and 1440px — every component is responsive by default" />
+              <ImagePlaceholder caption="One card component, four variants — light, dark, brand, and image-led" src="/images/projects/deriv/One card component.webp" />
+              <ImagePlaceholder caption="Layouts designed and tested at 360px and 1440px — every component is responsive by default" src="/images/projects/deriv/layout 360px and 1440px.webp" />
             </div>
           </div>
 
-          {/* Page templates */}
-          <div
-            className="cs-prose-grid"
-            style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "3.5rem", alignItems: "start" }}
-          >
-            <div>
-              <h2 style={proseHeading}>Page templates</h2>
-              <p style={body}>
-                The template layer was where the system became usable beyond the
-                design team. Instead of handing over a component library and
-                expecting content teams to compose pages correctly, I designed a
-                set of full-page templates — product pages, landing pages, Academy
-                articles, help centre layouts — that locked down the composition
-                decisions. Content teams filled in slots. They couldn't break the
-                layout because the layout wasn't exposed to them. New pages could
-                be created in 2–3 days rather than the 3–5 weeks the previous
-                process required.
-              </p>
-            </div>
-            <ImagePlaceholder caption="Page templates — product, landing, Academy, and help centre layouts" />
-          </div>
         </div>
 
         {/* Localisation */}
