@@ -117,7 +117,7 @@ export default function Expertise() {
             initial={{ opacity: 0, y: 20 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6 }}
-            style={{ flex: 1, position: "relative", maxWidth: "700px" }}
+            style={{ flex: 1, position: "relative" }}
           >
             <div
               className="text-muted"
@@ -163,15 +163,15 @@ export default function Expertise() {
               >
                 <VariableProximity label="My work lives at the intersection of three things: " fromFontVariationSettings="'wght' 300, 'opsz' 9" toFontVariationSettings="'wght' 450, 'opsz' 40" containerRef={containerRef} radius={120} falloff="gaussian" />
                 <CursorTooltip content={<TooltipUserCentred />} containerClassName="inline">
-                  <span style={{ color: "var(--color-fg)", cursor: "default" }}><VariableProximity label="user-centred design" fromFontVariationSettings="'wght' 300, 'opsz' 9" toFontVariationSettings="'wght' 450, 'opsz' 40" containerRef={containerRef} radius={120} falloff="gaussian" /></span>
+                  <span style={{ color: "var(--color-fg)", cursor: "default", textDecoration: "underline", textDecorationColor: "var(--color-muted)", textUnderlineOffset: "3px", textDecorationThickness: "1px" }}><VariableProximity label="user-centred design" fromFontVariationSettings="'wght' 300, 'opsz' 9" toFontVariationSettings="'wght' 450, 'opsz' 40" containerRef={containerRef} radius={120} falloff="gaussian" /></span>
                 </CursorTooltip>
                 <VariableProximity label=", " fromFontVariationSettings="'wght' 300, 'opsz' 9" toFontVariationSettings="'wght' 450, 'opsz' 40" containerRef={containerRef} radius={120} falloff="gaussian" />
                 <CursorTooltip content={<TooltipAIPowered />} containerClassName="inline">
-                  <span style={{ color: "var(--color-fg)", cursor: "default" }}><VariableProximity label="AI-powered systems" fromFontVariationSettings="'wght' 300, 'opsz' 9" toFontVariationSettings="'wght' 450, 'opsz' 40" containerRef={containerRef} radius={120} falloff="gaussian" /></span>
+                  <span style={{ color: "var(--color-fg)", cursor: "default", textDecoration: "underline", textDecorationColor: "var(--color-muted)", textUnderlineOffset: "3px", textDecorationThickness: "1px" }}><VariableProximity label="AI-powered systems" fromFontVariationSettings="'wght' 300, 'opsz' 9" toFontVariationSettings="'wght' 450, 'opsz' 40" containerRef={containerRef} radius={120} falloff="gaussian" /></span>
                 </CursorTooltip>
                 <VariableProximity label=", and " fromFontVariationSettings="'wght' 300, 'opsz' 9" toFontVariationSettings="'wght' 450, 'opsz' 40" containerRef={containerRef} radius={120} falloff="gaussian" />
                 <CursorTooltip content={<TooltipVisualCraft />} containerClassName="inline">
-                  <span style={{ color: "var(--color-fg)", cursor: "default" }}><VariableProximity label="visual craft" fromFontVariationSettings="'wght' 300, 'opsz' 9" toFontVariationSettings="'wght' 450, 'opsz' 40" containerRef={containerRef} radius={120} falloff="gaussian" /></span>
+                  <span style={{ color: "var(--color-fg)", cursor: "default", textDecoration: "underline", textDecorationColor: "var(--color-muted)", textUnderlineOffset: "3px", textDecorationThickness: "1px" }}><VariableProximity label="visual craft" fromFontVariationSettings="'wght' 300, 'opsz' 9" toFontVariationSettings="'wght' 450, 'opsz' 40" containerRef={containerRef} radius={120} falloff="gaussian" /></span>
                 </CursorTooltip>
                 <VariableProximity label=". I create engaging, intuitive experiences through cohesive UX and design systems that elevate brands — spanning web, app, and end-to-end product design. I leverage AI to optimise design workflows, scale digital experiences, and explore what's possible at the edge of design and technology." fromFontVariationSettings="'wght' 300, 'opsz' 9" toFontVariationSettings="'wght' 450, 'opsz' 40" containerRef={containerRef} radius={120} falloff="gaussian" />
               </div>

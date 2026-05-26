@@ -1,132 +1,87 @@
 "use client";
 
-import { useRef, useState, useCallback } from "react";
+import { useRef } from "react";
 import { motion, useInView } from "motion/react";
-import Image from "next/image";
 import Link from "next/link";
 import { projects } from "@/lib/data/projects";
-import RotatingText, { RotatingTextRef } from "@/components/ui/RotatingText";
 
 export default function Projects() {
   const ref = useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { once: true, margin: "-80px" });
-  const [hoveredId, setHoveredId] = useState<string | null>(null);
-  const rotatingRefs = useRef<Record<string, RotatingTextRef | null>>({});
-
-  const handleMouseEnter = useCallback((id: string) => {
-    setHoveredId(id);
-    rotatingRefs.current[id]?.next();
-  }, []);
-
-  const handleMouseLeave = useCallback(() => {
-    setHoveredId(null);
-  }, []);
 
   return (
     <section id="projects">
+      <style>{`
+        .project-link {
+          text-decoration: none !important;
+          background-image: linear-gradient(currentColor, currentColor);
+          background-position: 0% 100%;
+          background-repeat: no-repeat;
+          background-size: 100% 1px;
+        }
+        .project-link:hover {
+          animation: underline-sweep 0.8s cubic-bezier(0.25, 0.1, 0.25, 1) forwards;
+        }
+        @keyframes underline-sweep {
+          0%   { background-size: 0% 1px; }
+          100% { background-size: 100% 1px; }
+        }
+        .project-sub {
+          transition: color 0.2s ease;
+        }
+        .project-link:hover .project-sub {
+          color: var(--color-fg) !important;
+        }
+      `}</style>
       <div className="container" style={{ paddingBlock: "3rem" }}>
-        {/* Header */}
-        <motion.div
+        <motion.p
           ref={ref}
           initial={{ opacity: 0, y: 16 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.5 }}
-          style={{ marginBottom: "2rem" }}
+          className="text-muted"
+          style={{
+            fontFamily: "var(--font-manrope), sans-serif",
+            fontSize: "12px",
+            marginBottom: "1.5rem",
+          }}
         >
-          <p
-            className="text-muted"
-            style={{
-              fontFamily: "var(--font-manrope), sans-serif",
-              fontSize: "12px",
-              marginBottom: "12px",
-            }}
-          >
-            Projects
-          </p>
-          <h2
-            style={{
-              fontFamily: "var(--font-fraunces), Georgia, serif",
-              fontSize: "32px",
-              fontWeight: 300,
-              lineHeight: 1.1,
-              color: "var(--color-fg)",
-            }}
-          >
-            Design highlights
-          </h2>
-        </motion.div>
+          Projects
+        </motion.p>
 
-        {/* Image grid */}
-        <motion.div
+        <motion.h2
           initial={{ opacity: 0, y: 20 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, delay: 0.15 }}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"
+          transition={{ duration: 0.6, delay: 0.1 }}
+          style={{
+            fontFamily: "var(--font-fraunces), Georgia, serif",
+            fontSize: "32px",
+            fontWeight: 300,
+            lineHeight: 1.2,
+            color: "var(--color-fg)",
+            letterSpacing: "-0.01em",
+          }}
         >
           {projects.map((project, i) => (
-            <Link
-              key={project.id}
-              href={`/projects/${project.id}`}
-              style={{ textDecoration: "none", display: "block" }}
-              onMouseEnter={() => handleMouseEnter(project.id)}
-              onMouseLeave={handleMouseLeave}
-            >
-              <motion.div
-                animate={{ y: [0, -8, 0] }}
-                transition={{
-                  duration: 3.5,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                  delay: i * 0.4,
-                }}
+            <span key={project.id}>
+              <Link
+                href={`/projects/${project.id}`}
+                className="project-link"
                 style={{
-                  aspectRatio: "4 / 3",
-                  borderRadius: "12px",
-                  overflow: "hidden",
-                  position: "relative",
-                  marginBottom: "12px",
+                  color: "var(--color-fg)",
                 }}
               >
-                <Image
-                  src={project.image}
-                  alt={project.title}
-                  fill
-                  style={{ objectFit: "cover" }}
-                  sizes="25vw"
-                />
-              </motion.div>
-
-              <div
-                className="text-muted"
-                style={{
-                  fontFamily: "var(--font-manrope), sans-serif",
-                  fontSize: "14px",
-                  lineHeight: 1.4,
-                  overflow: "hidden",
-                  height: "1.4em",
-                  display: "flex",
-                  alignItems: "center",
-                  gap: "4px",
-                }}
-              >
-                <span style={{ flexShrink: 0, color: "var(--color-fg)" }}>{project.title} |</span>
-                <RotatingText
-                  ref={(el) => { rotatingRefs.current[project.id] = el; }}
-                  texts={project.rotatingTexts}
-                  auto={hoveredId === project.id}
-                  rotationInterval={1800}
-                  splitBy="words"
-                  initial={{ y: "100%", opacity: 0 }}
-                  animate={{ y: 0, opacity: 1 }}
-                  exit={{ y: "-120%", opacity: 0 }}
-                  transition={{ type: "spring", damping: 30, stiffness: 400 }}
-                  staggerDuration={0.03}
-                  staggerFrom="first"
-                />
-              </div>
-            </Link>
+                {project.title}
+                <span className="project-sub" style={{ color: "var(--color-muted)", fontWeight: 300 }}>
+                  {" — "}{project.subtitle}, {project.year}
+                </span>
+              </Link>
+              {i < projects.length - 1 && (
+                <span style={{ color: "var(--color-muted)", margin: "0 0.4em" }}>/</span>
+              )}
+            </span>
           ))}
-        </motion.div>
+        </motion.h2>
       </div>
     </section>
   );

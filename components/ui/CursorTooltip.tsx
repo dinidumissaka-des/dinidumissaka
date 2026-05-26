@@ -97,8 +97,14 @@ export const CursorTooltip = ({
             animate={{ height, opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
             transition={{ type: "spring", stiffness: 200, damping: 20 }}
-            className="pointer-events-none absolute z-50 min-w-[15rem] overflow-hidden rounded-xl border border-transparent bg-white shadow-sm ring-1 shadow-black/5 ring-black/5 dark:bg-neutral-900 dark:shadow-white/10 dark:ring-white/5"
-            style={{ top: position.y, left: position.x }}
+            className="pointer-events-none absolute z-50 min-w-[15rem] overflow-hidden rounded-xl"
+            style={{
+              top: position.y,
+              left: position.x,
+              background: "var(--color-bg)",
+              border: "1px solid var(--border-item)",
+              boxShadow: "0 4px 24px rgba(0,0,0,0.08)",
+            }}
           >
             <div ref={contentRef} className="p-3 text-sm text-neutral-600 dark:text-neutral-400">
               {content}

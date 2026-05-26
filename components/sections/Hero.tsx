@@ -17,7 +17,7 @@ export default function Hero() {
     <section className="relative flex flex-col">
       <div className="container">
         {/* Text block */}
-        <div style={{ paddingTop: "3rem", paddingBottom: "16px" }}>
+        <div style={{ paddingTop: "3rem", paddingBottom: "16px", width: "95%" }}>
           <motion.p
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
@@ -41,14 +41,14 @@ export default function Hero() {
               color: "var(--color-fg)",
             }}
           >
-            Crafting people friendly<br />digital journeys!
+            Crafting people friendly digital journeys!
           </motion.h1>
 
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.9 }}
-            className="mt-7 text-muted max-w-2xl leading-relaxed"
+            className="mt-7 text-muted leading-relaxed"
             style={{ fontSize: "14px" }}
           >
             A Senior UX &amp; UI Designer based in Dubai, UAE with over 5 years of experience,
