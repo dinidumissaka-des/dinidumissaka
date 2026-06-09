@@ -1,7 +1,9 @@
 "use client";
 
 import { motion } from "motion/react";
-import CircularGallery from "@/components/ui/CircularGallery";
+import dynamic from "next/dynamic";
+
+const CircularGallery = dynamic(() => import("@/components/ui/CircularGallery"), { ssr: false });
 
 const galleryItems = [
   { image: "/images/hero/6738d52e1229ecc84512efce_6.avif",   text: "" },

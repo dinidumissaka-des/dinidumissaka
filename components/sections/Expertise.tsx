@@ -1,11 +1,13 @@
 "use client";
 
 import React, { useRef } from "react";
+import dynamic from "next/dynamic";
 import { motion, useInView } from "motion/react";
-import CircularText from "@/components/ui/CircularText";
-import VariableProximity from "@/components/ui/VariableProximity";
-import { CursorTooltip } from "@/components/ui/CursorTooltip";
 import Image from "next/image";
+
+const CircularText    = dynamic(() => import("@/components/ui/CircularText"),    { ssr: false });
+const VariableProximity = dynamic(() => import("@/components/ui/VariableProximity"), { ssr: false });
+const CursorTooltip   = dynamic(() => import("@/components/ui/CursorTooltip").then(m => ({ default: m.CursorTooltip })), { ssr: false });
 
 const tooltipCardStyle: React.CSSProperties = {
   display: "flex",
@@ -161,19 +163,21 @@ export default function Expertise() {
                   color: "var(--color-muted)",
                 }}
               >
-                <VariableProximity label="My work lives at the intersection of three things: " fromFontVariationSettings="'wght' 300, 'opsz' 9" toFontVariationSettings="'wght' 450, 'opsz' 40" containerRef={containerRef} radius={120} falloff="gaussian" />
-                <CursorTooltip content={<TooltipUserCentred />} containerClassName="inline">
-                  <span style={{ color: "var(--color-fg)", cursor: "default", textDecoration: "underline", textDecorationColor: "var(--color-muted)", textUnderlineOffset: "3px", textDecorationThickness: "1px" }}><VariableProximity label="user-centred design" fromFontVariationSettings="'wght' 300, 'opsz' 9" toFontVariationSettings="'wght' 450, 'opsz' 40" containerRef={containerRef} radius={120} falloff="gaussian" /></span>
-                </CursorTooltip>
-                <VariableProximity label=", " fromFontVariationSettings="'wght' 300, 'opsz' 9" toFontVariationSettings="'wght' 450, 'opsz' 40" containerRef={containerRef} radius={120} falloff="gaussian" />
-                <CursorTooltip content={<TooltipAIPowered />} containerClassName="inline">
-                  <span style={{ color: "var(--color-fg)", cursor: "default", textDecoration: "underline", textDecorationColor: "var(--color-muted)", textUnderlineOffset: "3px", textDecorationThickness: "1px" }}><VariableProximity label="AI-powered systems" fromFontVariationSettings="'wght' 300, 'opsz' 9" toFontVariationSettings="'wght' 450, 'opsz' 40" containerRef={containerRef} radius={120} falloff="gaussian" /></span>
-                </CursorTooltip>
-                <VariableProximity label=", and " fromFontVariationSettings="'wght' 300, 'opsz' 9" toFontVariationSettings="'wght' 450, 'opsz' 40" containerRef={containerRef} radius={120} falloff="gaussian" />
-                <CursorTooltip content={<TooltipVisualCraft />} containerClassName="inline">
-                  <span style={{ color: "var(--color-fg)", cursor: "default", textDecoration: "underline", textDecorationColor: "var(--color-muted)", textUnderlineOffset: "3px", textDecorationThickness: "1px" }}><VariableProximity label="visual craft" fromFontVariationSettings="'wght' 300, 'opsz' 9" toFontVariationSettings="'wght' 450, 'opsz' 40" containerRef={containerRef} radius={120} falloff="gaussian" /></span>
-                </CursorTooltip>
-                <VariableProximity label=". I create engaging, intuitive experiences through cohesive UX and design systems that elevate brands — spanning web, app, and end-to-end product design. I leverage AI to optimise design workflows, scale digital experiences, and explore what's possible at the edge of design and technology." fromFontVariationSettings="'wght' 300, 'opsz' 9" toFontVariationSettings="'wght' 450, 'opsz' 40" containerRef={containerRef} radius={120} falloff="gaussian" />
+                {inView && (<>
+                  <VariableProximity label="My work lives at the intersection of three things: " fromFontVariationSettings="'wght' 300, 'opsz' 9" toFontVariationSettings="'wght' 450, 'opsz' 40" containerRef={containerRef} radius={120} falloff="gaussian" />
+                  <CursorTooltip content={<TooltipUserCentred />} containerClassName="inline">
+                    <span style={{ color: "var(--color-fg)", cursor: "default", textDecoration: "underline", textDecorationColor: "var(--color-muted)", textUnderlineOffset: "3px", textDecorationThickness: "1px" }}><VariableProximity label="user-centred design" fromFontVariationSettings="'wght' 300, 'opsz' 9" toFontVariationSettings="'wght' 450, 'opsz' 40" containerRef={containerRef} radius={120} falloff="gaussian" /></span>
+                  </CursorTooltip>
+                  <VariableProximity label=", " fromFontVariationSettings="'wght' 300, 'opsz' 9" toFontVariationSettings="'wght' 450, 'opsz' 40" containerRef={containerRef} radius={120} falloff="gaussian" />
+                  <CursorTooltip content={<TooltipAIPowered />} containerClassName="inline">
+                    <span style={{ color: "var(--color-fg)", cursor: "default", textDecoration: "underline", textDecorationColor: "var(--color-muted)", textUnderlineOffset: "3px", textDecorationThickness: "1px" }}><VariableProximity label="AI-powered systems" fromFontVariationSettings="'wght' 300, 'opsz' 9" toFontVariationSettings="'wght' 450, 'opsz' 40" containerRef={containerRef} radius={120} falloff="gaussian" /></span>
+                  </CursorTooltip>
+                  <VariableProximity label=", and " fromFontVariationSettings="'wght' 300, 'opsz' 9" toFontVariationSettings="'wght' 450, 'opsz' 40" containerRef={containerRef} radius={120} falloff="gaussian" />
+                  <CursorTooltip content={<TooltipVisualCraft />} containerClassName="inline">
+                    <span style={{ color: "var(--color-fg)", cursor: "default", textDecoration: "underline", textDecorationColor: "var(--color-muted)", textUnderlineOffset: "3px", textDecorationThickness: "1px" }}><VariableProximity label="visual craft" fromFontVariationSettings="'wght' 300, 'opsz' 9" toFontVariationSettings="'wght' 450, 'opsz' 40" containerRef={containerRef} radius={120} falloff="gaussian" /></span>
+                  </CursorTooltip>
+                  <VariableProximity label=". I create engaging, intuitive experiences through cohesive UX and design systems that elevate brands — spanning web, app, and end-to-end product design. I leverage AI to optimise design workflows, scale digital experiences, and explore what's possible at the edge of design and technology." fromFontVariationSettings="'wght' 300, 'opsz' 9" toFontVariationSettings="'wght' 450, 'opsz' 40" containerRef={containerRef} radius={120} falloff="gaussian" />
+                </>)}
               </div>
             </div>
           </motion.div>
