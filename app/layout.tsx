@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Fraunces, Manrope, Noto_Serif_Display } from "next/font/google";
+import { Fraunces, Manrope } from "next/font/google";
 import "./globals.css";
 import Footer from "@/components/layout/Footer";
 import { ThemeProvider } from "@/components/layout/ThemeProvider";
@@ -21,12 +21,6 @@ const manrope = Manrope({
   display: "swap",
 });
 
-const notoSerifDisplay = Noto_Serif_Display({
-  subsets: ["latin"],
-  weight: ["300", "400", "500"],
-  variable: "--font-noto-serif",
-  display: "swap",
-});
 
 export const metadata: Metadata = {
   title: "Dinidu Missaka — Senior UX/UI Designer",
@@ -54,7 +48,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${fraunces.variable} ${manrope.variable} ${notoSerifDisplay.variable}`} suppressHydrationWarning>
+    <html lang="en" className={`${fraunces.variable} ${manrope.variable}`} suppressHydrationWarning>
       <body className="antialiased" suppressHydrationWarning>
         <ThemeProvider>
           <SmoothScroll />

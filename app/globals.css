@@ -255,7 +255,7 @@ html.dark {
 
   /* Fonts */
   --font-sans:    var(--font-manrope), system-ui, sans-serif;
-  --font-serif:   var(--font-noto-serif), Georgia, serif;
+  --font-serif:   var(--font-fraunces), Georgia, serif;
   --font-display: var(--font-fraunces), Georgia, serif;
 
   /* Type scale */
