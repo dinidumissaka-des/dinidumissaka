@@ -46,7 +46,7 @@ const body: React.CSSProperties = {
 
 const metaSmall: React.CSSProperties = {
   fontFamily: "var(--font-manrope), sans-serif",
-  fontSize: "11px",
+  fontSize: "14px",
   color: "var(--color-muted)",
 };
 

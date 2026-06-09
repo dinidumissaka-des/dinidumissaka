@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 
 const sectionLabel: React.CSSProperties = {
   fontFamily: "var(--font-manrope), sans-serif",
-  fontSize: "12px",
+  fontSize: "14px",
   color: "var(--color-muted)",
 };
 
@@ -43,7 +43,7 @@ const body: React.CSSProperties = {
 
 const metaSmall: React.CSSProperties = {
   fontFamily: "var(--font-manrope), sans-serif",
-  fontSize: "11px",
+  fontSize: "14px",
   color: "var(--color-muted)",
 };
 
@@ -111,6 +111,7 @@ export default function MintiCaseStudy() {
         @media (max-width: 640px) {
           .cs-grid { grid-template-columns: 1fr !important; }
           .cs-meta { gap: 1.25rem !important; }
+          .cs-screen-grid { grid-template-columns: 1fr !important; }
         }
       `}</style>
 
@@ -154,8 +155,7 @@ export default function MintiCaseStudy() {
               <span style={b}>You have to type in what you spent. That five seconds is the point.</span>
             </p>
             <p style={{ ...body, marginBottom: "1rem" }}>
-              The UI is built on a custom glassmorphism system with a single accent colour — #9FE870 — used exclusively for primary actions. All type is set in Manrope, with weight carrying the hierarchy:{" "}
-              <span style={b}>Numbers at 700. Labels at 500. Body at 400.</span> The grid is 4px base, 8px increments. On a 390px screen used daily, the polish either holds or it doesn't.
+              Designed and built with a proper design system — custom glassmorphism, a single accent colour, and consistent type and spacing tokens throughout.
             </p>
             <p style={body}>
               Currently in build — no real users yet. The goal right now is to make it feel like a properly crafted app. Every screen, every interaction, every edge state handled.
@@ -163,9 +163,23 @@ export default function MintiCaseStudy() {
           </div>
         </div>
 
-        {/* Hero */}
+        {/* Cover image */}
+        <div style={divider}>
+          <img
+            src="/images/projects/minti/cover-image-minti.png"
+            alt="Minti spending tracker app"
+            style={{ width: "100%", aspectRatio: "16 / 9", objectFit: "cover", borderRadius: "12px", display: "block" }}
+          />
+        </div>
+
+        {/* Screens */}
         <div style={{ ...divider, borderBottom: "none", paddingBottom: 0 }}>
-          <ImagePlaceholder caption="Minti app on mobile — home screen and expense list" />
+          <div className="cs-screen-grid" style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: "1.5rem", alignItems: "center" }}>
+            <img src="/images/projects/minti/app-icon.png" alt="Minti app icon" style={{ width: "100%", borderRadius: "24px", display: "block" }} />
+            <img src="/images/projects/minti/expences.png" alt="Minti expenses screen" style={{ width: "100%", borderRadius: "12px", display: "block" }} />
+            <img src="/images/projects/minti/categories.png" alt="Minti categories screen" style={{ width: "100%", borderRadius: "12px", display: "block" }} />
+            <img src="/images/projects/minti/subscriptions.png" alt="Minti subscriptions screen" style={{ width: "100%", borderRadius: "12px", display: "block" }} />
+          </div>
         </div>
 
         {/* Live link */}

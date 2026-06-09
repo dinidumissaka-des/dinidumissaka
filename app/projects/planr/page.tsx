@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 
 const sectionLabel: React.CSSProperties = {
   fontFamily: "var(--font-manrope), sans-serif",
-  fontSize: "12px",
+  fontSize: "14px",
   color: "var(--color-muted)",
 };
 
@@ -43,7 +43,7 @@ const body: React.CSSProperties = {
 
 const metaSmall: React.CSSProperties = {
   fontFamily: "var(--font-manrope), sans-serif",
-  fontSize: "11px",
+  fontSize: "14px",
   color: "var(--color-muted)",
 };
 
@@ -162,9 +162,23 @@ export default function PlanrCaseStudy() {
           </div>
         </div>
 
-        {/* Hero */}
+        {/* Cover image */}
+        <div style={divider}>
+          <img
+            src="/images/projects/planr/l1.png"
+            alt="Planr marketing landing page"
+            style={{ width: "100%", aspectRatio: "16 / 9", objectFit: "cover", borderRadius: "12px", display: "block" }}
+          />
+        </div>
+
+        {/* Screens grid */}
         <div style={{ ...divider, borderBottom: "none", paddingBottom: 0 }}>
-          <ImagePlaceholder caption="Animated marketing landing page — buildinghelp.app" />
+          <div className="cs-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1.5rem" }}>
+            <img src="/images/projects/planr/l2.png" alt="Planr screen" style={{ width: "100%", borderRadius: "12px", display: "block" }} />
+            <img src="/images/projects/planr/l3.png" alt="Planr screen" style={{ width: "100%", borderRadius: "12px", display: "block" }} />
+            <img src="/images/projects/planr/l4.png" alt="Planr screen" style={{ width: "100%", borderRadius: "12px", display: "block" }} />
+            <img src="/images/projects/planr/l4-1.png" alt="Planr screen" style={{ width: "100%", borderRadius: "12px", display: "block" }} />
+          </div>
         </div>
 
         {/* Live link */}
@@ -172,6 +186,10 @@ export default function PlanrCaseStudy() {
           <a href="https://buildinghelp.app" target="_blank" rel="noopener noreferrer"
             style={{ fontFamily: "var(--font-manrope), sans-serif", fontSize: "12px", fontWeight: 500, color: "var(--color-muted)", textDecoration: "underline", textUnderlineOffset: "3px" }}>
             buildinghelp.app
+          </a>
+          <a href="https://planr-khaki.vercel.app/signup" target="_blank" rel="noopener noreferrer"
+            style={{ fontFamily: "var(--font-manrope), sans-serif", fontSize: "12px", fontWeight: 500, color: "var(--color-muted)", textDecoration: "underline", textUnderlineOffset: "3px" }}>
+            planr.vercel.app
           </a>
         </div>
       </div>

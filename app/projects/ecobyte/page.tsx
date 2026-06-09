@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 
 const sectionLabel: React.CSSProperties = {
   fontFamily: "var(--font-manrope), sans-serif",
-  fontSize: "12px",
+  fontSize: "14px",
   color: "var(--color-muted)",
 };
 
@@ -31,7 +31,7 @@ const sectionTitle: React.CSSProperties = {
   fontWeight: 300,
   lineHeight: 1.1,
   color: "var(--color-fg)",
-  marginBottom: "2rem",
+  marginBottom: "1rem",
 };
 
 const body: React.CSSProperties = {
@@ -44,7 +44,7 @@ const body: React.CSSProperties = {
 
 const metaSmall: React.CSSProperties = {
   fontFamily: "var(--font-manrope), sans-serif",
-  fontSize: "11px",
+  fontSize: "14px",
   color: "var(--color-muted)",
 };
 
@@ -62,48 +62,15 @@ const b: React.CSSProperties = {
   opacity: 0.7,
 };
 
-function ImagePlaceholder({ caption }: { caption: string }) {
-  return (
-    <figure style={{ margin: 0 }}>
-      <div
-        style={{
-          width: "100%",
-          aspectRatio: "16 / 9",
-          borderRadius: "12px",
-          border: "1px dashed var(--border-section)",
-          background: "var(--bg-subtle)",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          padding: "2rem",
-        }}
-      >
-        <span
-          style={{
-            fontFamily: "var(--font-manrope), sans-serif",
-            fontSize: "12px",
-            color: "var(--color-muted)",
-            textAlign: "center",
-            opacity: 0.5,
-          }}
-        >
-          {caption}
-        </span>
-      </div>
-      <figcaption
-        style={{
-          fontFamily: "var(--font-manrope), sans-serif",
-          fontSize: "11px",
-          color: "var(--color-muted)",
-          marginTop: "10px",
-          opacity: 0.6,
-        }}
-      >
-        {caption}
-      </figcaption>
-    </figure>
-  );
-}
+const screenLabel: React.CSSProperties = {
+  fontFamily: "var(--font-manrope), sans-serif",
+  fontSize: "11px",
+  fontWeight: 600,
+  letterSpacing: "0.08em",
+  textTransform: "uppercase",
+  color: "var(--color-muted)",
+  marginBottom: "0.75rem",
+};
 
 export default function EcoByteCaseStudy() {
   return (
@@ -112,7 +79,9 @@ export default function EcoByteCaseStudy() {
         @media (max-width: 640px) {
           .cs-grid { grid-template-columns: 1fr !important; }
           .cs-meta { gap: 1.25rem !important; }
+          .cs-screen-grid { grid-template-columns: 1fr !important; }
         }
+        .dark .asset-bg { background: rgba(255,255,255,0.04) !important; }
       `}</style>
 
       <div className="container" style={{ paddingTop: "3rem", paddingBottom: "5rem" }}>
@@ -154,26 +123,110 @@ export default function EcoByteCaseStudy() {
           </div>
         </div>
 
-        {/* Hero */}
+        {/* Cover image */}
         <div style={divider}>
-          <div className="cs-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1.5rem" }}>
-            <div style={{ borderRadius: "12px", overflow: "hidden", background: "rgba(0,0,0,0.04)", minWidth: 0 }} className="asset-bg">
-              <LottieRemote
-                url="https://cdn.prod.website-files.com/661685703798b803e4b90e1a/666f0b1ee5887bf0889f10d0_Animated-smartphones_-slider-%5Bremix%5D.json"
-                style={{ width: "100%" }}
-              />
+          <img
+            src="/images/projects/ecobyte/ecobyte-cover.webp"
+            alt="Person holding a phone showing the EcoByte app"
+            style={{ width: "100%", aspectRatio: "16 / 9", objectFit: "cover", borderRadius: "12px", display: "block" }}
+          />
+        </div>
+
+        {/* Hero animation */}
+        <div style={divider}>
+          <div style={{ borderRadius: "12px", overflow: "hidden", background: "rgba(0,0,0,0.04)", aspectRatio: "16 / 9" }} className="asset-bg">
+            <LottieRemote
+              url="https://cdn.prod.website-files.com/661685703798b803e4b90e1a/666ef3073a7b5743b35191f2_Showreel-Grid-Mobile-%5Bremix%5D%20(2).json"
+              style={{ width: "100%" }}
+            />
+          </div>
+        </div>
+
+        {/* Homepage */}
+        <div style={divider}>
+          <div className="cs-screen-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "3rem", alignItems: "center" }}>
+            <div>
+              <p style={screenLabel}>Homepage</p>
+              <h2 style={sectionTitle}>A dynamic, personalised dashboard</h2>
+              <p style={body}>Display current point balance, level progress, and personalized eco-challenges. A dynamic and personalized dashboard that provides users with an at-a-glance overview of their sustainability journey.</p>
             </div>
-            <div style={{ borderRadius: "12px", overflow: "hidden", background: "rgba(0,0,0,0.04)", minWidth: 0 }} className="asset-bg">
+            <div style={{ display: "flex", justifyContent: "center", background: "rgba(0,0,0,0.04)", borderRadius: "16px", padding: "2rem" }} className="asset-bg">
+              <img src="/images/projects/ecobyte/666f02f2c52c98ccc300eaa0_iPhone - Home Screen - Light.webp" alt="EcoByte homepage screen" style={{ width: "55%", display: "block" }} />
+            </div>
+          </div>
+        </div>
+
+        {/* Challenges */}
+        <div style={divider}>
+          <div className="cs-screen-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "3rem", alignItems: "center" }}>
+            <div style={{ display: "flex", justifyContent: "center", background: "rgba(0,0,0,0.04)", borderRadius: "16px", padding: "2rem" }} className="asset-bg">
+              <img src="/images/projects/ecobyte/666f002bf886c3f4bcb6d95f_iPhone - Home Screen - Light-1.webp" alt="EcoByte challenges screen" style={{ width: "55%", display: "block" }} />
+            </div>
+            <div>
+              <p style={screenLabel}>Challenges page</p>
+              <h2 style={sectionTitle}>Browse, track, and earn</h2>
+              <p style={body}>Browse available challenges, track progress, and earn bonus points for completion. This screen showcases user categorisation and badges earned for milestones — "Eco Upgrade", "Power Saver" — alongside a collaborative challenge to reduce data usage with a friend.</p>
+            </div>
+          </div>
+        </div>
+
+        {/* Footprint tracker */}
+        <div style={divider}>
+          <div className="cs-screen-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "3rem", alignItems: "center" }}>
+            <div>
+              <p style={screenLabel}>Footprint tracker</p>
+              <h2 style={sectionTitle}>Data-driven sustainability insights</h2>
+              <p style={body}>Visualize activity breakdown, carbon footprint impact, and point earnings over time. Empowering users with clear insight into how their digital habits translate to real-world environmental impact.</p>
+            </div>
+            <div style={{ display: "flex", justifyContent: "center", background: "rgba(0,0,0,0.04)", borderRadius: "16px", padding: "2rem" }} className="asset-bg">
+              <img src="/images/projects/ecobyte/666f021ab8d61ebc96e3dd2e_iPhone - Home Screen - Light-3.webp" alt="EcoByte footprint tracker screen" style={{ width: "55%", display: "block" }} />
+            </div>
+          </div>
+        </div>
+
+        {/* Rewards */}
+        <div style={divider}>
+          <div className="cs-screen-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "3rem", alignItems: "center" }}>
+            <div style={{ display: "flex", justifyContent: "center", background: "rgba(0,0,0,0.04)", borderRadius: "16px", padding: "2rem" }} className="asset-bg">
+              <img src="/images/projects/ecobyte/666f021a019ddbee24ddeecb_iPhone - Home Screen - Light-4.webp" alt="EcoByte rewards marketplace screen" style={{ width: "55%", display: "block" }} />
+            </div>
+            <div>
+              <p style={screenLabel}>Rewards Marketplace</p>
+              <h2 style={sectionTitle}>Make impact, earn rewards</h2>
+              <p style={body}>Discover exclusive offers, discounts, and experiences redeemable with points. To make a positive impact on the environment while enjoying the rewards you deserve.</p>
+            </div>
+          </div>
+        </div>
+
+        {/* Immediate feedback */}
+        <div style={{ paddingBottom: "3rem" }}>
+          <div className="cs-screen-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "3rem", alignItems: "center" }}>
+            <div>
+              <p style={screenLabel}>Immediate feedback</p>
+              <h2 style={sectionTitle}>Feel the impact of every action</h2>
+              <p style={body}>EcoByte provides immediate feedback on the environmental impact of your digital habits — real-time notifications that connect individual choices to measurable outcomes.</p>
+            </div>
+            <div style={{ borderRadius: "16px", overflow: "hidden", background: "rgba(0,0,0,0.04)", minWidth: 0, aspectRatio: "16 / 9", display: "flex", justifyContent: "center", alignItems: "center" }} className="asset-bg">
               <LottieRemote
-                url="https://cdn.prod.website-files.com/661685703798b803e4b90e1a/666ef3073a7b5743b35191f2_Showreel-Grid-Mobile-%5Bremix%5D%20(2).json"
-                style={{ width: "100%" }}
+                url="https://cdn.prod.website-files.com/661685703798b803e4b90e1a/666f08e25fe5c08f90176140_Notification-%5Bremix%5D.json"
+                style={{ width: "80%" }}
               />
             </div>
           </div>
         </div>
 
+        {/* Smartphones slider */}
+        <div style={divider}>
+          <div style={{ borderRadius: "12px", overflow: "hidden", background: "rgba(0,0,0,0.04)", aspectRatio: "16 / 9" }} className="asset-bg">
+            <LottieRemote
+              url="https://cdn.prod.website-files.com/661685703798b803e4b90e1a/666f0b1ee5887bf0889f10d0_Animated-smartphones_-slider-%5Bremix%5D.json"
+              style={{ width: "100%" }}
+            />
+          </div>
+        </div>
+
         {/* Footer */}
-        <div style={{ marginTop: "3rem", paddingTop: "2rem", borderTop: "1px solid var(--border-section)" }}>
+        <div style={{ paddingTop: "3rem", borderTop: "1px solid var(--border-section)" }}>
           <span style={{ fontFamily: "var(--font-manrope), sans-serif", fontSize: "12px", color: "var(--color-muted)" }}>
             Concept project · Designed in Figma
           </span>
