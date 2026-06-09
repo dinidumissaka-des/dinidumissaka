@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
+import dynamic from "next/dynamic";
 import BackButton from "@/components/ui/BackButton";
-import DomeGallery from "@/components/ui/DomeGallery";
+
+const DomeGallery = dynamic(() => import("@/components/ui/DomeGallery"), { ssr: false });
 
 export const metadata: Metadata = {
   title: "Visual Journal — Dinidu Missaka",
@@ -40,6 +42,9 @@ const images = [
 export default function VisualJournalPage() {
   return (
     <div style={{ position: "fixed", inset: 0, width: "100%", height: "100dvh", background: "#101010" }}>
+      {/* Warm up CDN connection before images start loading */}
+      {/* eslint-disable-next-line @next/next/no-page-custom-font */}
+      <link rel="preconnect" href="https://cdn.prod.website-files.com" crossOrigin="anonymous" />
       <BackButton
         href="/"
         color="#f8f8f8"
