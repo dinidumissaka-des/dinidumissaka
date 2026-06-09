@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef } from "react";
+import dynamic from "next/dynamic";
 import { motion, useInView } from "motion/react";
 import {
   Accordion,
@@ -10,8 +11,9 @@ import {
 } from "@/components/animate-ui/components/radix/accordion";
 import Link from "next/link";
 import { IconArrowUpRight } from "@tabler/icons-react";
-import Stack from "@/components/ui/Stack";
 import { faqItems } from "@/lib/data/faq";
+
+const Stack = dynamic(() => import("@/components/ui/Stack"), { ssr: false });
 
 const journalImages = [
   "/images/visual journal/image-1.avif",
@@ -112,23 +114,25 @@ export default function FAQ() {
               }}
             >
               <div style={{ width: "180px", height: "240px", margin: "0 auto" }}>
-                <Stack
-                  randomRotation
-                  sensitivity={180}
-                  sendToBackOnClick
-                  autoplay
-                  autoplayDelay={2500}
-                  pauseOnHover
-                  cards={journalImages.map((src, i) => (
-                    // eslint-disable-next-line @next/next/no-img-element
-                    <img
-                      key={i}
-                      src={src}
-                      alt={`journal-${i + 1}`}
-                      className="card-image"
-                    />
-                  ))}
-                />
+                {inView && (
+                  <Stack
+                    randomRotation
+                    sensitivity={180}
+                    sendToBackOnClick
+                    autoplay
+                    autoplayDelay={2500}
+                    pauseOnHover
+                    cards={journalImages.map((src, i) => (
+                      // eslint-disable-next-line @next/next/no-img-element
+                      <img
+                        key={i}
+                        src={src}
+                        alt={`journal-${i + 1}`}
+                        className="card-image"
+                      />
+                    ))}
+                  />
+                )}
               </div>
               <p
                 style={{
