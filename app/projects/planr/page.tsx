@@ -166,7 +166,7 @@ export default function PlanrCaseStudy() {
         {/* Cover image */}
         <div style={divider}>
           <Image
-            src="/images/projects/planr/l1.png"
+            src="/images/projects/planr/l1.webp"
             alt="Planr marketing landing page"
             width={1920} height={1080}
             style={{ width: "100%", aspectRatio: "16 / 9", objectFit: "cover", borderRadius: "12px", display: "block" }}
@@ -176,10 +176,10 @@ export default function PlanrCaseStudy() {
         {/* Screens grid */}
         <div style={{ ...divider, borderBottom: "none", paddingBottom: 0 }}>
           <div className="cs-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1.5rem" }}>
-            <Image src="/images/projects/planr/l2.png" alt="Planr screen" width={1440} height={900} style={{ width: "100%", height: "auto", borderRadius: "12px", display: "block" }} />
-            <Image src="/images/projects/planr/l3.png" alt="Planr screen" width={1440} height={900} style={{ width: "100%", height: "auto", borderRadius: "12px", display: "block" }} />
-            <Image src="/images/projects/planr/l4.png" alt="Planr screen" width={1440} height={900} style={{ width: "100%", height: "auto", borderRadius: "12px", display: "block" }} />
-            <Image src="/images/projects/planr/l4-1.png" alt="Planr screen" width={1440} height={900} style={{ width: "100%", height: "auto", borderRadius: "12px", display: "block" }} />
+            <Image src="/images/projects/planr/l2.webp" alt="Planr screen" width={1440} height={900} style={{ width: "100%", height: "auto", borderRadius: "12px", display: "block" }} />
+            <Image src="/images/projects/planr/l3.webp" alt="Planr screen" width={1440} height={900} style={{ width: "100%", height: "auto", borderRadius: "12px", display: "block" }} />
+            <Image src="/images/projects/planr/l4.webp" alt="Planr screen" width={1440} height={900} style={{ width: "100%", height: "auto", borderRadius: "12px", display: "block" }} />
+            <Image src="/images/projects/planr/l4-1.webp" alt="Planr screen" width={1440} height={900} style={{ width: "100%", height: "auto", borderRadius: "12px", display: "block" }} />
           </div>
         </div>
 
