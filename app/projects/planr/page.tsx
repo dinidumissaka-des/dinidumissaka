@@ -163,38 +163,8 @@ export default function PlanrCaseStudy() {
         </div>
 
         {/* Hero */}
-        <div style={divider}>
-          <ImagePlaceholder caption="Animated marketing landing page — buildinghelp.app" />
-        </div>
-
-        {/* Dashboards */}
-        <div style={divider}>
-          <h2 style={sectionTitle}>Dashboards</h2>
-          <div className="cs-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1.5rem" }}>
-            <ImagePlaceholder caption="Client dashboard — upcoming consultations, AI nudge, project overview" />
-            <ImagePlaceholder caption="Consultant dashboard — booking requests and incoming sessions" bg="#003618" />
-          </div>
-        </div>
-
-        {/* Booking flow */}
-        <div style={divider}>
-          <h2 style={sectionTitle}>Booking flow</h2>
-          <ImagePlaceholder caption="Consultant profile → availability picker → confirmation. Real-time slot selection." />
-        </div>
-
-        {/* Planr AI */}
-        <div style={divider}>
-          <h2 style={sectionTitle}>Planr AI</h2>
-          <ImagePlaceholder caption="Planr AI — chat interface mid-stream, showing the typing / streaming state" />
-        </div>
-
-        {/* Light / Dark */}
         <div style={{ ...divider, borderBottom: "none", paddingBottom: 0 }}>
-          <h2 style={sectionTitle}>Light / Dark</h2>
-          <div className="cs-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1.5rem" }}>
-            <ImagePlaceholder caption="Dashboard — light mode" />
-            <ImagePlaceholder caption="Dashboard — dark mode" />
-          </div>
+          <ImagePlaceholder caption="Animated marketing landing page — buildinghelp.app" />
         </div>
 
         {/* Live link */}
