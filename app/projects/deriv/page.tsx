@@ -190,7 +190,7 @@ export default function DerivCaseStudy() {
           <div className="cs-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1.5rem" }}>
             <div>
               <div style={{ borderRadius: "12px", background: "rgba(0,0,0,0.04)", padding: "1.5rem" }} className="asset-bg">
-                <ScrollImage src="/images/projects/deriv/www2.deriv.me_.png" />
+                <ScrollImage src="/images/projects/deriv/www2.deriv.me_.webp" />
               </div>
               <figcaption style={{ fontFamily: "var(--font-manrope), sans-serif", fontSize: "11px", color: "var(--color-muted)", marginTop: "10px", opacity: 0.6 }}>
                 Before
@@ -219,7 +219,7 @@ export default function DerivCaseStudy() {
           <div style={{ display: "flex", flexDirection: "column", gap: "1.5rem" }}>
             <div>
               <div style={{ borderRadius: "12px", overflow: "hidden", background: "rgba(0,0,0,0.04)" }} className="asset-bg">
-                <ImagePlaceholder hideCaption caption="Modular component library — hero, cards, FAQs, stats, testimonials, CTA blocks" src="/images/projects/deriv/Modular component library.png" />
+                <ImagePlaceholder hideCaption caption="Modular component library — hero, cards, FAQs, stats, testimonials, CTA blocks" src="/images/projects/deriv/Modular component library.webp" />
               </div>
               <figcaption style={{ fontFamily: "var(--font-manrope), sans-serif", fontSize: "11px", color: "var(--color-muted)", marginTop: "10px", opacity: 0.6 }}>
                 Modular component library — hero, cards, FAQs, stats, testimonials, CTA blocks
@@ -228,7 +228,7 @@ export default function DerivCaseStudy() {
             <div className="cs-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1.5rem" }}>
               <div>
                 <div style={{ borderRadius: "12px", overflow: "hidden", background: "rgba(0,0,0,0.04)" }} className="asset-bg">
-                  <ImagePlaceholder hideCaption caption="One card component, four variants — light, dark, brand, and image-led" src="/images/projects/deriv/One card component.png" />
+                  <ImagePlaceholder hideCaption caption="One card component, four variants — light, dark, brand, and image-led" src="/images/projects/deriv/One card component.webp" />
                 </div>
                 <figcaption style={{ fontFamily: "var(--font-manrope), sans-serif", fontSize: "11px", color: "var(--color-muted)", marginTop: "10px", opacity: 0.6 }}>
                   One card component, four variants — light, dark, brand, and image-led
@@ -236,7 +236,7 @@ export default function DerivCaseStudy() {
               </div>
               <div>
                 <div style={{ borderRadius: "12px", overflow: "hidden", background: "rgba(0,0,0,0.04)" }} className="asset-bg">
-                  <ImagePlaceholder hideCaption caption="Layouts designed and tested at 360px and 1440px" src="/images/projects/deriv/layout 360px and 1440px.png" />
+                  <ImagePlaceholder hideCaption caption="Layouts designed and tested at 360px and 1440px" src="/images/projects/deriv/layout 360px and 1440px.webp" />
                 </div>
                 <figcaption style={{ fontFamily: "var(--font-manrope), sans-serif", fontSize: "11px", color: "var(--color-muted)", marginTop: "10px", opacity: 0.6 }}>
                   Layouts designed and tested at 360px and 1440px
@@ -253,7 +253,7 @@ export default function DerivCaseStudy() {
             <div style={{ minWidth: 0, overflow: "hidden" }}>
               <AssetCarousel
                 images={Array.from({ length: 10 }, (_, i) =>
-                  `/images/projects/deriv/der-asset-${String(i + 1).padStart(2, "0")}.png`
+                  `/images/projects/deriv/der-asset-${String(i + 1).padStart(2, "0")}.webp`
                 )}
                 size="110px"
               />
@@ -265,7 +265,7 @@ export default function DerivCaseStudy() {
               <div style={{ borderRadius: "12px", background: "rgba(0,0,0,0.04)", padding: "1rem" }} className="asset-bg">
                 <AssetCarousel
                   images={Array.from({ length: 6 }, (_, i) =>
-                    `/images/projects/deriv/derv-image-${String(i + 1).padStart(2, "0")}.png`
+                    `/images/projects/deriv/derv-image-${String(i + 1).padStart(2, "0")}.webp`
                   )}
                   size="240px"
                   speed={45}

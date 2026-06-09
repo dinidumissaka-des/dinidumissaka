@@ -56,7 +56,7 @@ function TooltipUserCentred() {
   return (
     <div style={tooltipCardStyle}>
       <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
-        <Image src="/images/figma.png" alt="" width={20} height={20} style={{ borderRadius: "50%" }} />
+        <Image src="/images/figma.webp" alt="" width={20} height={20} style={{ borderRadius: "50%" }} />
         <span style={tooltipTitleStyle}>User-Centred Design</span>
       </div>
       <p style={tooltipDescStyle}>Research-led design that puts people first — from discovery to delivery.</p>
@@ -71,7 +71,7 @@ function TooltipAIPowered() {
   return (
     <div style={tooltipCardStyle}>
       <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
-        <Image src="/images/claude.png" alt="" width={20} height={20} style={{ borderRadius: "50%" }} />
+        <Image src="/images/claude.webp" alt="" width={20} height={20} style={{ borderRadius: "50%" }} />
         <span style={tooltipTitleStyle}>AI-Powered Systems</span>
       </div>
       <p style={tooltipDescStyle}>Leveraging AI to accelerate design workflows and explore new creative possibilities.</p>
@@ -86,7 +86,7 @@ function TooltipVisualCraft() {
   return (
     <div style={tooltipCardStyle}>
       <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
-        <Image src="/images/adobe-creative.png" alt="" width={20} height={20} style={{ borderRadius: "50%" }} />
+        <Image src="/images/adobe-creative.webp" alt="" width={20} height={20} style={{ borderRadius: "50%" }} />
         <span style={tooltipTitleStyle}>Visual Craft</span>
       </div>
       <p style={tooltipDescStyle}>Thoughtful visual language that communicates clearly and leaves a lasting impression.</p>

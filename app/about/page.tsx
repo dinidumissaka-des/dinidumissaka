@@ -175,7 +175,7 @@ export default function AboutPage() {
             <CometCard glare={false} shadow={false} rounded="rounded-full" className="w-full h-full">
               <div style={{ display: "flex", alignItems: "center", justifyContent: "center", width: "100%", height: "100%", padding: "24px", background: "var(--bg-card)", borderRadius: "9999px" }}>
                 <Image
-                  src="/avatar.png"
+                  src="/avatar.webp"
                   alt="Dinidu Seneviratne"
                   width={120}
                   height={120}
