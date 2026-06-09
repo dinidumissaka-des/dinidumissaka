@@ -183,10 +183,35 @@ export default function MintiCaseStudy() {
         </div>
 
         {/* Live link */}
-        <div style={{ display: "flex", flexWrap: "wrap", gap: "1rem", marginTop: "3rem", paddingTop: "2rem", borderTop: "1px solid var(--border-section)" }}>
+        <div style={{ display: "flex", flexWrap: "wrap", gap: "1rem", marginTop: "3rem", paddingTop: "2rem", borderTop: "1px solid var(--border-section)", marginBottom: "3rem" }}>
           <a href="https://minti.one" target="_blank" rel="noopener noreferrer"
             style={{ fontFamily: "var(--font-manrope), sans-serif", fontSize: "12px", fontWeight: 500, color: "var(--color-muted)", textDecoration: "underline", textUnderlineOffset: "3px" }}>
             minti.one
+          </a>
+        </div>
+
+        {/* Next project */}
+        <div style={{ paddingTop: "3rem", borderTop: "1px solid var(--border-section)" }}>
+          <p style={sectionLabel}>Next</p>
+          <a
+            href="/projects/ecobyte"
+            style={{
+              display: "inline-block",
+              fontFamily: "var(--font-fraunces), Georgia, serif",
+              fontSize: "clamp(1.5rem, 4vw, 2.25rem)",
+              fontWeight: 300,
+              lineHeight: 1.1,
+              color: "var(--color-fg)",
+              textDecoration: "underline",
+              textUnderlineOffset: "4px",
+              textDecorationThickness: "1px",
+              marginTop: "0.75rem",
+            }}
+          >
+            EcoByte
+            <span style={{ fontFamily: "var(--font-fraunces), Georgia, serif", fontWeight: 300, color: "var(--color-muted)", marginLeft: "0.75rem" }}>
+              — Digital Sustainability
+            </span>
           </a>
         </div>
       </div>

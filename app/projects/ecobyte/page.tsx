@@ -226,10 +226,35 @@ export default function EcoByteCaseStudy() {
         </div>
 
         {/* Footer */}
-        <div style={{ paddingTop: "3rem", borderTop: "1px solid var(--border-section)" }}>
+        <div style={{ paddingTop: "3rem", borderTop: "1px solid var(--border-section)", marginBottom: "3rem" }}>
           <span style={{ fontFamily: "var(--font-manrope), sans-serif", fontSize: "12px", color: "var(--color-muted)" }}>
             Concept project · Designed in Figma
           </span>
+        </div>
+
+        {/* Next project */}
+        <div style={{ paddingTop: "3rem", borderTop: "1px solid var(--border-section)" }}>
+          <p style={sectionLabel}>Next</p>
+          <a
+            href="/projects/deriv"
+            style={{
+              display: "inline-block",
+              fontFamily: "var(--font-fraunces), Georgia, serif",
+              fontSize: "clamp(1.5rem, 4vw, 2.25rem)",
+              fontWeight: 300,
+              lineHeight: 1.1,
+              color: "var(--color-fg)",
+              textDecoration: "underline",
+              textUnderlineOffset: "4px",
+              textDecorationThickness: "1px",
+              marginTop: "0.75rem",
+            }}
+          >
+            Deriv
+            <span style={{ fontFamily: "var(--font-fraunces), Georgia, serif", fontWeight: 300, color: "var(--color-muted)", marginLeft: "0.75rem" }}>
+              — Enterprise Website
+            </span>
+          </a>
         </div>
       </div>
     </main>

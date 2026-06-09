@@ -29,15 +29,6 @@ export const projects: Project[] = [
     image: "/images/projects/project-planr.webp",
   },
   {
-    id: "ecobyte",
-    title: "EcoByte",
-    subtitle: "Digital Sustainability",
-    year: "2024",
-    rotatingTexts: ["Digital Sustainability", "Mobile App", "Vibe Coding", "Brand Design"],
-    description: "Built a sustainability-focused digital experience helping businesses track and reduce their environmental footprint.",
-    image: "/images/projects/project-ecobyte.webp",
-  },
-  {
     id: "minti",
     title: "Minti",
     subtitle: "Personal Expense Tracker",
@@ -45,5 +36,14 @@ export const projects: Project[] = [
     rotatingTexts: ["Personal Expense Tracker", "Progressive App", "Vibe Coding", "Claude Code"],
     description: "Designed Minti, a personal finance tracker that makes managing expenses simple and visual.",
     image: "/images/projects/project-minti.webp",
+  },
+  {
+    id: "ecobyte",
+    title: "EcoByte",
+    subtitle: "Digital Sustainability",
+    year: "2024",
+    rotatingTexts: ["Digital Sustainability", "Mobile App", "Vibe Coding", "Brand Design"],
+    description: "Built a sustainability-focused digital experience helping businesses track and reduce their environmental footprint.",
+    image: "/images/projects/project-ecobyte.webp",
   },
 ];
