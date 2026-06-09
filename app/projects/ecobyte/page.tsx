@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import BackButton from "@/components/ui/BackButton";
+import LottieRemote from "@/components/ui/LottieRemote";
 
 export const metadata: Metadata = {
   title: "EcoByte — Case Study",
@@ -154,8 +155,21 @@ export default function EcoByteCaseStudy() {
         </div>
 
         {/* Hero */}
-        <div style={{ paddingBottom: 0 }}>
-          <ImagePlaceholder caption="EcoByte app on mobile — homepage showing point balance, level progress, and eco-challenges" />
+        <div style={divider}>
+          <div className="cs-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1.5rem" }}>
+            <div style={{ borderRadius: "12px", overflow: "hidden", background: "rgba(0,0,0,0.04)", minWidth: 0 }} className="asset-bg">
+              <LottieRemote
+                url="https://cdn.prod.website-files.com/661685703798b803e4b90e1a/666f0b1ee5887bf0889f10d0_Animated-smartphones_-slider-%5Bremix%5D.json"
+                style={{ width: "100%" }}
+              />
+            </div>
+            <div style={{ borderRadius: "12px", overflow: "hidden", background: "rgba(0,0,0,0.04)", minWidth: 0 }} className="asset-bg">
+              <LottieRemote
+                url="https://cdn.prod.website-files.com/661685703798b803e4b90e1a/666ef3073a7b5743b35191f2_Showreel-Grid-Mobile-%5Bremix%5D%20(2).json"
+                style={{ width: "100%" }}
+              />
+            </div>
+          </div>
         </div>
 
         {/* Footer */}
