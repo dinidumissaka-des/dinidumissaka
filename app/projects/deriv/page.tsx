@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 
 const sectionLabel: React.CSSProperties = {
   fontFamily: "var(--font-manrope), sans-serif",
-  fontSize: "12px",
+  fontSize: "14px",
   color: "var(--color-muted)",
 };
 
@@ -138,7 +138,7 @@ export default function DerivCaseStudy() {
               { label: "Year", value: "2024–2025", href: undefined, links: undefined },
               { label: "Company", value: "Deriv", href: undefined, links: undefined },
               { label: "Role", value: "Senior UI/UX Designer", href: undefined, links: undefined },
-              { label: "Live", value: undefined, href: undefined, links: [{ value: "trade.deriv.com", href: "https://trade.deriv.com" }, { value: "deriv.ae", href: "https://deriv.ae" }] },
+              { label: "Live", value: undefined, href: undefined, links: [{ value: "deriv.com", href: "https://deriv.com" }, { value: "deriv.ae", href: "https://deriv.ae" }] },
             ] as { label: string; value?: string; href?: string; links?: { value: string; href: string }[] }[]
           ).map((item) => (
             <div key={item.label} style={{ display: "flex", flexDirection: "row", alignItems: "center", gap: "12px" }}>

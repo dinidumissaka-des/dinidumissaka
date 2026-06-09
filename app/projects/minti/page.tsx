@@ -164,29 +164,8 @@ export default function MintiCaseStudy() {
         </div>
 
         {/* Hero */}
-        <div style={divider}>
-          <ImagePlaceholder caption="Minti app on mobile — home screen and expense list" />
-        </div>
-
-        {/* App screens */}
-        <div style={divider}>
-          <h2 style={sectionTitle}>App screens</h2>
-          <ImagePlaceholder caption="Budget progress bar, subscriptions view, and daily spend stats" />
-        </div>
-
-        {/* Design system */}
-        <div style={divider}>
-          <h2 style={sectionTitle}>Design system</h2>
-          <ImagePlaceholder caption="Colour palette (#9FE870 accent) · Manrope type scale with weights · spacing tokens" />
-        </div>
-
-        {/* UX details */}
         <div style={{ ...divider, borderBottom: "none", paddingBottom: 0 }}>
-          <h2 style={sectionTitle}>UX details</h2>
-          <div className="cs-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1.5rem" }}>
-            <ImagePlaceholder caption="Swipe gesture — resting, mid-swipe with haptic trigger point, revealed actions" />
-            <ImagePlaceholder caption="Budget bar — under, approaching, and over limit. Colour and weight change together." />
-          </div>
+          <ImagePlaceholder caption="Minti app on mobile — home screen and expense list" />
         </div>
 
         {/* Live link */}

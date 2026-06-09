@@ -111,6 +111,8 @@ export default function PlanrCaseStudy() {
         @media (max-width: 640px) {
           .cs-grid { grid-template-columns: 1fr !important; }
           .cs-meta { gap: 1.25rem !important; }
+          .cs-page-title { max-width: 100% !important; }
+          .cs-intro { max-width: 100% !important; }
         }
       `}</style>
 
@@ -140,11 +142,11 @@ export default function PlanrCaseStudy() {
         </div>
 
         {/* Title */}
-        <h1 style={pageTitle}>A platform for building and investing in Sri Lanka from abroad</h1>
+        <h1 className="cs-page-title" style={pageTitle}>A platform for building and investing in Sri Lanka from abroad</h1>
 
         {/* Intro */}
         <div style={divider}>
-          <div style={{ maxWidth: "80%" }}>
+          <div className="cs-intro" style={{ maxWidth: "80%" }}>
             <p style={{ ...body, marginBottom: "1rem" }}>
               Planr is a platform for Sri Lankans living abroad and overseas investors who want to build or invest in Sri Lanka but can't manage it from the ground. I designed and built the platform alongside two collaborators — covering the marketing site, a dual-role SaaS product (clients and consultants), booking system, AI-powered Q&A, and the design system underpinning all of it.
             </p>
@@ -161,38 +163,8 @@ export default function PlanrCaseStudy() {
         </div>
 
         {/* Hero */}
-        <div style={divider}>
-          <ImagePlaceholder caption="Animated marketing landing page — buildinghelp.app" />
-        </div>
-
-        {/* Dashboards */}
-        <div style={divider}>
-          <h2 style={sectionTitle}>Dashboards</h2>
-          <div className="cs-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1.5rem" }}>
-            <ImagePlaceholder caption="Client dashboard — upcoming consultations, AI nudge, project overview" />
-            <ImagePlaceholder caption="Consultant dashboard — booking requests and incoming sessions" bg="#003618" />
-          </div>
-        </div>
-
-        {/* Booking flow */}
-        <div style={divider}>
-          <h2 style={sectionTitle}>Booking flow</h2>
-          <ImagePlaceholder caption="Consultant profile → availability picker → confirmation. Real-time slot selection." />
-        </div>
-
-        {/* Planr AI */}
-        <div style={divider}>
-          <h2 style={sectionTitle}>Planr AI</h2>
-          <ImagePlaceholder caption="Planr AI — chat interface mid-stream, showing the typing / streaming state" />
-        </div>
-
-        {/* Light / Dark */}
         <div style={{ ...divider, borderBottom: "none", paddingBottom: 0 }}>
-          <h2 style={sectionTitle}>Light / Dark</h2>
-          <div className="cs-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1.5rem" }}>
-            <ImagePlaceholder caption="Dashboard — light mode" />
-            <ImagePlaceholder caption="Dashboard — dark mode" />
-          </div>
+          <ImagePlaceholder caption="Animated marketing landing page — buildinghelp.app" />
         </div>
 
         {/* Live link */}

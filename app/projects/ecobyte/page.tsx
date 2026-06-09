@@ -154,26 +154,8 @@ export default function EcoByteCaseStudy() {
         </div>
 
         {/* Hero */}
-        <div style={divider}>
+        <div style={{ paddingBottom: 0 }}>
           <ImagePlaceholder caption="EcoByte app on mobile — homepage showing point balance, level progress, and eco-challenges" />
-        </div>
-
-        {/* Key screens */}
-        <div style={divider}>
-          <h2 style={sectionTitle}>Key screens</h2>
-          <div style={{ display: "flex", flexDirection: "column", gap: "1.5rem" }}>
-            <div className="cs-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1.5rem" }}>
-              <ImagePlaceholder caption="Homepage — point balance, level progress bar, and personalised challenge cards" />
-              <ImagePlaceholder caption="Footprint Tracker — activity breakdown, carbon impact over time, week-over-week comparison" />
-            </div>
-            <ImagePlaceholder caption="Challenges — browse and in-progress cards. Collaborative challenge mechanic visible." />
-          </div>
-        </div>
-
-        {/* Colour + Badges */}
-        <div style={{ ...divider, borderBottom: "none", paddingBottom: 0 }}>
-          <h2 style={sectionTitle}>Colour system + Badges</h2>
-          <ImagePlaceholder caption="Colour system — Tropical Indigo, Emerald Green, Pear Yellow. Badge collection grid — earned and locked states." />
         </div>
 
         {/* Footer */}
