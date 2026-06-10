@@ -1,8 +1,6 @@
 import type { Metadata } from "next";
-import dynamic from "next/dynamic";
 import BackButton from "@/components/ui/BackButton";
-
-const DomeGallery = dynamic(() => import("@/components/ui/DomeGallery"), { ssr: false });
+import DomeGallery from "@/components/ui/DomeGalleryClient";
 
 export const metadata: Metadata = {
   title: "Visual Journal — Dinidu Missaka",
