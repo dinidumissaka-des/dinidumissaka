@@ -72,7 +72,7 @@ export function ClientNav() {
           aria-label="Toggle menu"
           style={{
             background: "var(--bg-subtle)",
-            border: `1.5px solid ${open ? "#3B82F6" : "transparent"}`,
+            border: `1.5px solid ${open ? "var(--color-accent)" : "transparent"}`,
             borderRadius: "8px",
             width: "28px",
             height: "28px",

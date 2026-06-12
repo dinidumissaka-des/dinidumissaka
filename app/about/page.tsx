@@ -7,7 +7,7 @@ import { SkillIconRow } from "@/components/ui/SkillIconRow";
 import { AIProcessLoader } from "@/components/ui/AIProcessLoader";
 
 export const metadata: Metadata = {
-  title: "About — Dinidu Seneviratne",
+  title: "About — Dinidu Missaka",
   description:
     "Senior UI/UX & Product Designer with 5+ years in fintech and SaaS. Based in Dubai.",
 };

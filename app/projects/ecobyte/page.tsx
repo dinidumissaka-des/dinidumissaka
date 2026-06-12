@@ -227,13 +227,6 @@ export default function EcoByteCaseStudy() {
           </div>
         </div>
 
-        {/* Footer */}
-        <div style={{ paddingTop: "3rem", borderTop: "1px solid var(--border-section)", marginBottom: "3rem" }}>
-          <span style={{ fontFamily: "var(--font-manrope), sans-serif", fontSize: "12px", color: "var(--color-muted)" }}>
-            Concept project · Designed in Figma
-          </span>
-        </div>
-
         {/* Next project */}
         <div style={{ paddingTop: "3rem", borderTop: "1px solid var(--border-section)" }}>
           <p style={sectionLabel}>Next</p>

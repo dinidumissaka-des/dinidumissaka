@@ -104,6 +104,10 @@ main.sphere-main {
 .item__image:focus {
   outline: none;
 }
+.item__image:focus-visible {
+  outline: 2px solid var(--color-accent, #0055ff);
+  outline-offset: 2px;
+}
 
 .item__image img {
   width: 100%;
