@@ -22,7 +22,7 @@ export default function AssetCarousel({
   return (
     <div
       className="asset-carousel"
-      style={{ "--item-size": size, "--speed": `${speed}s`, aspectRatio: rows === 1 ? undefined : "16 / 9", ...style } as React.CSSProperties}
+      style={{ "--item-size": size, "--speed": `${speed}s`, padding: "1rem 0", ...style } as React.CSSProperties}
     >
       <div className="asset-carousel__track asset-carousel__track--ltr">
         {items.map((src, i) => (
