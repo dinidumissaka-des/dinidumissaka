@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { MultiStepLoader } from "./multi-step-loader";
-import { IconSquareRoundedX } from "@tabler/icons-react";
+import { SquareX } from "lucide-react";
 
 const aiProcess = [
   { text: "Discover — research, brief & user interviews" },
@@ -29,7 +29,7 @@ export function AIProcessLoader() {
           className="fixed top-4 right-4 z-[120] text-white/70 hover:text-white transition-colors"
           onClick={() => setLoading(false)}
         >
-          <IconSquareRoundedX className="h-8 w-8" />
+          <SquareX className="h-8 w-8" strokeWidth={1.5} />
         </button>
       )}
 

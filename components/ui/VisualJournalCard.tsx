@@ -2,7 +2,7 @@
 
 import dynamic from "next/dynamic";
 import Link from "next/link";
-import { IconArrowUpRight } from "@tabler/icons-react";
+import { ArrowUpRight } from "lucide-react";
 import { useRef } from "react";
 import { useInView } from "motion/react";
 
@@ -76,7 +76,7 @@ export default function VisualJournalCard() {
         }}
       >
         Visual Journal
-        <IconArrowUpRight size={14} stroke={1.5} />
+        <ArrowUpRight size={14} strokeWidth={1.5} />
       </p>
     </Link>
   );

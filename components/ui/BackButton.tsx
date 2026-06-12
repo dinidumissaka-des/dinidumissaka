@@ -1,6 +1,6 @@
 "use client";
 
-import { IconArrowLeft } from "@tabler/icons-react";
+import { ArrowLeft } from "lucide-react";
 import {
   FlipButton,
   FlipButtonFront,
@@ -31,11 +31,11 @@ export default function BackButton({
   return (
     <FlipButton href={href} style={style}>
       <FlipButtonFront style={face}>
-        <IconArrowLeft size={14} stroke={1.5} />
+        <ArrowLeft size={14} strokeWidth={1.5} />
         Back
       </FlipButtonFront>
       <FlipButtonBack style={face}>
-        <IconArrowLeft size={14} stroke={1.5} />
+        <ArrowLeft size={14} strokeWidth={1.5} />
         Back
       </FlipButtonBack>
     </FlipButton>
