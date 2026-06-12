@@ -106,7 +106,7 @@ export function SkillIconRow() {
         {skillGroups.map((group) => (
           <div
             key={group.label}
-            style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}
+            style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', gap: '10px' }}
           >
             <span
               style={{
@@ -114,6 +114,7 @@ export function SkillIconRow() {
                 fontSize: '12px',
                 fontWeight: 600,
                 color: 'var(--color-muted)',
+                whiteSpace: 'nowrap',
               }}
             >
               {group.label}
