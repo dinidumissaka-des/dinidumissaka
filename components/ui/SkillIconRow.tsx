@@ -106,7 +106,7 @@ export function SkillIconRow() {
         {skillGroups.map((group, index) => (
           <div
             key={group.label}
-            style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', gap: '10px', paddingLeft: index === 0 ? '0' : '2rem', paddingRight: '2rem', borderLeft: index === 0 ? 'none' : '1px solid var(--border-section)' }}
+            style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', gap: '10px', paddingLeft: index === 0 ? '0' : '2rem', paddingRight: '2rem', paddingBlock: '1rem', borderLeft: index === 0 ? 'none' : '1px solid var(--border-section)' }}
           >
             <span
               style={{
