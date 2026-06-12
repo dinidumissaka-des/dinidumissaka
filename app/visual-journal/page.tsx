@@ -48,6 +48,27 @@ export default function VisualJournalPage() {
         color="#f8f8f8"
         style={{ position: "absolute", top: "1.5rem", left: "1.5rem", zIndex: 50 }}
       />
+      <style>{`.vj-pexels-link:hover { color: #f8f8f8 !important; }`}</style>
+      <a
+        href="https://www.pexels.com/@dinidumissaka/"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="vj-pexels-link"
+        style={{
+          position: "absolute",
+          top: "1.5rem",
+          right: "1.5rem",
+          zIndex: 50,
+          fontFamily: "var(--font-manrope), sans-serif",
+          fontSize: "14px",
+          fontWeight: 600,
+          color: "rgba(248,248,248,0.6)",
+          textDecoration: "none",
+          transition: "color 0.2s ease",
+        }}
+      >
+        Pexels ↗
+      </a>
       <DomeGallery
         images={images}
         fit={0.75}
