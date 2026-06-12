@@ -2,7 +2,12 @@
 
 import { useState } from "react";
 import { MultiStepLoader } from "./multi-step-loader";
-import { SquareX } from "lucide-react";
+import { SquareX, ArrowRight } from "lucide-react";
+import {
+  FlipButton,
+  FlipButtonFront,
+  FlipButtonBack,
+} from "@/components/animate-ui/components/buttons/flip";
 
 const aiProcess = [
   { text: "Discover — research, brief & user interviews" },
@@ -33,29 +38,35 @@ export function AIProcessLoader() {
         </button>
       )}
 
-      <button
-        onClick={() => setLoading(true)}
-        style={{
+      <button onClick={() => setLoading(true)} style={{ background: "none", border: "none", padding: 0, cursor: "pointer" }}>
+      <FlipButton>
+        <FlipButtonFront style={{
           fontFamily: "var(--font-fraunces), Georgia, serif",
           fontSize: "16px",
           fontWeight: 300,
           fontStyle: "italic",
-          lineHeight: 1.2,
           color: "var(--color-fg)",
-          background: "none",
-          border: "none",
-          padding: 0,
-          cursor: "pointer",
-          textAlign: "left",
           display: "flex",
           alignItems: "center",
           gap: "6px",
-          transition: "opacity 0.15s",
-        }}
-        onMouseEnter={e => (e.currentTarget.style.opacity = "0.6")}
-        onMouseLeave={e => (e.currentTarget.style.opacity = "1")}
-      >
-        <span>See my current design process</span>
+        }}>
+          See my current design process
+          <ArrowRight size={14} strokeWidth={1.5} />
+        </FlipButtonFront>
+        <FlipButtonBack style={{
+          fontFamily: "var(--font-fraunces), Georgia, serif",
+          fontSize: "16px",
+          fontWeight: 300,
+          fontStyle: "italic",
+          color: "var(--fg-80)",
+          display: "flex",
+          alignItems: "center",
+          gap: "6px",
+        }}>
+          See my current design process
+          <ArrowRight size={14} strokeWidth={1.5} />
+        </FlipButtonBack>
+      </FlipButton>
       </button>
     </div>
   );
