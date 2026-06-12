@@ -5,6 +5,7 @@ import { CometCard } from "@/components/ui/comet-card";
 import { UserPresenceAvatar } from "@/components/animate-ui/components/community/user-presence-avatar";
 import { SkillIconRow } from "@/components/ui/SkillIconRow";
 import { AIProcessLoader } from "@/components/ui/AIProcessLoader";
+import VisualJournalCard from "@/components/ui/VisualJournalCard";
 
 export const metadata: Metadata = {
   title: "About — Dinidu Missaka",
@@ -433,7 +434,7 @@ export default function AboutPage() {
         </div>
 
         {/* Certifications */}
-        <div>
+        <div style={divider}>
           <p style={sectionLabel}>Licenses &amp; Certifications</p>
           <h2 style={sectionTitle}>Credentials</h2>
           <ul style={{ margin: 0, padding: 0, listStyle: "none", display: "flex", flexDirection: "column", gap: "14px" }}>
@@ -462,6 +463,11 @@ export default function AboutPage() {
               </li>
             ))}
           </ul>
+        </div>
+
+        {/* Visual Journal */}
+        <div>
+          <VisualJournalCard />
         </div>
       </div>
     </main>
