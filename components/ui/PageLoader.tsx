@@ -23,7 +23,7 @@ export default function PageLoader() {
         position: "fixed",
         inset: 0,
         zIndex: 99999,
-        background: "var(--color-bg)",
+        background: "#16151A",
         display: "flex",
         alignItems: "center",
         justifyContent: "center",

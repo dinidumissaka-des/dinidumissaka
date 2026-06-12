@@ -1,3 +1,5 @@
+import PageLoader from "@/components/ui/PageLoader";
+
 export default function VisualJournalLayout({
   children,
 }: {
@@ -11,6 +13,7 @@ export default function VisualJournalLayout({
           overflow: hidden;
         }
       `}</style>
+      <PageLoader />
       {children}
     </>
   );
