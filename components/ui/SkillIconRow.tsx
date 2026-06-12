@@ -102,20 +102,18 @@ function SkillIcon({ icon }: { icon: SkillIcon }) {
 export function SkillIconRow() {
   return (
     <TooltipProvider>
-      <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+      <div style={{ display: 'flex', flexWrap: 'wrap', gap: '2rem' }}>
         {skillGroups.map((group) => (
           <div
             key={group.label}
-            style={{ display: 'flex', alignItems: 'center', gap: '12px' }}
+            style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}
           >
             <span
               style={{
                 fontFamily: 'var(--font-manrope), sans-serif',
                 fontSize: '12px',
                 fontWeight: 600,
-                color: 'var(--color-fg)',
-                minWidth: '120px',
-                flexShrink: 0,
+                color: 'var(--color-muted)',
               }}
             >
               {group.label}
@@ -129,13 +127,11 @@ export function SkillIconRow() {
                 padding: '3px',
               }}
             >
-              <div style={{ display: 'flex', alignItems: 'center', marginRight: '2px' }}>
-                {group.icons.map((icon, i) => (
-                  <div key={icon.label} style={{ marginLeft: i === 0 ? 0 : '2px', zIndex: group.icons.length - i }}>
-                    <SkillIcon icon={icon} />
-                  </div>
-                ))}
-              </div>
+              {group.icons.map((icon, i) => (
+                <div key={icon.label} style={{ marginLeft: i === 0 ? 0 : '2px', zIndex: group.icons.length - i }}>
+                  <SkillIcon icon={icon} />
+                </div>
+              ))}
             </div>
           </div>
         ))}
