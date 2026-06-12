@@ -187,7 +187,7 @@ export default function DerivCaseStudy() {
         {/* Before / After */}
         <div style={divider}>
           <h2 style={sectionTitle}>Before / After</h2>
-          <div className="cs-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1.5rem" }}>
+          <div className="cs-grid" style={{ display: "grid", gridTemplateColumns: "1fr", gap: "1.5rem" }}>
             <div>
               <div style={{ borderRadius: "12px", background: "rgba(0,0,0,0.04)", padding: "1.5rem" }} className="asset-bg">
                 <ScrollImage src="/images/projects/deriv/www2.deriv.me_.webp" />
@@ -225,7 +225,7 @@ export default function DerivCaseStudy() {
                 Modular component library — hero, cards, FAQs, stats, testimonials, CTA blocks
               </figcaption>
             </div>
-            <div className="cs-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1.5rem" }}>
+            <div className="cs-grid" style={{ display: "grid", gridTemplateColumns: "1fr", gap: "1.5rem" }}>
               <div>
                 <div style={{ borderRadius: "12px", overflow: "hidden", background: "rgba(0,0,0,0.04)" }} className="asset-bg">
                   <ImagePlaceholder hideCaption caption="One card component, four variants — light, dark, brand, and image-led" src="/images/projects/deriv/One card component.webp" />
@@ -249,7 +249,7 @@ export default function DerivCaseStudy() {
         {/* 3D assets & photography */}
         <div style={{ paddingBottom: "3rem" }}>
           <h2 style={sectionTitle}>3D icons & imagery</h2>
-          <div className="cs-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1.5rem" }}>
+          <div className="cs-grid" style={{ display: "grid", gridTemplateColumns: "1fr", gap: "1.5rem" }}>
             <div style={{ minWidth: 0, overflow: "hidden" }}>
               <AssetCarousel
                 images={Array.from({ length: 10 }, (_, i) =>
