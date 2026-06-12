@@ -102,11 +102,11 @@ function SkillIcon({ icon }: { icon: SkillIcon }) {
 export function SkillIconRow() {
   return (
     <TooltipProvider>
-      <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0' }}>
-        {skillGroups.map((group, index) => (
+      <div style={{ display: 'flex', flexWrap: 'wrap', gap: '1rem' }}>
+        {skillGroups.map((group) => (
           <div
             key={group.label}
-            style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', gap: '10px', paddingLeft: index === 0 ? '0' : '2rem', paddingRight: '2rem', paddingBlock: '1rem', borderLeft: index === 0 ? 'none' : '1px solid var(--border-section)' }}
+            style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', gap: '8px' }}
           >
             <span
               style={{
