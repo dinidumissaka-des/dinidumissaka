@@ -47,7 +47,7 @@ export default function VisualJournalPage() {
       <BackButton
         href="/"
         color="#f8f8f8"
-        style={{ position: "absolute", top: "1.5rem", left: "1.5rem", zIndex: 50 }}
+        style={{ position: "absolute", top: "1.5rem", left: "max(1.5rem, calc(50% - 508px))", zIndex: 50 }}
       />
       <ExternalLinkButton
         href="https://www.pexels.com/@dinidumissaka/"
