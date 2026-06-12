@@ -57,7 +57,7 @@ export default function VisualJournalPage() {
         style={{
           position: "absolute",
           top: "1.5rem",
-          right: "1.5rem",
+          right: "max(1.5rem, calc(50% - 508px))",
           zIndex: 50,
           fontFamily: "var(--font-manrope), sans-serif",
           fontSize: "14px",
