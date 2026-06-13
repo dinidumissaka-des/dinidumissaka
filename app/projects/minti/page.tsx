@@ -104,6 +104,39 @@ function ImagePlaceholder({ caption }: { caption: string }) {
   );
 }
 
+const mintiFeatures = [
+  {
+    title: "Expense Tracking",
+    description: "Log daily expenses in seconds. The home screen surfaces your running month total, today's spend, and average per day — so you always know where you stand without opening a dashboard.",
+    image: "/images/projects/minti/expences.png",
+  },
+  {
+    title: "Smart Insights",
+    description: "Auto-generated cards surface what actually matters: your biggest spend category, projected end-of-month total, savings rate, and which categories jumped vs. last month. No charts to configure — Minti figures out what's worth telling you.",
+    image: "/images/projects/minti/insights.png",
+  },
+  {
+    title: "Spend by Category",
+    description: "Every expense maps to a category. The By Category view ranks them by total and percentage, so the pattern is obvious at a glance — not buried in a pie chart.",
+    image: "/images/projects/minti/spending by category.png",
+  },
+  {
+    title: "Month-over-Month",
+    description: "One tap to see how this month's categories compare to last month. Each category shows its percentage change — up, down, or new — so you can spot shifts without doing any maths.",
+    image: "/images/projects/minti/vs last mont.png",
+  },
+  {
+    title: "Income & Savings Rate",
+    description: "Set your base income and log one-off payments separately. Minti calculates your savings rate in real time and shows exactly how much of this month's income you've kept.",
+    image: "/images/projects/minti/income.png",
+  },
+  {
+    title: "Bills & Subscriptions",
+    description: "Recurring bills live separately from variable spending. See your monthly fixed cost, projected annual spend, and how each subscription contributes — so nothing hides in the noise.",
+    image: "/images/projects/minti/bills.png",
+  },
+];
+
 export default function MintiCaseStudy() {
   return (
     <main>
@@ -112,7 +145,18 @@ export default function MintiCaseStudy() {
           .cs-grid { grid-template-columns: 1fr !important; }
           .cs-meta { gap: 1.25rem !important; }
           .cs-screen-grid { grid-template-columns: 1fr !important; }
+          .minti-features-grid { grid-template-columns: 1fr !important; }
         }
+        @media (max-width: 900px) {
+          .minti-features-grid { grid-template-columns: repeat(2, 1fr) !important; }
+        }
+        .minti-feature-card .minti-overlay {
+          opacity: 0;
+          transition: opacity 0.35s ease;
+        }
+        .minti-feature-card:hover .minti-overlay { opacity: 1; }
+        .minti-feature-card img { transition: transform 0.5s ease; }
+        .minti-feature-card:hover img { transform: scale(1.04); }
       `}</style>
 
       <div className="container" style={{ paddingTop: "3rem", paddingBottom: "5rem" }}>
@@ -174,12 +218,73 @@ export default function MintiCaseStudy() {
         </div>
 
         {/* Screens */}
-        <div style={{ ...divider, borderBottom: "none", paddingBottom: 0 }}>
+        <div style={divider}>
           <div className="cs-screen-grid" style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: "1.5rem", alignItems: "center" }}>
             <ParallaxImage src="/images/projects/minti/app-icon.webp" alt="Minti app icon" width={512} height={512} style={{ width: "100%", height: "auto", borderRadius: "24px", display: "block" }} />
             <ParallaxImage src="/images/projects/minti/expences.webp" alt="Minti expenses screen" width={390} height={844} style={{ width: "100%", height: "auto", borderRadius: "12px", display: "block" }} />
             <ParallaxImage src="/images/projects/minti/categories.webp" alt="Minti categories screen" width={390} height={844} style={{ width: "100%", height: "auto", borderRadius: "12px", display: "block" }} />
             <ParallaxImage src="/images/projects/minti/subscriptions.webp" alt="Minti subscriptions screen" width={390} height={844} style={{ width: "100%", height: "auto", borderRadius: "12px", display: "block" }} />
+          </div>
+        </div>
+
+        {/* Features */}
+        <div style={{ ...divider, borderBottom: "none", paddingBottom: 0 }}>
+          <h2 style={sectionTitle}>What it does</h2>
+          <div
+            className="minti-features-grid"
+            style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "1rem" }}
+          >
+            {mintiFeatures.map((feature) => (
+              <div
+                key={feature.title}
+                className="minti-feature-card"
+                style={{ position: "relative", overflow: "hidden", borderRadius: "16px" }}
+              >
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={feature.image}
+                  alt={feature.title}
+                  loading="lazy"
+                  style={{ width: "100%", display: "block" }}
+                />
+                <div
+                  className="minti-overlay"
+                  style={{
+                    position: "absolute",
+                    inset: 0,
+                    background: "linear-gradient(to top, rgba(12,11,17,0.97) 0%, rgba(12,11,17,0.75) 40%, transparent 72%)",
+                    display: "flex",
+                    flexDirection: "column",
+                    justifyContent: "flex-end",
+                    padding: "1.5rem",
+                  }}
+                >
+                  <h3
+                    style={{
+                      fontFamily: "var(--font-fraunces), Georgia, serif",
+                      fontSize: "18px",
+                      fontWeight: 300,
+                      color: "#fff",
+                      marginBottom: "8px",
+                      lineHeight: 1.2,
+                    }}
+                  >
+                    {feature.title}
+                  </h3>
+                  <p
+                    style={{
+                      fontFamily: "var(--font-manrope), sans-serif",
+                      fontSize: "12px",
+                      lineHeight: 1.65,
+                      color: "rgba(255,255,255,0.72)",
+                      margin: 0,
+                    }}
+                  >
+                    {feature.description}
+                  </p>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
 
