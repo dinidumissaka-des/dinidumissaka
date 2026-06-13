@@ -22,7 +22,6 @@ const pageTitle: React.CSSProperties = {
   letterSpacing: "-0.02em",
   color: "var(--color-fg)",
   marginBottom: "3rem",
-  maxWidth: "80%",
 };
 
 const sectionTitle: React.CSSProperties = {
@@ -112,8 +111,6 @@ export default function PlanrCaseStudy() {
         @media (max-width: 640px) {
           .cs-grid { grid-template-columns: 1fr !important; }
           .cs-meta { gap: 1.25rem !important; }
-          .cs-page-title { max-width: 100% !important; }
-          .cs-intro { max-width: 100% !important; }
         }
       `}</style>
 
@@ -143,11 +140,11 @@ export default function PlanrCaseStudy() {
         </div>
 
         {/* Title */}
-        <h1 className="cs-page-title" style={pageTitle}>A platform for building and investing in Sri Lanka from abroad</h1>
+        <h1 style={pageTitle}>A platform for building and investing in Sri Lanka from abroad</h1>
 
         {/* Intro */}
         <div style={divider}>
-          <div className="cs-intro" style={{ maxWidth: "80%" }}>
+          <div className="cs-intro">
             <p style={{ ...body, marginBottom: "1rem" }}>
               Planr is a platform for Sri Lankans living abroad and overseas investors who want to build or invest in Sri Lanka but can't manage it from the ground. I designed and built the platform alongside two collaborators — covering the marketing site, a dual-role SaaS product (clients and consultants), booking system, AI-powered Q&A, and the design system underpinning all of it.
             </p>
