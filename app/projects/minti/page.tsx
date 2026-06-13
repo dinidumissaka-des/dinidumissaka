@@ -250,7 +250,7 @@ export default function MintiCaseStudy() {
                   style={{
                     position: "absolute",
                     inset: 0,
-                    background: "linear-gradient(to top, rgba(12,11,17,0.97) 0%, rgba(12,11,17,0.75) 40%, transparent 72%)",
+                    background: "linear-gradient(to top, var(--color-bg) 0%, color-mix(in srgb, var(--color-bg) 75%, transparent) 40%, transparent 72%)",
                     display: "flex",
                     flexDirection: "column",
                     justifyContent: "flex-end",
