@@ -257,7 +257,7 @@ export default function DerivCaseStudy() {
                 images={Array.from({ length: 10 }, (_, i) =>
                   `/images/projects/deriv/der-asset-${String(i + 1).padStart(2, "0")}.webp`
                 )}
-                size="180px"
+                size="360px"
               />
               <figcaption style={{ fontFamily: "var(--font-manrope), sans-serif", fontSize: "11px", color: "var(--color-muted)", marginTop: "10px", opacity: 0.6 }}>
                 3D icon library — trading instruments, actions, and brand symbols
@@ -269,7 +269,7 @@ export default function DerivCaseStudy() {
                   images={Array.from({ length: 6 }, (_, i) =>
                     `/images/projects/deriv/derv-image-${String(i + 1).padStart(2, "0")}.webp`
                   )}
-                  size="240px"
+                  size="480px"
                   speed={45}
                   rows={1}
                   style={{ borderRadius: "8px" }}
