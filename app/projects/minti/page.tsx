@@ -22,7 +22,6 @@ const pageTitle: React.CSSProperties = {
   letterSpacing: "-0.02em",
   color: "var(--color-fg)",
   marginBottom: "3rem",
-  maxWidth: "80%",
 };
 
 const sectionTitle: React.CSSProperties = {
@@ -146,7 +145,7 @@ export default function MintiCaseStudy() {
 
         {/* Intro */}
         <div style={divider}>
-          <div style={{ maxWidth: "80%" }}>
+          <div>
             <p style={{ ...body, marginBottom: "1rem" }}>
               Minti is a personal spending tracker for young adults who want to understand where their money is going — not automate it away. Set a monthly limit, log daily expenses, track subscriptions, and see your average daily spend. That's it.{" "}
               <span style={b}>Designed and built entirely with Claude Code — no Figma</span>, from initial concept through to the final UI.

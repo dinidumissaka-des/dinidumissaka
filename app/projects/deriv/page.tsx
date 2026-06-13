@@ -24,7 +24,6 @@ const pageTitle: React.CSSProperties = {
   letterSpacing: "-0.02em",
   color: "var(--color-fg)",
   marginBottom: "3rem",
-  maxWidth: "80%",
 };
 
 const sectionTitle: React.CSSProperties = {

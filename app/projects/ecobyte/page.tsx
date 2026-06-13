@@ -23,7 +23,6 @@ const pageTitle: React.CSSProperties = {
   letterSpacing: "-0.02em",
   color: "var(--color-fg)",
   marginBottom: "3rem",
-  maxWidth: "80%",
 };
 
 const sectionTitle: React.CSSProperties = {
@@ -108,7 +107,7 @@ export default function EcoByteCaseStudy() {
 
         {/* Intro */}
         <div style={divider}>
-          <div style={{ maxWidth: "80%" }}>
+          <div>
             <p style={{ ...body, marginBottom: "1rem" }}>
               EcoByte is a gamified sustainability platform designed to make the hidden carbon footprint of everyday digital activity — browsing, streaming, scrolling — visible and actionable. I led the UX and product design alongside a UX researcher: research, flows, wireframes, visual system, and high-fidelity prototypes.
             </p>
