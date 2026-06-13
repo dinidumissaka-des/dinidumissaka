@@ -31,18 +31,18 @@ export default function VisualJournalCard() {
         background: "var(--bg-card)",
         borderRadius: "16px",
         overflow: "hidden",
-        padding: "24px",
+        padding: "48px 24px",
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
         justifyContent: "center",
-        gap: "20px",
+        gap: "28px",
         textDecoration: "none",
         cursor: "pointer",
         marginTop: "3rem",
       }}
     >
-      <div style={{ width: "180px", height: "240px", margin: "0 auto" }}>
+      <div style={{ width: "280px", height: "360px", margin: "0 auto" }}>
         {inView && (
           <Stack
             randomRotation
