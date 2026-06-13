@@ -72,6 +72,33 @@ const screenLabel: React.CSSProperties = {
   marginBottom: "0.75rem",
 };
 
+const ecobytFeatures = [
+  {
+    label: "Homepage",
+    title: "A dynamic, personalised dashboard",
+    description: "Display current point balance, level progress, and personalized eco-challenges. A dynamic and personalized dashboard that provides users with an at-a-glance overview of their sustainability journey.",
+    image: "/images/projects/ecobyte/666f02f2c52c98ccc300eaa0_iPhone - Home Screen - Light.webp",
+  },
+  {
+    label: "Challenges",
+    title: "Browse, track, and earn",
+    description: "Browse available challenges, track progress, and earn bonus points for completion. This screen showcases user categorisation and badges earned for milestones — alongside a collaborative challenge to reduce data usage with a friend.",
+    image: "/images/projects/ecobyte/666f002bf886c3f4bcb6d95f_iPhone - Home Screen - Light-1.webp",
+  },
+  {
+    label: "Footprint Tracker",
+    title: "Data-driven sustainability insights",
+    description: "Visualize activity breakdown, carbon footprint impact, and point earnings over time. Empowering users with clear insight into how their digital habits translate to real-world environmental impact.",
+    image: "/images/projects/ecobyte/666f021ab8d61ebc96e3dd2e_iPhone - Home Screen - Light-3.webp",
+  },
+  {
+    label: "Rewards Marketplace",
+    title: "Make impact, earn rewards",
+    description: "Discover exclusive offers, discounts, and experiences redeemable with points. To make a positive impact on the environment while enjoying the rewards you deserve.",
+    image: "/images/projects/ecobyte/666f021a019ddbee24ddeecb_iPhone - Home Screen - Light-4.webp",
+  },
+];
+
 export default function EcoByteCaseStudy() {
   return (
     <main>
@@ -79,9 +106,14 @@ export default function EcoByteCaseStudy() {
         @media (max-width: 640px) {
           .cs-grid { grid-template-columns: 1fr !important; }
           .cs-meta { gap: 1.25rem !important; }
-          .cs-screen-grid { grid-template-columns: 1fr !important; }
+          .eco-features-grid { grid-template-columns: 1fr !important; }
         }
         .dark .asset-bg { background: rgba(255,255,255,0.04) !important; }
+        .eco-feature-card .eco-overlay {
+          opacity: 0;
+          transition: opacity 0.35s ease;
+        }
+        .eco-feature-card:hover .eco-overlay { opacity: 1; }
       `}</style>
 
       <div className="container" style={{ paddingTop: "3rem", paddingBottom: "5rem" }}>
@@ -143,59 +175,64 @@ export default function EcoByteCaseStudy() {
           </div>
         </div>
 
-        {/* Homepage */}
+        {/* Screen features */}
         <div style={divider}>
-          <div className="cs-screen-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "3rem", alignItems: "center" }}>
-            <div>
-              <p style={screenLabel}>Homepage</p>
-              <h2 style={sectionTitle}>A dynamic, personalised dashboard</h2>
-              <p style={body}>Display current point balance, level progress, and personalized eco-challenges. A dynamic and personalized dashboard that provides users with an at-a-glance overview of their sustainability journey.</p>
-            </div>
-            <div style={{ display: "flex", justifyContent: "center", background: "rgba(0,0,0,0.04)", borderRadius: "16px", padding: "2rem" }} className="asset-bg">
-              <ParallaxImage src="/images/projects/ecobyte/666f02f2c52c98ccc300eaa0_iPhone - Home Screen - Light.webp" alt="EcoByte homepage screen" width={390} height={844} style={{ width: "55%", height: "auto", display: "block" }} />
-            </div>
-          </div>
-        </div>
-
-        {/* Challenges */}
-        <div style={divider}>
-          <div className="cs-screen-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "3rem", alignItems: "center" }}>
-            <div style={{ display: "flex", justifyContent: "center", background: "rgba(0,0,0,0.04)", borderRadius: "16px", padding: "2rem" }} className="asset-bg">
-              <ParallaxImage src="/images/projects/ecobyte/666f002bf886c3f4bcb6d95f_iPhone - Home Screen - Light-1.webp" alt="EcoByte challenges screen" width={390} height={844} style={{ width: "55%", height: "auto", display: "block" }} />
-            </div>
-            <div>
-              <p style={screenLabel}>Challenges page</p>
-              <h2 style={sectionTitle}>Browse, track, and earn</h2>
-              <p style={body}>Browse available challenges, track progress, and earn bonus points for completion. This screen showcases user categorisation and badges earned for milestones — "Eco Upgrade", "Power Saver" — alongside a collaborative challenge to reduce data usage with a friend.</p>
-            </div>
-          </div>
-        </div>
-
-        {/* Footprint tracker */}
-        <div style={divider}>
-          <div className="cs-screen-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "3rem", alignItems: "center" }}>
-            <div>
-              <p style={screenLabel}>Footprint tracker</p>
-              <h2 style={sectionTitle}>Data-driven sustainability insights</h2>
-              <p style={body}>Visualize activity breakdown, carbon footprint impact, and point earnings over time. Empowering users with clear insight into how their digital habits translate to real-world environmental impact.</p>
-            </div>
-            <div style={{ display: "flex", justifyContent: "center", background: "rgba(0,0,0,0.04)", borderRadius: "16px", padding: "2rem" }} className="asset-bg">
-              <ParallaxImage src="/images/projects/ecobyte/666f021ab8d61ebc96e3dd2e_iPhone - Home Screen - Light-3.webp" alt="EcoByte footprint tracker screen" width={390} height={844} style={{ width: "55%", height: "auto", display: "block" }} />
-            </div>
-          </div>
-        </div>
-
-        {/* Rewards */}
-        <div style={divider}>
-          <div className="cs-screen-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "3rem", alignItems: "center" }}>
-            <div style={{ display: "flex", justifyContent: "center", background: "rgba(0,0,0,0.04)", borderRadius: "16px", padding: "2rem" }} className="asset-bg">
-              <ParallaxImage src="/images/projects/ecobyte/666f021a019ddbee24ddeecb_iPhone - Home Screen - Light-4.webp" alt="EcoByte rewards marketplace screen" width={390} height={844} style={{ width: "55%", height: "auto", display: "block" }} />
-            </div>
-            <div>
-              <p style={screenLabel}>Rewards Marketplace</p>
-              <h2 style={sectionTitle}>Make impact, earn rewards</h2>
-              <p style={body}>Discover exclusive offers, discounts, and experiences redeemable with points. To make a positive impact on the environment while enjoying the rewards you deserve.</p>
-            </div>
+          <div
+            className="eco-features-grid"
+            style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: "48px" }}
+          >
+            {ecobytFeatures.map((feature) => (
+              <div
+                key={feature.title}
+                className="eco-feature-card"
+                style={{ position: "relative", overflow: "hidden", borderRadius: "16px" }}
+              >
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={feature.image}
+                  alt={feature.title}
+                  loading="lazy"
+                  style={{ width: "100%", display: "block" }}
+                />
+                <div
+                  className="eco-overlay"
+                  style={{
+                    position: "absolute",
+                    inset: 0,
+                    background: "linear-gradient(to top, var(--color-bg) 0%, color-mix(in srgb, var(--color-bg) 75%, transparent) 40%, transparent 72%)",
+                    display: "flex",
+                    flexDirection: "column",
+                    justifyContent: "flex-end",
+                    padding: "2rem",
+                  }}
+                >
+                  <p style={{ ...screenLabel, marginBottom: "6px" }}>{feature.label}</p>
+                  <h3
+                    style={{
+                      fontFamily: "var(--font-fraunces), Georgia, serif",
+                      fontSize: "18px",
+                      fontWeight: 300,
+                      color: "var(--color-fg)",
+                      marginBottom: "8px",
+                      lineHeight: 1.2,
+                    }}
+                  >
+                    {feature.title}
+                  </h3>
+                  <p
+                    style={{
+                      fontFamily: "var(--font-manrope), sans-serif",
+                      fontSize: "12px",
+                      lineHeight: 1.65,
+                      color: "var(--color-muted)",
+                      margin: 0,
+                    }}
+                  >
+                    {feature.description}
+                  </p>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
 
