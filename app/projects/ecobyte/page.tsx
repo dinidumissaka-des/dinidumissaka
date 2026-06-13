@@ -77,25 +77,37 @@ const ecobytFeatures = [
     label: "Homepage",
     title: "A dynamic, personalised dashboard",
     description: "Display current point balance, level progress, and personalized eco-challenges. A dynamic and personalized dashboard that provides users with an at-a-glance overview of their sustainability journey.",
-    image: "/images/projects/ecobyte/666f02f2c52c98ccc300eaa0_iPhone - Home Screen - Light.webp",
+    image: "/images/projects/ecobyte/home.png",
   },
   {
-    label: "Challenges",
+    label: "Tasks",
     title: "Browse, track, and earn",
     description: "Browse available challenges, track progress, and earn bonus points for completion. This screen showcases user categorisation and badges earned for milestones — alongside a collaborative challenge to reduce data usage with a friend.",
-    image: "/images/projects/ecobyte/666f002bf886c3f4bcb6d95f_iPhone - Home Screen - Light-1.webp",
+    image: "/images/projects/ecobyte/tasks.png",
   },
   {
     label: "Footprint Tracker",
     title: "Data-driven sustainability insights",
     description: "Visualize activity breakdown, carbon footprint impact, and point earnings over time. Empowering users with clear insight into how their digital habits translate to real-world environmental impact.",
-    image: "/images/projects/ecobyte/666f021ab8d61ebc96e3dd2e_iPhone - Home Screen - Light-3.webp",
+    image: "/images/projects/ecobyte/tracker.png",
   },
   {
     label: "Rewards Marketplace",
     title: "Make impact, earn rewards",
     description: "Discover exclusive offers, discounts, and experiences redeemable with points. To make a positive impact on the environment while enjoying the rewards you deserve.",
-    image: "/images/projects/ecobyte/666f021a019ddbee24ddeecb_iPhone - Home Screen - Light-4.webp",
+    image: "/images/projects/ecobyte/rewards.png",
+  },
+  {
+    label: "EcoHub",
+    title: "Learn, connect, and grow",
+    description: "A curated content hub with eco-tips, community challenges, and educational resources — giving users the knowledge and community to turn awareness into lasting habit change.",
+    image: "/images/projects/ecobyte/ecohub.png",
+  },
+  {
+    label: "Onboarding",
+    title: "A frictionless first step",
+    description: "Clean, focused onboarding that gets users into the app fast — collecting only what's needed to personalise their sustainability journey from day one.",
+    image: "/images/projects/ecobyte/login.png",
   },
 ];
 
@@ -107,6 +119,9 @@ export default function EcoByteCaseStudy() {
           .cs-grid { grid-template-columns: 1fr !important; }
           .cs-meta { gap: 1.25rem !important; }
           .eco-features-grid { grid-template-columns: 1fr !important; }
+        }
+        @media (max-width: 900px) {
+          .eco-features-grid { grid-template-columns: repeat(2, 1fr) !important; }
         }
         .dark .asset-bg { background: rgba(255,255,255,0.04) !important; }
         .eco-feature-card .eco-overlay {
@@ -179,7 +194,7 @@ export default function EcoByteCaseStudy() {
         <div style={divider}>
           <div
             className="eco-features-grid"
-            style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: "48px" }}
+            style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "48px" }}
           >
             {ecobytFeatures.map((feature) => (
               <div
