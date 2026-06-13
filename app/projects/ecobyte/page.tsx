@@ -212,7 +212,7 @@ export default function EcoByteCaseStudy() {
                     display: "flex",
                     flexDirection: "column",
                     justifyContent: "flex-end",
-                    padding: "2rem",
+                    padding: "2.5rem",
                   }}
                 >
                   <h3
