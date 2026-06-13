@@ -112,6 +112,7 @@ export default function EcoByteCaseStudy() {
         @media (max-width: 640px) {
           .cs-grid { grid-template-columns: 1fr !important; }
           .cs-meta { gap: 1.25rem !important; }
+          .cs-screen-grid { grid-template-columns: 1fr !important; }
           .eco-features-grid { grid-template-columns: 1fr !important; }
         }
         @media (min-width: 641px) and (max-width: 900px) {
