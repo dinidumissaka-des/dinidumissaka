@@ -215,15 +215,6 @@ export default function MintiCaseStudy() {
           />
         </div>
 
-        {/* Screens */}
-        <div style={divider}>
-          <div className="cs-screen-grid" style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: "1.5rem", alignItems: "center" }}>
-            <ParallaxImage src="/images/projects/minti/app-icon.webp" alt="Minti app icon" width={512} height={512} style={{ width: "100%", height: "auto", borderRadius: "24px", display: "block" }} />
-            <ParallaxImage src="/images/projects/minti/expences.webp" alt="Minti expenses screen" width={390} height={844} style={{ width: "100%", height: "auto", borderRadius: "12px", display: "block" }} />
-            <ParallaxImage src="/images/projects/minti/categories.webp" alt="Minti categories screen" width={390} height={844} style={{ width: "100%", height: "auto", borderRadius: "12px", display: "block" }} />
-            <ParallaxImage src="/images/projects/minti/subscriptions.webp" alt="Minti subscriptions screen" width={390} height={844} style={{ width: "100%", height: "auto", borderRadius: "12px", display: "block" }} />
-          </div>
-        </div>
 
         {/* Features */}
         <div style={{ ...divider, borderBottom: "none", paddingBottom: 0 }}>
