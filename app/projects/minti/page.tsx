@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import BackButton from "@/components/ui/BackButton";
+import ParallaxImage from "@/components/ui/ParallaxImage";
 
 export const metadata: Metadata = {
   title: "Minti — Case Study",
@@ -165,7 +165,7 @@ export default function MintiCaseStudy() {
 
         {/* Cover image */}
         <div style={divider}>
-          <Image
+          <ParallaxImage
             src="/images/projects/minti/cover-image-minti.webp"
             alt="Minti spending tracker app"
             width={1920} height={1080}
@@ -176,10 +176,10 @@ export default function MintiCaseStudy() {
         {/* Screens */}
         <div style={{ ...divider, borderBottom: "none", paddingBottom: 0 }}>
           <div className="cs-screen-grid" style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: "1.5rem", alignItems: "center" }}>
-            <Image src="/images/projects/minti/app-icon.webp" alt="Minti app icon" width={512} height={512} style={{ width: "100%", height: "auto", borderRadius: "24px", display: "block" }} />
-            <Image src="/images/projects/minti/expences.webp" alt="Minti expenses screen" width={390} height={844} style={{ width: "100%", height: "auto", borderRadius: "12px", display: "block" }} />
-            <Image src="/images/projects/minti/categories.webp" alt="Minti categories screen" width={390} height={844} style={{ width: "100%", height: "auto", borderRadius: "12px", display: "block" }} />
-            <Image src="/images/projects/minti/subscriptions.webp" alt="Minti subscriptions screen" width={390} height={844} style={{ width: "100%", height: "auto", borderRadius: "12px", display: "block" }} />
+            <ParallaxImage src="/images/projects/minti/app-icon.webp" alt="Minti app icon" width={512} height={512} style={{ width: "100%", height: "auto", borderRadius: "24px", display: "block" }} />
+            <ParallaxImage src="/images/projects/minti/expences.webp" alt="Minti expenses screen" width={390} height={844} style={{ width: "100%", height: "auto", borderRadius: "12px", display: "block" }} />
+            <ParallaxImage src="/images/projects/minti/categories.webp" alt="Minti categories screen" width={390} height={844} style={{ width: "100%", height: "auto", borderRadius: "12px", display: "block" }} />
+            <ParallaxImage src="/images/projects/minti/subscriptions.webp" alt="Minti subscriptions screen" width={390} height={844} style={{ width: "100%", height: "auto", borderRadius: "12px", display: "block" }} />
           </div>
         </div>
 

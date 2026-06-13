@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import BackButton from "@/components/ui/BackButton";
+import { ParallaxWrapper } from "@/components/ui/ParallaxImage";
 import AssetCarousel from "@/components/ui/AssetCarousel";
 import ScrollImage from "@/components/ui/ScrollImage";
 import VideoSequence from "@/components/ui/VideoSequence";
@@ -67,11 +68,13 @@ function ImagePlaceholder({ caption, src, hideCaption }: { caption: string; src?
   return (
     <figure style={{ margin: 0 }}>
       {src ? (
-        <img
-          src={src}
-          alt={caption}
-          style={{ width: "100%", display: "block" }}
-        />
+        <ParallaxWrapper>
+          <img
+            src={src}
+            alt={caption}
+            style={{ width: "100%", display: "block" }}
+          />
+        </ParallaxWrapper>
       ) : (
         <div
           style={{

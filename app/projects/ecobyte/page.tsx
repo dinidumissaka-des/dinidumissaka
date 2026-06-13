@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import BackButton from "@/components/ui/BackButton";
 import LottieRemote from "@/components/ui/LottieRemote";
+import ParallaxImage from "@/components/ui/ParallaxImage";
 
 export const metadata: Metadata = {
   title: "EcoByte — Case Study",
@@ -125,7 +125,7 @@ export default function EcoByteCaseStudy() {
 
         {/* Cover image */}
         <div style={divider}>
-          <Image
+          <ParallaxImage
             src="/images/projects/ecobyte/ecobyte-cover.webp"
             alt="Person holding a phone showing the EcoByte app"
             width={1920} height={1080}
@@ -152,7 +152,7 @@ export default function EcoByteCaseStudy() {
               <p style={body}>Display current point balance, level progress, and personalized eco-challenges. A dynamic and personalized dashboard that provides users with an at-a-glance overview of their sustainability journey.</p>
             </div>
             <div style={{ display: "flex", justifyContent: "center", background: "rgba(0,0,0,0.04)", borderRadius: "16px", padding: "2rem" }} className="asset-bg">
-              <Image src="/images/projects/ecobyte/666f02f2c52c98ccc300eaa0_iPhone - Home Screen - Light.webp" alt="EcoByte homepage screen" width={390} height={844} style={{ width: "55%", height: "auto", display: "block" }} />
+              <ParallaxImage src="/images/projects/ecobyte/666f02f2c52c98ccc300eaa0_iPhone - Home Screen - Light.webp" alt="EcoByte homepage screen" width={390} height={844} style={{ width: "55%", height: "auto", display: "block" }} />
             </div>
           </div>
         </div>
@@ -161,7 +161,7 @@ export default function EcoByteCaseStudy() {
         <div style={divider}>
           <div className="cs-screen-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "3rem", alignItems: "center" }}>
             <div style={{ display: "flex", justifyContent: "center", background: "rgba(0,0,0,0.04)", borderRadius: "16px", padding: "2rem" }} className="asset-bg">
-              <Image src="/images/projects/ecobyte/666f002bf886c3f4bcb6d95f_iPhone - Home Screen - Light-1.webp" alt="EcoByte challenges screen" width={390} height={844} style={{ width: "55%", height: "auto", display: "block" }} />
+              <ParallaxImage src="/images/projects/ecobyte/666f002bf886c3f4bcb6d95f_iPhone - Home Screen - Light-1.webp" alt="EcoByte challenges screen" width={390} height={844} style={{ width: "55%", height: "auto", display: "block" }} />
             </div>
             <div>
               <p style={screenLabel}>Challenges page</p>
@@ -180,7 +180,7 @@ export default function EcoByteCaseStudy() {
               <p style={body}>Visualize activity breakdown, carbon footprint impact, and point earnings over time. Empowering users with clear insight into how their digital habits translate to real-world environmental impact.</p>
             </div>
             <div style={{ display: "flex", justifyContent: "center", background: "rgba(0,0,0,0.04)", borderRadius: "16px", padding: "2rem" }} className="asset-bg">
-              <Image src="/images/projects/ecobyte/666f021ab8d61ebc96e3dd2e_iPhone - Home Screen - Light-3.webp" alt="EcoByte footprint tracker screen" width={390} height={844} style={{ width: "55%", height: "auto", display: "block" }} />
+              <ParallaxImage src="/images/projects/ecobyte/666f021ab8d61ebc96e3dd2e_iPhone - Home Screen - Light-3.webp" alt="EcoByte footprint tracker screen" width={390} height={844} style={{ width: "55%", height: "auto", display: "block" }} />
             </div>
           </div>
         </div>
@@ -189,7 +189,7 @@ export default function EcoByteCaseStudy() {
         <div style={divider}>
           <div className="cs-screen-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "3rem", alignItems: "center" }}>
             <div style={{ display: "flex", justifyContent: "center", background: "rgba(0,0,0,0.04)", borderRadius: "16px", padding: "2rem" }} className="asset-bg">
-              <Image src="/images/projects/ecobyte/666f021a019ddbee24ddeecb_iPhone - Home Screen - Light-4.webp" alt="EcoByte rewards marketplace screen" width={390} height={844} style={{ width: "55%", height: "auto", display: "block" }} />
+              <ParallaxImage src="/images/projects/ecobyte/666f021a019ddbee24ddeecb_iPhone - Home Screen - Light-4.webp" alt="EcoByte rewards marketplace screen" width={390} height={844} style={{ width: "55%", height: "auto", display: "block" }} />
             </div>
             <div>
               <p style={screenLabel}>Rewards Marketplace</p>
