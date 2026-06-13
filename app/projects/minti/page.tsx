@@ -206,9 +206,6 @@ export default function MintiCaseStudy() {
               — Digital Sustainability
             </span>
           </a>
-          <div style={{ marginTop: "1.5rem" }}>
-            <a href="https://minti.one" target="_blank" rel="noopener noreferrer" style={{ fontFamily: "var(--font-manrope), sans-serif", fontSize: "12px", fontWeight: 500, color: "var(--color-muted)", textDecoration: "underline", textUnderlineOffset: "3px" }}>minti.one</a>
-          </div>
         </div>
       </div>
     </main>
