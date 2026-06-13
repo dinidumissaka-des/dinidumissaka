@@ -155,8 +155,6 @@ export default function MintiCaseStudy() {
           transition: opacity 0.35s ease;
         }
         .minti-feature-card:hover .minti-overlay { opacity: 1; }
-        .minti-feature-card img { transition: transform 0.5s ease; }
-        .minti-feature-card:hover img { transform: scale(1.04); }
       `}</style>
 
       <div className="container" style={{ paddingTop: "3rem", paddingBottom: "5rem" }}>
