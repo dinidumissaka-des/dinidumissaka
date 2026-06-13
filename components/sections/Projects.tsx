@@ -73,7 +73,7 @@ export default function Projects() {
             fontFamily: "var(--font-fraunces), Georgia, serif",
             fontSize: "32px",
             fontWeight: 300,
-            lineHeight: 1.2,
+            lineHeight: 1.5,
             color: "var(--color-fg)",
             letterSpacing: "-0.01em",
           }}
