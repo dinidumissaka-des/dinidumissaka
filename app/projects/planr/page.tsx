@@ -203,10 +203,6 @@ export default function PlanrCaseStudy() {
               — Personal Expense Tracker
             </span>
           </a>
-          <div style={{ display: "flex", gap: "1rem", marginTop: "1.5rem" }}>
-            <a href="https://buildinghelp.app" target="_blank" rel="noopener noreferrer" style={{ fontFamily: "var(--font-manrope), sans-serif", fontSize: "12px", fontWeight: 500, color: "var(--color-muted)", textDecoration: "underline", textUnderlineOffset: "3px" }}>buildinghelp.app</a>
-            <a href="https://planr-khaki.vercel.app/signup" target="_blank" rel="noopener noreferrer" style={{ fontFamily: "var(--font-manrope), sans-serif", fontSize: "12px", fontWeight: 500, color: "var(--color-muted)", textDecoration: "underline", textUnderlineOffset: "3px" }}>planr.vercel.app</a>
-          </div>
         </div>
       </div>
     </main>
