@@ -44,7 +44,7 @@ export default function FAQ() {
               color: "var(--color-fg)",
             }}
           >
-            Common questions
+            Things people ask
           </h2>
         </motion.div>
 
