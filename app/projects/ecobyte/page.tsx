@@ -114,7 +114,7 @@ export default function EcoByteCaseStudy() {
           .cs-meta { gap: 1.25rem !important; }
           .eco-features-grid { grid-template-columns: 1fr !important; }
         }
-        @media (max-width: 900px) {
+        @media (min-width: 641px) and (max-width: 900px) {
           .eco-features-grid { grid-template-columns: repeat(2, 1fr) !important; }
         }
         .dark .asset-bg { background: rgba(255,255,255,0.04) !important; }

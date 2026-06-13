@@ -147,7 +147,7 @@ export default function MintiCaseStudy() {
           .cs-screen-grid { grid-template-columns: 1fr !important; }
           .minti-features-grid { grid-template-columns: 1fr !important; }
         }
-        @media (max-width: 900px) {
+        @media (min-width: 641px) and (max-width: 900px) {
           .minti-features-grid { grid-template-columns: repeat(2, 1fr) !important; }
         }
         .minti-feature-card .minti-overlay {
