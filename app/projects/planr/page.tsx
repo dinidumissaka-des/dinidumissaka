@@ -183,20 +183,8 @@ export default function PlanrCaseStudy() {
           </div>
         </div>
 
-        {/* Live link */}
-        <div style={{ display: "flex", flexWrap: "wrap", gap: "1rem", marginTop: "3rem", paddingTop: "2rem", borderTop: "1px solid var(--border-section)", marginBottom: "3rem" }}>
-          <a href="https://buildinghelp.app" target="_blank" rel="noopener noreferrer"
-            style={{ fontFamily: "var(--font-manrope), sans-serif", fontSize: "12px", fontWeight: 500, color: "var(--color-muted)", textDecoration: "underline", textUnderlineOffset: "3px" }}>
-            buildinghelp.app
-          </a>
-          <a href="https://planr-khaki.vercel.app/signup" target="_blank" rel="noopener noreferrer"
-            style={{ fontFamily: "var(--font-manrope), sans-serif", fontSize: "12px", fontWeight: 500, color: "var(--color-muted)", textDecoration: "underline", textUnderlineOffset: "3px" }}>
-            planr.vercel.app
-          </a>
-        </div>
-
         {/* Next project */}
-        <div style={{ paddingTop: "3rem", borderTop: "1px solid var(--border-section)" }}>
+        <div style={{ paddingTop: "3rem", marginTop: "3rem", borderTop: "1px solid var(--border-section)" }}>
           <p style={sectionLabel}>Next</p>
           <a
             href="/projects/minti"
@@ -218,6 +206,10 @@ export default function PlanrCaseStudy() {
               — Personal Expense Tracker
             </span>
           </a>
+          <div style={{ display: "flex", gap: "1rem", marginTop: "1.5rem" }}>
+            <a href="https://buildinghelp.app" target="_blank" rel="noopener noreferrer" style={{ fontFamily: "var(--font-manrope), sans-serif", fontSize: "12px", fontWeight: 500, color: "var(--color-muted)", textDecoration: "underline", textUnderlineOffset: "3px" }}>buildinghelp.app</a>
+            <a href="https://planr-khaki.vercel.app/signup" target="_blank" rel="noopener noreferrer" style={{ fontFamily: "var(--font-manrope), sans-serif", fontSize: "12px", fontWeight: 500, color: "var(--color-muted)", textDecoration: "underline", textUnderlineOffset: "3px" }}>planr.vercel.app</a>
+          </div>
         </div>
       </div>
     </main>

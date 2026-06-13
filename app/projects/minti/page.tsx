@@ -184,16 +184,8 @@ export default function MintiCaseStudy() {
           </div>
         </div>
 
-        {/* Live link */}
-        <div style={{ display: "flex", flexWrap: "wrap", gap: "1rem", marginTop: "3rem", paddingTop: "2rem", borderTop: "1px solid var(--border-section)", marginBottom: "3rem" }}>
-          <a href="https://minti.one" target="_blank" rel="noopener noreferrer"
-            style={{ fontFamily: "var(--font-manrope), sans-serif", fontSize: "12px", fontWeight: 500, color: "var(--color-muted)", textDecoration: "underline", textUnderlineOffset: "3px" }}>
-            minti.one
-          </a>
-        </div>
-
         {/* Next project */}
-        <div style={{ paddingTop: "3rem", borderTop: "1px solid var(--border-section)" }}>
+        <div style={{ paddingTop: "3rem", marginTop: "3rem", borderTop: "1px solid var(--border-section)" }}>
           <p style={sectionLabel}>Next</p>
           <a
             href="/projects/ecobyte"
@@ -215,6 +207,9 @@ export default function MintiCaseStudy() {
               — Digital Sustainability
             </span>
           </a>
+          <div style={{ marginTop: "1.5rem" }}>
+            <a href="https://minti.one" target="_blank" rel="noopener noreferrer" style={{ fontFamily: "var(--font-manrope), sans-serif", fontSize: "12px", fontWeight: 500, color: "var(--color-muted)", textDecoration: "underline", textUnderlineOffset: "3px" }}>minti.one</a>
+          </div>
         </div>
       </div>
     </main>
