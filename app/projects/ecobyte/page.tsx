@@ -74,40 +74,34 @@ const screenLabel: React.CSSProperties = {
 
 const ecobytFeatures = [
   {
-    label: "Impact Dashboard",
+    title: "Get in fast",
+    description: "Sign up with Email, Google, or Apple — no lengthy onboarding before you can start tracking. The account gate is placed just late enough that users see value before being asked to commit.",
+    image: "/images/projects/ecobyte/login.png",
+  },
+  {
     title: "Your eco HQ",
     description: "See your point balance, today's carbon footprint in kgCO2e, current level, and earned badges — all at a glance. The dashboard rewards both daily habits and long-term consistency without burying the key number.",
     image: "/images/projects/ecobyte/home.png",
   },
   {
-    label: "Digital Footprint Tracker",
     title: "Carbon by category",
     description: "See your carbon by category — Gaming, Social Media, Browsing, Cloud Usage, Downloads — with week-over-week trend indicators. Weekly impact is contextualised in plain terms so abstract numbers actually land.",
     image: "/images/projects/ecobyte/tracker.png",
   },
   {
-    label: "Daily Quick Wins",
     title: "Bite-sized actions, every day",
     description: "The app surfaces 2–3 achievable digital habits — lower your YouTube resolution, switch to an eco-friendly search engine — with a countdown timer and progress checkboxes. Completing them earns points and builds the habit loop without overwhelming.",
     image: "/images/projects/ecobyte/tasks.png",
   },
   {
-    label: "Social Leaderboard",
     title: "Compete globally or locally",
     description: "The three-tab leaderboard lets you benchmark your eco-score against your immediate circle or the wider community — with the scope to adjust visibility for users who prefer not to compete.",
     image: "/images/projects/ecobyte/ecohub.png",
   },
   {
-    label: "Reward Shop",
     title: "Points earn real things",
     description: "Redeem your score for vouchers from sustainability-aligned partners — Green Gadgets, Biji Biji, Nude Zero Waste, Cleantech Solar, Grab Green. Rewards aren't generic; they reinforce the same values the app is built around.",
     image: "/images/projects/ecobyte/rewards.png",
-  },
-  {
-    label: "Frictionless Sign-Up",
-    title: "Get in fast",
-    description: "Sign up with Email, Google, or Apple — no lengthy onboarding before you can start tracking. The account gate is placed just late enough that users see value before being asked to commit.",
-    image: "/images/projects/ecobyte/login.png",
   },
 ];
 
@@ -221,7 +215,6 @@ export default function EcoByteCaseStudy() {
                     padding: "2rem",
                   }}
                 >
-                  <p style={{ ...screenLabel, marginBottom: "6px" }}>{feature.label}</p>
                   <h3
                     style={{
                       fontFamily: "var(--font-fraunces), Georgia, serif",
