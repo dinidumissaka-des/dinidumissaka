@@ -126,15 +126,26 @@ export default function Expertise() {
               style={{
                 fontFamily: "var(--font-manrope), sans-serif",
                 fontSize: "12px",
-                marginBottom: "20px",
+                marginBottom: "12px",
                 display: "flex",
                 alignItems: "center",
                 gap: "8px",
               }}
             >
-              
               What I do
             </div>
+            <h2
+              style={{
+                fontFamily: "var(--font-fraunces), Georgia, serif",
+                fontSize: "32px",
+                fontWeight: 300,
+                lineHeight: 1.1,
+                color: "var(--color-fg)",
+                marginBottom: "20px",
+              }}
+            >
+              Design, AI &amp; craft
+            </h2>
             <div style={{ position: "relative" }}>
               {/* Invisible spacer rendered at max weight — locks layout height so hover never causes shift */}
               <div

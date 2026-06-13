@@ -43,7 +43,7 @@ export default function Projects() {
           style={{
             fontFamily: "var(--font-manrope), sans-serif",
             fontSize: "12px",
-            marginBottom: "1.5rem",
+            marginBottom: "12px",
           }}
         >
           Projects
@@ -53,6 +53,22 @@ export default function Projects() {
           initial={{ opacity: 0, y: 20 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6, delay: 0.1 }}
+          style={{
+            fontFamily: "var(--font-fraunces), Georgia, serif",
+            fontSize: "32px",
+            fontWeight: 300,
+            lineHeight: 1.1,
+            color: "var(--color-fg)",
+            marginBottom: "1.5rem",
+          }}
+        >
+          Selected work
+        </motion.h2>
+
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6, delay: 0.15 }}
           style={{
             fontFamily: "var(--font-fraunces), Georgia, serif",
             fontSize: "32px",
@@ -81,7 +97,7 @@ export default function Projects() {
               )}
             </span>
           ))}
-        </motion.h2>
+        </motion.div>
       </div>
     </section>
   );
