@@ -269,7 +269,7 @@ export default function DerivCaseStudy() {
                   images={Array.from({ length: 6 }, (_, i) =>
                     `/images/projects/deriv/derv-image-${String(i + 1).padStart(2, "0")}.webp`
                   )}
-                  size="480px"
+                  size="280px"
                   speed={45}
                   rows={1}
                   style={{ borderRadius: "8px" }}
