@@ -69,7 +69,7 @@ const LoaderCore = ({
                 <CheckFilled
                   className={cn(
                     "text-fg",
-                    value === index && "text-accent opacity-100"
+                    value === index && "opacity-100"
                   )}
                 />
               )}
@@ -77,7 +77,7 @@ const LoaderCore = ({
             <span
               className={cn(
                 "text-fg",
-                value === index && "text-accent opacity-100"
+                value === index && "opacity-100"
               )}
             >
               {loadingState.text}
