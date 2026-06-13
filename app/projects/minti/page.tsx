@@ -229,13 +229,15 @@ export default function MintiCaseStudy() {
                 className="minti-feature-card"
                 style={{ position: "relative", overflow: "hidden", borderRadius: "16px" }}
               >
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src={feature.image}
-                  alt={feature.title}
-                  loading="lazy"
-                  style={{ width: "100%", display: "block" }}
-                />
+                <div style={{ padding: "0 24px" }}>
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src={feature.image}
+                    alt={feature.title}
+                    loading="lazy"
+                    style={{ width: "100%", display: "block" }}
+                  />
+                </div>
                 <div
                   className="minti-overlay"
                   style={{
