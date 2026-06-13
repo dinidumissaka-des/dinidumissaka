@@ -230,7 +230,7 @@ export default function MintiCaseStudy() {
           <h2 style={sectionTitle}>What it does</h2>
           <div
             className="minti-features-grid"
-            style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "1rem" }}
+            style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "1.5rem" }}
           >
             {mintiFeatures.map((feature) => (
               <div
