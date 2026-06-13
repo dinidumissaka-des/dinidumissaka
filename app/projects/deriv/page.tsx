@@ -227,24 +227,6 @@ export default function DerivCaseStudy() {
                 Modular component library — hero, cards, FAQs, stats, testimonials, CTA blocks
               </figcaption>
             </div>
-            <div className="cs-grid" style={{ display: "grid", gridTemplateColumns: "1fr", gap: "1.5rem" }}>
-              <div>
-                <div style={{ borderRadius: "12px", overflow: "hidden", background: "rgba(0,0,0,0.04)" }} className="asset-bg">
-                  <ImagePlaceholder hideCaption caption="One card component, four variants — light, dark, brand, and image-led" src="/images/projects/deriv/One card component.webp" />
-                </div>
-                <figcaption style={{ fontFamily: "var(--font-manrope), sans-serif", fontSize: "11px", color: "var(--color-muted)", marginTop: "10px", opacity: 0.6 }}>
-                  One card component, four variants — light, dark, brand, and image-led
-                </figcaption>
-              </div>
-              <div>
-                <div style={{ borderRadius: "12px", overflow: "hidden", background: "rgba(0,0,0,0.04)" }} className="asset-bg">
-                  <ImagePlaceholder hideCaption caption="Layouts designed and tested at 360px and 1440px" src="/images/projects/deriv/layout 360px and 1440px.webp" />
-                </div>
-                <figcaption style={{ fontFamily: "var(--font-manrope), sans-serif", fontSize: "11px", color: "var(--color-muted)", marginTop: "10px", opacity: 0.6 }}>
-                  Layouts designed and tested at 360px and 1440px
-                </figcaption>
-              </div>
-            </div>
           </div>
         </div>
 
