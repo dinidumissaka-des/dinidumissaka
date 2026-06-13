@@ -63,21 +63,21 @@ const LoaderCore = ({
           >
             <div>
               {index > value && (
-                <CheckIcon className="text-black dark:text-white" />
+                <CheckIcon className="text-fg" />
               )}
               {index <= value && (
                 <CheckFilled
                   className={cn(
-                    "text-black dark:text-white",
-                    value === index && "text-black dark:text-lime-500 opacity-100"
+                    "text-fg",
+                    value === index && "text-accent opacity-100"
                   )}
                 />
               )}
             </div>
             <span
               className={cn(
-                "text-black dark:text-white",
-                value === index && "text-black dark:text-lime-500 opacity-100"
+                "text-fg",
+                value === index && "text-accent opacity-100"
               )}
             >
               {loadingState.text}
@@ -135,11 +135,19 @@ export const MultiStepLoader = ({
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           className="w-full h-full fixed inset-0 z-[100] flex items-center justify-center backdrop-blur-2xl"
+          style={{ background: "var(--color-bg)" }}
         >
           <div className="h-96 relative">
             <LoaderCore value={currentState} loadingStates={loadingStates} />
           </div>
-          <div className="bg-gradient-to-t inset-x-0 z-20 bottom-0 bg-white dark:bg-black h-full absolute [mask-image:radial-gradient(900px_at_center,transparent_30%,white)]" />
+          <div
+            className="inset-x-0 z-20 bottom-0 h-full absolute"
+            style={{
+              background: "var(--color-bg)",
+              maskImage: "radial-gradient(900px at center, transparent 30%, white)",
+              WebkitMaskImage: "radial-gradient(900px at center, transparent 30%, white)",
+            }}
+          />
         </motion.div>
       )}
     </AnimatePresence>
