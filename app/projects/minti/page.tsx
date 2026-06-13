@@ -245,7 +245,7 @@ export default function MintiCaseStudy() {
                     display: "flex",
                     flexDirection: "column",
                     justifyContent: "flex-end",
-                    padding: "1.5rem",
+                    padding: "2rem",
                   }}
                 >
                   <h3
