@@ -118,12 +118,12 @@ const mintiFeatures = [
   {
     title: "Spend by Category",
     description: "Every expense maps to a category. The By Category view ranks them by total and percentage, so the pattern is obvious at a glance — not buried in a pie chart.",
-    image: "/images/projects/minti/spending by category.png",
+    image: "/images/projects/minti/spending%20by%20category.png",
   },
   {
     title: "Month-over-Month",
     description: "One tap to see how this month's categories compare to last month. Each category shows its percentage change — up, down, or new — so you can spot shifts without doing any maths.",
-    image: "/images/projects/minti/vs last mont.png",
+    image: "/images/projects/minti/vs%20last%20mont.png",
   },
   {
     title: "Income & Savings Rate",
