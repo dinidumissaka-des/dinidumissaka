@@ -9,10 +9,11 @@ import {
 
 const socialLinks = [
   { label: "Email",     href: "mailto:dinidumissaka@gmail.com" },
-  { label: "LinkedIn",  href: "https://www.linkedin.com/in/dinidumissaka/", target: "_blank" },
-  { label: "Dribbble",  href: "https://dribbble.com/dinidumissaka",          target: "_blank" },
-  { label: "Instagram", href: "https://www.instagram.com/diniduu/",          target: "_blank" },
-  { label: "X",         href: "https://x.com/DiniduMissaka",                 target: "_blank" },
+  { label: "LinkedIn",  href: "https://www.linkedin.com/in/dinidumissaka/",  target: "_blank" },
+  { label: "Dribbble",  href: "https://dribbble.com/dinidumissaka",           target: "_blank" },
+  { label: "GitHub",    href: "https://github.com/dinidumissaka-des",         target: "_blank" },
+  { label: "Instagram", href: "https://www.instagram.com/diniduu/",           target: "_blank" },
+  { label: "X",         href: "https://x.com/DiniduMissaka",                  target: "_blank" },
 ];
 
 const textStyle = {
