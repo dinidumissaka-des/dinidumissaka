@@ -96,8 +96,8 @@
   --fg-80: rgba(255, 255, 255, 0.8);
 
   /* ── Border variants (dark default) ── */
-  --border-section: rgba(255, 255, 255, 0.15);
-  --border-item:    rgba(255, 255, 255, 0.1);
+  --border-section: rgba(255, 255, 255, 0.04);
+  --border-item:    rgba(255, 255, 255, 0.03);
 
   /* ── Subtle surface (dark default) ── */
   --bg-subtle: rgba(255, 255, 255, 0.08);
@@ -118,8 +118,8 @@
     --fg-50: rgba(0, 0, 0, 0.55);
     --fg-80: rgba(0, 0, 0, 0.8);
 
-    --border-section: rgba(0, 0, 0, 0.1);
-    --border-item:    rgba(0, 0, 0, 0.08);
+    --border-section: rgba(0, 0, 0, 0.03);
+    --border-item:    rgba(0, 0, 0, 0.025);
     --bg-subtle:      rgba(0, 0, 0, 0.08);
     --bg-card:        rgba(0, 0, 0, 0.02);
   }
@@ -137,8 +137,8 @@ html.light {
   --fg-50: rgba(0, 0, 0, 0.55);
   --fg-80: rgba(0, 0, 0, 0.8);
 
-  --border-section: rgba(0, 0, 0, 0.1);
-  --border-item:    rgba(0, 0, 0, 0.08);
+  --border-section: rgba(0, 0, 0, 0.03);
+  --border-item:    rgba(0, 0, 0, 0.025);
   --bg-subtle:      rgba(0, 0, 0, 0.08);
   --bg-card:        rgba(0, 0, 0, 0.02);
 }
@@ -155,8 +155,8 @@ html.dark {
   --fg-50: rgba(255, 255, 255, 0.5);
   --fg-80: rgba(255, 255, 255, 0.8);
 
-  --border-section: rgba(255, 255, 255, 0.15);
-  --border-item:    rgba(255, 255, 255, 0.1);
+  --border-section: rgba(255, 255, 255, 0.04);
+  --border-item:    rgba(255, 255, 255, 0.03);
   --bg-subtle:      rgba(255, 255, 255, 0.08);
   --bg-card:        rgba(255, 255, 255, 0.02);
 }
@@ -398,7 +398,6 @@ body::after {
   bottom: 0;
   width: 1px;
   background-color: var(--border-section);
-  opacity: 0.4;
   z-index: 9999;
   pointer-events: none;
 }

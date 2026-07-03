@@ -7,6 +7,7 @@ import PageLoader from "@/components/ui/PageLoader";
 import SmoothScroll from "@/components/ui/SmoothScroll";
 import { ClientNav } from "@/components/ui/ClientNav";
 import SkipLink from "@/components/ui/SkipLink";
+import Noise from "@/components/ui/Noise";
 
 const fraunces = Fraunces({
   subsets: ["latin"],
@@ -52,6 +53,7 @@ export default function RootLayout({
     <html lang="en" className={`${fraunces.variable} ${manrope.variable}`} suppressHydrationWarning>
       <body className="antialiased" suppressHydrationWarning>
         <ThemeProvider>
+          <Noise patternSize={200} patternScaleX={1} patternScaleY={1} patternRefreshInterval={2} patternAlpha={8} />
           <SkipLink />
           <SmoothScroll />
           <PageLoader />
