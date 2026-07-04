@@ -255,7 +255,7 @@ export default function MintiCaseStudy() {
                       fontFamily: "var(--font-fraunces), Georgia, serif",
                       fontSize: "18px",
                       fontWeight: 300,
-                      color: "#fff",
+                      color: "var(--color-fg)",
                       marginBottom: "8px",
                       lineHeight: 1.2,
                     }}
@@ -267,7 +267,7 @@ export default function MintiCaseStudy() {
                       fontFamily: "var(--font-manrope), sans-serif",
                       fontSize: "12px",
                       lineHeight: 1.65,
-                      color: "rgba(255,255,255,0.72)",
+                      color: "var(--color-muted)",
                       margin: 0,
                     }}
                   >
