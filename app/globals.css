@@ -289,8 +289,11 @@ body {
   font-size: var(--text-p);
   line-height: 1.6;
   overflow-x: hidden;
+  scrollbar-width: none;
   transition: background-color 0.3s ease, color 0.3s ease;
 }
+
+body::-webkit-scrollbar { display: none; }
 
 h1 { font-size: var(--text-h1); line-height: 1.05; font-weight: 700; }
 h2 { font-size: var(--text-h2); line-height: 1.1;  font-weight: 600; }
