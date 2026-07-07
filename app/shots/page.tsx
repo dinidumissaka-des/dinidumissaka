@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { getDribbbleShots } from "@/lib/dribbble";
 
 export const metadata: Metadata = {
   title: "Shots — Dinidu Missaka",
@@ -27,8 +26,7 @@ const localShots: { src: string; type: "image" | "video" }[] = [
   { src: "/images/shots/original-139516fccc84aed93c06ee9920965a4e.mp4", type: "video" },
 ];
 
-export default async function ShotsPage() {
-  const apiShots = await getDribbbleShots();
+export default function ShotsPage() {
 
   return (
     <main>
@@ -126,30 +124,6 @@ export default async function ShotsPage() {
             )
           )}
 
-          {/* Dribbble API shots (if available) */}
-          {apiShots.map((shot) => (
-            <a
-              key={shot.id}
-              href={shot.html_url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group relative rounded-xl overflow-hidden bg-surface"
-              style={{ aspectRatio: "4 / 3" }}
-            >
-              <Image
-                src={shot.images.normal}
-                alt={shot.title}
-                fill
-                sizes="(max-width: 767px) 50vw, 33vw"
-                style={{ objectFit: "cover" }}
-              />
-              <div className="absolute inset-0 bg-dark-navy/0 group-hover:bg-dark-navy/60 transition-colors duration-300 flex items-center justify-center">
-                <span className="text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-[--text-p] font-medium text-center px-4">
-                  {shot.title}
-                </span>
-              </div>
-            </a>
-          ))}
         </div>
       </div>
     </main>
