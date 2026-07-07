@@ -14,6 +14,7 @@ const navLinks = [
   { label: "Home", href: "/" },
   { label: "About", href: "/about" },
   { label: "Projects", href: "/#projects" },
+  { label: "Shots", href: "/shots" },
   { label: "Resume", href: "https://drive.google.com/file/d/1-5BZ6Otsbe70oSZJWtReqyWTn_M0VDlF/view?usp=sharing", target: "_blank" },
 ];
 
@@ -128,6 +129,7 @@ export function ClientNav() {
                     textDecoration: "none",
                     padding: "14px 16px",
                     display: "block",
+                    textAlign: "right",
                     borderBottom: "1px solid var(--border-section)",
                   }}
                 >
