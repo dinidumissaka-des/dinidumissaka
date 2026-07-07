@@ -49,13 +49,13 @@ export default function ShotsPage() {
         </Link>
 
 
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+        <div className="grid grid-cols-2 md:grid-cols-3" style={{ gap: "24px" }}>
           {/* Local shots */}
           {localShots.map((shot) =>
             shot.type === "video" ? (
               <div
                 key={shot.src}
-                className="relative rounded-xl overflow-hidden bg-surface"
+                className="relative overflow-hidden bg-surface"
                 style={{ aspectRatio: "4 / 3" }}
               >
                 {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
@@ -71,7 +71,7 @@ export default function ShotsPage() {
             ) : (
               <div
                 key={shot.src}
-                className="relative rounded-xl overflow-hidden bg-surface"
+                className="relative overflow-hidden bg-surface"
                 style={{ aspectRatio: "4 / 3" }}
               >
                 <Image
