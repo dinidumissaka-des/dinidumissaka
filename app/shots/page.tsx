@@ -30,7 +30,7 @@ export default function ShotsPage() {
 
   return (
     <main>
-      <div className="container" style={{ paddingBlock: "4rem", paddingInline: "clamp(1.5rem, 5vw, 3rem)" }}>
+      <div className="container" style={{ paddingBlock: "4rem", paddingInline: 0 }}>
         {/* Back */}
         <Link
           href="/"
