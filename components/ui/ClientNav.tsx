@@ -172,13 +172,12 @@ export function ClientNav() {
         style={{
           position: "fixed",
           top: "3rem",
-          left: 0,
           right: 0,
           zIndex: 9999,
           pointerEvents: "none",
         }}
       >
-        <div style={{ maxWidth: "1016px", margin: "0 auto", display: "flex", justifyContent: "flex-end" }}>
+        <div>
           <div style={{ pointerEvents: "auto", display: "flex", flexDirection: "column", alignItems: "flex-end", gap: "16px", paddingRight: "2px" }}>
             <ClientThemeToggler {...togglerProps} />
             <nav style={{ display: "flex", flexDirection: "column", alignItems: "flex-end", gap: "4px" }}>
