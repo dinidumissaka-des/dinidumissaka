@@ -48,45 +48,6 @@ export default function ShotsPage() {
           ← Back
         </Link>
 
-        {/* Label + title */}
-        <p
-          className="text-muted"
-          style={{ fontFamily: "var(--font-manrope), sans-serif", fontSize: "12px", marginBottom: "12px" }}
-        >
-          Dribbble
-        </p>
-        <div
-          style={{
-            display: "flex",
-            flexWrap: "wrap",
-            alignItems: "baseline",
-            justifyContent: "space-between",
-            gap: "1rem",
-            marginBottom: "3rem",
-          }}
-        >
-          <h1
-            style={{
-              fontFamily: "var(--font-fraunces), Georgia, serif",
-              fontSize: "clamp(2rem, 5vw, 3.5rem)",
-              fontWeight: 300,
-              lineHeight: 1.1,
-              color: "var(--color-fg)",
-              margin: 0,
-            }}
-          >
-            Shots
-          </h1>
-          <a
-            href="https://dribbble.com/dinidumissaka"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-accent"
-            style={{ fontFamily: "var(--font-manrope), sans-serif", fontSize: "14px", fontWeight: 600, textDecoration: "none" }}
-          >
-            View profile ↗
-          </a>
-        </div>
 
         <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
           {/* Local shots */}
