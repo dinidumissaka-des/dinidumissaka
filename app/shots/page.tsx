@@ -24,6 +24,8 @@ const localShots: { src: string; type: "image" | "video" }[] = [
   { src: "/images/shots/d4bbf1789a6e47dd8310c2c071b15745.webp", type: "image" },
   { src: "/images/shots/9aecee77d806e3d6b2d67bc2fc3e0f6a.mp4", type: "video" },
   { src: "/images/shots/original-139516fccc84aed93c06ee9920965a4e.mp4", type: "video" },
+  { src: "/images/shots/14th Octomber.png", type: "image" },
+  { src: "/images/shots/29th Octomber.png", type: "image" },
 ];
 
 export default function ShotsPage() {
