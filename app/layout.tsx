@@ -7,7 +7,7 @@ import PageLoader from "@/components/ui/PageLoader";
 import SmoothScroll from "@/components/ui/SmoothScroll";
 import { ClientNav } from "@/components/ui/ClientNav";
 import SkipLink from "@/components/ui/SkipLink";
-import Noise from "@/components/ui/Noise";
+import ColorBends from "@/components/ui/ColorBends";
 
 const fraunces = Fraunces({
   subsets: ["latin"],
@@ -53,7 +53,21 @@ export default function RootLayout({
     <html lang="en" className={`${fraunces.variable} ${manrope.variable}`} suppressHydrationWarning>
       <body className="antialiased" suppressHydrationWarning>
         <ThemeProvider>
-          <Noise patternSize={200} patternScaleX={1} patternScaleY={1} patternRefreshInterval={2} patternAlpha={8} />
+          <ColorBends
+            colors={["#1a1a2e", "#16213e", "#0f3460", "#1a1a2e"]}
+            rotation={90}
+            speed={0.08}
+            scale={1.2}
+            frequency={0.8}
+            warpStrength={0.6}
+            mouseInfluence={0.3}
+            parallax={0.3}
+            noise={0}
+            iterations={2}
+            intensity={0.6}
+            bandWidth={5}
+            transparent
+          />
           <SkipLink />
           <SmoothScroll />
           <PageLoader />
