@@ -180,11 +180,11 @@ export function ClientNav() {
         style={{
           position: "fixed",
           top: 0,
-          left: 0,
-          right: 0,
+          left: "50%",
+          transform: "translateX(-50%)",
+          width: "100%",
+          maxWidth: "860px",
           zIndex: 9999,
-          display: "flex",
-          justifyContent: "center",
           backdropFilter: scrolled ? "blur(16px)" : "none",
           WebkitBackdropFilter: scrolled ? "blur(16px)" : "none",
           maskImage: scrolled ? "linear-gradient(to bottom, black 50%, transparent 100%)" : "none",
@@ -193,8 +193,6 @@ export function ClientNav() {
         }}
       >
         <div style={{
-          maxWidth: "860px",
-          width: "100%",
           padding: "12px 2px",
           display: "flex",
           alignItems: "center",
