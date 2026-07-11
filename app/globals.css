@@ -345,7 +345,7 @@ small { font-size: var(--text-small); }
 }
 
 .container {
-  max-width: 1016px;
+  max-width: 860px;
   margin-inline: auto;
   width: 100%;
   padding-inline: 2px;
