@@ -184,12 +184,19 @@ export function ClientNav() {
           transform: "translateX(-50%)",
           width: "100%",
           maxWidth: "860px",
+          paddingBottom: "80px",
           zIndex: 9999,
-          backdropFilter: scrolled ? "blur(16px)" : "none",
-          WebkitBackdropFilter: scrolled ? "blur(16px)" : "none",
-          maskImage: scrolled ? "linear-gradient(to bottom, black 50%, transparent 100%)" : "none",
-          WebkitMaskImage: scrolled ? "linear-gradient(to bottom, black 50%, transparent 100%)" : "none",
-          transition: "backdrop-filter 0.3s ease",
+          pointerEvents: "none",
+          backdropFilter: scrolled ? "blur(20px)" : "none",
+          WebkitBackdropFilter: scrolled ? "blur(20px)" : "none",
+          maskImage: scrolled
+            ? "linear-gradient(to bottom, black 0%, black 25%, rgba(0,0,0,0.6) 50%, rgba(0,0,0,0.2) 70%, transparent 100%)"
+            : "none",
+          WebkitMaskImage: scrolled
+            ? "linear-gradient(to bottom, black 0%, black 25%, rgba(0,0,0,0.6) 50%, rgba(0,0,0,0.2) 70%, transparent 100%)"
+            : "none",
+          opacity: scrolled ? 1 : 0,
+          transition: "opacity 0.4s ease",
         }}
       >
         <div style={{
@@ -198,6 +205,7 @@ export function ClientNav() {
           alignItems: "center",
           justifyContent: "flex-end",
           gap: "24px",
+          pointerEvents: "auto",
         }}>
           <nav style={{ display: "flex", alignItems: "center", gap: "24px" }}>
             {navLinks.map((link) => (
