@@ -35,24 +35,7 @@ export default function FAQ() {
           >
             FAQ
           </p>
-          <div style={{ display: "flex", alignItems: "center", gap: "16px" }}>
-            <div style={{
-              width: "48px",
-              height: "48px",
-              borderRadius: "50%",
-              overflow: "hidden",
-              background: "var(--color-bg)",
-              flexShrink: 0,
-              border: "1px solid var(--border-section)",
-            }}>
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src="/images/home/eye.gif"
-                alt=""
-                style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
-              />
-            </div>
-            <h2
+          <h2
               style={{
                 fontFamily: "var(--font-fraunces), Georgia, serif",
                 fontSize: "32px",
@@ -63,7 +46,6 @@ export default function FAQ() {
             >
               Things people ask
             </h2>
-          </div>
         </motion.div>
 
         {/* Accordion */}
