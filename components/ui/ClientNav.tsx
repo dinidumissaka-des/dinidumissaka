@@ -218,15 +218,17 @@ export function ClientNav() {
             textDecoration: "none",
             letterSpacing: "-0.02em",
           }}>dinidu.</a>
-          <nav style={{ display: "flex", alignItems: "center", gap: "24px" }}>
-            {navLinks.map((link) => (
-              <FlipButton key={link.label} href={link.href} target={link.target} rel="noopener noreferrer">
-                <FlipButtonFront style={{ ...linkStyle, color: "var(--color-fg)" }}>{link.label}</FlipButtonFront>
-                <FlipButtonBack style={{ ...linkStyle, color: "var(--fg-80)" }}>{link.label}</FlipButtonBack>
-              </FlipButton>
-            ))}
-          </nav>
-          <ClientThemeToggler {...togglerProps} />
+          <div style={{ display: "flex", alignItems: "center", gap: "24px" }}>
+            <nav style={{ display: "flex", alignItems: "center", gap: "24px" }}>
+              {navLinks.map((link) => (
+                <FlipButton key={link.label} href={link.href} target={link.target} rel="noopener noreferrer">
+                  <FlipButtonFront style={{ ...linkStyle, color: "var(--color-fg)" }}>{link.label}</FlipButtonFront>
+                  <FlipButtonBack style={{ ...linkStyle, color: "var(--fg-80)" }}>{link.label}</FlipButtonBack>
+                </FlipButton>
+              ))}
+            </nav>
+            <ClientThemeToggler {...togglerProps} />
+          </div>
         </div>
       </div>
     </>
