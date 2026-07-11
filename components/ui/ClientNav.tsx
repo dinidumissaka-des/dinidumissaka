@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "motion/react";
 import { ClientThemeToggler } from "@/components/ui/ClientThemeToggler";
@@ -46,11 +46,15 @@ const togglerProps = {
 
 export function ClientNav() {
   const [open, setOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
+  const blurRef = useRef<HTMLDivElement>(null);
   const pathname = usePathname();
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 20);
+    const onScroll = () => {
+      if (blurRef.current) {
+        blurRef.current.style.opacity = window.scrollY > 20 ? "1" : "0";
+      }
+    };
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
@@ -188,7 +192,7 @@ export function ClientNav() {
         }}
       >
         {/* Blur layer — fades in on scroll, extends below nav for smooth gradient */}
-        <div style={{
+        <div ref={blurRef} style={{
           position: "absolute",
           top: 0,
           left: 0,
@@ -198,7 +202,8 @@ export function ClientNav() {
           WebkitBackdropFilter: "blur(20px)",
           maskImage: "linear-gradient(to bottom, black 0%, black 25%, rgba(0,0,0,0.6) 50%, rgba(0,0,0,0.2) 70%, transparent 100%)",
           WebkitMaskImage: "linear-gradient(to bottom, black 0%, black 25%, rgba(0,0,0,0.6) 50%, rgba(0,0,0,0.2) 70%, transparent 100%)",
-          opacity: scrolled ? 1 : 0,
+          opacity: 0,
+          willChange: "opacity",
           transition: "opacity 0.4s ease",
           pointerEvents: "none",
         }} />
