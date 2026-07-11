@@ -185,7 +185,8 @@ export function ClientNav() {
           padding: "12px 2px",
           display: "flex",
           alignItems: "center",
-          justifyContent: "space-between",
+          justifyContent: "flex-end",
+          gap: "8px",
         }}>
           <nav style={{ display: "flex", alignItems: "center", gap: "4px" }}>
             {navLinks.map((link) => (
