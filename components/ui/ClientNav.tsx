@@ -207,9 +207,17 @@ export function ClientNav() {
           padding: "12px 2px",
           display: "flex",
           alignItems: "center",
-          justifyContent: "flex-end",
+          justifyContent: "space-between",
           gap: "24px",
         }}>
+          <a href="/" style={{
+            fontFamily: "var(--font-fraunces), Georgia, serif",
+            fontSize: "18px",
+            fontWeight: 300,
+            color: "var(--color-fg)",
+            textDecoration: "none",
+            letterSpacing: "-0.02em",
+          }}>dinidu.</a>
           <nav style={{ display: "flex", alignItems: "center", gap: "24px" }}>
             {navLinks.map((link) => (
               <FlipButton key={link.label} href={link.href} target={link.target} rel="noopener noreferrer">
