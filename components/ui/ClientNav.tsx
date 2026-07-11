@@ -183,6 +183,8 @@ export function ClientNav() {
           left: 0,
           right: 0,
           zIndex: 9999,
+          display: "flex",
+          justifyContent: "center",
           backdropFilter: scrolled ? "blur(16px)" : "none",
           WebkitBackdropFilter: scrolled ? "blur(16px)" : "none",
           maskImage: scrolled ? "linear-gradient(to bottom, black 50%, transparent 100%)" : "none",
@@ -193,7 +195,6 @@ export function ClientNav() {
         <div style={{
           maxWidth: "860px",
           width: "100%",
-          margin: "0 auto",
           padding: "12px 2px",
           display: "flex",
           alignItems: "center",
