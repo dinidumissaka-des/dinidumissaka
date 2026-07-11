@@ -58,7 +58,7 @@ export default function RootLayout({
           <SmoothScroll />
           <PageLoader />
           <ClientNav />
-          <main id="main-content" className="pt-8 md:pt-0">{children}</main>
+          <main id="main-content" style={{ paddingTop: "5rem" }}>{children}</main>
           <Footer />
         </ThemeProvider>
       </body>
