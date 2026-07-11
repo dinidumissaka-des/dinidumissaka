@@ -218,7 +218,7 @@ export function ClientNav() {
             color: "var(--color-fg)",
             textDecoration: "none",
             letterSpacing: "-0.02em",
-          }}>dinidu.</a>
+          }}>Dinidu.</a>
           <div style={{ display: "flex", alignItems: "center", gap: "24px" }}>
             <nav style={{ display: "flex", alignItems: "center", gap: "24px" }}>
               {navLinks.map((link) => (
