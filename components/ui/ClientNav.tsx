@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "motion/react";
 import { ClientThemeToggler } from "@/components/ui/ClientThemeToggler";
@@ -46,7 +46,15 @@ const togglerProps = {
 
 export function ClientNav() {
   const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const pathname = usePathname();
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 20);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
   if (pathname === "/visual-journal") return null;
 
   return (
@@ -175,6 +183,12 @@ export function ClientNav() {
           left: 0,
           right: 0,
           zIndex: 9999,
+          backdropFilter: scrolled ? "blur(12px)" : "none",
+          WebkitBackdropFilter: scrolled ? "blur(12px)" : "none",
+          background: scrolled
+            ? "linear-gradient(to bottom, color-mix(in srgb, var(--color-bg) 80%, transparent) 0%, transparent 100%)"
+            : "transparent",
+          transition: "backdrop-filter 0.3s ease, background 0.3s ease",
         }}
       >
         <div style={{
