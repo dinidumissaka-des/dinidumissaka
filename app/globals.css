@@ -406,11 +406,11 @@ body::after {
 }
 
 body::before {
-  left: max(16px, calc(50% - 508px));
+  left: max(16px, calc(50% - 430px));
 }
 
 body::after {
-  right: max(16px, calc(50% - 508px));
+  right: max(16px, calc(50% - 430px));
 }
 
 /* ════════════════════════════════════════════════════════════
