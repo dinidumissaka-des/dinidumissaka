@@ -197,7 +197,7 @@ export function ClientNav() {
           display: "flex",
           alignItems: "center",
           justifyContent: "flex-end",
-          gap: "8px",
+          gap: "24px",
         }}>
           <nav style={{ display: "flex", alignItems: "center", gap: "24px" }}>
             {navLinks.map((link) => (
