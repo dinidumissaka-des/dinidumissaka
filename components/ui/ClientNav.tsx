@@ -192,6 +192,7 @@ export function ClientNav() {
       >
         <div style={{
           maxWidth: "860px",
+          width: "100%",
           margin: "0 auto",
           padding: "12px 2px",
           display: "flex",
