@@ -209,6 +209,7 @@ export function ClientNav() {
           alignItems: "center",
           justifyContent: "space-between",
           gap: "24px",
+          borderBottom: "1px solid var(--border-section)",
         }}>
           <a href="/" style={{
             fontFamily: "var(--font-fraunces), Georgia, serif",
