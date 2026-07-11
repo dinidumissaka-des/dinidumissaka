@@ -175,8 +175,6 @@ export function ClientNav() {
           left: 0,
           right: 0,
           zIndex: 9999,
-          background: "var(--color-bg)",
-          borderBottom: "1px solid var(--border-section)",
         }}
       >
         <div style={{
