@@ -214,11 +214,10 @@ export function ClientNav() {
             fontFamily: "var(--font-fraunces), Georgia, serif",
             fontSize: "18px",
             fontWeight: 300,
-            fontStyle: "italic",
             color: "var(--color-fg)",
             textDecoration: "none",
             letterSpacing: "-0.02em",
-          }}>Dinidu.</a>
+          }}>Dinid<span style={{ fontStyle: "italic" }}>u</span>.</a>
           <div style={{ display: "flex", alignItems: "center", gap: "24px" }}>
             <nav style={{ display: "flex", alignItems: "center", gap: "24px" }}>
               {navLinks.map((link) => (
