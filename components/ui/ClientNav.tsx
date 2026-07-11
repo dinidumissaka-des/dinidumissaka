@@ -183,6 +183,7 @@ export function ClientNav() {
           left: 0,
           right: 0,
           zIndex: 9999,
+          overflow: "hidden",
         }}
       >
         {/* Blur layer — fades top to bottom */}
