@@ -1,8 +1,7 @@
 "use client";
 
-import { useState } from "react";
 import { usePathname } from "next/navigation";
-import { motion, AnimatePresence } from "motion/react";
+import { motion } from "motion/react";
 import { ClientThemeToggler } from "@/components/ui/ClientThemeToggler";
 import {
   FlipButton,
@@ -45,7 +44,6 @@ const togglerProps = {
 };
 
 export function ClientNav() {
-  const [open, setOpen] = useState(false);
   const pathname = usePathname();
   if (pathname === "/visual-journal") return null;
 
@@ -61,110 +59,31 @@ export function ClientNav() {
           right: 0,
           zIndex: 9999,
           alignItems: "center",
-          justifyContent: "flex-end",
-          gap: "8px",
+          justifyContent: "space-between",
           padding: "12px 16px",
           background: "var(--color-bg)",
         }}
       >
         <ClientThemeToggler {...togglerProps} />
-        <button
-          onClick={() => setOpen((v) => !v)}
-          aria-label="Toggle menu"
-          style={{
-            background: "var(--bg-subtle)",
-            border: `1.5px solid ${open ? "var(--color-accent)" : "transparent"}`,
-            borderRadius: "8px",
-            width: "28px",
-            height: "28px",
-            cursor: "pointer",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            color: "var(--color-fg)",
-          }}
-        >
-          <motion.svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round">
-            <motion.line x1="1" y1="3.5" x2="13" y2="3.5" animate={open ? { y: 3, rotate: 45 } : { y: 0, rotate: 0 }} transition={{ duration: 0.2 }} style={{ originX: "50%", originY: "50%" }} />
-            <motion.line x1="1" y1="7" x2="13" y2="7" animate={open ? { opacity: 0 } : { opacity: 1 }} transition={{ duration: 0.15 }} />
-            <motion.line x1="1" y1="10.5" x2="13" y2="10.5" animate={open ? { y: -3, rotate: -45 } : { y: 0, rotate: 0 }} transition={{ duration: 0.2 }} style={{ originX: "50%", originY: "50%" }} />
-          </motion.svg>
-        </button>
+        <nav style={{ display: "flex", alignItems: "center", gap: "20px" }}>
+          {navLinks.map((link) => (
+            <a
+              key={link.label}
+              href={link.href}
+              target={link.target}
+              rel="noopener noreferrer"
+              style={{
+                ...linkStyle,
+                color: "var(--color-fg)",
+                textDecoration: "none",
+                fontSize: "13px",
+              }}
+            >
+              {link.label}
+            </a>
+          ))}
+        </nav>
       </div>
-
-      {/* ── Mobile dropdown ── */}
-      <AnimatePresence>
-        {open && (
-          <motion.div
-            className="mobile-topnav"
-            initial={{ opacity: 0, y: -8 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -8 }}
-            transition={{ duration: 0.22, ease: [0.4, 0, 0.2, 1] }}
-            style={{
-              position: "fixed",
-              top: "52px",
-              left: 0,
-              right: 0,
-              bottom: 0,
-              zIndex: 9998,
-              background: "var(--color-bg)",
-              overflow: "auto",
-              display: "flex",
-              flexDirection: "column",
-              justifyContent: "space-between",
-            }}
-          >
-            <div>
-              {navLinks.map((link) => (
-                <a
-                  key={link.label}
-                  href={link.href}
-                  target={link.target}
-                  rel="noopener noreferrer"
-                  onClick={() => setOpen(false)}
-                  style={{
-                    ...linkStyle,
-                    color: "var(--color-fg)",
-                    textDecoration: "none",
-                    padding: "14px 0 14px 16px",
-                    display: "block",
-                    textAlign: "right",
-                    borderBottom: "1px solid var(--border-section)",
-                  }}
-                >
-                  {link.label}
-                </a>
-              ))}
-            </div>
-
-            {/* Social links — pinned to bottom */}
-            <div style={{ borderTop: "1px solid var(--border-section)", padding: "20px 16px 32px" }}>
-              <div style={{ display: "flex", flexWrap: "wrap", gap: "20px", marginBottom: "12px" }}>
-                {socialLinks.map((link) => (
-                  <a
-                    key={link.label}
-                    href={link.href}
-                    target={link.target}
-                    rel="noopener noreferrer"
-                    onClick={() => setOpen(false)}
-                    style={{
-                      ...linkStyle,
-                      color: "var(--color-fg)",
-                      textDecoration: "none",
-                    }}
-                  >
-                    {link.label}
-                  </a>
-                ))}
-              </div>
-              <p style={{ fontFamily: "var(--font-manrope), sans-serif", fontSize: "12px", color: "var(--color-muted)", margin: 0 }}>
-                Dubai, UAE · Remote worldwide
-              </p>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
 
       {/* ── Desktop sidebar ── */}
       <div
