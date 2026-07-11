@@ -93,6 +93,7 @@ export default function Projects() {
                   aspectRatio: "4 / 3",
                   borderRadius: "4px",
                   overflow: "hidden",
+                  border: "1px solid var(--border-section)",
                   verticalAlign: "middle",
                   marginRight: "0.25em",
                   position: "relative",
