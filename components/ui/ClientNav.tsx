@@ -184,28 +184,31 @@ export function ClientNav() {
           transform: "translateX(-50%)",
           width: "100%",
           maxWidth: "860px",
-          paddingBottom: "80px",
           zIndex: 9999,
-          pointerEvents: "none",
-          backdropFilter: scrolled ? "blur(20px)" : "none",
-          WebkitBackdropFilter: scrolled ? "blur(20px)" : "none",
-          maskImage: scrolled
-            ? "linear-gradient(to bottom, black 0%, black 25%, rgba(0,0,0,0.6) 50%, rgba(0,0,0,0.2) 70%, transparent 100%)"
-            : "none",
-          WebkitMaskImage: scrolled
-            ? "linear-gradient(to bottom, black 0%, black 25%, rgba(0,0,0,0.6) 50%, rgba(0,0,0,0.2) 70%, transparent 100%)"
-            : "none",
-          opacity: scrolled ? 1 : 0,
-          transition: "opacity 0.4s ease",
         }}
       >
+        {/* Blur layer — fades in on scroll, extends below nav for smooth gradient */}
         <div style={{
+          position: "absolute",
+          top: 0,
+          left: 0,
+          right: 0,
+          height: "130px",
+          backdropFilter: "blur(20px)",
+          WebkitBackdropFilter: "blur(20px)",
+          maskImage: "linear-gradient(to bottom, black 0%, black 25%, rgba(0,0,0,0.6) 50%, rgba(0,0,0,0.2) 70%, transparent 100%)",
+          WebkitMaskImage: "linear-gradient(to bottom, black 0%, black 25%, rgba(0,0,0,0.6) 50%, rgba(0,0,0,0.2) 70%, transparent 100%)",
+          opacity: scrolled ? 1 : 0,
+          transition: "opacity 0.4s ease",
+          pointerEvents: "none",
+        }} />
+        <div style={{
+          position: "relative",
           padding: "12px 2px",
           display: "flex",
           alignItems: "center",
           justifyContent: "flex-end",
           gap: "24px",
-          pointerEvents: "auto",
         }}>
           <nav style={{ display: "flex", alignItems: "center", gap: "24px" }}>
             {navLinks.map((link) => (
