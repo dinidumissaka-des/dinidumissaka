@@ -183,26 +183,13 @@ export function ClientNav() {
           left: 0,
           right: 0,
           zIndex: 9999,
-          overflow: "hidden",
+          backdropFilter: scrolled ? "blur(16px)" : "none",
+          WebkitBackdropFilter: scrolled ? "blur(16px)" : "none",
+          maskImage: scrolled ? "linear-gradient(to bottom, black 50%, transparent 100%)" : "none",
+          WebkitMaskImage: scrolled ? "linear-gradient(to bottom, black 50%, transparent 100%)" : "none",
+          transition: "backdrop-filter 0.3s ease",
         }}
       >
-        {/* Blur layer — fades top to bottom */}
-        <div
-          style={{
-            position: "absolute",
-            top: 0,
-            left: 0,
-            right: 0,
-            height: "120px",
-            backdropFilter: scrolled ? "blur(12px)" : "none",
-            WebkitBackdropFilter: scrolled ? "blur(12px)" : "none",
-            maskImage: "linear-gradient(to bottom, black 0%, black 40%, transparent 100%)",
-            WebkitMaskImage: "linear-gradient(to bottom, black 0%, black 40%, transparent 100%)",
-            pointerEvents: "none",
-            opacity: scrolled ? 1 : 0,
-            transition: "opacity 0.3s ease",
-          }}
-        />
         <div style={{
           maxWidth: "860px",
           margin: "0 auto",
