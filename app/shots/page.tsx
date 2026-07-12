@@ -48,6 +48,8 @@ const localShots: { src: string; type: "image" | "video" }[] = [
   { src: "/images/shots/shots-21.png", type: "image" },
   { src: "/images/shots/shots-22.png", type: "image" },
   { src: "/images/shots/shots-23.png", type: "image" },
+  { src: "/images/shots/shots-24.png", type: "image" },
+  { src: "/images/shots/shots-25.png", type: "image" },
 ];
 
 export default function ShotsPage() {
