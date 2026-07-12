@@ -108,32 +108,32 @@ const mintiFeatures = [
   {
     title: "Expense Tracking",
     description: "Log daily expenses in seconds. The home screen surfaces your running month total, today's spend, and average per day — so you always know where you stand without opening a dashboard.",
-    image: "/images/projects/minti/expences.png",
+    image: "/images/projects/minti/expences.webp",
   },
   {
     title: "Smart Insights",
     description: "Auto-generated cards surface what actually matters: your biggest spend category, projected end-of-month total, savings rate, and which categories jumped vs. last month. No charts to configure — Minti figures out what's worth telling you.",
-    image: "/images/projects/minti/insights.png",
+    image: "/images/projects/minti/insights.webp",
   },
   {
     title: "Spend by Category",
     description: "Every expense maps to a category. The By Category view ranks them by total and percentage, so the pattern is obvious at a glance — not buried in a pie chart.",
-    image: "/images/projects/minti/spending-by-category.png",
+    image: "/images/projects/minti/spending-by-category.webp",
   },
   {
     title: "Month-over-Month",
     description: "One tap to see how this month's categories compare to last month. Each category shows its percentage change — up, down, or new — so you can spot shifts without doing any maths.",
-    image: "/images/projects/minti/vs-last-month.png",
+    image: "/images/projects/minti/vs-last-month.webp",
   },
   {
     title: "Income & Savings Rate",
     description: "Set your base income and log one-off payments separately. Minti calculates your savings rate in real time and shows exactly how much of this month's income you've kept.",
-    image: "/images/projects/minti/income.png",
+    image: "/images/projects/minti/income.webp",
   },
   {
     title: "Bills & Subscriptions",
     description: "Recurring bills live separately from variable spending. See your monthly fixed cost, projected annual spend, and how each subscription contributes — so nothing hides in the noise.",
-    image: "/images/projects/minti/bills.png",
+    image: "/images/projects/minti/bills.webp",
   },
 ];
 
