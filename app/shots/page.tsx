@@ -8,6 +8,7 @@ export const metadata: Metadata = {
 };
 
 const localShots: { src: string; type: "image" | "video" }[] = [
+  { src: "/images/shots/shot-14.mp4", type: "video" },
   { src: "/images/shots/shot-04.webp", type: "image" },
   { src: "/images/shots/shot-05.webp", type: "image" },
   { src: "/images/shots/shot-06.webp", type: "image" },
@@ -18,7 +19,6 @@ const localShots: { src: string; type: "image" | "video" }[] = [
   { src: "/images/shots/shot-11.webp", type: "image" },
   { src: "/images/shots/shot-12.webp", type: "image" },
   { src: "/images/shots/shot-13.webp", type: "image" },
-  { src: "/images/shots/shot-14.mp4", type: "video" },
   { src: "/images/shots/shot-15.mp4", type: "video" },
   { src: "/images/shots/shot-16.png", type: "image" },
   { src: "/images/shots/shot-17.png", type: "image" },
