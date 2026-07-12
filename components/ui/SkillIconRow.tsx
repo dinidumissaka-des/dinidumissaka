@@ -42,7 +42,7 @@ const skillGroups: SkillGroup[] = [
     label: 'Methodologies',
     icons: [
       { label: 'Design Thinking', src: '/images/design-thinking.webp' },
-      { label: 'User Research', src: '/images/user research.webp' },
+      { label: 'User Research', src: '/images/user-research.webp' },
       { label: 'Design Sprints', src: '/images/design-sprint.webp' },
     ],
   },
@@ -60,7 +60,7 @@ const skillGroups: SkillGroup[] = [
     label: 'Visual Design',
     icons: [
       { label: 'Brand Identity', src: '/images/branding.webp' },
-      { label: 'Typography', src: '/images/typogrphy.webp' },
+      { label: 'Typography', src: '/images/typography.webp' },
       { label: 'Illustration', src: '/images/illustration.webp' },
       { label: 'Visual Systems', src: '/images/visual-system.webp' },
     ],

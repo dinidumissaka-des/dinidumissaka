@@ -9,14 +9,14 @@ import { useInView } from "motion/react";
 const Stack = dynamic(() => import("@/components/ui/Stack"), { ssr: false });
 
 const journalImages = [
-  "/images/visual journal/image-1.avif",
-  "/images/visual journal/image-2.avif",
-  "/images/visual journal/image-3.avif",
-  "/images/visual journal/image-4.avif",
-  "/images/visual journal/image-5.avif",
-  "/images/visual journal/image-6.avif",
-  "/images/visual journal/image-7.avif",
-  "/images/visual journal/image-8.avif",
+  "/images/visual-journal/image-1.avif",
+  "/images/visual-journal/image-2.avif",
+  "/images/visual-journal/image-3.avif",
+  "/images/visual-journal/image-4.avif",
+  "/images/visual-journal/image-5.avif",
+  "/images/visual-journal/image-6.avif",
+  "/images/visual-journal/image-7.avif",
+  "/images/visual-journal/image-8.avif",
 ];
 
 export default function VisualJournalCard() {

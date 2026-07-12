@@ -6,12 +6,12 @@ import dynamic from "next/dynamic";
 const CircularGallery = dynamic(() => import("@/components/ui/CircularGallery"), { ssr: false });
 
 const galleryItems = [
-  { image: "/images/hero/6738d52e1229ecc84512efce_6.avif",   text: "" },
-  { image: "/images/hero/68b1e9d4fb31e88ed00c8967_X9.avif",  text: "" },
-  { image: "/images/hero/68b1ea78b1f942347cb4f61b_2.webp",   text: "" },
-  { image: "/images/hero/68b1eb35bd4ac3a7682629b3_27.webp",  text: "" },
-  { image: "/images/hero/68b1eb9424d3586bcc435f77_28.webp",  text: "" },
-  { image: "/images/hero/68b1ed0add5449da9816dbdf_2.webp",   text: "" },
+  { image: "/images/hero/hero-01.avif", text: "" },
+  { image: "/images/hero/hero-02.avif", text: "" },
+  { image: "/images/hero/hero-03.webp", text: "" },
+  { image: "/images/hero/hero-04.webp", text: "" },
+  { image: "/images/hero/hero-05.webp", text: "" },
+  { image: "/images/hero/hero-06.webp", text: "" },
 ];
 
 export default function Hero() {

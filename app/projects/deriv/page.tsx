@@ -192,7 +192,7 @@ export default function DerivCaseStudy() {
           <div className="cs-grid" style={{ display: "grid", gridTemplateColumns: "1fr", gap: "1.5rem" }}>
             <div>
               <div style={{ borderRadius: "12px", background: "rgba(0,0,0,0.04)", padding: "1.5rem" }} className="asset-bg">
-                <ScrollImage src="/images/projects/deriv/www2.deriv.me_.webp" />
+                <ScrollImage src="/images/projects/deriv/deriv-website.webp" />
               </div>
               <figcaption style={{ fontFamily: "var(--font-manrope), sans-serif", fontSize: "11px", color: "var(--color-muted)", marginTop: "10px", opacity: 0.6 }}>
                 Before
@@ -221,7 +221,7 @@ export default function DerivCaseStudy() {
           <div style={{ display: "flex", flexDirection: "column", gap: "1.5rem" }}>
             <div>
               <div style={{ borderRadius: "12px", overflow: "hidden", background: "rgba(0,0,0,0.04)" }} className="asset-bg">
-                <ImagePlaceholder hideCaption caption="Modular component library — hero, cards, FAQs, stats, testimonials, CTA blocks" src="/images/projects/deriv/Modular component library.webp" />
+                <ImagePlaceholder hideCaption caption="Modular component library — hero, cards, FAQs, stats, testimonials, CTA blocks" src="/images/projects/deriv/modular-component-library.webp" />
               </div>
               <figcaption style={{ fontFamily: "var(--font-manrope), sans-serif", fontSize: "11px", color: "var(--color-muted)", marginTop: "10px", opacity: 0.6 }}>
                 Modular component library — hero, cards, FAQs, stats, testimonials, CTA blocks
