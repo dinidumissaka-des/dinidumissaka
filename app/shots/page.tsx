@@ -8,24 +8,46 @@ export const metadata: Metadata = {
 };
 
 const localShots: { src: string; type: "image" | "video" }[] = [
-  { src: "/images/shots/original-0a408fbf3f231a1b61f153bbad1ec3d0.webp", type: "image" },
-  { src: "/images/shots/original-268d364f8e77ff54d2add6d5fa169359.webp", type: "image" },
-  { src: "/images/shots/original-29ac1713653698a644b9f1fe22423594.webp", type: "image" },
-  { src: "/images/shots/original-5fb6294eed3cecf86962a832d62b2733.webp", type: "image" },
-  { src: "/images/shots/original-7298659fa77da3a6791e4d42293ec048.webp", type: "image" },
-  { src: "/images/shots/original-ae1fc7650a75702eb697044c5e021bff.webp", type: "image" },
-  { src: "/images/shots/original-c665a917a465d900a42d46df499f37ea.webp", type: "image" },
-  { src: "/images/shots/original-da677f09a31e4f447240c2974aef79c3.webp", type: "image" },
-  { src: "/images/shots/original-e244078a5f8bc1099f12c80c9a98e6ba.webp", type: "image" },
-  { src: "/images/shots/0ce1dcf5d49ca40470b51f9348c40582.webp", type: "image" },
-  { src: "/images/shots/38465931d877aef10b6a778901d1ad42.webp", type: "image" },
-  { src: "/images/shots/699a6d641187d000912cd0338bae6d64.webp", type: "image" },
-  { src: "/images/shots/901d1a0df4e1ed7241f8bbe70236ab16.webp", type: "image" },
-  { src: "/images/shots/d4bbf1789a6e47dd8310c2c071b15745.webp", type: "image" },
-  { src: "/images/shots/9aecee77d806e3d6b2d67bc2fc3e0f6a.mp4", type: "video" },
-  { src: "/images/shots/original-139516fccc84aed93c06ee9920965a4e.mp4", type: "video" },
-  { src: "/images/shots/14th Octomber.png", type: "image" },
-  { src: "/images/shots/29th Octomber.png", type: "image" },
+  { src: "/images/shots/shot-01.webp", type: "image" },
+  { src: "/images/shots/shot-02.webp", type: "image" },
+  { src: "/images/shots/shot-03.webp", type: "image" },
+  { src: "/images/shots/shot-04.webp", type: "image" },
+  { src: "/images/shots/shot-05.webp", type: "image" },
+  { src: "/images/shots/shot-06.webp", type: "image" },
+  { src: "/images/shots/shot-07.webp", type: "image" },
+  { src: "/images/shots/shot-08.webp", type: "image" },
+  { src: "/images/shots/shot-09.webp", type: "image" },
+  { src: "/images/shots/shot-10.webp", type: "image" },
+  { src: "/images/shots/shot-11.webp", type: "image" },
+  { src: "/images/shots/shot-12.webp", type: "image" },
+  { src: "/images/shots/shot-13.webp", type: "image" },
+  { src: "/images/shots/shot-14.mp4", type: "video" },
+  { src: "/images/shots/shot-15.mp4", type: "video" },
+  { src: "/images/shots/shot-16.png", type: "image" },
+  { src: "/images/shots/shot-17.png", type: "image" },
+  { src: "/images/shots/shots-01.png", type: "image" },
+  { src: "/images/shots/shots-02.png", type: "image" },
+  { src: "/images/shots/shots-03.png", type: "image" },
+  { src: "/images/shots/shots-04.png", type: "image" },
+  { src: "/images/shots/shots-05.png", type: "image" },
+  { src: "/images/shots/shots-06.png", type: "image" },
+  { src: "/images/shots/shots-07.png", type: "image" },
+  { src: "/images/shots/shots-08.png", type: "image" },
+  { src: "/images/shots/shots-09.png", type: "image" },
+  { src: "/images/shots/shots-10.png", type: "image" },
+  { src: "/images/shots/shots-11.png", type: "image" },
+  { src: "/images/shots/shots-12.png", type: "image" },
+  { src: "/images/shots/shots-13.png", type: "image" },
+  { src: "/images/shots/shots-14.png", type: "image" },
+  { src: "/images/shots/shots-15.png", type: "image" },
+  { src: "/images/shots/shots-16.png", type: "image" },
+  { src: "/images/shots/shots-17.png", type: "image" },
+  { src: "/images/shots/shots-18.png", type: "image" },
+  { src: "/images/shots/shots-19.png", type: "image" },
+  { src: "/images/shots/shots-20.png", type: "image" },
+  { src: "/images/shots/shots-21.png", type: "image" },
+  { src: "/images/shots/shots-22.png", type: "image" },
+  { src: "/images/shots/shots-23.png", type: "image" },
 ];
 
 export default function ShotsPage() {
@@ -52,7 +74,6 @@ export default function ShotsPage() {
 
 
         <div className="grid grid-cols-2 md:grid-cols-3" style={{ gap: "24px" }}>
-          {/* Local shots */}
           {localShots.map((shot) =>
             shot.type === "video" ? (
               <div
