@@ -405,7 +405,7 @@ body::after {
   bottom: 0;
   width: 1px;
   background-color: var(--border-section);
-  z-index: 9999;
+  z-index: 1;
   pointer-events: none;
 }
 
