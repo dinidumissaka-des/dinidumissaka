@@ -75,7 +75,7 @@ export default function ShotsPage() {
         </Link>
 
 
-        <div className="grid grid-cols-2 md:grid-cols-3" style={{ gap: "24px" }}>
+        <div className="grid grid-cols-2" style={{ gap: "24px" }}>
           {localShots.map((shot) =>
             shot.type === "video" ? (
               <div
