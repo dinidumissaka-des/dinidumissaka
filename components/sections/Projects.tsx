@@ -118,6 +118,27 @@ export default function Projects() {
             </span>
           ))}
         </motion.div>
+
+        <motion.p
+          initial={{ opacity: 0, y: 10 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.5, delay: 0.3 }}
+          className="text-muted"
+          style={{
+            fontFamily: "var(--font-manrope), sans-serif",
+            fontSize: "12px",
+            marginTop: "1.5rem",
+          }}
+        >
+          *More projects and case studies available on{" "}
+          <a
+            href="mailto:dinidumissaka@gmail.com"
+            style={{ color: "var(--color-muted)", textDecoration: "underline", textUnderlineOffset: "3px" }}
+          >
+            request
+          </a>
+          .
+        </motion.p>
       </div>
     </section>
   );
