@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import { ShotItem } from "@/components/ui/ShotItem";
 
 export const metadata: Metadata = {
   title: "Shots — Dinidu Missaka",
@@ -78,38 +79,39 @@ export default function ShotsPage() {
         <div className="grid grid-cols-1" style={{ gap: "24px" }}>
           {localShots.map((shot) =>
             shot.type === "video" ? (
-              <div
-                key={shot.src}
-                className="relative overflow-hidden bg-surface"
-                style={{ aspectRatio: "4 / 3" }}
-              >
-                {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
-                <video
-                  src={shot.src}
-                  autoPlay
-                  loop
-                  muted
-                  playsInline
-                  style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
-                />
-              </div>
+              <ShotItem key={shot.src}>
+                <div
+                  className="relative overflow-hidden bg-surface"
+                  style={{ aspectRatio: "4 / 3" }}
+                >
+                  {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
+                  <video
+                    src={shot.src}
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
+                    style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
+                  />
+                </div>
+              </ShotItem>
             ) : (
-              <div
-                key={shot.src}
-                className="relative overflow-hidden bg-surface"
-                style={{ aspectRatio: "4 / 3" }}
-              >
-                <Image
-                  src={shot.src}
-                  alt="Design shot"
-                  fill
-                  sizes="(max-width: 767px) 50vw, 33vw"
-                  style={{ objectFit: "cover" }}
-                />
-              </div>
+              <ShotItem key={shot.src}>
+                <div
+                  className="relative overflow-hidden bg-surface"
+                  style={{ aspectRatio: "4 / 3" }}
+                >
+                  <Image
+                    src={shot.src}
+                    alt="Design shot"
+                    fill
+                    sizes="100vw"
+                    style={{ objectFit: "cover" }}
+                  />
+                </div>
+              </ShotItem>
             )
           )}
-
         </div>
       </div>
     </main>
