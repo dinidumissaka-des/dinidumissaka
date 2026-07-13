@@ -1,0 +1,10 @@
+{
+  "redirects": [
+    {
+      "source": "/:path*",
+      "has": [{ "type": "host", "value": "www.dinidumissaka.com" }],
+      "destination": "https://dinidumissaka.com/:path*",
+      "permanent": true
+    }
+  ]
+}
