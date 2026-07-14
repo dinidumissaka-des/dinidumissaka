@@ -141,7 +141,7 @@ export function ClientNav() {
                     textDecoration: "none",
                     padding: "14px 16px",
                     display: "block",
-                    textAlign: "right",
+                    textAlign: "left",
                     borderBottom: "1px solid var(--border-section)",
                   }}
                 >
