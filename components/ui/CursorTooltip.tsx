@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { cn } from "@/lib/utils";
 
@@ -13,11 +13,10 @@ export const CursorTooltip = ({
   containerClassName?: string;
 }) => {
   const [isVisible, setIsVisible] = useState(false);
-  const [mouse, setMouse] = useState<{ x: number; y: number }>({ x: 0, y: 0 });
-  const [height, setHeight] = useState(0);
   const [position, setPosition] = useState<{ x: number; y: number }>({ x: 0, y: 0 });
+  const [height, setHeight] = useState(0);
   const contentRef = useRef<HTMLDivElement>(null);
-  const containerRef = useRef<HTMLDivElement>(null);
+  const cursorRef = useRef<{ x: number; y: number }>({ x: 0, y: 0 });
 
   useEffect(() => {
     if (isVisible && contentRef.current) {
@@ -25,64 +24,50 @@ export const CursorTooltip = ({
     }
   }, [isVisible, content]);
 
-  const calculatePosition = (mouseX: number, mouseY: number) => {
-    if (!contentRef.current || !containerRef.current)
-      return { x: mouseX + 12, y: mouseY + 12 };
+  const clamp = (val: number, min: number, max: number) => Math.min(Math.max(val, min), max);
 
-    const tooltip = contentRef.current;
-    const container = containerRef.current;
-    const containerRect = container.getBoundingClientRect();
+  const calculatePosition = useCallback((clientX: number, clientY: number) => {
     const viewportWidth = window.innerWidth;
     const viewportHeight = window.innerHeight;
+    const tooltipWidth = contentRef.current ? (contentRef.current.offsetWidth || 240) : 240;
+    const tooltipHeight = contentRef.current ? contentRef.current.scrollHeight : 120;
+    const offset = 14;
 
-    const tooltipWidth = 240;
-    const tooltipHeight = tooltip.scrollHeight;
-    const absoluteX = containerRect.left + mouseX;
-    const absoluteY = containerRect.top + mouseY;
+    let x = clientX + offset;
+    let y = clientY + offset;
 
-    let finalX = mouseX + 12;
-    let finalY = mouseY + 12;
+    if (x + tooltipWidth > viewportWidth - 8) x = clientX - tooltipWidth - offset;
+    if (y + tooltipHeight > viewportHeight - 8) y = clientY - tooltipHeight - offset;
 
-    if (absoluteX + 12 + tooltipWidth > viewportWidth) finalX = mouseX - tooltipWidth - 12;
-    if (absoluteX + finalX < 0) finalX = -containerRect.left + 12;
-    if (absoluteY + 12 + tooltipHeight > viewportHeight) finalY = mouseY - tooltipHeight - 12;
-    if (absoluteY + finalY < 0) finalY = -containerRect.top + 12;
+    x = clamp(x, 8, viewportWidth - tooltipWidth - 8);
+    y = clamp(y, 8, viewportHeight - tooltipHeight - 8);
 
-    return { x: finalX, y: finalY };
-  };
+    return { x, y };
+  }, []);
 
-  const updateMousePosition = (mouseX: number, mouseY: number) => {
-    setMouse({ x: mouseX, y: mouseY });
-    setPosition(calculatePosition(mouseX, mouseY));
-  };
-
-  const handleMouseEnter = (e: React.MouseEvent<HTMLDivElement>) => {
-    setIsVisible(true);
-    const rect = e.currentTarget.getBoundingClientRect();
-    updateMousePosition(e.clientX - rect.left, e.clientY - rect.top);
-  };
-
-  const handleMouseLeave = () => {
-    setMouse({ x: 0, y: 0 });
-    setPosition({ x: 0, y: 0 });
-    setIsVisible(false);
-  };
-
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (!isVisible) return;
-    const rect = e.currentTarget.getBoundingClientRect();
-    updateMousePosition(e.clientX - rect.left, e.clientY - rect.top);
-  };
-
+  // Recalculate once tooltip has rendered and we know real dimensions
   useEffect(() => {
     if (isVisible && contentRef.current) {
-      setPosition(calculatePosition(mouse.x, mouse.y));
+      setPosition(calculatePosition(cursorRef.current.x, cursorRef.current.y));
     }
-  }, [isVisible, height, mouse.x, mouse.y]);
+  }, [isVisible, height, calculatePosition]);
+
+  const handleMouseEnter = (e: React.MouseEvent) => {
+    cursorRef.current = { x: e.clientX, y: e.clientY };
+    setIsVisible(true);
+    setPosition(calculatePosition(e.clientX, e.clientY));
+  };
+
+  const handleMouseLeave = () => setIsVisible(false);
+
+  const handleMouseMove = (e: React.MouseEvent) => {
+    if (!isVisible) return;
+    cursorRef.current = { x: e.clientX, y: e.clientY };
+    setPosition(calculatePosition(e.clientX, e.clientY));
+  };
 
   return (
     <div
-      ref={containerRef}
       className={cn("relative inline", containerClassName)}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
@@ -97,13 +82,13 @@ export const CursorTooltip = ({
             animate={{ height, opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
             transition={{ type: "spring", stiffness: 200, damping: 20 }}
-            className="pointer-events-none absolute z-50 min-w-[15rem] overflow-hidden rounded-xl"
+            className="pointer-events-none fixed z-[99999] min-w-[15rem] overflow-hidden rounded-xl"
             style={{
               top: position.y,
               left: position.x,
               background: "var(--color-bg)",
               border: "1px solid var(--border-item)",
-              boxShadow: "0 4px 24px rgba(0,0,0,0.08)",
+              boxShadow: "0 4px 24px rgba(0,0,0,0.12)",
             }}
           >
             <div ref={contentRef} className="p-3 text-sm text-neutral-600 dark:text-neutral-400">
