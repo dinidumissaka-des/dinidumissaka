@@ -6,6 +6,7 @@ import { ThemeProvider } from "@/components/layout/ThemeProvider";
 import PageLoader from "@/components/ui/PageLoader";
 import SmoothScroll from "@/components/ui/SmoothScroll";
 import { ClientNav } from "@/components/ui/ClientNav";
+import { ScrollIndicator } from "@/components/ui/ScrollIndicator";
 import SkipLink from "@/components/ui/SkipLink";
 
 const fraunces = Fraunces({
@@ -56,8 +57,11 @@ export default function RootLayout({
           <SmoothScroll />
           <PageLoader />
           <ClientNav />
-          <main id="main-content" style={{ paddingTop: "3rem" }}>{children}</main>
-          <Footer />
+          <ScrollIndicator />
+          <div id="content-scale-wrapper" style={{ transformOrigin: "top center" }}>
+            <main id="main-content" style={{ paddingTop: "3rem" }}>{children}</main>
+            <Footer />
+          </div>
         </ThemeProvider>
       </body>
     </html>

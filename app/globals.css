@@ -410,11 +410,15 @@ body::after {
 }
 
 body::before {
-  left: max(16px, calc(50% - 430px));
+  left: max(16px, calc(50% - var(--container-half, 430px)));
 }
 
 body::after {
-  right: max(16px, calc(50% - 430px));
+  right: max(16px, calc(50% - var(--container-half, 430px)));
+}
+
+@media (max-width: 767px) {
+  .container-scaler { display: none !important; }
 }
 
 /* ════════════════════════════════════════════════════════════

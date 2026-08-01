@@ -187,7 +187,7 @@ export function ClientNav() {
           left: "50%",
           transform: "translateX(-50%)",
           width: "100%",
-          maxWidth: "860px",
+          maxWidth: "calc(var(--container-half, 430px) * 2)",
           zIndex: 9999,
         }}
       >
