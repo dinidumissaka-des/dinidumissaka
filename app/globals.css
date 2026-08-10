@@ -422,6 +422,25 @@ body::after {
 }
 
 /* ════════════════════════════════════════════════════════════
+   Shot scroll-scale — CSS scroll-driven (compositor thread,
+   works reliably for every item regardless of count)
+   ════════════════════════════════════════════════════════════ */
+@supports (animation-timeline: view()) {
+  .shot-scale-item {
+    animation: shot-scale linear both;
+    animation-timeline: view();
+    animation-range: cover;
+  }
+
+  @keyframes shot-scale {
+    0%   { transform: scale(0.88); }
+    15%  { transform: scale(1); }
+    85%  { transform: scale(1); }
+    100% { transform: scale(0.88); }
+  }
+}
+
+/* ════════════════════════════════════════════════════════════
    Logo Strip
    ════════════════════════════════════════════════════════════ */
 .logo-strip {
