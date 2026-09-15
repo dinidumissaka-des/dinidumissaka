@@ -6,7 +6,7 @@ import Image from "next/image";
 export const metadata: Metadata = {
   title: "Ratā — Case Study",
   description:
-    "Designing and building Ratā — a design system of 28 components and seven brand themes, where accessibility and design decisions are enforced by the build rather than written down and hoped for.",
+    "Designing and building Ratā — a design system of 30 components and seven brand themes, where accessibility and design decisions are enforced by the build rather than written down and hoped for.",
 };
 
 const sectionLabel: React.CSSProperties = {
@@ -70,7 +70,7 @@ const mono: React.CSSProperties = {
 
 /* ── The system at a glance ── */
 const stats = [
-  { value: "28", label: "components, across 8 families" },
+  { value: "30", label: "components in the registry, 26 fully built" },
   { value: "7", label: "brand themes from the same tokens" },
   { value: "37", label: "contrast pairings verified every build" },
   { value: "345", label: "documented design tokens" },
@@ -223,8 +223,8 @@ export default function RataCaseStudy() {
             { label: "Type", value: "Design system · Multi-brand" },
             {
               label: "Live",
-              value: "rata-design-system.vercel.app",
-              href: "https://rata-design-system.vercel.app",
+              value: "rats-design.vercel.app",
+              href: "https://rats-design.vercel.app",
             },
           ].map((item) => (
             <div key={item.label} style={{ display: "flex", flexDirection: "row", alignItems: "center", gap: "12px" }}>
@@ -251,7 +251,7 @@ export default function RataCaseStudy() {
         {/* Intro */}
         <div style={divider}>
           <p style={{ ...body, marginBottom: "1rem" }}>
-            Ratā is a design system for web apps and websites — 28 components across eight families, sitting on a
+            Ratā is a design system for web apps and websites — 30 components across eight families, sitting on a
             token layer that can retheme the entire system from a handful of decisions. I designed and built every
             layer of it: the tokens, the accessibility behaviour, the components, the documentation site, and the
             process for adding to it.
@@ -274,9 +274,10 @@ export default function RataCaseStudy() {
         {/* Cover */}
         <div style={divider}>
           <Figure
-            src="/images/projects/rata/gallery-color.png"
-            alt="The Ratā documentation site showing the colour token layers, with a brand and light/dark switcher"
-            caption="The documentation site — token foundations, every component, and a switcher for brand and colour scheme."
+            src="/images/projects/rata/gallery-home.png"
+            alt="The Ratā documentation site landing page, with the system's own counts for components, tokens and contrast pairings"
+            caption="The documentation site — and the system reporting its own size, measured rather than claimed."
+            height={1500}
           />
         </div>
 
@@ -422,16 +423,16 @@ export default function RataCaseStudy() {
 
           <div className="rata-pair" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1.5rem" }}>
             <Figure
-              src="/images/projects/rata/button-light.png"
-              alt="The button component in a green brand, light scheme"
+              src="/images/projects/rata/brand-light.png"
+              alt="The component gallery in a green brand, light scheme"
               caption="One brand, light."
               width={1200}
               height={900}
             />
             <Figure
-              src="/images/projects/rata/button-dark.png"
-              alt="The same button component in a rust brand, dark scheme"
-              caption="Another brand, dark. Same component, same tokens."
+              src="/images/projects/rata/brand-dark.png"
+              alt="The same component gallery in a rust brand, dark scheme"
+              caption="Another brand, dark. Same components, same tokens."
               width={1200}
               height={900}
             />
@@ -481,22 +482,26 @@ export default function RataCaseStudy() {
 
           <p style={{ ...body, marginBottom: "2rem" }}>
             Because the written half of a contract stands on its own, it can exist before the component does — the
-            API gets argued about and approved while changing it is still cheap. And every component publishes where
-            it actually is, including the parts that don&apos;t exist yet.{" "}
-            <span style={b}>The Figma column says future for twenty-seven of twenty-eight components, in public.</span>{" "}
-            A status matrix that only ever reads green is one nobody trusts.
+            API gets argued about and approved while changing it is still cheap. Two components are at exactly that
+            stage right now: their pages are live, their options documented,{" "}
+            <span style={b}>and where the component would render, the gallery says so plainly — not built yet.</span>
+          </p>
+          <p style={{ ...body, marginBottom: "2rem" }}>
+            Everything publishes where it actually is, including what doesn&apos;t exist. The Figma column reads{" "}
+            <span style={mono}>future</span>{" "}for twenty-nine of the thirty, in public.{" "}
+            <span style={b}>A status matrix that only ever reads green is one nobody trusts.</span>
           </p>
 
           <Figure
-            src="/images/projects/rata/status-matrix.png"
-            alt="The component index showing every component's status for CSS, React and Figma"
-            caption="Every component, and the honest state of each of its artefacts."
-            height={1500}
+            src="/images/projects/rata/component-gallery.png"
+            alt="The component index, with every component rendered running, and an unbuilt one showing its spec placeholder"
+            caption="Every component shown running rather than described — including the ones that are still only an approved spec."
+            height={1600}
           />
         </div>
 
-        {/* AI angle */}
-        <div style={divider}>
+        {/* AI angle — last content block, so no bottom rule above "Next" */}
+        <div style={{ ...divider, borderBottom: "none", paddingBottom: 0, marginBottom: 0 }}>
           <h2 style={sectionTitle}>Designing for the reader that isn&apos;t human</h2>
           <p style={{ ...body, marginBottom: "1rem" }}>
             A growing share of the code that consumes a design system is now written with AI assistance. That reader
@@ -516,18 +521,6 @@ export default function RataCaseStudy() {
             system&apos;s own rules: palette colours used where a semantic one exists, hardcoded values, missing
             focus rings, forbidden contrast pairings.{" "}
             <span style={b}>If the difference between the two ever disappears, that&apos;s a failure too.</span>
-          </p>
-        </div>
-
-        {/* What I'd do differently */}
-        <div style={{ ...divider, borderBottom: "none", paddingBottom: 0, marginBottom: 0 }}>
-          <h2 style={sectionTitle}>What I&apos;d do differently</h2>
-          <p style={body}>
-            There is still one place where the system relies on somebody remembering: the order component styles load
-            in is a list that has to be updated by hand when a component is added. Everywhere else, getting it wrong
-            tells you.{" "}
-            <span style={b}>That one stays quiet</span>{" "}— which makes it exactly the kind of thing this system exists
-            to eliminate, and the next thing I&apos;m fixing.
           </p>
         </div>
 
