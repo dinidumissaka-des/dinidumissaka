@@ -46,10 +46,10 @@ export const projects: Project[] = [
     title: "Ratā",
     subtitle: "Design System",
     year: "2026",
-    rotatingTexts: ["Design System", "Agent-Readable Docs", "TypeScript Monorepo", "Token-First"],
+    rotatingTexts: ["Design System", "Multi-Brand Theming", "Accessibility", "Design Tokens"],
     description:
-      "Built Ratā, a token-first design system whose entire component surface is queryable from a terminal — documentation written to be read by coding agents, not just by people.",
-    image: "/images/projects/rata/rata-cover.png",
+      "Designed and built Ratā, a multi-brand design system of 28 components where accessibility and design decisions are enforced by the build instead of written down and hoped for.",
+    image: "/images/projects/rata/gallery-color.png",
     homeImage: "/images/home/projects/rata.png",
     url: "https://rata-design-system.vercel.app",
   },

@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import BackButton from "@/components/ui/BackButton";
-import ParallaxImage from "@/components/ui/ParallaxImage";
+import Image from "next/image";
 
 export const metadata: Metadata = {
   title: "Ratā — Case Study",
   description:
-    "Designing and building Ratā — a token-first design system whose entire component surface is queryable from a terminal, documented to be read by coding agents as well as people.",
+    "Designing and building Ratā — a design system of 28 components and seven brand themes, where accessibility and design decisions are enforced by the build rather than written down and hoped for.",
 };
 
 const sectionLabel: React.CSSProperties = {
@@ -68,65 +68,125 @@ const mono: React.CSSProperties = {
   color: "var(--color-fg)",
 };
 
-/* ── CLI surface — the five commands that answer most questions ── */
-const cliCommands = [
-  { cmd: "npm run ui -- list", note: "every component, one line each" },
-  { cmd: "npm run ui -- props button", note: "props, types, defaults — read from source" },
-  { cmd: "npm run ui -- contract button", note: "what each prop is FOR, and when not to use it" },
-  { cmd: "npm run ui -- tokens focus", note: "the --rata-* custom properties, filtered" },
-  { cmd: "npm run ui -- pages", note: "existing page shells — find the precedent" },
+/* ── The system at a glance ── */
+const stats = [
+  { value: "28", label: "components, across 8 families" },
+  { value: "7", label: "brand themes from the same tokens" },
+  { value: "37", label: "contrast pairings verified every build" },
+  { value: "345", label: "documented design tokens" },
 ];
 
-/* ── The two halves of every component contract ── */
-const contractHalves = [
+/* ── Real rules from the component contracts, quoted as written ── */
+const contractRules = [
   {
-    half: "Derived",
-    covers: "Prop names, types, optionality, defaults",
-    source: "The React source",
-    owner: "Nobody — it's parsed",
+    rule: "Two primary buttons in one view — the tier is a claim about priority, and two claims cancel out.",
+    prop: "variant · don't",
   },
   {
-    half: "Written",
-    covers: "What a prop is for, when not to use it, conflicts, the a11y obligation",
-    source: "registry/components/<name>.json",
-    owner: "Me",
+    rule: "Shrinking to sm to fit a cramped layout — fix the layout budget instead.",
+    prop: "size · don't",
+  },
+  {
+    rule: "Variant is visual only. A destructive action still needs its own confirmation step — colour is not a warning.",
+    prop: "variant · accessibility",
+  },
+  {
+    rule: "Any action whose icon is not already conventional — an unlabelled novel icon is unreadable.",
+    prop: "iconOnly · don't",
   },
 ];
 
-/* ── What the cross-check refuses to let through ── */
-const buildFailures = [
-  "A documented prop the component no longer declares.",
-  "A declared prop nobody documented — an undocumented prop is an unusable one.",
-  "A conflicts entry naming a prop that doesn't exist.",
-  "A hand-written type or default on a component that's already implemented.",
+/* ── Accessibility decisions the build holds in place ── */
+const a11yDecisions = [
+  {
+    title: "Disabled controls stay discoverable",
+    detail:
+      "A natively disabled button drops out of the tab order and stops being announced, so someone using a keyboard or screen reader never learns the action exists. Ratā marks it disabled to assistive tech and blocks the click instead.",
+  },
+  {
+    title: "Focus is never removed",
+    detail:
+      "Every interactive control draws a focus ring from the same tokens, and never offsets it to zero on a filled control where it would disappear into the fill.",
+  },
+  {
+    title: "Colour never carries a state alone",
+    detail:
+      "A status colour is always paired with a message. Anyone who cannot separate the two hues still gets the information.",
+  },
 ];
 
-function CodeBlock({
-  label,
-  children,
+/* ── The gated order a component moves through ── */
+const buildOrder = [
+  {
+    step: "Behaviour first",
+    detail:
+      "What the component does, what it announces, what each option means — approved before any visual work. Changing this later is expensive. Changing it now is free.",
+  },
+  {
+    step: "Then the token mapping",
+    detail:
+      "Each state maps to a semantic token, approved one state at a time rather than as a batch. If nothing fits, adding a token is its own decision with its own interview.",
+  },
+  {
+    step: "Only then the visual layer",
+    detail:
+      "The CSS and the React component are those approved decisions rendered — not a place where new ones get made quietly.",
+  },
+  {
+    step: "Then it ships, and the checking starts",
+    detail:
+      "The moment a component is marked built, the system begins verifying it against the API approved in step one. A prop added along the way and never documented fails the build.",
+  },
+];
+
+/**
+ * Documentation screenshots are evidence, so they are shown whole: no crop,
+ * no parallax scale that would clip the sidebar or the heading off the edge.
+ */
+function Figure({
+  src,
+  alt,
+  caption,
+  width = 1440,
+  height = 1400,
 }: {
-  label: string;
-  children: React.ReactNode;
+  src: string;
+  alt: string;
+  caption: string;
+  width?: number;
+  height?: number;
 }) {
   return (
-    <div
-      style={{
-        border: "1px solid var(--border-item)",
-        borderRadius: "12px",
-        background: "var(--bg-card)",
-        overflow: "hidden",
-      }}
-    >
+    <figure style={{ margin: 0 }}>
       <div
         style={{
-          padding: "12px 20px",
-          borderBottom: "1px solid var(--border-item)",
+          borderRadius: "12px",
+          overflow: "hidden",
+          border: "1px solid var(--border-section)",
+          lineHeight: 0,
         }}
       >
-        <span style={{ ...mono, fontSize: "11px", color: "var(--color-muted)" }}>{label}</span>
+        <Image
+          src={src}
+          alt={alt}
+          width={width}
+          height={height}
+          sizes="(max-width: 640px) 100vw, 1016px"
+          style={{ width: "100%", height: "auto", display: "block" }}
+        />
       </div>
-      <div style={{ padding: "20px", overflowX: "auto" }}>{children}</div>
-    </div>
+      <figcaption
+        style={{
+          fontFamily: "var(--font-manrope), sans-serif",
+          fontSize: "11px",
+          color: "var(--color-muted)",
+          marginTop: "10px",
+          opacity: 0.6,
+        }}
+      >
+        {caption}
+      </figcaption>
+    </figure>
   );
 }
 
@@ -137,7 +197,8 @@ export default function RataCaseStudy() {
         @media (max-width: 640px) {
           .cs-grid { grid-template-columns: 1fr !important; }
           .cs-meta { gap: 1.25rem !important; }
-          .rata-halves { grid-template-columns: 1fr !important; }
+          .rata-stats { grid-template-columns: repeat(2, 1fr) !important; }
+          .rata-pair { grid-template-columns: 1fr !important; }
         }
       `}</style>
 
@@ -158,8 +219,8 @@ export default function RataCaseStudy() {
         >
           {[
             { label: "Year", value: "2026 – ongoing" },
-            { label: "Role", value: "Sole designer-engineer" },
-            { label: "Type", value: "Design system · TypeScript monorepo" },
+            { label: "Role", value: "Sole designer & builder" },
+            { label: "Type", value: "Design system · Multi-brand" },
             {
               label: "Live",
               value: "rata-design-system.vercel.app",
@@ -185,195 +246,276 @@ export default function RataCaseStudy() {
         </div>
 
         {/* Title */}
-        <h1 style={pageTitle}>A design system built to be read by machines</h1>
+        <h1 style={pageTitle}>Design decisions that can&apos;t quietly erode</h1>
 
         {/* Intro */}
         <div style={divider}>
           <p style={{ ...body, marginBottom: "1rem" }}>
-            Ratā is a token-first design system — 28 components, each usable without React — where the entire
-            component surface is queryable from a terminal in about fifteen seconds. Seed-driven tokens,
-            framework-free CSS, a React layer on top. I designed and built all of it.
+            Ratā is a design system for web apps and websites — 28 components across eight families, sitting on a
+            token layer that can retheme the entire system from a handful of decisions. I designed and built every
+            layer of it: the tokens, the accessibility behaviour, the components, the documentation site, and the
+            process for adding to it.
           </p>
           <p style={{ ...body, marginBottom: "1rem" }}>
-            Design system documentation is written for people and consumed by people. But the highest-volume
-            consumer of a component API is no longer a person reading a docs site —{" "}
-            <span style={b}>it&apos;s a coding agent recalling that API from memory.</span>{" "}And a model that
-            half-remembers your codebase doesn&apos;t fail loudly. It invents props, invents imports, and reaches
-            for generic React patterns that quietly route around your tokens: a hex value here, a hand-rolled{" "}
-            <span style={mono}>:hover</span>{" "}there.
+            Design systems rarely fail at launch. <span style={b}>They erode.</span>{" "}A colour gets hardcoded because
+            the right token was hard to find. A focus ring gets removed because it clipped a layout. A second button
+            style appears because nobody knew the first one already handled it. Every one of those is small, and
+            every one is defensible on the day. Six months later the system describes something nobody is building
+            any more.
           </p>
           <p style={body}>
-            Every one of those is a small, plausible-looking defect that review has to catch by eye. Better prose
-            doesn&apos;t fix that. <span style={b}>The fix is making lookup cheaper than guessing.</span>
+            So the question I designed around wasn&apos;t how to document the rules.{" "}
+            <span style={b}>It was how to make the rules hold.</span>{" "}Contrast is re-measured on every build.
+            Components are checked against the API that was actually approved. When a decision stops being true, the
+            system fails loudly instead of drifting quietly.
           </p>
         </div>
 
-        {/* Cover image */}
+        {/* Cover */}
         <div style={divider}>
-          <figure style={{ margin: 0 }}>
-            <ParallaxImage
-              src="/images/projects/rata/rata-cover.png"
-              alt="The Ratā CLI printing a component's props, its contract, and the focus tokens"
-              width={1920}
-              height={1080}
-              style={{ width: "100%", aspectRatio: "16 / 9", objectFit: "cover", borderRadius: "12px", display: "block" }}
-            />
-            <figcaption
-              style={{
-                fontFamily: "var(--font-manrope), sans-serif",
-                fontSize: "11px",
-                color: "var(--color-muted)",
-                marginTop: "10px",
-                opacity: 0.6,
-              }}
-            >
-              The component surface, queried from the terminal.
-            </figcaption>
-          </figure>
+          <Figure
+            src="/images/projects/rata/gallery-color.png"
+            alt="The Ratā documentation site showing the colour token layers, with a brand and light/dark switcher"
+            caption="The documentation site — token foundations, every component, and a switcher for brand and colour scheme."
+          />
         </div>
 
-        {/* The CLI surface */}
+        {/* Stats */}
         <div style={divider}>
-          <h2 style={sectionTitle}>Fifteen seconds, from a terminal</h2>
-          <CodeBlock label="rata — component surface">
-            {cliCommands.map(({ cmd, note }) => (
-              <div key={cmd} style={{ ...mono, lineHeight: 2, whiteSpace: "nowrap" }}>
-                <span style={{ color: "var(--color-accent)" }}>$ </span>
-                {cmd}
-                <span style={{ color: "var(--color-muted)" }}>{"   # "}{note}</span>
+          <div
+            className="rata-stats"
+            style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: "1.5rem" }}
+          >
+            {stats.map((s) => (
+              <div key={s.label}>
+                <p
+                  style={{
+                    fontFamily: "var(--font-fraunces), Georgia, serif",
+                    fontSize: "clamp(2rem, 4vw, 2.75rem)",
+                    fontWeight: 300,
+                    lineHeight: 1,
+                    color: "var(--color-fg)",
+                    marginBottom: "10px",
+                  }}
+                >
+                  {s.value}
+                </p>
+                <p style={{ ...body, fontSize: "13px", margin: 0 }}>{s.label}</p>
               </div>
             ))}
-          </CodeBlock>
-          <p style={{ ...body, marginTop: "2rem" }}>
-            <span style={mono}>props</span>{" "}is parsed out of the React source at the path the component&apos;s
-            registry manifest names. <span style={b}>Nobody maintains it. It can&apos;t go stale, because
-            there&apos;s no copy to go stale.</span>{" "}The same data ships as a generated static file — 1,165 lines —
-            for agents that want the whole surface at once, and the token layer ships the same way: 2,023 lines of
-            generated reference, plus the rules as JSDoc on hover and as JSON with measured contrast ratios.
-          </p>
+          </div>
         </div>
 
-        {/* Two halves */}
+        {/* Contracts as design documents */}
         <div style={divider}>
-          <h2 style={sectionTitle}>Contracts have two halves</h2>
+          <h2 style={sectionTitle}>A component is more than how it looks</h2>
+          <p style={{ ...body, marginBottom: "1rem" }}>
+            The hard part of a component was never the visual design. It&apos;s what the thing{" "}
+            <span style={b}>means</span>{" "}— which decision it represents, when to reach for something else, and what
+            using it obliges you to do. That knowledge usually lives in a designer&apos;s head, gets explained in
+            review, and is lost the moment someone new picks the component up.
+          </p>
           <p style={{ ...body, marginBottom: "2rem" }}>
-            A prop&apos;s type tells you what compiles. It doesn&apos;t tell you what&apos;s correct.{" "}
-            <span style={mono}>iconOnly</span>{" "}requires an <span style={mono}>aria-label</span>.{" "}
-            <span style={mono}>loading</span>{" "}and <span style={mono}>disabled</span>{" "}are mutually exclusive. A
-            disabled text field still submits its value.{" "}
-            <span style={b}>None of that is recoverable from a type signature, and all of it is what an agent gets
-            wrong.</span>{" "}So every contract is split, and the halves are never mixed.
+            In Ratā every component carries that reasoning as part of the system itself. Each option is documented
+            with what it&apos;s for, what to avoid, what it conflicts with, and what it requires for accessibility.
+            These are real rules from the button&apos;s contract:
           </p>
 
-          <div
-            className="rata-halves"
-            style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: "1.5rem" }}
-          >
-            {contractHalves.map((h) => (
+          <div style={{ display: "flex", flexDirection: "column", gap: "1rem", marginBottom: "2rem" }}>
+            {contractRules.map((r) => (
               <div
-                key={h.half}
+                key={r.rule}
                 style={{
                   border: "1px solid var(--border-item)",
                   borderRadius: "12px",
                   background: "var(--bg-card)",
-                  padding: "1.75rem",
+                  padding: "1.5rem 1.75rem",
                 }}
               >
+                <p
+                  style={{
+                    fontFamily: "var(--font-fraunces), Georgia, serif",
+                    fontSize: "clamp(1rem, 2.2vw, 1.25rem)",
+                    fontWeight: 300,
+                    lineHeight: 1.45,
+                    color: "var(--color-fg)",
+                    margin: 0,
+                  }}
+                >
+                  {r.rule}
+                </p>
+                <p style={{ ...mono, fontSize: "11px", color: "var(--color-muted)", marginTop: "12px", marginBottom: 0 }}>
+                  {r.prop}
+                </p>
+              </div>
+            ))}
+          </div>
+
+          <p style={{ ...body, marginBottom: "2rem" }}>
+            None of that can be read off a screenshot or a type signature, and all of it is what goes wrong when
+            someone reaches for a component in a hurry. The half of a contract that can be read from the code is read
+            from the code; the half that is judgement is written by me —{" "}
+            <span style={b}>and the build refuses to let the two disagree.</span>
+          </p>
+
+          <Figure
+            src="/images/projects/rata/contract-accessibility.png"
+            alt="A component page showing what each prop obliges the user to do, and the behaviour decisions behind it"
+            caption="Every component has an accessibility tab: what each option obliges you to do, and why the behaviour was decided that way."
+            height={1500}
+          />
+        </div>
+
+        {/* Accessibility */}
+        <div style={divider}>
+          <h2 style={sectionTitle}>Accessibility that can&apos;t regress quietly</h2>
+          <p style={{ ...body, marginBottom: "2rem" }}>
+            Accessibility is usually an audit — a report, a list of fixes, and a slow slide back. Here it&apos;s a
+            build step.{" "}
+            <span style={b}>
+              Thirty-seven text and background pairings are re-measured from the real values every single build
+            </span>
+            , in light and dark, for every brand. A pairing that stops meeting contrast fails the build rather than
+            shipping.
+          </p>
+
+          <div style={{ display: "flex", flexDirection: "column", gap: "1.25rem", marginBottom: "2rem" }}>
+            {a11yDecisions.map((d) => (
+              <div key={d.title} style={{ paddingLeft: "1.25rem", borderLeft: "1px solid var(--border-section)" }}>
                 <h3
                   style={{
                     fontFamily: "var(--font-fraunces), Georgia, serif",
-                    fontSize: "20px",
+                    fontSize: "18px",
                     fontWeight: 300,
                     color: "var(--color-fg)",
-                    marginBottom: "1rem",
+                    marginBottom: "6px",
                   }}
                 >
-                  {h.half}
+                  {d.title}
                 </h3>
-                <p style={{ ...body, marginBottom: "1.25rem" }}>{h.covers}</p>
-                <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
-                  <div style={{ display: "flex", gap: "10px", flexWrap: "wrap" }}>
-                    <span style={{ ...metaSmall, fontSize: "11px" }}>Lives in</span>
-                    <span style={{ ...mono, fontSize: "11px" }}>{h.source}</span>
-                  </div>
-                  <div style={{ display: "flex", gap: "10px", flexWrap: "wrap" }}>
-                    <span style={{ ...metaSmall, fontSize: "11px" }}>Maintained by</span>
-                    <span style={{ ...mono, fontSize: "11px" }}>{h.owner}</span>
-                  </div>
+                <p style={{ ...body, margin: 0 }}>{d.detail}</p>
+              </div>
+            ))}
+          </div>
+
+          <Figure
+            src="/images/projects/rata/verified-contrast.png"
+            alt="A table of verified contrast pairings with measured ratios for light and dark"
+            caption="Every pairing, with its measured ratio in both schemes. Re-measured on each build, not audited once."
+          />
+        </div>
+
+        {/* Theming */}
+        <div style={divider}>
+          <h2 style={sectionTitle}>Seven brands, one decision each</h2>
+          <p style={{ ...body, marginBottom: "1rem" }}>
+            Most of the themes state exactly one thing: the accent colour. Spacing, radius, type and motion all
+            inherit. From that single seed the system re-tones its whole palette — and then re-measures every
+            contrast promise against the new colour.
+          </p>
+          <p style={{ ...body, marginBottom: "2rem" }}>
+            That&apos;s the part I&apos;m proudest of as a systems decision.{" "}
+            <span style={b}>A new brand costs one choice, and its accessibility isn&apos;t a separate QA pass.</span>{" "}
+            Two of the themes turn more dials — a warm, high-contrast brand and one with its own radius scale — but
+            they use the same mechanism rather than a fork.
+          </p>
+
+          <div className="rata-pair" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1.5rem" }}>
+            <Figure
+              src="/images/projects/rata/button-light.png"
+              alt="The button component in a green brand, light scheme"
+              caption="One brand, light."
+              width={1200}
+              height={900}
+            />
+            <Figure
+              src="/images/projects/rata/button-dark.png"
+              alt="The same button component in a rust brand, dark scheme"
+              caption="Another brand, dark. Same component, same tokens."
+              width={1200}
+              height={900}
+            />
+          </div>
+        </div>
+
+        {/* Process */}
+        <div style={divider}>
+          <h2 style={sectionTitle}>How a component becomes real</h2>
+          <p style={{ ...body, marginBottom: "2rem" }}>
+            Adding to a design system is where most of them go wrong — a component gets styled around behaviour
+            nobody signed off on, then wired to tokens that get renamed once someone actually looks at them. So the
+            order is gated, and each stage is approved before the next one starts.
+          </p>
+
+          <div style={{ display: "flex", flexDirection: "column", gap: "1.5rem", marginBottom: "2rem" }}>
+            {buildOrder.map((s, i) => (
+              <div key={s.step} style={{ display: "flex", gap: "1.25rem", alignItems: "flex-start" }}>
+                <span
+                  style={{
+                    ...mono,
+                    fontSize: "12px",
+                    color: "var(--color-muted)",
+                    paddingTop: "4px",
+                    minWidth: "1.5rem",
+                  }}
+                >
+                  0{i + 1}
+                </span>
+                <div>
+                  <h3
+                    style={{
+                      fontFamily: "var(--font-fraunces), Georgia, serif",
+                      fontSize: "18px",
+                      fontWeight: 300,
+                      color: "var(--color-fg)",
+                      marginBottom: "6px",
+                    }}
+                  >
+                    {s.step}
+                  </h3>
+                  <p style={{ ...body, margin: 0 }}>{s.detail}</p>
                 </div>
               </div>
             ))}
           </div>
 
-          <p style={{ ...body, marginTop: "2rem", marginBottom: "1rem" }}>
-            The build fails when the halves disagree:
+          <p style={{ ...body, marginBottom: "2rem" }}>
+            Because the written half of a contract stands on its own, it can exist before the component does — the
+            API gets argued about and approved while changing it is still cheap. And every component publishes where
+            it actually is, including the parts that don&apos;t exist yet.{" "}
+            <span style={b}>The Figma column says future for twenty-seven of twenty-eight components, in public.</span>{" "}
+            A status matrix that only ever reads green is one nobody trusts.
           </p>
-          <ul style={{ ...body, listStyle: "none", padding: 0, margin: 0 }}>
-            {buildFailures.map((rule) => (
-              <li
-                key={rule}
-                style={{
-                  paddingLeft: "1.25rem",
-                  position: "relative",
-                  marginBottom: "0.75rem",
-                }}
-              >
-                <span style={{ position: "absolute", left: 0, color: "var(--color-muted)", opacity: 0.6 }}>—</span>
-                {rule}
-              </li>
-            ))}
-          </ul>
-          <p style={{ ...body, marginTop: "1.5rem" }}>
-            That last one is the whole thesis.{" "}
-            <span style={b}>Restating a derived fact by hand recreates the second source of truth the system
-            exists to prevent.</span>{" "}
-            It&apos;s the drift, not the documentation of it.
-          </p>
+
+          <Figure
+            src="/images/projects/rata/status-matrix.png"
+            alt="The component index showing every component's status for CSS, React and Figma"
+            caption="Every component, and the honest state of each of its artefacts."
+            height={1500}
+          />
         </div>
 
-        {/* Contracts before code */}
+        {/* AI angle */}
         <div style={divider}>
-          <h2 style={sectionTitle}>Contracts before code</h2>
+          <h2 style={sectionTitle}>Designing for the reader that isn&apos;t human</h2>
           <p style={{ ...body, marginBottom: "1rem" }}>
-            Because the written half stands alone, a contract can exist before the component does. While a
-            component&apos;s status is <span style={mono}>future</span>, its page renders as{" "}
-            <span style={b}>spec</span> — the props API approved, no code behind it. When it ships and the status
-            flips, the cross-check switches on and verifies the implementation against the API that was approved
-            earlier.
+            A growing share of the code that consumes a design system is now written with AI assistance. That reader
+            doesn&apos;t browse the documentation site — it recalls the API from memory, and{" "}
+            <span style={b}>a half-remembered API doesn&apos;t fail loudly.</span>{" "}It invents an option that sounds
+            plausible, drops in a hex value, hand-rolls a hover state. Each one is a small, convincing-looking defect
+            that review has to catch by eye.
+          </p>
+          <p style={{ ...body, marginBottom: "1rem" }}>
+            So the system answers questions about itself. Any component&apos;s options, its rules, and the tokens
+            behind it can be looked up in seconds — generated from the source rather than maintained by hand, so the
+            answer can&apos;t be out of date.
           </p>
           <p style={body}>
-            That is what turns a gated build order — primitive approved, then token mapping approved state by
-            state, then CSS and React —{" "}
-            <span style={b}>from an honour-system convention into something CI can actually check.</span>
-          </p>
-        </div>
-
-        {/* Vibe tests */}
-        <div style={divider}>
-          <h2 style={sectionTitle}>Current isn&apos;t the same as followed</h2>
-          <p style={{ ...body, marginBottom: "2rem" }}>
-            Proving the docs are correct is easy. Proving they change what gets written is the harder claim, so I
-            measured it. <span style={mono}>internal/vibe-tests</span>{" "}answers the same prompts twice — once with
-            the token documentation in context, once without — and scores both against rules derived from the
-            token build.
-          </p>
-          <CodeBlock label="internal/vibe-tests — what gets scored">
-            {[
-              "palette token used where a semantic one exists",
-              "hardcoded value instead of a token",
-              "contrast pairing the system forbids",
-              "missing focus ring",
-              "hand-rolled hover state",
-            ].map((rule) => (
-              <div key={rule} style={{ ...mono, lineHeight: 2, whiteSpace: "nowrap" }}>
-                <span style={{ color: "var(--color-muted)" }}>— </span>
-                {rule}
-              </div>
-            ))}
-          </CodeBlock>
-          <p style={{ ...body, marginTop: "2rem" }}>
-            <span style={b}>CI fails if the checker stops telling the two arms apart.</span>{" "}The documentation has
-            a regression test.
+            Whether that actually changes what gets written is measured, not assumed. The same twelve tasks are
+            answered twice — once with the token guidance available, once without — and both are scored against the
+            system&apos;s own rules: palette colours used where a semantic one exists, hardcoded values, missing
+            focus rings, forbidden contrast pairings.{" "}
+            <span style={b}>If the difference between the two ever disappears, that&apos;s a failure too.</span>
           </p>
         </div>
 
@@ -381,11 +523,11 @@ export default function RataCaseStudy() {
         <div style={{ ...divider, borderBottom: "none", paddingBottom: 0, marginBottom: 0 }}>
           <h2 style={sectionTitle}>What I&apos;d do differently</h2>
           <p style={body}>
-            CSS load order is still an explicit <span style={mono}>ORDER</span>{" "}array in the build script rather
-            than real <span style={mono}>@layer</span>{" "}boundaries. It works, and it is{" "}
-            <span style={b}>the one place in the system where adding a component means remembering something
-            instead of being told.</span>{" "}
-            That&apos;s the next thing to fix.
+            There is still one place where the system relies on somebody remembering: the order component styles load
+            in is a list that has to be updated by hand when a component is added. Everywhere else, getting it wrong
+            tells you.{" "}
+            <span style={b}>That one stays quiet</span>{" "}— which makes it exactly the kind of thing this system exists
+            to eliminate, and the next thing I&apos;m fixing.
           </p>
         </div>
 
@@ -407,7 +549,7 @@ export default function RataCaseStudy() {
               marginTop: "0.75rem",
             }}
           >
-            EcoByte
+            EcoByte{" "}
             <span style={{ fontFamily: "var(--font-fraunces), Georgia, serif", fontWeight: 300, color: "var(--color-muted)", marginLeft: "0.75rem" }}>
               — Digital Sustainability
             </span>
