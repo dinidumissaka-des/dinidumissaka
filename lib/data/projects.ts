@@ -48,7 +48,7 @@ export const projects: Project[] = [
     year: "2026",
     rotatingTexts: ["Design System", "Multi-Brand Theming", "Accessibility", "Design Tokens"],
     description:
-      "Designed and built Ratā, a multi-brand design system of 28 components where accessibility and design decisions are enforced by the build instead of written down and hoped for.",
+      "Designed and built Ratā, a multi-brand design system of 30 components where accessibility and design decisions are enforced by the build instead of written down and hoped for.",
     image: "/images/projects/rata/gallery-color.png",
     homeImage: "/images/home/projects/rata.png",
     url: "https://rats-design.vercel.app",
