@@ -500,8 +500,8 @@ export default function RataCaseStudy() {
           />
         </div>
 
-        {/* AI angle */}
-        <div style={divider}>
+        {/* AI angle — last content block, so no bottom rule above "Next" */}
+        <div style={{ ...divider, borderBottom: "none", paddingBottom: 0, marginBottom: 0 }}>
           <h2 style={sectionTitle}>Designing for the reader that isn&apos;t human</h2>
           <p style={{ ...body, marginBottom: "1rem" }}>
             A growing share of the code that consumes a design system is now written with AI assistance. That reader
@@ -521,18 +521,6 @@ export default function RataCaseStudy() {
             system&apos;s own rules: palette colours used where a semantic one exists, hardcoded values, missing
             focus rings, forbidden contrast pairings.{" "}
             <span style={b}>If the difference between the two ever disappears, that&apos;s a failure too.</span>
-          </p>
-        </div>
-
-        {/* What I'd do differently */}
-        <div style={{ ...divider, borderBottom: "none", paddingBottom: 0, marginBottom: 0 }}>
-          <h2 style={sectionTitle}>What I&apos;d do differently</h2>
-          <p style={body}>
-            There is still one place where the system relies on somebody remembering: the order component styles load
-            in is a list that has to be updated by hand when a component is added. Everywhere else, getting it wrong
-            tells you.{" "}
-            <span style={b}>That one stays quiet</span>{" "}— which makes it exactly the kind of thing this system exists
-            to eliminate, and the next thing I&apos;m fixing.
           </p>
         </div>
 
