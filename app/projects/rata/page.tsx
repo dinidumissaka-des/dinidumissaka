@@ -223,8 +223,8 @@ export default function RataCaseStudy() {
             { label: "Type", value: "Design system · Multi-brand" },
             {
               label: "Live",
-              value: "rats-design.vercel.app",
-              href: "https://rats-design.vercel.app",
+              value: "rata-design.vercel.app",
+              href: "https://rata-design.vercel.app",
             },
           ].map((item) => (
             <div key={item.label} style={{ display: "flex", flexDirection: "row", alignItems: "center", gap: "12px" }}>
