@@ -257,6 +257,7 @@ html.dark {
   --font-sans:    var(--font-manrope), system-ui, sans-serif;
   --font-serif:   var(--font-fraunces), Georgia, serif;
   --font-display: var(--font-fraunces), Georgia, serif;
+  --font-mono:    ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
 
   /* Type scale */
   --text-h1:    var(--text-h1);
