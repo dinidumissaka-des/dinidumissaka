@@ -51,7 +51,7 @@ export const projects: Project[] = [
       "Designed and built Ratā, a multi-brand design system of 28 components where accessibility and design decisions are enforced by the build instead of written down and hoped for.",
     image: "/images/projects/rata/gallery-color.png",
     homeImage: "/images/home/projects/rata.png",
-    url: "https://rata-design-system.vercel.app",
+    url: "https://rats-design.vercel.app",
   },
   {
     id: "ecobyte",
