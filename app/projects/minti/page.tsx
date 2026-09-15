@@ -283,7 +283,7 @@ export default function MintiCaseStudy() {
         <div style={{ paddingTop: "3rem", marginTop: "3rem", borderTop: "1px solid var(--border-section)" }}>
           <p style={sectionLabel}>Next</p>
           <a
-            href="/projects/ecobyte"
+            href="/projects/rata"
             style={{
               display: "inline-block",
               fontFamily: "var(--font-fraunces), Georgia, serif",
@@ -297,9 +297,9 @@ export default function MintiCaseStudy() {
               marginTop: "0.75rem",
             }}
           >
-            EcoByte
+            Ratā
             <span style={{ fontFamily: "var(--font-fraunces), Georgia, serif", fontWeight: 300, color: "var(--color-muted)", marginLeft: "0.75rem" }}>
-              — Digital Sustainability
+              — Design System
             </span>
           </a>
         </div>

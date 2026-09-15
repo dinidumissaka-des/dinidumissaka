@@ -10,6 +10,7 @@ Reference this file for every page and component. All values come from `app/glob
 |------|--------|----------|
 | Display / Headings | Fraunces | `var(--font-fraunces), Georgia, serif` |
 | Body / UI | Manrope | `var(--font-manrope), sans-serif` |
+| Code / CLI output | System mono stack | `var(--font-mono)` |
 
 ---
 

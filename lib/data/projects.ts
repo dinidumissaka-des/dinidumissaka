@@ -42,6 +42,18 @@ export const projects: Project[] = [
     homeImage: "/images/home/projects/minti.webp",
   },
   {
+    id: "rata",
+    title: "Ratā",
+    subtitle: "Design System",
+    year: "2026",
+    rotatingTexts: ["Design System", "Agent-Readable Docs", "TypeScript Monorepo", "Token-First"],
+    description:
+      "Built Ratā, a token-first design system whose entire component surface is queryable from a terminal — documentation written to be read by coding agents, not just by people.",
+    image: "/images/projects/rata/rata-cover.png",
+    homeImage: "/images/home/projects/rata.png",
+    url: "https://rata-design-system.vercel.app",
+  },
+  {
     id: "ecobyte",
     title: "EcoByte",
     subtitle: "Digital Sustainability",
