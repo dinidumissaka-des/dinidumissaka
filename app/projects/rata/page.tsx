@@ -139,6 +139,40 @@ const buildOrder = [
   },
 ];
 
+/* ── The layer above the component: open, unbuilt, and named as such ── */
+const openProblems = [
+  {
+    n: "01",
+    question: "Is the component the wrong unit?",
+    observation:
+      "Nobody experiences a button. They experience a pricing page, an empty state, a settings screen. The system stops at the component because that is the altitude at which a decision can be verified — and it is also the altitude at which almost no design decisions are actually made. What sits next to what, how much air it gets, what order it reads in: all of that is left to whoever is assembling, which is exactly where the result is won or lost.",
+    approach:
+      "A layer of blocks — a composed, opinionated unit rather than a part — and templates that arrange blocks into a whole page. Each carrying the same two-part contract the components do: what it is for, when to reach for something else, and what its proportions are answerable to.",
+    disproof:
+      "If blocks get pasted in and then immediately pulled apart in real use, the composition was never the useful unit. It was a snippet, and the abstraction is at the wrong altitude.",
+  },
+  {
+    n: "02",
+    question: "Can judgement be written down without becoming decoration?",
+    observation:
+      "The component contracts hold because half of each is read from the source and the other half is mine, and the build refuses to let the two disagree. Taste has no machine half. There is nothing to check a proportion against, no build step that fails when a page is merely correct. A written style guide is the usual answer, and the usual answer is a document everyone agrees with once and never opens again.",
+    approach:
+      "A TASTE.md that is not a list of preferences but a set of positions with their reasoning and their counter-cases: why one weight and not three, when breaking the grid is the right call, what too much looks like in this system specifically, which rules are rules and which are only defaults. Written as arguments, so that it can be argued with.",
+    disproof:
+      "The test is not whether it reads well. It is whether it ever changes a decision in review, and whether its positions ever get overturned. A taste document that never loses an argument is not being used.",
+  },
+  {
+    n: "03",
+    question: "Can the loop with Figma close, or only half-close?",
+    observation:
+      "Today the Figma column reads future for twenty-nine of the thirty, which is the honest state: the source of truth is the code and the design file is downstream, or absent. What I want is the round trip — tokens and components published from code into Figma, design done there against the real primitives, and changes coming back as proposals against the contract rather than as a screenshot pasted into a review.",
+    approach:
+      "The outbound leg first — tokens to Figma variables, components to a library — because a loop that cannot be closed in one direction will not be closed in both. The return leg is the harder and more interesting half: a visual change that arrives as a diff against the token layer is reviewable, and a visual change that arrives as a picture is not.",
+    disproof:
+      "If the pushback leg gets used a handful of times and then stops, the loop is theatre — the file was a drawing surface and the code was the truth the whole time. That is a perfectly acceptable finding. It just has to be the measured one rather than the assumed one.",
+  },
+];
+
 /**
  * Documentation screenshots are evidence, so they are shown whole: no crop,
  * no parallax scale that would clip the sidebar or the heading off the edge.
@@ -500,8 +534,8 @@ export default function RataCaseStudy() {
           />
         </div>
 
-        {/* AI angle — last content block, so no bottom rule above "Next" */}
-        <div style={{ ...divider, borderBottom: "none", paddingBottom: 0, marginBottom: 0 }}>
+        {/* AI angle */}
+        <div style={divider}>
           <h2 style={sectionTitle}>Designing for the reader that isn&apos;t human</h2>
           <p style={{ ...body, marginBottom: "1rem" }}>
             A growing share of the code that consumes a design system is now written with AI assistance. That reader
@@ -521,6 +555,86 @@ export default function RataCaseStudy() {
             system&apos;s own rules: palette colours used where a semantic one exists, hardcoded values, missing
             focus rings, forbidden contrast pairings.{" "}
             <span style={b}>If the difference between the two ever disappears, that&apos;s a failure too.</span>
+          </p>
+        </div>
+
+        {/* Taste — the open problem. Last content block, so no bottom rule above "Next" */}
+        <div style={{ ...divider, borderBottom: "none", paddingBottom: 0, marginBottom: 0 }}>
+          <h2 style={sectionTitle}>What the build can&apos;t check</h2>
+          <p style={{ ...body, marginBottom: "1rem" }}>
+            Everything above is about decisions that can be{" "}
+            <span style={b}>checked</span>{" "}— a ratio re-measured, a prop matched against the contract that
+            approved it. That is the part of a design system I know how to hold in place. It is also the smaller
+            part.
+          </p>
+          <p style={{ ...body, marginBottom: "1rem" }}>
+            A page can use nothing but semantic tokens, clear all thirty-seven contrast pairings, honour every rule
+            in every contract, and still be badly designed: the spacing arbitrary, the hierarchy flat, the whole
+            thing legible and completely forgettable.{" "}
+            <span style={b}>Correct and good are not the same claim, and the build can only make the first one.</span>
+          </p>
+          <p style={{ ...body, marginBottom: "2rem" }}>
+            That gap is what I&apos;m working on next. None of it is built yet, so rather than describe it as a
+            roadmap I&apos;ve written it as three open questions — each with what I intend to try, and what would
+            tell me I was wrong — so that it can be checked later against what actually happened.
+          </p>
+
+          <div style={{ display: "flex", flexDirection: "column", gap: "1.5rem", marginBottom: "2rem" }}>
+            {openProblems.map((o) => (
+              <div
+                key={o.n}
+                style={{
+                  border: "1px solid var(--border-item)",
+                  borderRadius: "12px",
+                  background: "var(--bg-card)",
+                  padding: "1.75rem",
+                }}
+              >
+                <p style={{ ...mono, fontSize: "11px", color: "var(--color-muted)", margin: "0 0 12px" }}>
+                  {o.n} · open
+                </p>
+                <h3
+                  style={{
+                    fontFamily: "var(--font-fraunces), Georgia, serif",
+                    fontSize: "clamp(1.125rem, 2.4vw, 1.375rem)",
+                    fontWeight: 300,
+                    lineHeight: 1.35,
+                    color: "var(--color-fg)",
+                    margin: "0 0 1rem",
+                  }}
+                >
+                  {o.question}
+                </h3>
+                <p style={{ ...body, marginBottom: "1.25rem" }}>{o.observation}</p>
+                <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
+                  <div>
+                    <p style={{ ...mono, fontSize: "11px", color: "var(--color-muted)", margin: "0 0 4px" }}>
+                      approach
+                    </p>
+                    <p style={{ ...body, margin: 0 }}>{o.approach}</p>
+                  </div>
+                  <div>
+                    <p style={{ ...mono, fontSize: "11px", color: "var(--color-muted)", margin: "0 0 4px" }}>
+                      what would show this is wrong
+                    </p>
+                    <p style={{ ...body, margin: 0 }}>{o.disproof}</p>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <p style={{ ...body, marginBottom: "1rem" }}>
+            The three are one question asked three ways: whether taste can be systematised at all, or whether the
+            most a system can honestly do is clear the distractions out of the way — the contrast, the scale, the
+            focus rings, the naming — so that the judgement gets a clean run at the actual problem.
+          </p>
+          <p style={body}>
+            That is a much smaller claim than{" "}
+            <span style={b}>a design system produces good design.</span>{" "}It may also be the true one. Either way
+            I&apos;d rather find out by building the layer and measuring what it changes than by asserting it in a
+            README — which is the argument the rest of this system already runs on, turned on the part of it I
+            can&apos;t yet verify.
           </p>
         </div>
 
