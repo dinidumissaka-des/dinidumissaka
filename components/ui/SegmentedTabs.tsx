@@ -63,7 +63,7 @@ export default function SegmentedTabs({ tabs, ariaLabel }: { tabs: Tab[]; ariaLa
               onClick={() => setActive(i)}
               style={{
                 position: "relative",
-                padding: "8px 6px",
+                padding: "8px 4px",
                 borderRadius: "999px",
                 border: "none",
                 background: "transparent",
