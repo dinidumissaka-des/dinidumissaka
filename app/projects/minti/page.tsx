@@ -1,11 +1,13 @@
 import type { Metadata } from "next";
+import Image from "next/image";
+import Link from "next/link";
 import BackButton from "@/components/ui/BackButton";
 import ParallaxImage from "@/components/ui/ParallaxImage";
 
 export const metadata: Metadata = {
   title: "Minti — Case Study",
   description:
-    "Designing and building Minti — a personal spending tracker for young adults who want to understand where their money is going.",
+    "Designing and building Minti, a spending tracker that keeps the moment of reflection, designed from specs and built with Claude Code.",
 };
 
 const sectionLabel: React.CSSProperties = {
@@ -47,6 +49,20 @@ const metaSmall: React.CSSProperties = {
   color: "var(--color-muted)",
 };
 
+const mono: React.CSSProperties = {
+  fontFamily: "var(--font-mono)",
+  fontSize: "13px",
+  color: "var(--color-fg)",
+};
+
+const caption: React.CSSProperties = {
+  fontFamily: "var(--font-manrope), sans-serif",
+  fontSize: "11px",
+  color: "var(--color-muted)",
+  marginTop: "10px",
+  opacity: 0.6,
+};
+
 const divider: React.CSSProperties = {
   borderBottom: "1px solid var(--border-section)",
   paddingBottom: "3rem",
@@ -61,81 +77,194 @@ const b: React.CSSProperties = {
   opacity: 0.7,
 };
 
-function ImagePlaceholder({ caption }: { caption: string }) {
-  return (
-    <figure style={{ margin: 0 }}>
-      <div
-        style={{
-          width: "100%",
-          aspectRatio: "16 / 9",
-          borderRadius: "12px",
-          border: "1px dashed var(--border-section)",
-          background: "var(--bg-subtle)",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          padding: "2rem",
-        }}
-      >
-        <span
-          style={{
-            fontFamily: "var(--font-manrope), sans-serif",
-            fontSize: "12px",
-            color: "var(--color-muted)",
-            textAlign: "center",
-            opacity: 0.5,
-          }}
-        >
-          {caption}
-        </span>
-      </div>
-      <figcaption
-        style={{
-          fontFamily: "var(--font-manrope), sans-serif",
-          fontSize: "11px",
-          color: "var(--color-muted)",
-          marginTop: "10px",
-          opacity: 0.6,
-        }}
-      >
-        {caption}
-      </figcaption>
-    </figure>
-  );
-}
+/* ── For readers who skim ── */
+const summary = [
+  { label: "Problem", text: "Finance apps either automate spending away or ask for a spreadsheet mindset." },
+  { label: "Role", text: "Sole designer and builder, from the first spec to the installed app." },
+  { label: "Approach", text: "Designed in markdown specs and guidelines, built with Claude Code, with no Figma." },
+  { label: "Status", text: "Live at minti.one and in testing with friends, improving week to week." },
+];
+
+/* ── Honest facts rather than metrics the project doesn't have yet ── */
+const stats = [
+  { value: "0", label: "bank connections: every expense is typed by hand" },
+  { value: "0", label: "Figma files: designed in specs and code" },
+  { value: "1", label: "accent colour across the whole app" },
+  { value: "6", label: "core views, from expenses to insights" },
+];
+
+type Badge = { label: string; chosen?: boolean };
+type PanelItem = { name: string; badges?: Badge[]; detail: string };
+
+/* ── Decisions, with the option that was chosen ── */
+const decisions: PanelItem[] = [
+  {
+    name: "Manual entry, not bank sync",
+    badges: [{ label: "Bank sync" }, { label: "Manual entry", chosen: true }],
+    detail:
+      "Bank sync logs spending nobody notices. Typing each expense takes about five seconds, and that pause is the point: it is the moment you decide whether it was worth it.",
+  },
+  {
+    name: "Written insights, not charts",
+    badges: [{ label: "Configurable charts" }, { label: "Written insights", chosen: true }],
+    detail:
+      "Charts leave people to find the story themselves. Minti writes it instead: the biggest category, the projected month total or a category that jumped, each in one plain sentence.",
+  },
+  {
+    name: "An installable web app, not an app store app",
+    badges: [{ label: "Native app" }, { label: "PWA", chosen: true }],
+    detail:
+      "A progressive web app installs to the home screen like any other app, but ships without store reviews. That kept changes fast while friends tested it week to week.",
+  },
+  {
+    name: "One monthly limit, not a budget per category",
+    badges: [{ label: "Category budgets" }, { label: "One monthly limit", chosen: true }],
+    detail:
+      "A budget for every category is one more thing to maintain. A single limit and the average daily spend answer the question that matters: is this month on track?",
+  },
+];
+
+/* ── How screens were designed without Figma ── */
+const designProcess: PanelItem[] = [
+  {
+    name: "Write the spec",
+    detail: "Each screen starts as a markdown spec: what it is for, what it shows, its states and its edge cases.",
+  },
+  {
+    name: "Set the guidelines",
+    detail: "A design guidelines file holds the rules: tokens, glass surfaces, one accent colour, type and spacing.",
+  },
+  {
+    name: "Build with Claude Code",
+    detail: "Claude Code builds each screen from the spec and the guidelines, not from a mockup to be copied.",
+  },
+  {
+    name: "Review with taste",
+    detail: "Every screen is judged on a real phone. Anything that feels off becomes a new rule in the guidelines.",
+  },
+];
+
+/* ── Planned next (placeholders until confirmed) ── */
+const nextUp: PanelItem[] = [
+  {
+    name: "More than one currency",
+    detail: "Many testers earn in one currency and send money home in another, so both should sit side by side.",
+  },
+  {
+    name: "A gentle daily nudge",
+    detail: "An optional end-of-day reminder to log what was spent, keeping the habit without automating it.",
+  },
+  {
+    name: "Export",
+    detail: "A simple export, so the data always belongs to the person who typed it in the first place.",
+  },
+];
 
 const mintiFeatures = [
   {
     title: "Expense Tracking",
-    description: "Log daily expenses in seconds. The home screen surfaces your running month total, today's spend, and average per day — so you always know where you stand without opening a dashboard.",
+    description: "Log an expense in seconds. The home screen shows the month so far, today's spend and the daily average.",
     image: "/images/projects/minti/expences.webp",
   },
   {
     title: "Smart Insights",
-    description: "Auto-generated cards surface what actually matters: your biggest spend category, projected end-of-month total, savings rate, and which categories jumped vs. last month. No charts to configure — Minti figures out what's worth telling you.",
+    description: "Written cards surface what matters: the biggest category, the projected month total and the savings rate.",
     image: "/images/projects/minti/insights.webp",
   },
   {
     title: "Spend by Category",
-    description: "Every expense maps to a category. The By Category view ranks them by total and percentage, so the pattern is obvious at a glance — not buried in a pie chart.",
+    description: "Categories ranked by total and share of spending, so the pattern is obvious without a pie chart.",
     image: "/images/projects/minti/spending-by-category.webp",
   },
   {
     title: "Month-over-Month",
-    description: "One tap to see how this month's categories compare to last month. Each category shows its percentage change — up, down, or new — so you can spot shifts without doing any maths.",
+    description: "Each category against last month, marked up, down or new, so shifts show without any maths.",
     image: "/images/projects/minti/vs-last-month.webp",
   },
   {
     title: "Income & Savings Rate",
-    description: "Set your base income and log one-off payments separately. Minti calculates your savings rate in real time and shows exactly how much of this month's income you've kept.",
+    description: "Base income and one-off payments, with a live savings rate showing how much of the month is kept.",
     image: "/images/projects/minti/income.webp",
   },
   {
     title: "Bills & Subscriptions",
-    description: "Recurring bills live separately from variable spending. See your monthly fixed cost, projected annual spend, and how each subscription contributes — so nothing hides in the noise.",
+    description: "Recurring bills kept apart from daily spending, with the monthly fixed cost and the projected yearly total.",
     image: "/images/projects/minti/bills.webp",
   },
 ];
+
+/** One card, hairline-ruled items and optional option badges: the same panel style as the Deriv case study. */
+function Panel({ items, columns = 2 }: { items: PanelItem[]; columns?: 2 | 3 }) {
+  return (
+    <div
+      style={{
+        border: "1px solid var(--border-section)",
+        borderRadius: "12px",
+        background: "var(--bg-card)",
+        padding: "1.5rem clamp(1.25rem, 4vw, 1.75rem)",
+      }}
+    >
+      <div
+        className={columns === 3 ? "minti-panel-grid minti-panel-grid-3" : "minti-panel-grid"}
+        style={{ display: "grid", gridTemplateColumns: `repeat(${columns}, 1fr)`, gap: "1.25rem 2rem" }}
+      >
+        {items.map((it) => (
+          <div key={it.name} style={{ paddingLeft: "1rem", borderLeft: "1px solid var(--border-section)" }}>
+            <p style={{ ...metaSmall, fontWeight: 500, color: "var(--color-fg)", marginBottom: it.badges ? "8px" : "4px" }}>
+              {it.name}
+            </p>
+            {it.badges && (
+              <ul style={{ listStyle: "none", margin: "0 0 10px", padding: 0, display: "flex", flexWrap: "wrap", gap: "6px" }}>
+                {it.badges.map((badge) => (
+                  <li
+                    key={badge.label}
+                    style={{
+                      ...mono,
+                      fontSize: "11px",
+                      lineHeight: 1.4,
+                      padding: "2px 8px",
+                      borderRadius: "6px",
+                      border: badge.chosen
+                        ? "1px solid var(--color-fg)"
+                        : "1px solid color-mix(in srgb, var(--color-muted) 40%, transparent)",
+                      color: badge.chosen ? "var(--color-fg)" : "var(--color-muted)",
+                    }}
+                  >
+                    {badge.label}
+                    {badge.chosen && <span className="sr-only"> (chosen)</span>}
+                  </li>
+                ))}
+              </ul>
+            )}
+            <p style={{ ...body, fontSize: "13px", margin: 0 }}>{it.detail}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+/** A phone screenshot, shown whole on a soft backdrop. */
+function Screen({ src, alt, text }: { src: string; alt: string; text: string }) {
+  return (
+    <figure style={{ margin: 0 }}>
+      <div
+        className="asset-bg"
+        style={{ borderRadius: "12px", background: "rgba(0,0,0,0.04)", padding: "2rem 1.5rem", display: "flex", justifyContent: "center" }}
+      >
+        <Image
+          src={src}
+          alt={alt}
+          width={900}
+          height={1840}
+          sizes="(max-width: 640px) 70vw, 280px"
+          style={{ width: "100%", maxWidth: "260px", height: "auto", display: "block" }}
+        />
+      </div>
+      <figcaption style={caption}>{text}</figcaption>
+    </figure>
+  );
+}
 
 export default function MintiCaseStudy() {
   return (
@@ -144,17 +273,23 @@ export default function MintiCaseStudy() {
         @media (max-width: 640px) {
           .cs-grid { grid-template-columns: 1fr !important; }
           .cs-meta { gap: 1.25rem !important; }
-          .cs-screen-grid { grid-template-columns: 1fr !important; }
           .minti-features-grid { grid-template-columns: 1fr !important; }
+          .minti-summary { grid-template-columns: 1fr 1fr !important; }
+          .minti-stats { grid-template-columns: repeat(2, 1fr) !important; }
+          .minti-panel-grid { grid-template-columns: 1fr !important; }
         }
+        @media (max-width: 900px) { .minti-panel-grid-3 { grid-template-columns: 1fr !important; } }
         @media (min-width: 641px) and (max-width: 900px) {
           .minti-features-grid { grid-template-columns: repeat(2, 1fr) !important; }
         }
+        .dark .asset-bg { background: rgba(255,255,255,0.04) !important; }
         .minti-feature-card .minti-overlay {
           opacity: 0;
           transition: opacity 0.35s ease;
         }
         .minti-feature-card:hover .minti-overlay { opacity: 1; }
+        /* Touch screens can't hover, so the descriptions stay visible there. */
+        @media (hover: none) { .minti-feature-card .minti-overlay { opacity: 1; } }
       `}</style>
 
       <div className="container" style={{ paddingTop: "3rem", paddingBottom: "5rem" }}>
@@ -185,23 +320,46 @@ export default function MintiCaseStudy() {
         {/* Title */}
         <h1 style={pageTitle}>A spending tracker built for reflection, not automation</h1>
 
+        {/* Summary — for readers who skim */}
+        <div className="minti-summary" style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: "1.5rem", ...divider, paddingBottom: "2.5rem", marginBottom: "2.5rem" }}>
+          {summary.map((item) => (
+            <div key={item.label} style={{ paddingLeft: "1rem", borderLeft: "1px solid var(--border-section)" }}>
+              <p style={{ ...mono, fontSize: "11px", color: "var(--color-muted)", marginBottom: "6px" }}>{item.label}</p>
+              <p style={{ ...body, fontSize: "13px", lineHeight: 1.55, color: "var(--color-fg)", margin: 0 }}>{item.text}</p>
+            </div>
+          ))}
+        </div>
+
         {/* Intro */}
         <div style={divider}>
-          <div>
-            <p style={{ ...body, marginBottom: "1rem" }}>
-              Minti is a personal spending tracker for young adults who want to understand where their money is going — not automate it away. Set a monthly limit, log daily expenses, track subscriptions, and see your average daily spend. That's it.{" "}
-              <span style={b}>Designed and built entirely with Claude Code — no Figma</span>, from initial concept through to the final UI.
-            </p>
-            <p style={{ ...body, marginBottom: "1rem" }}>
-              Most finance apps either connect to your bank and automate everything — removing the moment of reflection — or are so complex you need to be a spreadsheet person to use them. Minti adds friction back deliberately.{" "}
-              <span style={b}>You have to type in what you spent. That five seconds is the point.</span>
-            </p>
-            <p style={{ ...body, marginBottom: "1rem" }}>
-              Designed and built with a proper design system — custom glassmorphism, a single accent colour, and consistent type and spacing tokens throughout.
-            </p>
-            <p style={body}>
-              Currently in build — no real users yet. The goal right now is to make it feel like a properly crafted app. Every screen, every interaction, every edge state handled.
-            </p>
+          <p style={body}>
+            Minti is a spending tracker for people who want to understand where their money goes, not automate it
+            away. Set a monthly limit, log what you spend, keep bills apart from daily spending, and let the app tell
+            you what changed.{" "}
+            <span style={b}>You have to type in what you spent. That five seconds is the point.</span>
+          </p>
+        </div>
+
+        {/* Stats */}
+        <div style={divider}>
+          <div className="minti-stats" style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: "2rem 1.5rem" }}>
+            {stats.map((s) => (
+              <div key={s.label}>
+                <p
+                  style={{
+                    fontFamily: "var(--font-fraunces), Georgia, serif",
+                    fontSize: "clamp(2rem, 4vw, 2.75rem)",
+                    fontWeight: 300,
+                    lineHeight: 1,
+                    color: "var(--color-fg)",
+                    marginBottom: "10px",
+                  }}
+                >
+                  {s.value}
+                </p>
+                <p style={{ ...body, fontSize: "13px", margin: 0 }}>{s.label}</p>
+              </div>
+            ))}
           </div>
         </div>
 
@@ -215,9 +373,56 @@ export default function MintiCaseStudy() {
           />
         </div>
 
+        {/* Thinking — where it started */}
+        <div style={divider}>
+          <p style={{ ...sectionLabel, marginBottom: "0.75rem" }}>Thinking</p>
+          <h2 style={sectionTitle}>It started as a personal habit</h2>
+          <p style={{ ...body, marginBottom: "1rem" }}>
+            Minti began with a habit of tracking spending by hand and noticing that the act of writing it down changed
+            what got spent. Existing apps went one of two ways. Bank-connected apps automate everything and remove the
+            moment of reflection. The rest are built for people who enjoy spreadsheets.
+          </p>
+          <p style={body}>
+            Conversations with people living away from their home country shaped it most. A new city, a new cost of
+            living, and income that doesn&apos;t follow the patterns of home make one question more important than any
+            chart:{" "}
+            <span style={b}>is this month on track?</span>
+          </p>
+        </div>
+
+        {/* Thinking — decisions */}
+        <div style={divider}>
+          <h2 style={sectionTitle}>Four decisions, each with a real alternative</h2>
+          <Panel items={decisions} />
+          <div className="cs-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1.5rem", marginTop: "1.5rem" }}>
+            <Screen
+              src="/images/projects/minti/categories.webp"
+              alt="Adding an expense in Minti: amount, note, category and date"
+              text="Adding an expense: amount, note, category and date, in about five seconds."
+            />
+            <Screen
+              src="/images/projects/minti/app-icon.webp"
+              alt="Minti installed on an iPhone home screen alongside native apps"
+              text="Installed from the browser, it sits on the home screen like any other app."
+            />
+          </div>
+        </div>
+
+        {/* Design — specs, not Figma */}
+        <div style={divider}>
+          <p style={{ ...sectionLabel, marginBottom: "0.75rem" }}>Design</p>
+          <h2 style={sectionTitle}>Designed in specs, not in Figma</h2>
+          <p style={{ ...body, marginBottom: "2rem" }}>
+            There is no Figma file. Every screen was described in markdown, built by Claude Code and judged by eye. The
+            visual language is written down as rules rather than drawn: glass surfaces, consistent type and spacing
+            tokens, and{" "}
+            <span style={b}>one green accent that only ever marks the primary action or the current selection.</span>
+          </p>
+          <Panel items={designProcess} />
+        </div>
 
         {/* Features */}
-        <div style={{ ...divider, borderBottom: "none", paddingBottom: 0 }}>
+        <div style={divider}>
           <h2 style={sectionTitle}>What it does</h2>
           <div
             className="minti-features-grid"
@@ -230,12 +435,13 @@ export default function MintiCaseStudy() {
                 style={{ position: "relative", overflow: "hidden", borderRadius: "16px" }}
               >
                 <div style={{ padding: "0 24px" }}>
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
+                  <Image
                     src={feature.image}
                     alt={feature.title}
-                    loading="lazy"
-                    style={{ width: "100%", display: "block" }}
+                    width={900}
+                    height={1840}
+                    sizes="(max-width: 640px) 90vw, (max-width: 900px) 45vw, 320px"
+                    style={{ width: "100%", height: "auto", display: "block" }}
                   />
                 </div>
                 <div
@@ -279,10 +485,21 @@ export default function MintiCaseStudy() {
           </div>
         </div>
 
+        {/* Status — last content block, so no bottom rule above "Next" */}
+        <div style={{ ...divider, borderBottom: "none", paddingBottom: 0, marginBottom: 0 }}>
+          <p style={{ ...sectionLabel, marginBottom: "0.75rem" }}>Status</p>
+          <h2 style={sectionTitle}>In testing, with friends first</h2>
+          <p style={{ ...body, marginBottom: "2rem" }}>
+            Minti is live and being tested by friends, most of them living away from home, the people it was shaped
+            around. Their feedback decides what changes each week. Next on the list:
+          </p>
+          <Panel items={nextUp} columns={3} />
+        </div>
+
         {/* Next project */}
         <div style={{ paddingTop: "3rem", marginTop: "3rem", borderTop: "1px solid var(--border-section)" }}>
           <p style={sectionLabel}>Next</p>
-          <a
+          <Link
             href="/projects/rata"
             style={{
               display: "inline-block",
@@ -301,7 +518,7 @@ export default function MintiCaseStudy() {
             <span style={{ fontFamily: "var(--font-fraunces), Georgia, serif", fontWeight: 300, color: "var(--color-muted)", marginLeft: "0.75rem" }}>
               — Design System
             </span>
-          </a>
+          </Link>
         </div>
       </div>
     </main>
