@@ -89,10 +89,19 @@ const caption: React.CSSProperties = {
 };
 
 /* ── The project at a glance ── */
+const summary = [
+  { label: "Problem", text: "6,000+ inconsistent pages, where every new page was a 3–5 week one-off." },
+  { label: "Role", text: "Design owner end to end, working with a team of five web designers." },
+  { label: "Approach", text: "A three-layer token system and 40 blocks, designed in Figma and built with Claude Code through Figma MCP." },
+  { label: "Outcome", text: "New pages in 2–3 days, and 25% higher engagement across 18 locales." },
+];
+
 const stats = [
   { value: "6,000+", label: "pages rebuilt across deriv.com, the Academy and deriv.ae" },
+  { value: "18", label: "locales served from one set of blocks" },
   { value: "40", label: "blocks and 30+ components in one system" },
-  { value: "+25%", label: "user engagement across all 18 languages" },
+  { value: "4", label: "card structures, simplified from dozens" },
+  { value: "+25%", label: "user engagement after launch" },
   { value: "2–3 days", label: "to ship a new page, down from 3–5 weeks" },
 ];
 
@@ -148,7 +157,7 @@ const systemGroups: { tab: string; title: string; intro: string; items: { name: 
       {
         name: "Heroes & above the fold",
         detail:
-          "Hero variants with exactly one primary action and the risk warning in a fixed position. The first screen always answers what this is and what to do next, and compliance is never pushed below the fold.",
+          "Hero variants with exactly one primary action and the risk warning in a reserved slot. On market pages the hero leads with the instrument, because that is what search visitors came for. Compliance copy is never pushed below the fold.",
       },
       {
         name: "Content sections",
@@ -210,7 +219,7 @@ const systemGroups: { tab: string; title: string; intro: string; items: { name: 
       {
         name: "Accessibility",
         detail:
-          "Colour pairings are checked against WCAG AA contrast. Every interactive state has a visible focus style, and the heading structure is semantic, which serves screen readers and search engines alike.",
+          "Claude Code flags any colour pairing that fails WCAG AA contrast while tokens are being written, so the colour tokens only include pairings that pass. Every interactive state has a visible focus style, and the heading structure is semantic, which serves screen readers and search engines alike.",
       },
       {
         name: "States",
@@ -336,34 +345,84 @@ const workflow = [
       "Explorations, page flows and visual direction happened in Figma first. Variables in the file mirror the core and semantic token layers name for name — so a design decision is already a token decision before any code exists.",
   },
   {
-    step: "Structure the frame for a machine reader",
-    tool: "Figma",
-    detail:
-      "Every block is built with auto layout, meaningful layer names and every fill, gap and radius bound to a variable. That discipline matters because the next reader of the file is not a developer squinting at a spec, but an agent reading its structure literally.",
-  },
-  {
-    step: "Hand the frame to Claude Code through Figma MCP",
-    tool: "Figma MCP · Claude Code",
-    detail:
-      "Figma MCP exposes the selected frame's layout, variables and component structure to Claude Code, which generates the block against the semantic tokens rather than approximating values from a screenshot. No hex codes, no magic numbers — if a value has no token, that gap surfaces immediately.",
-  },
-  {
-    step: "Review in the browser, in the hardest conditions",
-    tool: "Claude Code",
-    detail:
-      "Each block is checked at every breakpoint, in every state, in German and in Arabic. Differences are fixed at the source — in Figma if the design was wrong, in code if the build was — so the two never drift apart.",
-  },
-  {
     step: "Ship the system as versioned packages",
     tool: "Claude Code · Storybook",
     detail:
-      "Tokens live as JSON in their own package and compile into a single tokens.css; components, icons and Lottie animations sit in sibling packages of the same monorepo. Every component is documented in Storybook, and every change ships as a versioned release with a changelog — so a page team always knows which version of the system it is building on.",
+      "Tokens live as JSON in their own package and compile into a single tokens.css; components, icons and Lottie animations sit in sibling packages of the same monorepo. Every component is documented in Storybook, and every change ships as a versioned release with a changelog.",
   },
   {
     step: "Use Claude for the thinking work",
     tool: "Claude",
     detail:
       "Synthesising the page audit, grouping thousands of URLs into page types, pressure-testing token names and drafting block documentation. The judgement stays with the designer; the sorting and first drafts don't have to.",
+  },
+];
+
+/* ── Figma → Figma MCP → Claude Code → review (pipeline diagram) ── */
+const pipeline = [
+  {
+    title: "Figma frame",
+    tool: "Figma",
+    points: ["Auto layout at every level", "Every fill, gap and radius bound to a variable", "Layers named after the block's content slots"],
+  },
+  {
+    title: "Figma MCP",
+    tool: "Figma MCP",
+    points: ["Reads the layout, not the pixels", "Passes variable names, not values", "Exposes component structure and variants"],
+  },
+  {
+    title: "Claude Code",
+    tool: "Claude Code",
+    points: ["Builds the block against semantic tokens", "Flags raw values that have no token", "Flags colour pairings that fail WCAG AA"],
+  },
+  {
+    title: "Browser review",
+    tool: "Claude Code",
+    points: ["Every breakpoint and every state", "German and Arabic", "Mismatches fixed at the source"],
+  },
+];
+
+/* Real slate values from the tokens package; ratios measured against slate.50 (#FFFFFF). */
+const pipelineChecks: { ok: boolean; code: string; note: string }[] = [
+  { ok: true, code: "background: button.primary.background", note: "semantic token — accepted" },
+  { ok: false, code: "color: #FF444F", note: "raw value with no token — flagged" },
+  { ok: false, code: "text: slate.500 on slate.50", note: "4.13:1, fails WCAG AA for body text — flagged" },
+  { ok: true, code: "text: slate.600 on slate.50", note: "6.2:1, passes — accepted" },
+];
+
+/* ── Where the system met pushback ── */
+const pushback = [
+  {
+    tab: "Compliance",
+    title: "Compliance wanted a bigger risk warning",
+    concern:
+      "Compliance asked for a larger, more prominent risk warning on every page. That is reasonable for a regulated product, but at the proposed size it pushed the primary action below the fold on mobile.",
+    resolution:
+      "Instead of negotiating size page by page, the warning got a fixed, reserved slot in the hero and the footer, sized and positioned by the system. Compliance got a guarantee that it is always visible and can never be squeezed out by content. The hero kept its one primary action above the fold.",
+  },
+  {
+    tab: "SEO",
+    title: "SEO resisted changes to headings",
+    concern:
+      "The SEO team was wary of a redesign touching the heading structure of 6,000 ranking pages. On the old site, how headings looked and how the document was structured had drifted apart, and any change risked rankings.",
+    resolution:
+      "Heading level was separated from heading style. Every block takes its heading level as a setting, so a visually large title can still be an H2. The existing outline of each page was mapped and kept through the rebuild.",
+  },
+  {
+    tab: "Engineering",
+    title: "Engineering questioned the Figma MCP workflow",
+    concern:
+      "Developers doubted that code generated from design files could be production quality, and worried about reviewing code nobody had written by hand.",
+    resolution:
+      "The workflow was piloted on a handful of blocks first and compared against hand-built versions. The token-only rule made generated code easy to review, because any raw value or unknown token is flagged automatically. The pilot blocks became the reference for the rest.",
+  },
+  {
+    tab: "Brand",
+    title: "Brand guidelines had to become rules",
+    concern:
+      "The brand guidelines lived in documents: how coral should be used and how much of it, how imagery should feel. Across 6,000 pages, guidelines that depend on people remembering them drift.",
+    resolution:
+      "The guidelines were turned into tokens and rules the system enforces: coral reserved for action, the 3D material and cropping rules, and approved surface pairings. The brand team now reviews changes to tokens and blocks, not individual pages. That means fewer reviews, each with more impact.",
   },
 ];
 
@@ -498,6 +557,68 @@ function TokenDiagram() {
   );
 }
 
+function PipelineDiagram() {
+  const arrow = (
+    <span aria-hidden className="deriv-pipe-arrow" style={{ ...mono, color: "var(--color-muted)", textAlign: "center", alignSelf: "center" }}>
+      →
+    </span>
+  );
+  return (
+    <figure style={{ margin: 0 }}>
+      <div
+        style={{
+          border: "1px solid var(--border-section)",
+          borderRadius: "12px",
+          background: "var(--bg-card)",
+          padding: "1.5rem",
+        }}
+      >
+        <div className="deriv-pipe-row">
+          {pipeline.map((stage, i) => (
+            <div key={stage.title} style={{ display: "contents" }}>
+              {i > 0 && arrow}
+              <div style={{ minWidth: 0 }}>
+                <p style={{ ...mono, fontSize: "11px", color: "var(--color-muted)", marginBottom: "6px" }}>
+                  0{i + 1} · {stage.tool}
+                </p>
+                <h3 style={{ ...h3, marginBottom: "10px" }}>{stage.title}</h3>
+                <ul style={{ margin: 0, padding: 0, listStyle: "none", display: "flex", flexDirection: "column", gap: "6px" }}>
+                  {stage.points.map((pt) => (
+                    <li key={pt} style={{ ...body, fontSize: "13px", lineHeight: 1.5 }}>{pt}</li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <p style={{ ...mono, fontSize: "11px", color: "var(--color-muted)", margin: "1.25rem 0 0" }}>
+          ↺ 04 → 01 · a mismatch goes back to where it started — Figma if the design was wrong, code if the build was
+        </p>
+
+        <div style={{ borderTop: "1px solid var(--border-section)", marginTop: "1.25rem", paddingTop: "1.25rem" }}>
+          <p style={{ ...mono, fontSize: "11px", color: "var(--color-muted)", marginBottom: "10px" }}>What stage 03 checks</p>
+          <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
+            {pipelineChecks.map((c) => (
+              <div key={c.code} className="deriv-check-row">
+                <span aria-label={c.ok ? "accepted" : "flagged"} style={{ ...mono, color: c.ok ? "var(--color-fg)" : "#FF444F" }}>
+                  {c.ok ? "✓" : "✕"}
+                </span>
+                <span style={{ ...mono, fontSize: "12px", overflowWrap: "anywhere" }}>{c.code}</span>
+                <span style={{ ...body, fontSize: "12px", lineHeight: 1.5 }}>{c.note}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+      <figcaption style={caption}>
+        The design-to-code pipeline. Nothing reaches a block as a raw value, which is why no block contains a hard-coded
+        colour.
+      </figcaption>
+    </figure>
+  );
+}
+
 function Notes({ items }: { items: { title: string; detail: string }[] }) {
   return (
     <div style={{ display: "flex", flexDirection: "column", gap: "1.25rem" }}>
@@ -522,12 +643,19 @@ export default function DerivCaseStudy() {
           .deriv-layers { grid-template-columns: 1fr !important; }
           .deriv-token-row { grid-template-columns: 1fr !important; gap: 0.5rem !important; }
           .deriv-system-grid { grid-template-columns: 1fr !important; }
+          .deriv-summary { grid-template-columns: 1fr 1fr !important; }
+          .deriv-pipe-row { grid-template-columns: 1fr !important; gap: 0.75rem !important; }
+          .deriv-pipe-arrow { transform: rotate(90deg); width: 1rem; justify-self: start; }
+          .deriv-check-row { grid-template-columns: 1.25rem 1fr !important; }
+          .deriv-check-row > :last-child { grid-column: 2; }
           .deriv-token-head { display: none !important; }
           .deriv-token-label { display: block !important; }
           .deriv-token-arrow { transform: rotate(90deg); width: 1rem; }
         }
         .deriv-token-row { display: grid; grid-template-columns: 1fr 1.5rem 1.3fr 1.5rem 1fr; gap: 1rem; align-items: center; }
         .deriv-token-label { display: none; }
+        .deriv-pipe-row { display: grid; grid-template-columns: 1fr 1.25rem 1fr 1.25rem 1fr 1.25rem 1fr; gap: 1rem; }
+        .deriv-check-row { display: grid; grid-template-columns: 1.25rem minmax(0, 1.2fr) minmax(0, 1fr); gap: 0.25rem 0.75rem; align-items: baseline; }
         .dark .asset-bg { background: rgba(255,255,255,0.04) !important; }
       `}</style>
       <div className="container" style={{ paddingTop: "3rem", paddingBottom: "5rem" }}>
@@ -563,6 +691,16 @@ export default function DerivCaseStudy() {
         {/* Title */}
         <h1 style={pageTitle}>Rebuilding a 6,000-page trading platform as a system, not a site</h1>
 
+        {/* Summary — for readers who skim */}
+        <div className="deriv-summary" style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: "1.5rem", ...divider, paddingBottom: "2.5rem", marginBottom: "2.5rem" }}>
+          {summary.map((item) => (
+            <div key={item.label} style={{ paddingLeft: "1rem", borderLeft: "1px solid var(--border-section)" }}>
+              <p style={{ ...mono, fontSize: "11px", color: "var(--color-muted)", marginBottom: "6px" }}>{item.label}</p>
+              <p style={{ ...body, fontSize: "13px", lineHeight: 1.55, color: "var(--color-fg)", margin: 0 }}>{item.text}</p>
+            </div>
+          ))}
+        </div>
+
         {/* Intro */}
         <div style={divider}>
           <p style={{ ...body, marginBottom: "1rem" }}>
@@ -579,13 +717,13 @@ export default function DerivCaseStudy() {
             So the brief was never just a new look. It was a system that makes the right page the easy page: a
             three-layer token architecture, 40 blocks and 30+ components, designed in Figma and built end to end with
             Claude Code.{" "}
-            <span style={b}>New pages now ship in two to three days, and engagement rose 25% across all eighteen languages.</span>
+            <span style={b}>New pages now ship in two to three days, and engagement rose 25% across all eighteen locales.</span>
           </p>
         </div>
 
         {/* Stats */}
         <div style={divider}>
-          <div className="deriv-stats" style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: "1.5rem" }}>
+          <div className="deriv-stats" style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "2rem 1.5rem" }}>
             {stats.map((s) => (
               <div key={s.label}>
                 <p
@@ -650,47 +788,65 @@ export default function DerivCaseStudy() {
           />
         </div>
 
-        {/* Thinking — constraints */}
+        {/* Thinking — users */}
         <div style={divider}>
-          <h2 style={sectionTitle}>The constraints came before the canvas</h2>
-          <p style={{ ...body, marginBottom: "2rem" }}>
-            A trading platform isn&apos;t a marketing site with a nicer brief. Three constraints were set before any
-            visual exploration, and every later decision was checked against them.
+          <h2 style={sectionTitle}>Most visitors never see the homepage</h2>
+          <p style={{ ...body, marginBottom: "1rem" }}>
+            The audit also looked at how people arrive. Analytics showed that most visitors land on market and product
+            pages straight from search. They are traders looking up an instrument, not a brand, and many of them never
+            open the homepage.
           </p>
-          <Notes items={constraints} />
+          <p style={body}>
+            That changed what a hero is for.{" "}
+            <span style={b}>On market pages, the hero leads with the instrument — what it is and how to trade it — rather than the brand.</span>{" "}
+            Brand storytelling moved to the pages people choose to visit, so the first screen after a search answers
+            the question that brought the visitor there.
+          </p>
         </div>
 
-        {/* Thinking — decisions */}
+        {/* Thinking — constraints & decisions */}
         <div style={divider}>
-          <h2 style={sectionTitle}>Three decisions that shaped everything else</h2>
+          <h2 style={sectionTitle}>Three constraints, three decisions</h2>
           <p style={{ ...body, marginBottom: "2rem" }}>
-            Each of these had real alternatives. The choice was made on what would still hold at 6,000 pages and
-            eighteen languages, not what looked best in a single mockup.
+            A trading platform isn&apos;t a marketing site with a nicer brief. Three constraints were set before any
+            visual exploration. Three decisions were then made against them, each with real alternatives, and each
+            chosen on what would still hold at 6,000 pages and eighteen locales.
           </p>
-          <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
-            {decisions.map((d, i) => (
-              <div
-                key={d.title}
-                style={{
-                  border: "1px solid var(--border-item)",
-                  borderRadius: "12px",
-                  background: "var(--bg-card)",
-                  padding: "1.5rem 1.75rem",
-                }}
-              >
-                <div style={{ display: "flex", gap: "1.25rem", alignItems: "flex-start" }}>
-                  <span style={{ ...mono, fontSize: "12px", color: "var(--color-muted)", paddingTop: "4px", minWidth: "1.5rem" }}>
-                    0{i + 1}
-                  </span>
-                  <div>
-                    <h3 style={h3}>{d.title}</h3>
-                    <p style={{ ...mono, fontSize: "11px", color: "var(--color-muted)", marginBottom: "10px" }}>{d.options}</p>
-                    <p style={{ ...body, margin: 0 }}>{d.detail}</p>
-                  </div>
+          <SegmentedTabs
+            ariaLabel="Constraints and decisions"
+            tabs={[
+              { label: "Constraints", panel: <Notes items={constraints} /> },
+              {
+                label: "Decisions",
+                panel: (
+                <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
+                  {decisions.map((d, i) => (
+                    <div
+                      key={d.title}
+                      style={{
+                        border: "1px solid var(--border-item)",
+                        borderRadius: "12px",
+                        background: "var(--bg-card)",
+                        padding: "1.5rem 1.75rem",
+                      }}
+                    >
+                      <div style={{ display: "flex", gap: "1.25rem", alignItems: "flex-start" }}>
+                        <span style={{ ...mono, fontSize: "12px", color: "var(--color-muted)", paddingTop: "4px", minWidth: "1.5rem" }}>
+                          0{i + 1}
+                        </span>
+                        <div>
+                          <h3 style={h3}>{d.title}</h3>
+                          <p style={{ ...mono, fontSize: "11px", color: "var(--color-muted)", marginBottom: "10px" }}>{d.options}</p>
+                          <p style={{ ...body, margin: 0 }}>{d.detail}</p>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
                 </div>
-              </div>
-            ))}
-          </div>
+                ),
+              },
+            ]}
+          />
         </div>
 
         {/* Design — tokens */}
@@ -743,38 +899,31 @@ export default function DerivCaseStudy() {
             produce an off-brand result because every piece is already on-brand.
           </p>
           <p style={{ ...body, marginBottom: "2rem" }}>
-            Variation lives inside the blocks instead of around them. A single card component carries four surfaces —
-            light, dark, brand and photographic — and two sizes. That one component replaced dozens of near-identical
-            cards the audit found scattered across the site.
+            Variation lives inside the blocks instead of around them. The audit found dozens of near-identical cards
+            scattered across the site, and they were simplified into four card structures. Each comes in four
+            surfaces (light, dark, brand and photographic) and two sizes, so a page team picks a variant instead of
+            drawing a new card.
           </p>
           <div style={{ display: "flex", flexDirection: "column", gap: "1.5rem" }}>
             <Figure
               src="/images/projects/deriv/one-card-component.webp"
-              caption="One card component, four surfaces and two sizes — variation designed in, not added page by page."
+              caption="One of the four card structures: four surfaces and two sizes, with variation designed in rather than added page by page."
             />
             <Figure
               src="/images/projects/deriv/modular-component-library.webp"
               caption="The block library — hero, cards, FAQs, stats, testimonials and CTA sections, composed from shared components."
             />
           </div>
-        </div>
-
-        {/* Design — layout & localisation */}
-        <div style={divider}>
-          <h2 style={sectionTitle}>Designed for the longest word and the other direction</h2>
-          <p style={{ ...body, marginBottom: "1rem" }}>
-            Every block was designed at two extremes — 360 and 1440 — on a twelve-column grid, then pushed through
-            the two hardest languages. German&apos;s compound words exposed any container with a fixed width.
-            Arabic exposed any spacing written as left or right instead of start or end.
-          </p>
-          <p style={{ ...body, marginBottom: "2rem" }}>
-            <span style={b}>Direction was treated as a property of the layout, not a separate design.</span>{" "}
-            Spacing and alignment use logical properties throughout, so a block mirrors for right-to-left
-            automatically — one design, eighteen languages, no locale forks to maintain.
+          <p style={{ ...body, margin: "2rem 0" }}>
+            Every block was also designed at two extremes, 360 and 1440, on the twelve-column grid, then pushed
+            through German and Arabic.{" "}
+            <span style={b}>Direction is a property of the layout, not a separate design.</span>{" "}
+            Logical properties mirror each block for right-to-left automatically, so eighteen locales run from one set
+            of blocks.
           </p>
           <Figure
             src="/images/projects/deriv/layout-360-1440.webp"
-            caption="A block at 360 and 1440 on the twelve-column grid — every block is designed at both extremes before it's built."
+            caption="A block at 360 and 1440 on the twelve-column grid. Every block is designed at both extremes before it's built."
           />
         </div>
 
@@ -831,7 +980,12 @@ export default function DerivCaseStudy() {
             <span style={b}>and Figma MCP connected the two so the design file is read, not reinterpreted.</span>
           </p>
 
-          <div style={{ display: "flex", flexDirection: "column", gap: "1.5rem", marginBottom: "2rem" }}>
+          <div style={{ marginBottom: "2.5rem" }}>
+            <PipelineDiagram />
+          </div>
+
+          <p style={{ ...sectionLabel, marginBottom: "1.25rem" }}>Around the pipeline</p>
+          <div style={{ display: "flex", flexDirection: "column", gap: "1.5rem", marginBottom: "2.5rem" }}>
             {workflow.map((s, i) => (
               <div key={s.step} style={{ display: "flex", gap: "1.25rem", alignItems: "flex-start" }}>
                 <span style={{ ...mono, fontSize: "12px", color: "var(--color-muted)", paddingTop: "4px", minWidth: "1.5rem" }}>
@@ -844,6 +998,16 @@ export default function DerivCaseStudy() {
                 </div>
               </div>
             ))}
+          </div>
+
+          <div style={{ paddingLeft: "1.25rem", borderLeft: "1px solid var(--border-section)", marginBottom: "2rem" }}>
+            <h3 style={h3}>Where judgement still mattered</h3>
+            <p style={{ ...body, margin: 0 }}>
+              The pipeline is only as good as the frame it reads. When a frame had a value that wasn&apos;t bound to a
+              variable, Claude Code approximated it. When no token existed, it sometimes proposed a plausible-sounding
+              one. Both are why raw values and unknown token names are flagged rather than accepted. Right-to-left also
+              needed a human eye: directional icons such as arrows should mirror, but logos and play buttons should not.
+            </p>
           </div>
 
           <p style={body}>
@@ -906,6 +1070,44 @@ export default function DerivCaseStudy() {
             much as the library itself.
           </p>
           <Notes items={team} />
+        </div>
+
+        {/* Pushback */}
+        <div style={divider}>
+          <h2 style={sectionTitle}>Where the system met pushback</h2>
+          <p style={{ ...body, marginBottom: "2rem" }}>
+            Every team with a stake in the site had a reason to resist a system that took decisions out of individual
+            pages. The work was in turning each concern into something the system could guarantee.
+          </p>
+          <SegmentedTabs
+            ariaLabel="Stakeholder pushback"
+            tabs={pushback.map((pb) => ({
+              label: pb.tab,
+              panel: (
+                <div
+                  style={{
+                    border: "1px solid var(--border-section)",
+                    borderRadius: "12px",
+                    background: "var(--bg-card)",
+                    padding: "1.5rem 1.75rem",
+                  }}
+                >
+                  <h3 style={{ ...h3, fontSize: "22px", marginBottom: "1.25rem" }}>{pb.title}</h3>
+                  <div className="deriv-system-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1.25rem 2rem" }}>
+                    {[
+                      { label: "The concern", text: pb.concern },
+                      { label: "The resolution", text: pb.resolution },
+                    ].map((part) => (
+                      <div key={part.label} style={{ paddingLeft: "1rem", borderLeft: "1px solid var(--border-section)" }}>
+                        <p style={{ ...mono, fontSize: "11px", color: "var(--color-muted)", marginBottom: "6px" }}>{part.label}</p>
+                        <p style={{ ...body, fontSize: "13px", margin: 0 }}>{part.text}</p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              ),
+            }))}
+          />
         </div>
 
         {/* Reflection — last content block, so no bottom rule above "Next" */}
