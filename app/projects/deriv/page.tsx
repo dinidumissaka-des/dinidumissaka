@@ -156,7 +156,7 @@ const tokenLayers = [
 ];
 
 /* ── How a value travels through the layers (token diagram) ──
- * Token names are the real ones from the Deriv tokens package; swatch hex values are approximations. */
+ * Token names and slate values are the real ones from the Deriv tokens package; coral hex values are approximations. */
 type CoreToken = { name: string; hex?: string; kind?: "color" | "radius" };
 const tokenFlows: { core: CoreToken; semantic: string[]; usedBy: string }[] = [
   {
@@ -170,7 +170,7 @@ const tokenFlows: { core: CoreToken; semantic: string[]; usedBy: string }[] = [
     usedBy: "The hover state on those same CTAs",
   },
   {
-    core: { name: "color.slate.50", hex: "#F6F7F8" },
+    core: { name: "color.slate.50", hex: "#FFFFFF" },
     semantic: ["button.primary.text", "button.primary.icon", "button.secondary.background"],
     usedBy: "Labels on coral, and the fill of secondary buttons",
   },
