@@ -916,6 +916,17 @@ function ProcessSections() {
           ariaLabel="Blocks and layout"
           tabs={[
             {
+              label: "Blocks",
+              panel: (
+                <Figure
+                  src="/images/projects/deriv/modular-component-library.webp"
+                  width={2720}
+                  height={1530}
+                  caption="The block library — hero, cards, FAQs, stats, testimonials and CTA sections, composed from shared components."
+                />
+              ),
+            },
+            {
               label: "Cards",
               panel: (
                 <Figure
@@ -923,17 +934,6 @@ function ProcessSections() {
                   width={1208}
                   height={666}
                   caption="One of the four card structures: four surfaces and two sizes, with variation designed in rather than added page by page."
-                />
-              ),
-            },
-            {
-              label: "Library",
-              panel: (
-                <Figure
-                  src="/images/projects/deriv/modular-component-library.webp"
-                  width={2720}
-                  height={1530}
-                  caption="The block library — hero, cards, FAQs, stats, testimonials and CTA sections, composed from shared components."
                 />
               ),
             },
