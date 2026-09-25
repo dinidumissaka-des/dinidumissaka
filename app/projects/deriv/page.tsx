@@ -13,7 +13,7 @@ import { hasCaseStudyAccess } from "@/lib/case-study-access";
 export const metadata: Metadata = {
   title: "Deriv — Case Study",
   description:
-    "Rebuilding Deriv.com — a 6,000-page global trading platform across 18 languages — on a token-based system of 40 blocks and 30+ components, designed in Figma and built with Claude Code.",
+    "Rebuilding Deriv.com — a 6,000-page global trading platform across 18 languages — on a token-based system of 40+ blocks and 30+ components, designed in Figma and built with Claude Code.",
 };
 
 const sectionLabel: React.CSSProperties = {
@@ -95,17 +95,17 @@ const caption: React.CSSProperties = {
 const summary = [
   { label: "Problem", text: "6,000+ inconsistent pages, where every new page was a 3–5 week one-off." },
   { label: "Role", text: "Design owner end to end, working with a team of five web designers." },
-  { label: "Approach", text: "A three-layer token system and 40 blocks, designed in Figma and built with Claude Code through Figma MCP." },
-  { label: "Outcome", text: "New pages in 2–3 days, and 25% higher engagement across 18 locales." },
+  { label: "Approach", text: "A three-layer token system and 40+ blocks, designed in Figma and built with Claude Code through Figma MCP." },
+  { label: "Outcome", text: "New pages in 1–2 days, and 25% higher engagement across 18 locales." },
 ];
 
 const stats = [
+  { value: "21M", label: "monthly visitors to Deriv.com" },
   { value: "6,000+", label: "pages rebuilt across deriv.com, the Academy and deriv.ae" },
   { value: "18", label: "locales served from one set of blocks" },
-  { value: "40", label: "blocks and 30+ components in one system" },
-  { value: "4", label: "card structures, simplified from dozens" },
+  { value: "40+", label: "blocks and 30+ components in one system" },
   { value: "+25%", label: "user engagement after launch" },
-  { value: "2–3 days", label: "to ship a new page, down from 3–5 weeks" },
+  { value: "1–2 days", label: "to ship a new page, down from 3–5 weeks" },
 ];
 
 /* ── Everything a page is made of, grouped by layer ── */
@@ -165,7 +165,7 @@ const systemGroups: { tab: string; title: string; intro: string; items: { name: 
       {
         name: "Content sections",
         detail:
-          "The 40 blocks: features, cards, stats, market tables, FAQs, testimonials and CTAs. Each is defined once, with its layout, content slots and allowed variants.",
+          "The 40+ blocks: features, cards, stats, market tables, FAQs, testimonials and CTAs. Each is defined once, with its layout, content slots and allowed variants.",
       },
       {
         name: "Footer",
@@ -360,7 +360,7 @@ const pushback = [
     concern:
       "Five designers used to owning the look of their own pages had every reason to design a one-off whenever the library didn't quite fit. That is exactly how the old site drifted.",
     resolution:
-      "Design direction, tokens, block definitions and final review sat with one owner. New block proposals were reviewed in Figma against the existing 40 first. Most turned out to be a variant of something that already existed, which is how the library stayed at 40 instead of drifting to 140.",
+      "Design direction, tokens, block definitions and final review sat with one owner. New block proposals were reviewed in Figma against the existing library first. Most turned out to be a variant of something that already existed, which kept the library at just over 40 blocks instead of drifting past 100.",
   },
   {
     tab: "Compliance",
@@ -807,7 +807,7 @@ function ProcessSections() {
       <div style={divider}>
         <h2 style={sectionTitle}>Blocks, not pages</h2>
         <p style={{ ...body, marginBottom: "1rem" }}>
-          Forty blocks cover every section the audit found, built from 30+ smaller components — buttons, badges,
+          More than 40 blocks cover every section the audit found, built from 30+ smaller components — buttons, badges,
           cards, tabs, accordions. A page is no longer designed; it&apos;s assembled, and the assembly can&apos;t
           produce an off-brand result because every piece is already on-brand.
         </p>
@@ -935,7 +935,7 @@ function ProcessSections() {
         <p style={body}>
           Because every block already existed in both Figma and code, bound to the same tokens,{" "}
           <span style={b}>a new page stopped being a design-and-build project and became an assembly job.</span>{" "}
-          That is how three to five weeks became two to three days.
+          That is how three to five weeks became one to two days.
         </p>
       </div>
 
@@ -1095,7 +1095,8 @@ export default async function DerivCaseStudy() {
         {/* Intro */}
         <div style={divider}>
           <p style={body}>
-            Deriv.com is a global trading platform serving 21 million monthly visitors. Over the years it had grown to
+            Deriv.com is a global trading platform serving{" "}
+            <span style={b}>21 million monthly visitors.</span>{" "}Over the years it had grown to
             more than 6,000 pages across the main site, the Academy and the UAE localisation, each with its own styling
             and its own navigation.{" "}
             <span style={b}>Nothing designed for one page could be trusted on the next,</span>{" "}so the brief was never
@@ -1114,6 +1115,7 @@ export default async function DerivCaseStudy() {
                     fontSize: "clamp(2rem, 4vw, 2.75rem)",
                     fontWeight: 300,
                     lineHeight: 1,
+                    whiteSpace: "nowrap",
                     color: "var(--color-fg)",
                     marginBottom: "10px",
                   }}
