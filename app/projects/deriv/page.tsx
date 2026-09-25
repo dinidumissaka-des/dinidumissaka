@@ -111,39 +111,64 @@ const stats = [
 /* ── Everything a page is made of, grouped by layer ── */
 const systemGroups: { tab: string; title: string; intro: string; items: { name: string; detail: string }[] }[] = [
   {
+    tab: "Qualities",
+    title: "Cross-cutting qualities",
+    intro: "Not components, but rules every component has to meet before it ships.",
+    items: [
+      {
+        name: "Responsiveness",
+        detail: "Designed at 360 and 1440, checked at every breakpoint between. Components change form on mobile, not just size.",
+      },
+      {
+        name: "Accessibility",
+        detail: "Claude Code flags colour pairings that fail WCAG AA. Every state has a visible focus style, and headings stay semantic.",
+      },
+      {
+        name: "States",
+        detail: "Hover, active, focus, disabled, error and empty are designed and named as tokens, never improvised in code.",
+      },
+      {
+        name: "Content & copy",
+        detail: "Each block sets its content slots, heading level and copy lengths, agreed with the content team.",
+      },
+      {
+        name: "Translations",
+        detail: "18 languages from one set of blocks. Logical properties handle right-to-left, so there are no locale forks.",
+      },
+      {
+        name: "Performance",
+        detail: "Tokens compile to one stylesheet, images ship as WebP, and fixed media ratios prevent layout shift.",
+      },
+    ],
+  },
+  {
     tab: "Foundations",
     title: "Design system layer",
     intro: "The foundations every block inherits. None of them is set inside a block.",
     items: [
       {
         name: "Layout & grid",
-        detail:
-          "A twelve-column grid, content-width tokens and three breakpoints: mobile, tablet from 768 and desktop from 992. Every block lines up to the same edges on every page, so assembled pages look designed, not pasted together.",
+        detail: "A twelve-column grid and three breakpoints (mobile, 768 and 992), so every block lines up to the same edges.",
       },
       {
         name: "Typography",
-        detail:
-          "One family, five heading levels, and font size, weight and line height as separate core tokens that scale per breakpoint. The hierarchy reads the same in English, German and Arabic.",
+        detail: "One family and five heading levels, with size, weight and line height as tokens that scale per breakpoint.",
       },
       {
         name: "Colour",
-        detail:
-          "Slate and coral scales at the core, with semantic text, background, border and icon colour on top. Coral is reserved for action, so the primary CTA is always the most visible thing on the screen.",
+        detail: "Slate and coral core scales with semantic roles on top. Coral is reserved for action, so CTAs always stand out.",
       },
       {
         name: "Spacing",
-        detail:
-          "One spacing scale for padding, gaps and section rhythm replaced the one-off margins the audit found on almost every page. Vertical rhythm is now the same from the hero to the footer.",
+        detail: "One scale for padding, gaps and section rhythm replaced the one-off margins found on almost every page.",
       },
       {
         name: "Iconography",
-        detail:
-          "Icons and illustrations are separate packages owned by the designers. They're maintained in Figma and published to the packages through Figma Code Connect, so a new or updated icon reaches every page without anyone re-exporting files. A 3D icon set covers marketing moments, built to the same material rules.",
+        detail: "Icons and illustrations are designer-owned packages, maintained in Figma and updated through Figma Code Connect.",
       },
       {
         name: "Motion",
-        detail:
-          "Motion is defined by trigger. On scroll, sections and elements reveal as they enter the viewport. On hover, cards lift and buttons move through their hover tokens. On click, buttons give press feedback and accordions and tabs open. Shared durations and easing make every interaction feel like the same site.",
+        detail: "Defined by trigger: elements reveal on scroll, cards lift on hover, and buttons give feedback on click.",
       },
     ],
   },
@@ -154,23 +179,19 @@ const systemGroups: { tab: string; title: string; intro: string; items: { name: 
     items: [
       {
         name: "Header & navigation",
-        detail:
-          "One navigation model replaced the separate structures on deriv.com, the Academy and deriv.ae. Moving between them no longer feels like switching websites.",
+        detail: "One navigation model replaced separate structures on deriv.com, the Academy and deriv.ae, so the three feel like one site.",
       },
       {
         name: "Heroes & above the fold",
-        detail:
-          "Hero variants with exactly one primary action and the risk warning in a reserved slot. On market pages the hero leads with the instrument, because that is what search visitors came for. Compliance copy is never pushed below the fold.",
+        detail: "One primary action and a reserved slot for the risk warning. Market-page heroes lead with the instrument.",
       },
       {
         name: "Content sections",
-        detail:
-          "The 40+ blocks: features, cards, stats, market tables, FAQs, testimonials and CTAs. Each is defined once, with its layout, content slots and allowed variants.",
+        detail: "The 40+ blocks, from features and stats to FAQs and CTAs, each defined once with its slots and variants.",
       },
       {
         name: "Footer",
-        detail:
-          "Footer tokens and a single component holding legal links, regulatory information and jurisdiction-specific disclaimers. The most compliance-sensitive part of the site is maintained in one place instead of 6,000.",
+        detail: "One component holds legal links and jurisdiction disclaimers, so compliance content lives in one place, not 6,000.",
       },
     ],
   },
@@ -181,23 +202,23 @@ const systemGroups: { tab: string; title: string; intro: string; items: { name: 
     items: [
       {
         name: "Buttons & links",
-        detail: "Primary, secondary and tertiary tiers, each with hover and active tokens. There is one clear action per section.",
+        detail: "Primary, secondary and tertiary tiers, each with hover and active tokens, and one clear action per section.",
       },
       {
         name: "Accordions",
-        detail: "FAQ and legal content that stays scannable on mobile without hiding what regulators require to be visible.",
+        detail: "FAQ and legal content that stays scannable on mobile without hiding anything regulators require.",
       },
       {
         name: "Chips & chip dropdowns",
-        detail: "Filtering markets and instruments without leaving the page.",
+        detail: "Filter markets and instruments in place, with the same states as every other control.",
       },
       {
         name: "Fields",
-        detail: "Form inputs with defined default, focus, error and disabled states for sign-up and contact flows.",
+        detail: "Default, focus, error and disabled states, designed for the sign-up and contact flows.",
       },
       {
         name: "Breadcrumbs & pagination",
-        detail: "Wayfinding through the Academy's long-form learning content.",
+        detail: "Wayfinding through the Academy's long-form learning content, so readers always know where they are.",
       },
       {
         name: "Bottom sheets & overlays",
@@ -206,43 +227,6 @@ const systemGroups: { tab: string; title: string; intro: string; items: { name: 
       {
         name: "Tags & status",
         detail: "Labels for market state and content type, where colour always comes with text.",
-      },
-    ],
-  },
-  {
-    tab: "Qualities",
-    title: "Cross-cutting qualities",
-    intro: "Not components, but rules every component has to meet before it ships.",
-    items: [
-      {
-        name: "Responsiveness",
-        detail:
-          "Every block is designed at 360 and 1440 before it is built, and checked at every breakpoint in between. Components change form on mobile where needed, not just size.",
-      },
-      {
-        name: "Accessibility",
-        detail:
-          "Claude Code flags any colour pairing that fails WCAG AA contrast while tokens are being written, so the colour tokens only include pairings that pass. Every interactive state has a visible focus style, and the heading structure is semantic, which serves screen readers and search engines alike.",
-      },
-      {
-        name: "States",
-        detail:
-          "Hover, active, focus, disabled, error and empty states are designed and named as tokens, not improvised in code. button.primary.background-hover exists because the hover was designed.",
-      },
-      {
-        name: "Content & copy",
-        detail:
-          "Each block defines its content slots, heading level and working copy lengths, agreed with the content team. Real copy fits the design instead of breaking it.",
-      },
-      {
-        name: "Translations",
-        detail:
-          "18 languages from one set of blocks. German and Arabic are the stress tests, and logical properties handle right-to-left, so there are no locale-specific forks.",
-      },
-      {
-        name: "Performance",
-        detail:
-          "Tokens compile to a single stylesheet, imagery ships as compressed WebP, and fixed media ratios stop layout shift. The system is lighter than the pages it replaced.",
       },
     ],
   },
@@ -957,8 +941,8 @@ function ProcessSections() {
         <h2 style={sectionTitle}>Everything a page is made of</h2>
         <p style={{ ...body, marginBottom: "2rem" }}>
           A system is only as strong as its least-considered part. The audit found problems at every level, from
-          one-off margins to three different navigation structures. So the scope covered all of it, in four layers.
-          Each layer depends on the one before it.
+          one-off margins to three different navigation structures. So the scope covered all of it: the qualities
+          every component must meet, and the foundations, structure and interactions they are built from.
         </p>
         <SegmentedTabs
           ariaLabel="System layers"
