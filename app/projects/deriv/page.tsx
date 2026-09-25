@@ -7,6 +7,8 @@ import AssetCarousel from "@/components/ui/AssetCarousel";
 import ScrollImage from "@/components/ui/ScrollImage";
 import VideoSequence from "@/components/ui/VideoSequence";
 import SegmentedTabs from "@/components/ui/SegmentedTabs";
+import CaseStudyLock from "@/components/ui/CaseStudyLock";
+import { hasCaseStudyAccess } from "@/lib/case-study-access";
 
 export const metadata: Metadata = {
   title: "Deriv — Case Study",
@@ -600,7 +602,306 @@ function Notes({ items }: { items: { title: string; detail: string }[] }) {
   );
 }
 
-export default function DerivCaseStudy() {
+/** The NDA part of the case study — only rendered on the server once the password checks out. */
+function ProcessSections() {
+  return (
+    <>
+      {/* Thinking — audit */}
+      <div style={divider}>
+        <p style={{ ...sectionLabel, marginBottom: "0.75rem" }}>Thinking</p>
+        <h2 style={sectionTitle}>Six thousand pages, seven kinds of page</h2>
+        <div className="deriv-split">
+        <p style={{ ...body, margin: 0 }}>
+          The work started with an audit rather than a moodboard. Every template across the three properties was
+          grouped by what the page was for, not how it looked. Beneath the visual noise, the 6,000 pages collapsed
+          into seven page types, built from a few dozen recurring sections.{" "}
+          <span style={b}>The problem wasn&apos;t 6,000 pages. It was forty patterns, each drawn a hundred different ways.</span>
+        </p>
+        <Figure
+          src="/images/projects/deriv/page-templates.webp"
+          width={968}
+          height={546}
+          caption="The seven page types the audit reduced the site to."
+        />
+        </div>
+      </div>
+
+      {/* Thinking — users */}
+      <div style={divider}>
+        <h2 style={sectionTitle}>Most visitors never see the homepage</h2>
+        <p style={{ ...body, marginBottom: "1rem" }}>
+          The audit also looked at how people arrive. Analytics showed that most visitors land on market and product
+          pages straight from search. They are traders looking up an instrument, not a brand, and many of them never
+          open the homepage.
+        </p>
+        <p style={body}>
+          That changed what a hero is for.{" "}
+          <span style={b}>On market pages, the hero leads with the instrument — what it is and how to trade it — rather than the brand.</span>{" "}
+          Brand storytelling moved to the pages people choose to visit, so the first screen after a search answers
+          the question that brought the visitor there.
+        </p>
+      </div>
+
+      {/* Thinking — constraints & decisions */}
+      <div style={divider}>
+        <h2 style={sectionTitle}>Three constraints, three decisions</h2>
+        <p style={{ ...body, marginBottom: "2rem" }}>
+          A trading platform isn&apos;t a marketing site with a nicer brief. Three constraints were set before any
+          visual exploration. Three decisions were then made against them, each with real alternatives, and each
+          chosen on what would still hold at 6,000 pages and eighteen locales.
+        </p>
+        <SegmentedTabs
+          ariaLabel="Constraints and decisions"
+          tabs={[
+            { label: "Constraints", panel: <Notes items={constraints} /> },
+            {
+              label: "Decisions",
+              panel: (
+              <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
+                {decisions.map((d, i) => (
+                  <div
+                    key={d.title}
+                    style={{
+                      border: "1px solid var(--border-item)",
+                      borderRadius: "12px",
+                      background: "var(--bg-card)",
+                      padding: "1.5rem 1.75rem",
+                    }}
+                  >
+                    <div style={{ display: "flex", gap: "1.25rem", alignItems: "flex-start" }}>
+                      <span style={{ ...mono, fontSize: "12px", color: "var(--color-muted)", paddingTop: "4px", minWidth: "1.5rem" }}>
+                        0{i + 1}
+                      </span>
+                      <div>
+                        <h3 style={h3}>{d.title}</h3>
+                        <p style={{ ...mono, fontSize: "11px", color: "var(--color-muted)", marginBottom: "10px" }}>{d.options}</p>
+                        <p style={{ ...body, margin: 0 }}>{d.detail}</p>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+              ),
+            },
+          ]}
+        />
+      </div>
+
+      {/* Design — tokens */}
+      <div style={divider}>
+        <p style={{ ...sectionLabel, marginBottom: "0.75rem" }}>Design</p>
+        <h2 style={sectionTitle}>Three layers, each with one job</h2>
+        <p style={{ ...body, marginBottom: "2rem" }}>
+          Every decision is made once, in one place. A colour is chosen at the core layer, given a role at the
+          semantic layer, and used, never redefined, by the blocks. Semantic tokens are named by component and state,
+          and{" "}
+          <span style={b}>a block that reads a core value directly is treated as a bug.</span>
+        </p>
+        <p style={{ ...body, marginBottom: "2rem" }}>
+          Type followed the same logic. One family, five heading levels, three breakpoints held as core tokens — mobile,
+          tablet from 768 and desktop from 992. An H1 steps from 48 to 64 to 80 pixels, and every block inherits the step rather than setting its own size.{" "}
+          <span style={b}>No block is allowed to have opinions about typography.</span>
+        </p>
+        <SegmentedTabs
+          ariaLabel="Token diagram and type scale"
+          tabs={[
+            { label: "Colour tokens", panel: <TokenDiagram /> },
+            {
+              label: "Type scale",
+              panel: (
+                <Figure
+                  src="/images/projects/deriv/responsive-type-scale.webp"
+                  width={5440}
+                  height={3060}
+                  caption="The responsive type scale — five heading levels across mobile, tablet and desktop, defined once as tokens."
+                />
+              ),
+            },
+          ]}
+        />
+      </div>
+
+      {/* Design — blocks */}
+      <div style={divider}>
+        <h2 style={sectionTitle}>Blocks, not pages</h2>
+        <p style={{ ...body, marginBottom: "1rem" }}>
+          Forty blocks cover every section the audit found, built from 30+ smaller components — buttons, badges,
+          cards, tabs, accordions. A page is no longer designed; it&apos;s assembled, and the assembly can&apos;t
+          produce an off-brand result because every piece is already on-brand.
+        </p>
+        <p style={{ ...body, marginBottom: "1rem" }}>
+          Variation lives inside the blocks instead of around them. The audit found dozens of near-identical cards
+          scattered across the site, and they were simplified into four card structures. Each comes in four
+          surfaces (light, dark, brand and photographic) and two sizes, so a page team picks a variant instead of
+          drawing a new card.
+        </p>
+        <p style={{ ...body, marginBottom: "2rem" }}>
+          Every block was also designed at two extremes, 360 and 1440, on the twelve-column grid, then pushed
+          through German and Arabic.{" "}
+          <span style={b}>Direction is a property of the layout, not a separate design.</span>{" "}
+          Logical properties mirror each block for right-to-left automatically, so eighteen locales run from one set
+          of blocks.
+        </p>
+        <SegmentedTabs
+          ariaLabel="Blocks and layout"
+          tabs={[
+            {
+              label: "Cards",
+              panel: (
+                <Figure
+                  src="/images/projects/deriv/one-card-component.webp"
+                  width={1208}
+                  height={666}
+                  caption="One of the four card structures: four surfaces and two sizes, with variation designed in rather than added page by page."
+                />
+              ),
+            },
+            {
+              label: "Library",
+              panel: (
+                <Figure
+                  src="/images/projects/deriv/modular-component-library.webp"
+                  width={2720}
+                  height={1530}
+                  caption="The block library — hero, cards, FAQs, stats, testimonials and CTA sections, composed from shared components."
+                />
+              ),
+            },
+            {
+              label: "Grid",
+              panel: (
+                <Figure
+                  src="/images/projects/deriv/layout-360-1440.webp"
+                  width={2720}
+                  height={1530}
+                  caption="A block at 360 and 1440 on the twelve-column grid. Every block is designed at both extremes before it's built."
+                />
+              ),
+            },
+          ]}
+        />
+      </div>
+
+      {/* What the system covers */}
+      <div style={divider}>
+        <h2 style={sectionTitle}>Everything a page is made of</h2>
+        <p style={{ ...body, marginBottom: "2rem" }}>
+          A system is only as strong as its least-considered part. The audit found problems at every level, from
+          one-off margins to three different navigation structures. So the scope covered all of it, in four layers.
+          Each layer depends on the one before it.
+        </p>
+        <SegmentedTabs
+          ariaLabel="System layers"
+          tabs={systemGroups.map((g, gi) => ({
+            label: g.tab,
+            panel: (
+              <div
+                style={{
+                  border: "1px solid var(--border-section)",
+                  borderRadius: "12px",
+                  background: "var(--bg-card)",
+                  padding: "1.5rem 1.75rem",
+                }}
+              >
+                <p style={{ ...mono, fontSize: "11px", color: "var(--color-muted)", marginBottom: "8px" }}>0{gi + 1} / 04</p>
+                <h3 style={{ ...h3, fontSize: "22px" }}>{g.title}</h3>
+                <p style={{ ...body, marginBottom: "1.5rem" }}>{g.intro}</p>
+                <div className="deriv-system-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1.25rem 2rem" }}>
+                  {g.items.map((it) => (
+                    <div key={it.name} style={{ paddingLeft: "1rem", borderLeft: "1px solid var(--border-section)" }}>
+                      <p style={{ ...metaSmall, fontWeight: 500, color: "var(--color-fg)", marginBottom: "4px" }}>{it.name}</p>
+                      <p style={{ ...body, fontSize: "13px", margin: 0 }}>{it.detail}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            ),
+          }))}
+        />
+      </div>
+
+      {/* Tools & workflow */}
+      <div style={divider}>
+        <p style={{ ...sectionLabel, marginBottom: "0.75rem" }}>Tools &amp; workflow</p>
+        <h2 style={sectionTitle}>From Figma to production without a translation step</h2>
+        <p style={{ ...body, marginBottom: "2rem" }}>
+          Handoff is where design systems quietly break: a designer specifies 24 pixels, a developer eyeballs 20. This
+          build removed the handoff. Figma is where design is decided, Claude Code is where it&apos;s built,{" "}
+          <span style={b}>and Figma MCP connects the two so the design file is read, not reinterpreted.</span>
+        </p>
+
+        <div style={{ marginBottom: "2.5rem" }}>
+          <PipelineDiagram />
+        </div>
+
+        <p style={{ ...body, marginBottom: "2rem" }}>
+          Figma variables mirror the token layers name for name. The output ships as versioned packages: tokens
+          compile from JSON into one tokens.css, and components, icons and Lottie live in one monorepo, documented in
+          Storybook. Claude handled the sorting work, such as synthesising the audit, grouping URLs into page types
+          and drafting documentation.
+        </p>
+
+        <div style={{ paddingLeft: "1.25rem", borderLeft: "1px solid var(--border-section)", marginBottom: "2rem" }}>
+          <h3 style={h3}>Where judgement still mattered</h3>
+          <p style={{ ...body, margin: 0 }}>
+            The pipeline is only as good as the frame it reads. Unbound values got approximated, and missing tokens
+            got plausible-sounding inventions, which is why both are flagged rather than accepted. Right-to-left
+            also needed a human eye: arrows should mirror, but logos and play buttons should not.
+          </p>
+        </div>
+
+        <p style={body}>
+          Because every block already existed in both Figma and code, bound to the same tokens,{" "}
+          <span style={b}>a new page stopped being a design-and-build project and became an assembly job.</span>{" "}
+          That is how three to five weeks became two to three days.
+        </p>
+      </div>
+
+      {/* Pushback — last content block, so no bottom rule above "Next" */}
+      <div style={{ ...divider, borderBottom: "none", paddingBottom: 0, marginBottom: 0 }}>
+        <h2 style={sectionTitle}>Where the system met pushback</h2>
+        <p style={{ ...body, marginBottom: "2rem" }}>
+          Every group with a stake in the site, the design team included, had a reason to resist a system that took
+          decisions away from individual pages. The work was in turning each concern into something the system
+          could guarantee.
+        </p>
+        <SegmentedTabs
+          ariaLabel="Team and stakeholder pushback"
+          tabs={pushback.map((pb) => ({
+            label: pb.tab,
+            panel: (
+              <div
+                style={{
+                  border: "1px solid var(--border-section)",
+                  borderRadius: "12px",
+                  background: "var(--bg-card)",
+                  padding: "1.5rem 1.75rem",
+                }}
+              >
+                <h3 style={{ ...h3, fontSize: "22px", marginBottom: "1.25rem" }}>{pb.title}</h3>
+                <div className="deriv-system-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1.25rem 2rem" }}>
+                  {[
+                    { label: "The concern", text: pb.concern },
+                    { label: "The resolution", text: pb.resolution },
+                  ].map((part) => (
+                    <div key={part.label} style={{ paddingLeft: "1rem", borderLeft: "1px solid var(--border-section)" }}>
+                      <p style={{ ...mono, fontSize: "11px", color: "var(--color-muted)", marginBottom: "6px" }}>{part.label}</p>
+                      <p style={{ ...body, fontSize: "13px", margin: 0 }}>{part.text}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            ),
+          }))}
+        />
+      </div>
+    </>
+  );
+}
+
+export default async function DerivCaseStudy() {
+  const unlocked = await hasCaseStudyAccess();
+
   return (
     <main>
       <style>{`
@@ -737,257 +1038,6 @@ export default function DerivCaseStudy() {
           />
         </div>
 
-        {/* Thinking — audit */}
-        <div style={divider}>
-          <p style={{ ...sectionLabel, marginBottom: "0.75rem" }}>Thinking</p>
-          <h2 style={sectionTitle}>Six thousand pages, seven kinds of page</h2>
-          <div className="deriv-split">
-          <p style={{ ...body, margin: 0 }}>
-            The work started with an audit rather than a moodboard. Every template across the three properties was
-            grouped by what the page was for, not how it looked. Beneath the visual noise, the 6,000 pages collapsed
-            into seven page types, built from a few dozen recurring sections.{" "}
-            <span style={b}>The problem wasn&apos;t 6,000 pages. It was forty patterns, each drawn a hundred different ways.</span>
-          </p>
-          <Figure
-            src="/images/projects/deriv/page-templates.webp"
-            width={968}
-            height={546}
-            caption="The seven page types the audit reduced the site to."
-          />
-          </div>
-        </div>
-
-        {/* Thinking — users */}
-        <div style={divider}>
-          <h2 style={sectionTitle}>Most visitors never see the homepage</h2>
-          <p style={{ ...body, marginBottom: "1rem" }}>
-            The audit also looked at how people arrive. Analytics showed that most visitors land on market and product
-            pages straight from search. They are traders looking up an instrument, not a brand, and many of them never
-            open the homepage.
-          </p>
-          <p style={body}>
-            That changed what a hero is for.{" "}
-            <span style={b}>On market pages, the hero leads with the instrument — what it is and how to trade it — rather than the brand.</span>{" "}
-            Brand storytelling moved to the pages people choose to visit, so the first screen after a search answers
-            the question that brought the visitor there.
-          </p>
-        </div>
-
-        {/* Thinking — constraints & decisions */}
-        <div style={divider}>
-          <h2 style={sectionTitle}>Three constraints, three decisions</h2>
-          <p style={{ ...body, marginBottom: "2rem" }}>
-            A trading platform isn&apos;t a marketing site with a nicer brief. Three constraints were set before any
-            visual exploration. Three decisions were then made against them, each with real alternatives, and each
-            chosen on what would still hold at 6,000 pages and eighteen locales.
-          </p>
-          <SegmentedTabs
-            ariaLabel="Constraints and decisions"
-            tabs={[
-              { label: "Constraints", panel: <Notes items={constraints} /> },
-              {
-                label: "Decisions",
-                panel: (
-                <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
-                  {decisions.map((d, i) => (
-                    <div
-                      key={d.title}
-                      style={{
-                        border: "1px solid var(--border-item)",
-                        borderRadius: "12px",
-                        background: "var(--bg-card)",
-                        padding: "1.5rem 1.75rem",
-                      }}
-                    >
-                      <div style={{ display: "flex", gap: "1.25rem", alignItems: "flex-start" }}>
-                        <span style={{ ...mono, fontSize: "12px", color: "var(--color-muted)", paddingTop: "4px", minWidth: "1.5rem" }}>
-                          0{i + 1}
-                        </span>
-                        <div>
-                          <h3 style={h3}>{d.title}</h3>
-                          <p style={{ ...mono, fontSize: "11px", color: "var(--color-muted)", marginBottom: "10px" }}>{d.options}</p>
-                          <p style={{ ...body, margin: 0 }}>{d.detail}</p>
-                        </div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-                ),
-              },
-            ]}
-          />
-        </div>
-
-        {/* Design — tokens */}
-        <div style={divider}>
-          <p style={{ ...sectionLabel, marginBottom: "0.75rem" }}>Design</p>
-          <h2 style={sectionTitle}>Three layers, each with one job</h2>
-          <p style={{ ...body, marginBottom: "2rem" }}>
-            Every decision is made once, in one place. A colour is chosen at the core layer, given a role at the
-            semantic layer, and used, never redefined, by the blocks. Semantic tokens are named by component and state,
-            and{" "}
-            <span style={b}>a block that reads a core value directly is treated as a bug.</span>
-          </p>
-          <p style={{ ...body, marginBottom: "2rem" }}>
-            Type followed the same logic. One family, five heading levels, three breakpoints held as core tokens — mobile,
-            tablet from 768 and desktop from 992. An H1 steps from 48 to 64 to 80 pixels, and every block inherits the step rather than setting its own size.{" "}
-            <span style={b}>No block is allowed to have opinions about typography.</span>
-          </p>
-          <SegmentedTabs
-            ariaLabel="Token diagram and type scale"
-            tabs={[
-              { label: "Colour tokens", panel: <TokenDiagram /> },
-              {
-                label: "Type scale",
-                panel: (
-                  <Figure
-                    src="/images/projects/deriv/responsive-type-scale.webp"
-                    width={5440}
-                    height={3060}
-                    caption="The responsive type scale — five heading levels across mobile, tablet and desktop, defined once as tokens."
-                  />
-                ),
-              },
-            ]}
-          />
-        </div>
-
-        {/* Design — blocks */}
-        <div style={divider}>
-          <h2 style={sectionTitle}>Blocks, not pages</h2>
-          <p style={{ ...body, marginBottom: "1rem" }}>
-            Forty blocks cover every section the audit found, built from 30+ smaller components — buttons, badges,
-            cards, tabs, accordions. A page is no longer designed; it&apos;s assembled, and the assembly can&apos;t
-            produce an off-brand result because every piece is already on-brand.
-          </p>
-          <p style={{ ...body, marginBottom: "1rem" }}>
-            Variation lives inside the blocks instead of around them. The audit found dozens of near-identical cards
-            scattered across the site, and they were simplified into four card structures. Each comes in four
-            surfaces (light, dark, brand and photographic) and two sizes, so a page team picks a variant instead of
-            drawing a new card.
-          </p>
-          <p style={{ ...body, marginBottom: "2rem" }}>
-            Every block was also designed at two extremes, 360 and 1440, on the twelve-column grid, then pushed
-            through German and Arabic.{" "}
-            <span style={b}>Direction is a property of the layout, not a separate design.</span>{" "}
-            Logical properties mirror each block for right-to-left automatically, so eighteen locales run from one set
-            of blocks.
-          </p>
-          <SegmentedTabs
-            ariaLabel="Blocks and layout"
-            tabs={[
-              {
-                label: "Cards",
-                panel: (
-                  <Figure
-                    src="/images/projects/deriv/one-card-component.webp"
-                    width={1208}
-                    height={666}
-                    caption="One of the four card structures: four surfaces and two sizes, with variation designed in rather than added page by page."
-                  />
-                ),
-              },
-              {
-                label: "Library",
-                panel: (
-                  <Figure
-                    src="/images/projects/deriv/modular-component-library.webp"
-                    width={2720}
-                    height={1530}
-                    caption="The block library — hero, cards, FAQs, stats, testimonials and CTA sections, composed from shared components."
-                  />
-                ),
-              },
-              {
-                label: "Grid",
-                panel: (
-                  <Figure
-                    src="/images/projects/deriv/layout-360-1440.webp"
-                    width={2720}
-                    height={1530}
-                    caption="A block at 360 and 1440 on the twelve-column grid. Every block is designed at both extremes before it's built."
-                  />
-                ),
-              },
-            ]}
-          />
-        </div>
-
-        {/* What the system covers */}
-        <div style={divider}>
-          <h2 style={sectionTitle}>Everything a page is made of</h2>
-          <p style={{ ...body, marginBottom: "2rem" }}>
-            A system is only as strong as its least-considered part. The audit found problems at every level, from
-            one-off margins to three different navigation structures. So the scope covered all of it, in four layers.
-            Each layer depends on the one before it.
-          </p>
-          <SegmentedTabs
-            ariaLabel="System layers"
-            tabs={systemGroups.map((g, gi) => ({
-              label: g.tab,
-              panel: (
-                <div
-                  style={{
-                    border: "1px solid var(--border-section)",
-                    borderRadius: "12px",
-                    background: "var(--bg-card)",
-                    padding: "1.5rem 1.75rem",
-                  }}
-                >
-                  <p style={{ ...mono, fontSize: "11px", color: "var(--color-muted)", marginBottom: "8px" }}>0{gi + 1} / 04</p>
-                  <h3 style={{ ...h3, fontSize: "22px" }}>{g.title}</h3>
-                  <p style={{ ...body, marginBottom: "1.5rem" }}>{g.intro}</p>
-                  <div className="deriv-system-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1.25rem 2rem" }}>
-                    {g.items.map((it) => (
-                      <div key={it.name} style={{ paddingLeft: "1rem", borderLeft: "1px solid var(--border-section)" }}>
-                        <p style={{ ...metaSmall, fontWeight: 500, color: "var(--color-fg)", marginBottom: "4px" }}>{it.name}</p>
-                        <p style={{ ...body, fontSize: "13px", margin: 0 }}>{it.detail}</p>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              ),
-            }))}
-          />
-        </div>
-
-        {/* Tools & workflow */}
-        <div style={divider}>
-          <p style={{ ...sectionLabel, marginBottom: "0.75rem" }}>Tools &amp; workflow</p>
-          <h2 style={sectionTitle}>From Figma to production without a translation step</h2>
-          <p style={{ ...body, marginBottom: "2rem" }}>
-            Handoff is where design systems quietly break: a designer specifies 24 pixels, a developer eyeballs 20. This
-            build removed the handoff. Figma is where design is decided, Claude Code is where it&apos;s built,{" "}
-            <span style={b}>and Figma MCP connects the two so the design file is read, not reinterpreted.</span>
-          </p>
-
-          <div style={{ marginBottom: "2.5rem" }}>
-            <PipelineDiagram />
-          </div>
-
-          <p style={{ ...body, marginBottom: "2rem" }}>
-            Figma variables mirror the token layers name for name. The output ships as versioned packages: tokens
-            compile from JSON into one tokens.css, and components, icons and Lottie live in one monorepo, documented in
-            Storybook. Claude handled the sorting work, such as synthesising the audit, grouping URLs into page types
-            and drafting documentation.
-          </p>
-
-          <div style={{ paddingLeft: "1.25rem", borderLeft: "1px solid var(--border-section)", marginBottom: "2rem" }}>
-            <h3 style={h3}>Where judgement still mattered</h3>
-            <p style={{ ...body, margin: 0 }}>
-              The pipeline is only as good as the frame it reads. Unbound values got approximated, and missing tokens
-              got plausible-sounding inventions, which is why both are flagged rather than accepted. Right-to-left
-              also needed a human eye: arrows should mirror, but logos and play buttons should not.
-            </p>
-          </div>
-
-          <p style={body}>
-            Because every block already existed in both Figma and code, bound to the same tokens,{" "}
-            <span style={b}>a new page stopped being a design-and-build project and became an assembly job.</span>{" "}
-            That is how three to five weeks became two to three days.
-          </p>
-        </div>
-
         {/* Imagery */}
         <div style={divider}>
           <h2 style={sectionTitle}>Imagery held to the same standard as the interface</h2>
@@ -1029,44 +1079,24 @@ export default function DerivCaseStudy() {
           </div>
         </div>
 
-        {/* Pushback — last content block, so no bottom rule above "Next" */}
-        <div style={{ ...divider, borderBottom: "none", paddingBottom: 0, marginBottom: 0 }}>
-          <h2 style={sectionTitle}>Where the system met pushback</h2>
-          <p style={{ ...body, marginBottom: "2rem" }}>
-            Every group with a stake in the site, the design team included, had a reason to resist a system that took
-            decisions away from individual pages. The work was in turning each concern into something the system
-            could guarantee.
-          </p>
-          <SegmentedTabs
-            ariaLabel="Team and stakeholder pushback"
-            tabs={pushback.map((pb) => ({
-              label: pb.tab,
-              panel: (
-                <div
-                  style={{
-                    border: "1px solid var(--border-section)",
-                    borderRadius: "12px",
-                    background: "var(--bg-card)",
-                    padding: "1.5rem 1.75rem",
-                  }}
-                >
-                  <h3 style={{ ...h3, fontSize: "22px", marginBottom: "1.25rem" }}>{pb.title}</h3>
-                  <div className="deriv-system-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1.25rem 2rem" }}>
-                    {[
-                      { label: "The concern", text: pb.concern },
-                      { label: "The resolution", text: pb.resolution },
-                    ].map((part) => (
-                      <div key={part.label} style={{ paddingLeft: "1rem", borderLeft: "1px solid var(--border-section)" }}>
-                        <p style={{ ...mono, fontSize: "11px", color: "var(--color-muted)", marginBottom: "6px" }}>{part.label}</p>
-                        <p style={{ ...body, fontSize: "13px", margin: 0 }}>{part.text}</p>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              ),
-            }))}
+        {/* Process — public visitors see the lock, verified visitors see the process */}
+        {unlocked ? (
+          <ProcessSections />
+        ) : (
+          <CaseStudyLock
+            title="The process behind the system"
+            description="The thinking, the token architecture, the Figma-to-code pipeline and the stakeholder work cover internal work done at Deriv, so they're shared on request."
+            contents={[
+              "Audit & user insight",
+              "Constraints & decisions",
+              "Token architecture",
+              "Blocks & system coverage",
+              "Figma MCP → Claude Code pipeline",
+              "Stakeholder pushback",
+            ]}
+            requestSubject="Access request: Deriv case study"
           />
-        </div>
+        )}
 
         {/* Next project */}
         <div style={{ paddingTop: "3rem", marginTop: "3rem", borderTop: "1px solid var(--border-section)" }}>
