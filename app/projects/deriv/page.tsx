@@ -96,16 +96,15 @@ const summary = [
   { label: "Problem", text: "6,000+ inconsistent pages, where every new page was a 3–5 week one-off." },
   { label: "Role", text: "Design owner end to end, working with a team of five web designers." },
   { label: "Approach", text: "A three-layer token system and 40 blocks, designed in Figma and built with Claude Code through Figma MCP." },
-  { label: "Outcome", text: "New pages in 2–3 days, and 25% higher engagement across 18 locales." },
+  { label: "Outcome", text: "New pages in 1–2 days, and 25% higher engagement across 18 locales." },
 ];
 
 const stats = [
   { value: "6,000+", label: "pages rebuilt across deriv.com, the Academy and deriv.ae" },
   { value: "18", label: "locales served from one set of blocks" },
   { value: "40", label: "blocks and 30+ components in one system" },
-  { value: "4", label: "card structures, simplified from dozens" },
   { value: "+25%", label: "user engagement after launch" },
-  { value: "2–3 days", label: "to ship a new page, down from 3–5 weeks" },
+  { value: "1–2 days", label: "to ship a new page, down from 3–5 weeks" },
 ];
 
 /* ── Everything a page is made of, grouped by layer ── */
@@ -935,7 +934,7 @@ function ProcessSections() {
         <p style={body}>
           Because every block already existed in both Figma and code, bound to the same tokens,{" "}
           <span style={b}>a new page stopped being a design-and-build project and became an assembly job.</span>{" "}
-          That is how three to five weeks became two to three days.
+          That is how three to five weeks became one to two days.
         </p>
       </div>
 
@@ -1030,6 +1029,7 @@ export default async function DerivCaseStudy() {
           .cs-grid { grid-template-columns: 1fr !important; }
           .cs-meta { gap: 1.25rem !important; }
           .deriv-stats { grid-template-columns: repeat(2, 1fr) !important; }
+          .deriv-stats > :last-child { grid-column: 1 / -1; }
           .deriv-token-row { grid-template-columns: 1fr !important; gap: 0.5rem !important; }
           .deriv-system-grid { grid-template-columns: 1fr !important; }
           .deriv-split { grid-template-columns: 1fr !important; gap: 1.5rem !important; }
@@ -1105,15 +1105,16 @@ export default async function DerivCaseStudy() {
 
         {/* Stats */}
         <div style={divider}>
-          <div className="deriv-stats" style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "2rem 1.5rem" }}>
+          <div className="deriv-stats" style={{ display: "grid", gridTemplateColumns: "repeat(5, 1fr)", gap: "2rem 1.5rem" }}>
             {stats.map((s) => (
               <div key={s.label}>
                 <p
                   style={{
                     fontFamily: "var(--font-fraunces), Georgia, serif",
-                    fontSize: "clamp(2rem, 4vw, 2.75rem)",
+                    fontSize: "clamp(2rem, 3.2vw, 2.5rem)",
                     fontWeight: 300,
                     lineHeight: 1,
+                    whiteSpace: "nowrap",
                     color: "var(--color-fg)",
                     marginBottom: "10px",
                   }}
