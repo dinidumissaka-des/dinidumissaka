@@ -324,22 +324,18 @@ const tokenFlows: { core: CoreToken; semantic: string[]; usedBy: string }[] = [
 const pipeline = [
   {
     title: "Figma frame",
-    tool: "Figma",
     points: ["Auto layout at every level", "Every fill, gap and radius bound to a variable", "Layers named after the block's content slots"],
   },
   {
     title: "Figma MCP",
-    tool: "Figma MCP",
     points: ["Reads the layout, not the pixels", "Passes variable names, not values", "Exposes component structure and variants"],
   },
   {
     title: "Claude Code",
-    tool: "Claude Code",
     points: ["Builds the block against semantic tokens", "Flags raw values that have no token", "Flags colour pairings that fail WCAG AA"],
   },
   {
     title: "Browser review",
-    tool: "Claude Code",
     points: ["Every breakpoint and every state", "German and Arabic", "Mismatches fixed at the source"],
   },
 ];
@@ -591,9 +587,6 @@ function PipelineDiagram() {
             <div key={stage.title} style={{ display: "contents" }}>
               {i > 0 && arrow}
               <div style={{ minWidth: 0 }}>
-                <p style={{ ...mono, fontSize: "11px", color: "var(--color-muted)", marginBottom: "6px" }}>
-                  0{i + 1} · {stage.tool}
-                </p>
                 <h3 style={{ ...h3, marginBottom: "10px" }}>{stage.title}</h3>
                 <ul style={{ margin: 0, padding: 0, listStyle: "none", display: "flex", flexDirection: "column", gap: "6px" }}>
                   {stage.points.map((pt) => (
@@ -605,12 +598,8 @@ function PipelineDiagram() {
           ))}
         </div>
 
-        <p style={{ ...mono, fontSize: "11px", color: "var(--color-muted)", margin: "1.25rem 0 0" }}>
-          ↺ 04 → 01 · a mismatch goes back to where it started — Figma if the design was wrong, code if the build was
-        </p>
-
         <div style={{ borderTop: "1px solid var(--border-section)", marginTop: "1.25rem", paddingTop: "1.25rem" }}>
-          <p style={{ ...mono, fontSize: "11px", color: "var(--color-muted)", marginBottom: "10px" }}>What stage 03 checks</p>
+          <p style={{ ...mono, fontSize: "11px", color: "var(--color-muted)", marginBottom: "10px" }}>What Claude Code checks</p>
           <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
             {pipelineChecks.map((c) => (
               <div key={c.code} className="deriv-check-row">
