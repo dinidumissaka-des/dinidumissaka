@@ -124,9 +124,9 @@ const decisions = [
   },
   {
     title: "Three token layers, not four",
-    options: "Core · semantic · component · template  →  Primitive · semantic · blocks",
+    options: "Core · semantic · component · template  →  Core · semantic · blocks",
     detail:
-      "An earlier model added a component layer between semantic tokens and templates. In practice it doubled the names to maintain while almost never being overridden. Removing it meant blocks read semantic tokens directly, and a theme change touched one layer instead of three.",
+      "An earlier model kept semantic and component tokens as separate layers. In practice every semantic token ended up serving one component anyway, so the two were folded together: semantic tokens are named by component and state — button.primary.background-hover — and point straight at core values. One less layer to keep in sync, and no guessing which token a component should read.",
   },
   {
     title: "Stress-test with the hardest two languages",
@@ -139,54 +139,50 @@ const decisions = [
 /* ── Token layers ── */
 const tokenLayers = [
   {
-    layer: "Primitive",
-    example: "red-500 · navy-900 · space-16",
-    detail: "Raw values with no meaning attached. The only place a hex code or pixel value is allowed to live.",
+    layer: "Core",
+    example: "color.coral.700 · color.slate.50 · radius.full",
+    detail: "Raw values with no meaning attached — colour, spacing, radius, type, shadow and breakpoints. The only place a hex code or pixel value is allowed to live.",
   },
   {
     layer: "Semantic",
-    example: "surface-brand · text-on-dark · gap-section",
-    detail: "Intent, not appearance. Light and dark mode are resolved entirely here, so nothing downstream knows which mode it is in.",
+    example: "button.primary.background · field.border · text-color",
+    detail: "Role, not appearance. Each token is named by the component and state it serves, and points at a core value — never at another raw value.",
   },
   {
     layer: "Blocks & templates",
     example: "hero · feature-cards · market-table",
-    detail: "Assemblies that consume semantic tokens only. A block that references a primitive is treated as a bug.",
+    detail: "Assemblies that consume semantic tokens only. A block that references a core value directly is treated as a bug.",
   },
 ];
 
-/* ── How a value travels through the layers (token diagram) ── */
-type Swatch = { name: string; hex?: string };
-const tokenFlows: { semantic: string; light: Swatch; dark: Swatch; usedBy: string[] }[] = [
+/* ── How a value travels through the layers (token diagram) ──
+ * Token names are the real ones from the Deriv tokens package; swatch hex values are approximations. */
+type CoreToken = { name: string; hex?: string; kind?: "color" | "radius" };
+const tokenFlows: { core: CoreToken; semantic: string[]; usedBy: string }[] = [
   {
-    semantic: "surface-brand",
-    light: { name: "red-500", hex: "#FF444F" },
-    dark: { name: "red-500", hex: "#FF444F" },
-    usedBy: ["Primary button", "Brand card"],
+    core: { name: "color.coral.700", hex: "#FF444F" },
+    semantic: ["button.primary.background", "button.primary.border"],
+    usedBy: "Every primary CTA — hero, pricing, sign-up",
   },
   {
-    semantic: "surface-default",
-    light: { name: "white", hex: "#FFFFFF" },
-    dark: { name: "navy-900", hex: "#1F2230" },
-    usedBy: ["Section background", "Light card"],
+    core: { name: "color.coral.800", hex: "#E12E3A" },
+    semantic: ["button.primary.background-hover"],
+    usedBy: "The hover state on those same CTAs",
   },
   {
-    semantic: "surface-inverse",
-    light: { name: "navy-900", hex: "#1F2230" },
-    dark: { name: "grey-50", hex: "#F4F5F7" },
-    usedBy: ["Dark card", "Footer"],
+    core: { name: "color.slate.50", hex: "#F6F7F8" },
+    semantic: ["button.primary.text", "button.primary.icon", "button.secondary.background"],
+    usedBy: "Labels on coral, and the fill of secondary buttons",
   },
   {
-    semantic: "text-primary",
-    light: { name: "navy-900", hex: "#1F2230" },
-    dark: { name: "white", hex: "#FFFFFF" },
-    usedBy: ["Headings", "Body copy"],
+    core: { name: "color.slate.1200", hex: "#181C25" },
+    semantic: ["button.secondary.text", "button.secondary.icon"],
+    usedBy: "Labels and icons on secondary buttons",
   },
   {
-    semantic: "gap-section",
-    light: { name: "space-80" },
-    dark: { name: "space-80" },
-    usedBy: ["Every block's vertical rhythm"],
+    core: { name: "radius.full", kind: "radius" },
+    semantic: ["button.primary.radius"],
+    usedBy: "The pill shape shared by every button",
   },
 ];
 
@@ -196,7 +192,7 @@ const workflow = [
     step: "Ideate and decide in Figma",
     tool: "Figma",
     detail:
-      "Explorations, page flows and visual direction happened in Figma first. Variables in the file mirror the primitive and semantic token layers, with light and dark as modes — so a design decision is already a token decision before any code exists.",
+      "Explorations, page flows and visual direction happened in Figma first. Variables in the file mirror the core and semantic token layers name for name — so a design decision is already a token decision before any code exists.",
   },
   {
     step: "Structure the frame for a machine reader",
@@ -214,7 +210,13 @@ const workflow = [
     step: "Review in the browser, in the hardest conditions",
     tool: "Claude Code",
     detail:
-      "Each block is checked at 360 and 1440, in light and dark, in German and in Arabic. Differences are fixed at the source — in Figma if the design was wrong, in code if the build was — so the two never drift apart.",
+      "Each block is checked at every breakpoint, in every state, in German and in Arabic. Differences are fixed at the source — in Figma if the design was wrong, in code if the build was — so the two never drift apart.",
+  },
+  {
+    step: "Ship the system as versioned packages",
+    tool: "Claude Code · Storybook",
+    detail:
+      "Tokens live as JSON in their own package and compile into a single tokens.css; components, icons and Lottie animations sit in sibling packages of the same monorepo. Every component is documented in Storybook, and every change ships as a versioned release with a changelog — so a page team always knows which version of the system it is building on.",
   },
   {
     step: "Use Claude for the thinking work",
@@ -259,33 +261,31 @@ function Figure({ caption: text, src, padded }: { caption: string; src: string; 
   );
 }
 
-function TokenChip({ swatch, mode }: { swatch: Swatch; mode: string }) {
+function CoreChip({ token }: { token: CoreToken }) {
+  const isRadius = token.kind === "radius";
   return (
     <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
       <span
         aria-hidden
         style={{
-          width: "14px",
+          width: isRadius ? "22px" : "14px",
           height: "14px",
           flexShrink: 0,
-          borderRadius: "4px",
-          border: "1px solid color-mix(in srgb, var(--color-muted) 45%, transparent)",
-          background: swatch.hex ?? "transparent",
-          backgroundImage: swatch.hex
-            ? undefined
-            : "repeating-linear-gradient(90deg, var(--color-muted) 0 1px, transparent 1px 4px)",
-          opacity: swatch.hex ? 1 : 0.5,
+          borderRadius: isRadius ? "999px" : "4px",
+          border: isRadius
+            ? "1.5px solid var(--color-fg)"
+            : "1px solid color-mix(in srgb, var(--color-muted) 45%, transparent)",
+          background: token.hex ?? "transparent",
         }}
       />
-      <span style={{ ...mono, fontSize: "11px", color: "var(--color-muted)", minWidth: "2.5rem" }}>{mode}</span>
-      <span style={{ ...mono, fontSize: "12px" }}>{swatch.name}</span>
+      <span style={{ ...mono, fontSize: "12px" }}>{token.name}</span>
     </div>
   );
 }
 
 /**
- * The token chain drawn as rows: each semantic token resolves to a primitive per mode,
- * and blocks only ever point at the semantic name — so switching mode never touches a block.
+ * The token chain drawn as rows: one core value feeds one or more semantic tokens,
+ * and blocks only ever read the semantic name — never the core value behind it.
  */
 function TokenDiagram() {
   const cell: React.CSSProperties = { minWidth: 0 };
@@ -310,54 +310,51 @@ function TokenDiagram() {
         }}
       >
         <div className="deriv-token-row deriv-token-head" style={{ paddingBottom: "0.75rem", borderBottom: "1px solid var(--border-section)" }}>
-          {["01 · Primitive", "", "02 · Semantic", "", "03 · Used by blocks"].map((h, i) => (
+          {["01 · Core", "", "02 · Semantic", "", "03 · Used by blocks"].map((h, i) => (
             <p key={i} style={{ ...mono, fontSize: "11px", color: "var(--color-muted)", margin: 0 }}>{h}</p>
           ))}
         </div>
         {tokenFlows.map((f, i) => (
           <div
-            key={f.semantic}
+            key={f.core.name}
             className="deriv-token-row"
             style={{ padding: "1rem 0", borderBottom: i < tokenFlows.length - 1 ? "1px solid var(--border-section)" : "none" }}
           >
-            <div style={{ ...cell, display: "flex", flexDirection: "column", gap: "6px" }}>
-              {colLabel("Primitive")}
-              {f.light.name === f.dark.name ? (
-                <TokenChip swatch={f.light} mode="both" />
-              ) : (
-                <>
-                  <TokenChip swatch={f.light} mode="light" />
-                  <TokenChip swatch={f.dark} mode="dark" />
-                </>
-              )}
+            <div style={cell}>
+              {colLabel("Core")}
+              <CoreChip token={f.core} />
             </div>
             {arrow}
-            <div style={cell}>
+            <div style={{ ...cell, display: "flex", flexDirection: "column", alignItems: "flex-start", gap: "6px" }}>
               {colLabel("Semantic")}
-              <span
-                style={{
-                  ...mono,
-                  fontSize: "12px",
-                  display: "inline-block",
-                  padding: "4px 10px",
-                  borderRadius: "999px",
-                  border: "1px solid var(--color-fg)",
-                }}
-              >
-                {f.semantic}
-              </span>
+              {f.semantic.map((name) => (
+                <span
+                  key={name}
+                  style={{
+                    ...mono,
+                    fontSize: "11px",
+                    maxWidth: "100%",
+                    overflowWrap: "anywhere",
+                    padding: "3px 10px",
+                    borderRadius: "999px",
+                    border: "1px solid var(--color-fg)",
+                  }}
+                >
+                  {name}
+                </span>
+              ))}
             </div>
             {arrow}
             <div style={cell}>
               {colLabel("Used by blocks")}
-              <p style={{ ...body, fontSize: "13px", margin: 0, color: "var(--color-fg)" }}>{f.usedBy.join(" · ")}</p>
+              <p style={{ ...body, fontSize: "13px", margin: 0, color: "var(--color-fg)" }}>{f.usedBy}</p>
             </div>
           </div>
         ))}
       </div>
       <figcaption style={caption}>
-        How a value travels through the system. Switching to dark mode changes only which primitive each semantic token
-        points to — nothing in the right-hand column changes.
+        How a value travels through the system, using the real button tokens. One core colour, slate.50, feeds three
+        semantic tokens — change coral.700 once and every primary CTA across 6,000 pages follows.
       </figcaption>
     </figure>
   );
@@ -390,7 +387,7 @@ export default function DerivCaseStudy() {
           .deriv-token-label { display: block !important; }
           .deriv-token-arrow { transform: rotate(90deg); width: 1rem; }
         }
-        .deriv-token-row { display: grid; grid-template-columns: 1.2fr 1.5rem 1fr 1.5rem 1.2fr; gap: 1rem; align-items: center; }
+        .deriv-token-row { display: grid; grid-template-columns: 1fr 1.5rem 1.3fr 1.5rem 1fr; gap: 1rem; align-items: center; }
         .deriv-token-label { display: none; }
         .dark .asset-bg { background: rgba(255,255,255,0.04) !important; }
       `}</style>
@@ -563,7 +560,7 @@ export default function DerivCaseStudy() {
           <h2 style={sectionTitle}>Three layers, each with one job</h2>
           <p style={{ ...body, marginBottom: "2rem" }}>
             The token architecture follows the same principle as the rest of the system: every decision is made once,
-            in one place. A colour is chosen at the primitive layer, given a meaning at the semantic layer, and used —
+            in one place. A colour is chosen at the core layer, given a meaning at the semantic layer, and used —
             never redefined — by the blocks.
           </p>
           <div className="deriv-layers" style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "1rem", marginBottom: "2rem" }}>
@@ -588,8 +585,8 @@ export default function DerivCaseStudy() {
             <TokenDiagram />
           </div>
           <p style={{ ...body, marginBottom: "2rem" }}>
-            Type followed the same logic. One family, five heading levels, three breakpoints — an H1 steps from 48 to
-            64 to 80 pixels, and every block inherits the step rather than setting its own size.{" "}
+            Type followed the same logic. One family, five heading levels, three breakpoints held as core tokens — mobile,
+            tablet from 768 and desktop from 992. An H1 steps from 48 to 64 to 80 pixels, and every block inherits the step rather than setting its own size.{" "}
             <span style={b}>No block is allowed to have opinions about typography.</span>
           </p>
           <Figure
