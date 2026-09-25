@@ -268,24 +268,24 @@ const constraints = [
 ];
 
 /* ── Decisions, with the options that were weighed ── */
-const decisions = [
+const decisions: { title: string; options: Badge[]; detail: string }[] = [
   {
     title: "Design in sections, not pages",
-    options: "Page-by-page redesign · atomic components only · section-level blocks",
+    options: [{ label: "Page-by-page" }, { label: "Atomic only" }, { label: "Section blocks", chosen: true }],
     detail:
-      "Designing 6,000 pages individually was never realistic, and a library of buttons and inputs alone leaves every page to be composed from scratch. Blocks sized to real page sections — a hero, a pricing table, a market list — gave teams a unit that was large enough to be useful and small enough to recombine.",
+      "Redesigning 6,000 pages one by one was never realistic, and a kit of buttons alone still leaves every page built from scratch. Blocks sized to real sections, like a hero or a pricing table, recombine into any page.",
   },
   {
     title: "Three token layers, not four",
-    options: "Core · semantic · component · template  →  Core · semantic · blocks",
+    options: [{ label: "Four layers" }, { label: "Three layers", chosen: true }],
     detail:
-      "An earlier model kept semantic and component tokens as separate layers. In practice every semantic token ended up serving one component anyway, so the two were folded together: semantic tokens are named by component and state — button.primary.background-hover — and point straight at core values. One less layer to keep in sync, and no guessing which token a component should read.",
+      "Semantic and component tokens began as separate layers, but nearly every semantic token served one component anyway. Merging them into names like button.primary.background-hover left one less layer to sync and no guessing which token to use.",
   },
   {
     title: "Stress-test with the hardest two languages",
-    options: "Test all 18 · test English only · test German and Arabic",
+    options: [{ label: "All 18" }, { label: "English only" }, { label: "German + Arabic", chosen: true }],
     detail:
-      "German covered length; Arabic covered direction. If a block held in both, it held in all eighteen — which turned localisation QA from eighteen passes into two.",
+      "Checking every layout in all 18 languages was too slow, and English alone hid the problems. German exposed length and Arabic exposed direction, so a block that held in both held everywhere: two QA passes instead of eighteen.",
   },
 ];
 
@@ -621,7 +621,8 @@ function PipelineDiagram() {
   );
 }
 
-type PanelItem = { name: string; meta?: string; detail: string };
+type Badge = { label: string; chosen?: boolean };
+type PanelItem = { name: string; badges?: Badge[]; detail: string };
 
 /**
  * The one card style every tab panel uses: counter, serif title, optional intro, then
@@ -658,11 +659,32 @@ function TabPanel({
       >
         {items.map((it) => (
           <div key={it.name} style={{ paddingLeft: "1rem", borderLeft: "1px solid var(--border-section)" }}>
-            <p style={{ ...metaSmall, fontWeight: 500, color: "var(--color-fg)", marginBottom: it.meta ? "2px" : "4px" }}>
+            <p style={{ ...metaSmall, fontWeight: 500, color: "var(--color-fg)", marginBottom: it.badges ? "8px" : "4px" }}>
               {it.name}
             </p>
-            {it.meta && (
-              <p style={{ ...mono, fontSize: "11px", color: "var(--color-muted)", marginBottom: "6px" }}>{it.meta}</p>
+            {it.badges && (
+              <ul style={{ listStyle: "none", margin: "0 0 10px", padding: 0, display: "flex", flexWrap: "wrap", gap: "6px" }}>
+                {it.badges.map((badge) => (
+                  <li
+                    key={badge.label}
+                    style={{
+                      ...mono,
+                      fontSize: "11px",
+                      lineHeight: 1.4,
+                      padding: "2px 8px",
+                      borderRadius: "6px",
+                      // The option that was chosen gets full-strength outline and text; the rest are muted.
+                      border: badge.chosen
+                        ? "1px solid var(--color-fg)"
+                        : "1px solid color-mix(in srgb, var(--color-muted) 40%, transparent)",
+                      color: badge.chosen ? "var(--color-fg)" : "var(--color-muted)",
+                    }}
+                  >
+                    {badge.label}
+                    {badge.chosen && <span className="sr-only"> (chosen)</span>}
+                  </li>
+                ))}
+              </ul>
             )}
             <p style={{ ...body, fontSize: "13px", margin: 0 }}>{it.detail}</p>
           </div>
@@ -822,7 +844,7 @@ function ProcessSections() {
                 <TabPanel
                   counter="02 / 02"
                   title="Chosen on what holds at scale"
-                  items={decisions.map((d) => ({ name: d.title, meta: d.options, detail: d.detail }))}
+                  items={decisions.map((d) => ({ name: d.title, badges: d.options, detail: d.detail }))}
                   columns={3}
                 />
               ),
