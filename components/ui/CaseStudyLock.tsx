@@ -4,34 +4,19 @@ import { useActionState, useId } from "react";
 import { Lock } from "lucide-react";
 import { unlockCaseStudy, type UnlockState } from "@/app/projects/actions";
 
-const mono: React.CSSProperties = {
-  fontFamily: "var(--font-mono)",
-  fontSize: "11px",
-  color: "var(--color-muted)",
-};
-
 const body: React.CSSProperties = {
   fontFamily: "var(--font-manrope), sans-serif",
   fontSize: "14px",
-  lineHeight: 1.7,
+  lineHeight: 1.6,
   color: "var(--color-muted)",
 };
 
 /**
- * Password prompt for the NDA part of a case study. The locked content is rendered
- * on the server only after the password checks out, so nothing is hidden client-side.
+ * Password prompt for the NDA part of a case study, sat on top of a faded preview.
+ * The locked content is rendered on the server only after the password checks out,
+ * so nothing is hidden client-side.
  */
-export default function CaseStudyLock({
-  title,
-  description,
-  contents,
-  requestSubject,
-}: {
-  title: string;
-  description: string;
-  contents: string[];
-  requestSubject: string;
-}) {
+export default function CaseStudyLock({ requestSubject }: { requestSubject: string }) {
   const [state, action, pending] = useActionState<UnlockState, FormData>(unlockCaseStudy, {});
   const id = useId();
 
@@ -39,50 +24,35 @@ export default function CaseStudyLock({
     <section
       aria-labelledby={`${id}-title`}
       style={{
+        width: "100%",
+        maxWidth: "30rem",
+        textAlign: "center",
         border: "1px solid var(--border-section)",
-        borderRadius: "12px",
-        background: "var(--bg-card)",
-        padding: "clamp(1.5rem, 4vw, 2.5rem)",
+        borderRadius: "16px",
+        // Opaque so the card sits cleanly on top of the fading preview.
+        background: "linear-gradient(var(--bg-card), var(--bg-card)), var(--color-bg)",
+        boxShadow: "0 12px 40px rgba(0, 0, 0, 0.18)",
+        padding: "2rem clamp(1.25rem, 5vw, 2.25rem)",
       }}
     >
-      <p style={{ ...mono, display: "flex", alignItems: "center", gap: "8px", marginBottom: "12px" }}>
-        <Lock size={13} aria-hidden /> Process · under NDA
-      </p>
+      <Lock size={18} aria-hidden style={{ color: "var(--color-muted)", display: "block", margin: "0 auto 12px" }} />
       <h2
         id={`${id}-title`}
         style={{
           fontFamily: "var(--font-fraunces), Georgia, serif",
-          fontSize: "32px",
+          fontSize: "26px",
           fontWeight: 300,
-          lineHeight: 1.1,
+          lineHeight: 1.15,
           color: "var(--color-fg)",
-          marginBottom: "1rem",
+          marginBottom: "8px",
         }}
       >
-        {title}
+        Continue reading
       </h2>
-      <p style={{ ...body, marginBottom: "1.25rem", maxWidth: "46rem" }}>{description}</p>
+      <p style={{ ...body, marginBottom: "1.5rem" }}>The full process is under NDA and password protected.</p>
 
-      <p style={{ ...mono, marginBottom: "8px" }}>Inside</p>
-      <ul
-        style={{
-          listStyle: "none",
-          margin: "0 0 2rem",
-          padding: 0,
-          display: "flex",
-          flexWrap: "wrap",
-          gap: "6px 20px",
-        }}
-      >
-        {contents.map((c) => (
-          <li key={c} style={{ ...body, fontSize: "13px", color: "var(--color-fg)" }}>
-            {c}
-          </li>
-        ))}
-      </ul>
-
-      <form action={action} style={{ maxWidth: "26rem" }}>
-        <label htmlFor={`${id}-password`} style={{ ...mono, display: "block", marginBottom: "8px" }}>
+      <form action={action}>
+        <label htmlFor={`${id}-password`} className="sr-only">
           Password
         </label>
         <div style={{ display: "flex", gap: "8px" }}>
@@ -91,6 +61,7 @@ export default function CaseStudyLock({
             name="password"
             type="password"
             required
+            placeholder="Password"
             autoComplete="current-password"
             aria-invalid={state.error ? true : undefined}
             aria-describedby={state.error ? `${id}-error` : undefined}
@@ -128,14 +99,20 @@ export default function CaseStudyLock({
         <p
           id={`${id}-error`}
           role="alert"
-          style={{ ...body, fontSize: "13px", color: "color-mix(in srgb, #FF444F 70%, var(--color-fg))", minHeight: "1.5rem", margin: "8px 0 0" }}
+          style={{
+            ...body,
+            fontSize: "13px",
+            color: "color-mix(in srgb, #FF444F 70%, var(--color-fg))",
+            minHeight: "1.4rem",
+            margin: "8px 0 0",
+          }}
         >
           {state.error ?? ""}
         </p>
       </form>
 
-      <p style={{ ...body, fontSize: "13px", margin: "0.5rem 0 0" }}>
-        Don&apos;t have the password?{" "}
+      <p style={{ ...body, fontSize: "13px", margin: "0.25rem 0 0" }}>
+        Don&apos;t have it?{" "}
         <a
           href={`mailto:dinidumissaka@gmail.com?subject=${encodeURIComponent(requestSubject)}`}
           style={{ color: "var(--color-fg)", textDecoration: "underline", textUnderlineOffset: "3px" }}
