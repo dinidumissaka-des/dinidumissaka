@@ -138,7 +138,7 @@ const systemGroups: { tab: string; title: string; intro: string; items: { name: 
       {
         name: "Iconography",
         detail:
-          "Interface icons live in their own package, one source instead of files exported page by page. A separate 3D icon set covers marketing moments, built to the same material rules.",
+          "Icons and illustrations are separate packages owned by the designers. They're maintained in Figma and published to the packages through Figma Code Connect, so a new or updated icon reaches every page without anyone re-exporting files. A 3D icon set covers marketing moments, built to the same material rules.",
       },
       {
         name: "Motion",
@@ -963,9 +963,10 @@ function ProcessSections() {
 
         <p style={{ ...body, marginBottom: "2rem" }}>
           Figma variables mirror the token layers name for name. The output ships as versioned packages: tokens
-          compile from JSON into one tokens.css, and components, icons and Lottie live in one monorepo, documented in
-          Storybook. Claude handled the sorting work, such as synthesising the audit, grouping URLs into page types
-          and drafting documentation.
+          compile from JSON into one tokens.css, and components are documented in Storybook. Icons and
+          illustrations are their own packages, which designers maintain in Figma and update through Figma Code
+          Connect, with no developer handoff. Claude handled the sorting work, such as synthesising the audit,
+          grouping URLs into page types and drafting documentation.
         </p>
 
         <div style={{ paddingLeft: "1.25rem", borderLeft: "1px solid var(--border-section)", marginBottom: "2rem" }}>
