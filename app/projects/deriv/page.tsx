@@ -527,6 +527,49 @@ function TokenDiagram() {
   );
 }
 
+/** Typography through the same three layers, named after the real token files. */
+const typeChain = [
+  { layer: "01 · Core", tokens: ["font-size", "font-weight", "line-height"], detail: "Raw values for each breakpoint" },
+  { layer: "02 · Semantic", tokens: ["typography"], detail: "Five heading levels, H1 to H5" },
+  { layer: "03 · Used by blocks", tokens: ["every heading"], detail: "Inherits its level, never sets a size" },
+];
+
+function TypeChain() {
+  return (
+    <div
+      className="deriv-type-chain"
+      style={{
+        border: "1px solid var(--border-section)",
+        borderRadius: "12px",
+        background: "var(--bg-card)",
+        padding: "1.25rem 1.5rem",
+      }}
+    >
+      {typeChain.map((step, i) => (
+        <div key={step.layer} style={{ display: "contents" }}>
+          {i > 0 && (
+            <span aria-hidden className="deriv-type-arrow" style={{ ...mono, color: "var(--color-muted)", alignSelf: "center" }}>
+              →
+            </span>
+          )}
+          <div style={{ minWidth: 0 }}>
+            <p style={{ ...mono, fontSize: "11px", color: "var(--color-muted)", marginBottom: "6px" }}>{step.layer}</p>
+            <p style={{ ...mono, fontSize: "12px", marginBottom: "4px" }}>
+              {step.tokens.map((t, j) => (
+                <span key={t}>
+                  {j > 0 && " · "}
+                  <span style={{ whiteSpace: "nowrap" }}>{t}</span>
+                </span>
+              ))}
+            </p>
+            <p style={{ ...body, fontSize: "13px", margin: 0 }}>{step.detail}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  );
+}
+
 function PipelineDiagram() {
   const arrow = (
     <span aria-hidden className="deriv-pipe-arrow" style={{ ...mono, color: "var(--color-muted)", textAlign: "center", alignSelf: "center" }}>
@@ -803,30 +846,34 @@ function ProcessSections() {
       <div style={divider}>
         <p style={{ ...sectionLabel, marginBottom: "0.75rem" }}>Design</p>
         <h2 style={sectionTitle}>Three layers, each with one job</h2>
-        <p style={{ ...body, marginBottom: "2rem" }}>
-          Every decision is made once, in one place. A colour is chosen at the core layer, given a role at the
-          semantic layer, and used, never redefined, by the blocks. Semantic tokens are named by component and state,
-          and{" "}
+        <p style={{ ...body, marginBottom: "1rem" }}>
+          Every decision is made once, in one place. A value is chosen at the core layer, given a role at the semantic
+          layer, and used, never redefined, by the blocks. Semantic tokens are named by the component and state they
+          serve, and{" "}
           <span style={b}>a block that reads a core value directly is treated as a bug.</span>
         </p>
         <p style={{ ...body, marginBottom: "2rem" }}>
-          Type followed the same logic. One family, five heading levels, three breakpoints held as core tokens — mobile,
-          tablet from 768 and desktop from 992. An H1 steps from 48 to 64 to 80 pixels, and every block inherits the step rather than setting its own size.{" "}
-          <span style={b}>No block is allowed to have opinions about typography.</span>
+          Colour and typography run through the same three layers. For colour, coral.700 at the core becomes
+          button.primary.background. For type, core size, weight and line-height values become five semantic heading
+          levels that step per breakpoint (an H1 goes from 48 to 64 to 80 pixels), and blocks inherit the level
+          rather than setting a size.
         </p>
         <SegmentedTabs
-          ariaLabel="Token diagram and type scale"
+          ariaLabel="The three token layers, for colour and for typography"
           tabs={[
-            { label: "Colour tokens", panel: <TokenDiagram /> },
+            { label: "Colour", panel: <TokenDiagram /> },
             {
-              label: "Type scale",
+              label: "Typography",
               panel: (
-                <Figure
-                  src="/images/projects/deriv/responsive-type-scale.webp"
-                  width={5440}
-                  height={3060}
-                  caption="The responsive type scale — five heading levels across mobile, tablet and desktop, defined once as tokens."
-                />
+                <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
+                  <TypeChain />
+                  <Figure
+                    src="/images/projects/deriv/responsive-type-scale.webp"
+                    width={5440}
+                    height={3060}
+                    caption="The semantic layer for type: five heading levels, each resolving to core size and line-height values at mobile, tablet and desktop."
+                  />
+                </div>
               ),
             },
           ]}
@@ -1028,6 +1075,8 @@ export default async function DerivCaseStudy() {
           .deriv-stats { grid-template-columns: repeat(2, 1fr) !important; }
           .deriv-token-row { grid-template-columns: 1fr !important; gap: 0.5rem !important; }
           .deriv-panel-grid { grid-template-columns: 1fr !important; }
+          .deriv-type-chain { grid-template-columns: 1fr !important; gap: 0.5rem !important; }
+          .deriv-type-arrow { transform: rotate(90deg); width: 1rem; }
           .deriv-split { grid-template-columns: 1fr !important; gap: 1.5rem !important; }
           .deriv-summary { grid-template-columns: 1fr 1fr !important; }
           .deriv-pipe-row { grid-template-columns: 1fr !important; gap: 0.75rem !important; }
@@ -1040,6 +1089,7 @@ export default async function DerivCaseStudy() {
         }
         .deriv-token-row { display: grid; grid-template-columns: 1fr 1.5rem 1.3fr 1.5rem 1fr; gap: 1rem; align-items: center; }
         .deriv-token-label { display: none; }
+        .deriv-type-chain { display: grid; grid-template-columns: 1fr 1.25rem 1fr 1.25rem 1fr; gap: 1rem; }
         @media (max-width: 900px) { .deriv-panel-grid-3 { grid-template-columns: 1fr !important; } }
         .deriv-split { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; align-items: center; }
         .deriv-pipe-row { display: grid; grid-template-columns: 1fr 1.25rem 1fr 1.25rem 1fr 1.25rem 1fr; gap: 1rem; }
