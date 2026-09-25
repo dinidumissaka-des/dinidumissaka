@@ -2,7 +2,7 @@ import { createHmac, timingSafeEqual } from "node:crypto";
 import { cookies } from "next/headers";
 
 /**
- * Server-side gate for NDA case-study content.
+ * Server-side gate for password-protected case-study content.
  *
  * The password lives only in the CASE_STUDY_PASSWORD environment variable. The cookie
  * never holds the password itself — it holds an HMAC derived from it, so changing the

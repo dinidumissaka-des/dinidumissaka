@@ -589,15 +589,53 @@ function PipelineDiagram() {
   );
 }
 
-function Notes({ items }: { items: { title: string; detail: string }[] }) {
+type PanelItem = { name: string; meta?: string; detail: string };
+
+/**
+ * The one card style every tab panel uses: counter, serif title, optional intro, then
+ * items with a hairline rule. Three-item panels get three columns so no row is left half empty.
+ */
+function TabPanel({
+  counter,
+  title,
+  intro,
+  items,
+  columns = 2,
+}: {
+  counter: string;
+  title: string;
+  intro?: string;
+  items: PanelItem[];
+  columns?: 2 | 3;
+}) {
   return (
-    <div style={{ display: "flex", flexDirection: "column", gap: "1.25rem" }}>
-      {items.map((d) => (
-        <div key={d.title} style={{ paddingLeft: "1.25rem", borderLeft: "1px solid var(--border-section)" }}>
-          <h3 style={h3}>{d.title}</h3>
-          <p style={{ ...body, margin: 0 }}>{d.detail}</p>
-        </div>
-      ))}
+    <div
+      style={{
+        border: "1px solid var(--border-section)",
+        borderRadius: "12px",
+        background: "var(--bg-card)",
+        padding: "1.5rem clamp(1.25rem, 4vw, 1.75rem)",
+      }}
+    >
+      <p style={{ ...mono, fontSize: "11px", color: "var(--color-muted)", marginBottom: "8px" }}>{counter}</p>
+      <h3 style={{ ...h3, fontSize: "22px", marginBottom: intro ? "6px" : "1.5rem" }}>{title}</h3>
+      {intro && <p style={{ ...body, marginBottom: "1.5rem" }}>{intro}</p>}
+      <div
+        className={columns === 3 ? "deriv-panel-grid deriv-panel-grid-3" : "deriv-panel-grid"}
+        style={{ display: "grid", gridTemplateColumns: `repeat(${columns}, 1fr)`, gap: "1.25rem 2rem" }}
+      >
+        {items.map((it) => (
+          <div key={it.name} style={{ paddingLeft: "1rem", borderLeft: "1px solid var(--border-section)" }}>
+            <p style={{ ...metaSmall, fontWeight: 500, color: "var(--color-fg)", marginBottom: it.meta ? "2px" : "4px" }}>
+              {it.name}
+            </p>
+            {it.meta && (
+              <p style={{ ...mono, fontSize: "11px", color: "var(--color-muted)", marginBottom: "6px" }}>{it.meta}</p>
+            )}
+            <p style={{ ...body, fontSize: "13px", margin: 0 }}>{it.detail}</p>
+          </div>
+        ))}
+      </div>
     </div>
   );
 }
@@ -682,7 +720,7 @@ function ImagerySection() {
   );
 }
 
-/** The NDA part of the case study — only rendered on the server once the password checks out. */
+/** The protected part of the case study — only rendered on the server once the password checks out. */
 function ProcessSections() {
   return (
     <>
@@ -735,34 +773,26 @@ function ProcessSections() {
         <SegmentedTabs
           ariaLabel="Constraints and decisions"
           tabs={[
-            { label: "Constraints", panel: <Notes items={constraints} /> },
+            {
+              label: "Constraints",
+              panel: (
+                <TabPanel
+                  counter="01 / 02"
+                  title="Set before any visual work"
+                  items={constraints.map((c) => ({ name: c.title, detail: c.detail }))}
+                  columns={3}
+                />
+              ),
+            },
             {
               label: "Decisions",
               panel: (
-              <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
-                {decisions.map((d, i) => (
-                  <div
-                    key={d.title}
-                    style={{
-                      border: "1px solid var(--border-item)",
-                      borderRadius: "12px",
-                      background: "var(--bg-card)",
-                      padding: "1.5rem 1.75rem",
-                    }}
-                  >
-                    <div style={{ display: "flex", gap: "1.25rem", alignItems: "flex-start" }}>
-                      <span style={{ ...mono, fontSize: "12px", color: "var(--color-muted)", paddingTop: "4px", minWidth: "1.5rem" }}>
-                        0{i + 1}
-                      </span>
-                      <div>
-                        <h3 style={h3}>{d.title}</h3>
-                        <p style={{ ...mono, fontSize: "11px", color: "var(--color-muted)", marginBottom: "10px" }}>{d.options}</p>
-                        <p style={{ ...body, margin: 0 }}>{d.detail}</p>
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </div>
+                <TabPanel
+                  counter="02 / 02"
+                  title="Chosen on what holds at scale"
+                  items={decisions.map((d) => ({ name: d.title, meta: d.options, detail: d.detail }))}
+                  columns={3}
+                />
               ),
             },
           ]}
@@ -876,28 +906,7 @@ function ProcessSections() {
           ariaLabel="System layers"
           tabs={systemGroups.map((g, gi) => ({
             label: g.tab,
-            panel: (
-              <div
-                style={{
-                  border: "1px solid var(--border-section)",
-                  borderRadius: "12px",
-                  background: "var(--bg-card)",
-                  padding: "1.5rem 1.75rem",
-                }}
-              >
-                <p style={{ ...mono, fontSize: "11px", color: "var(--color-muted)", marginBottom: "8px" }}>0{gi + 1} / 04</p>
-                <h3 style={{ ...h3, fontSize: "22px" }}>{g.title}</h3>
-                <p style={{ ...body, marginBottom: "1.5rem" }}>{g.intro}</p>
-                <div className="deriv-system-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1.25rem 2rem" }}>
-                  {g.items.map((it) => (
-                    <div key={it.name} style={{ paddingLeft: "1rem", borderLeft: "1px solid var(--border-section)" }}>
-                      <p style={{ ...metaSmall, fontWeight: 500, color: "var(--color-fg)", marginBottom: "4px" }}>{it.name}</p>
-                      <p style={{ ...body, fontSize: "13px", margin: 0 }}>{it.detail}</p>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            ),
+            panel: <TabPanel counter={`0${gi + 1} / 04`} title={g.title} intro={g.intro} items={g.items} />,
           }))}
         />
       </div>
@@ -951,30 +960,17 @@ function ProcessSections() {
         </p>
         <SegmentedTabs
           ariaLabel="Team and stakeholder pushback"
-          tabs={pushback.map((pb) => ({
+          tabs={pushback.map((pb, i) => ({
             label: pb.tab,
             panel: (
-              <div
-                style={{
-                  border: "1px solid var(--border-section)",
-                  borderRadius: "12px",
-                  background: "var(--bg-card)",
-                  padding: "1.5rem 1.75rem",
-                }}
-              >
-                <h3 style={{ ...h3, fontSize: "22px", marginBottom: "1.25rem" }}>{pb.title}</h3>
-                <div className="deriv-system-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1.25rem 2rem" }}>
-                  {[
-                    { label: "The concern", text: pb.concern },
-                    { label: "The resolution", text: pb.resolution },
-                  ].map((part) => (
-                    <div key={part.label} style={{ paddingLeft: "1rem", borderLeft: "1px solid var(--border-section)" }}>
-                      <p style={{ ...mono, fontSize: "11px", color: "var(--color-muted)", marginBottom: "6px" }}>{part.label}</p>
-                      <p style={{ ...body, fontSize: "13px", margin: 0 }}>{part.text}</p>
-                    </div>
-                  ))}
-                </div>
-              </div>
+              <TabPanel
+                counter={`0${i + 1} / 0${pushback.length}`}
+                title={pb.title}
+                items={[
+                  { name: "The concern", detail: pb.concern },
+                  { name: "The resolution", detail: pb.resolution },
+                ]}
+              />
             ),
           }))}
         />
@@ -1031,7 +1027,7 @@ export default async function DerivCaseStudy() {
           .cs-meta { gap: 1.25rem !important; }
           .deriv-stats { grid-template-columns: repeat(2, 1fr) !important; }
           .deriv-token-row { grid-template-columns: 1fr !important; gap: 0.5rem !important; }
-          .deriv-system-grid { grid-template-columns: 1fr !important; }
+          .deriv-panel-grid { grid-template-columns: 1fr !important; }
           .deriv-split { grid-template-columns: 1fr !important; gap: 1.5rem !important; }
           .deriv-summary { grid-template-columns: 1fr 1fr !important; }
           .deriv-pipe-row { grid-template-columns: 1fr !important; gap: 0.75rem !important; }
@@ -1044,6 +1040,7 @@ export default async function DerivCaseStudy() {
         }
         .deriv-token-row { display: grid; grid-template-columns: 1fr 1.5rem 1.3fr 1.5rem 1fr; gap: 1rem; align-items: center; }
         .deriv-token-label { display: none; }
+        @media (max-width: 900px) { .deriv-panel-grid-3 { grid-template-columns: 1fr !important; } }
         .deriv-split { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; align-items: center; }
         .deriv-pipe-row { display: grid; grid-template-columns: 1fr 1.25rem 1fr 1.25rem 1fr 1.25rem 1fr; gap: 1rem; }
         .deriv-check-row { display: grid; grid-template-columns: 1.25rem minmax(0, 1.2fr) minmax(0, 1fr); gap: 0.25rem 0.75rem; align-items: baseline; }

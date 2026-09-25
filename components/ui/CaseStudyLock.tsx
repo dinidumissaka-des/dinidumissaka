@@ -12,7 +12,7 @@ const body: React.CSSProperties = {
 };
 
 /**
- * Password prompt for the NDA part of a case study, sat on top of a faded preview.
+ * Password prompt for the protected part of a case study, sat on top of a faded preview.
  * The locked content is rendered on the server only after the password checks out,
  * so nothing is hidden client-side.
  */
@@ -49,13 +49,14 @@ export default function CaseStudyLock({ requestSubject }: { requestSubject: stri
       >
         Continue reading
       </h2>
-      <p style={{ ...body, marginBottom: "1.5rem" }}>The full process is under NDA and password protected.</p>
+      <p style={{ ...body, marginBottom: "1.5rem" }}>The full process is password protected.</p>
 
       <form action={action}>
         <label htmlFor={`${id}-password`} className="sr-only">
           Password
         </label>
-        <div style={{ display: "flex", gap: "8px" }}>
+        {/* Stacked on mobile, side by side from 640px */}
+        <div className="flex flex-col gap-2 sm:flex-row">
           <input
             id={`${id}-password`}
             name="password"
@@ -65,29 +66,32 @@ export default function CaseStudyLock({ requestSubject }: { requestSubject: stri
             autoComplete="current-password"
             aria-invalid={state.error ? true : undefined}
             aria-describedby={state.error ? `${id}-error` : undefined}
+            className="w-full sm:flex-1"
+            // Same surface, border and 8px radius as the segmented controls.
             style={{
-              flex: 1,
               minWidth: 0,
-              padding: "10px 16px",
-              borderRadius: "999px",
-              border: "1px solid color-mix(in srgb, var(--color-muted) 45%, transparent)",
-              background: "transparent",
+              padding: "8px 12px",
+              borderRadius: "8px",
+              border: "1px solid color-mix(in srgb, var(--color-muted) 35%, transparent)",
+              background: "var(--bg-card)",
               color: "var(--color-fg)",
               fontFamily: "var(--font-manrope), sans-serif",
-              fontSize: "14px",
+              fontSize: "13px",
             }}
           />
+          {/* Styled like the active segment: a translucent tint rather than a solid fill. */}
           <button
             type="submit"
             disabled={pending}
+            className="bg-[color-mix(in_srgb,var(--color-fg)_12%,transparent)] hover:bg-[color-mix(in_srgb,var(--color-fg)_18%,transparent)] transition-colors"
             style={{
-              padding: "10px 20px",
-              borderRadius: "999px",
-              border: "none",
-              background: "var(--color-fg)",
-              color: "var(--color-bg)",
+              padding: "8px 16px",
+              borderRadius: "8px",
+              // Transparent border matches the input's 1px border, so both are the same height.
+              border: "1px solid transparent",
+              color: "var(--color-fg)",
               fontFamily: "var(--font-manrope), sans-serif",
-              fontSize: "14px",
+              fontSize: "13px",
               fontWeight: 600,
               cursor: pending ? "wait" : "pointer",
               opacity: pending ? 0.7 : 1,
