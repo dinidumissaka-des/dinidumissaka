@@ -108,6 +108,22 @@ const stats = [
   { value: "1–2 days", label: "to ship a new page, down from 3–5 weeks" },
 ];
 
+/* ── Closing: what changed, and for whom ── */
+const outcomes = [
+  {
+    name: "For visitors",
+    detail: "One consistent site across deriv.com, the Academy and deriv.ae, in 18 locales, and 25% higher engagement after launch.",
+  },
+  {
+    name: "For the team",
+    detail: "Five designers assemble pages from 40+ blocks instead of drawing them, and a new page ships in one to two days.",
+  },
+  {
+    name: "For the business",
+    detail: "Compliance copy and search structure are guaranteed by the system, not checked by hand across 6,000 pages.",
+  },
+];
+
 /* ── Everything a page is made of, grouped by layer ── */
 const systemGroups: { tab: string; title: string; intro: string; items: { name: string; detail: string }[] }[] = [
   {
@@ -619,8 +635,8 @@ function TabPanel({
   items,
   columns = 2,
 }: {
-  counter: string;
-  title: string;
+  counter?: string;
+  title?: string;
   intro?: string;
   items: PanelItem[];
   columns?: 2 | 3;
@@ -634,8 +650,8 @@ function TabPanel({
         padding: "1.5rem clamp(1.25rem, 4vw, 1.75rem)",
       }}
     >
-      <p style={{ ...mono, fontSize: "11px", color: "var(--color-muted)", marginBottom: "8px" }}>{counter}</p>
-      <h3 style={{ ...h3, fontSize: "22px", marginBottom: intro ? "6px" : "1.5rem" }}>{title}</h3>
+      {counter && <p style={{ ...mono, fontSize: "11px", color: "var(--color-muted)", marginBottom: "8px" }}>{counter}</p>}
+      {title && <h3 style={{ ...h3, fontSize: "22px", marginBottom: intro ? "6px" : "1.5rem" }}>{title}</h3>}
       {intro && <p style={{ ...body, marginBottom: "1.5rem" }}>{intro}</p>}
       <div
         className={columns === 3 ? "deriv-panel-grid deriv-panel-grid-3" : "deriv-panel-grid"}
@@ -981,8 +997,8 @@ function ProcessSections() {
 
       <ImagerySection />
 
-      {/* Tools & workflow — last content block, so no bottom rule above "Next" */}
-      <div style={{ ...divider, borderBottom: "none", paddingBottom: 0, marginBottom: 0 }}>
+      {/* Tools & workflow */}
+      <div style={divider}>
         <p style={{ ...sectionLabel, marginBottom: "0.75rem" }}>Tools &amp; workflow</p>
         <h2 style={sectionTitle}>From Figma to production without a translation step</h2>
         <p style={{ ...body, marginBottom: "2rem" }}>
@@ -1016,6 +1032,26 @@ function ProcessSections() {
           Because every block already existed in both Figma and code, bound to the same tokens,{" "}
           <span style={b}>a new page stopped being a design-and-build project and became an assembly job.</span>{" "}
           That is how three to five weeks became one to two days.
+        </p>
+      </div>
+
+      {/* Outcome — last content block, so no bottom rule above "Next" */}
+      <div style={{ ...divider, borderBottom: "none", paddingBottom: 0, marginBottom: 0 }}>
+        <p style={{ ...sectionLabel, marginBottom: "0.75rem" }}>Outcome</p>
+        <h2 style={sectionTitle}>What changed, and for whom</h2>
+        <TabPanel items={outcomes} columns={3} />
+        <p
+          style={{
+            fontFamily: "var(--font-fraunces), Georgia, serif",
+            fontSize: "clamp(1.25rem, 3vw, 1.75rem)",
+            fontWeight: 300,
+            lineHeight: 1.3,
+            color: "var(--color-fg)",
+            textWrap: "balance",
+            margin: "2.5rem 0 0",
+          }}
+        >
+          The redesign is what visitors see. The system is what stops it drifting back.
         </p>
       </div>
     </>
