@@ -16,7 +16,7 @@ export const projects: Project[] = [
     title: "Deriv",
     subtitle: "Enterprise Website",
     year: "2024",
-    rotatingTexts: ["Enterprise Website", "Web Design System", "Webflow", "6000+ pages"],
+    rotatingTexts: ["Enterprise Website", "Web Design System", "Claude Code", "6000+ pages"],
     description: "Redesigned the enterprise website experience for Deriv, a global fintech trading platform.",
     image: "/images/projects/project-deriv.webp",
     homeImage: "/images/home/projects/deriv.webp",
