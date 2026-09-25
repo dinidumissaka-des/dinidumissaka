@@ -1010,7 +1010,7 @@ function LockedPreview() {
         />
       </div>
       <div style={{ position: "relative", marginTop: "clamp(-200px, -24vw, -72px)", display: "flex", justifyContent: "center" }}>
-        <CaseStudyLock requestSubject="Access request: Deriv case study" />
+        <CaseStudyLock project="Deriv" />
       </div>
     </div>
   );

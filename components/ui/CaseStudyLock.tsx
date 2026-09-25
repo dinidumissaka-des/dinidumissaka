@@ -16,7 +16,24 @@ const body: React.CSSProperties = {
  * The locked content is rendered on the server only after the password checks out,
  * so nothing is hidden client-side.
  */
-export default function CaseStudyLock({ requestSubject }: { requestSubject: string }) {
+/** Opens the visitor's email app with a ready-made request they can edit before sending. */
+function requestAccessHref(project: string): string {
+  const subject = `Access request: ${project} case study`;
+  const body = [
+    "Hi Dinidu,",
+    "",
+    `I'd like to read the full ${project} case study.`,
+    "",
+    "Name:",
+    "Company:",
+    "Role:",
+    "",
+    "Thanks!",
+  ].join("\n");
+  return `mailto:dinidumissaka@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+}
+
+export default function CaseStudyLock({ project }: { project: string }) {
   const [state, action, pending] = useActionState<UnlockState, FormData>(unlockCaseStudy, {});
   const id = useId();
 
@@ -118,7 +135,7 @@ export default function CaseStudyLock({ requestSubject }: { requestSubject: stri
       <p style={{ ...body, fontSize: "13px", margin: "0.25rem 0 0" }}>
         Don&apos;t have it?{" "}
         <a
-          href={`mailto:dinidumissaka@gmail.com?subject=${encodeURIComponent(requestSubject)}`}
+          href={requestAccessHref(project)}
           style={{ color: "var(--color-fg)", textDecoration: "underline", textUnderlineOffset: "3px" }}
         >
           Request access
