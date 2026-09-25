@@ -325,19 +325,16 @@ function TokenDiagram() {
               <CoreChip token={f.core} />
             </div>
             {arrow}
-            <div style={{ ...cell, display: "flex", flexDirection: "column", alignItems: "flex-start", gap: "6px" }}>
+            <div style={{ ...cell, display: "flex", flexDirection: "column", alignItems: "flex-start", gap: "4px" }}>
               {colLabel("Semantic")}
               {f.semantic.map((name) => (
                 <span
                   key={name}
                   style={{
                     ...mono,
-                    fontSize: "11px",
+                    fontSize: "12px",
                     maxWidth: "100%",
                     overflowWrap: "anywhere",
-                    padding: "3px 10px",
-                    borderRadius: "999px",
-                    border: "1px solid var(--color-fg)",
                   }}
                 >
                   {name}
