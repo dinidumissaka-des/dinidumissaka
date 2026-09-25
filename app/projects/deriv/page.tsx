@@ -602,10 +602,92 @@ function Notes({ items }: { items: { title: string; detail: string }[] }) {
   );
 }
 
+function BeforeAfterSection() {
+  return (
+    <div style={divider}>
+      <h2 style={sectionTitle}>Before / After</h2>
+      <SegmentedTabs
+        ariaLabel="Before and after"
+        defaultIndex={1}
+        tabs={[
+          {
+            label: "Before",
+            panel: (
+              <div style={{ borderRadius: "12px", background: "rgba(0,0,0,0.04)", padding: "1.5rem" }} className="asset-bg">
+                <ScrollImage src="/images/projects/deriv/deriv-website.webp" alt="The old Deriv.com homepage" />
+              </div>
+            ),
+          },
+          {
+            label: "After",
+            panel: (
+              <div style={{ borderRadius: "12px", background: "rgba(0,0,0,0.04)", padding: "1.5rem" }} className="asset-bg">
+                <VideoSequence
+                  videos={[
+                    "/images/projects/deriv/derv-video-1.mp4",
+                    "/images/projects/deriv/derv-video-3.mp4",
+                    "/images/projects/deriv/derv-video-4.mp4",
+                  ]}
+                />
+              </div>
+            ),
+          },
+        ]}
+      />
+    </div>
+  );
+}
+
+function ImagerySection() {
+  return (
+    <div style={divider}>
+      <h2 style={sectionTitle}>Imagery held to the same standard as the interface</h2>
+      <div className="deriv-split" style={{ marginBottom: "1.5rem" }}>
+      <div>
+      <p style={{ ...body, marginBottom: "1rem" }}>
+        A consistent interface next to inconsistent imagery still reads as inconsistent. So the 3D icons and
+        photography got their own rules: a chrome-and-coral material language, a fixed light direction, and
+        cropping that sits the object against the card edge so it works on every one of the four card surfaces.
+      </p>
+      <p style={{ ...body, margin: 0 }}>
+        Magnific was used to generate and refine the 3D icon set and lifestyle imagery, and to upscale every asset
+        to hero-ready resolution —{" "}
+        <span style={b}>so a single visual direction could scale across thousands of pages without a photoshoot for each one.</span>
+      </p>
+      </div>
+        <Figure
+          src="/images/projects/deriv/3d-asset-guidelines.webp"
+          width={968}
+          height={546}
+          caption="3D asset guidelines: material, colour and cropping rules that hold on every card surface."
+        />
+      </div>
+      <div className="cs-grid" style={{ display: "grid", gridTemplateColumns: "1fr", gap: "1.5rem" }}>
+        <div style={{ minWidth: 0, overflow: "hidden" }}>
+          <div style={{ borderRadius: "12px", background: "rgba(0,0,0,0.04)", padding: "1rem" }} className="asset-bg">
+            <AssetCarousel
+              images={Array.from({ length: 6 }, (_, i) =>
+                `/images/projects/deriv/derv-image-${String(i + 1).padStart(2, "0")}.webp`
+              )}
+              size="280px"
+              speed={45}
+              rows={1}
+              style={{ borderRadius: "8px" }}
+            />
+          </div>
+          <figcaption style={caption}>Lifestyle photography — used across hero sections and product pages</figcaption>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 /** The NDA part of the case study — only rendered on the server once the password checks out. */
 function ProcessSections() {
   return (
     <>
+      <BeforeAfterSection />
+
       {/* Thinking — audit */}
       <div style={divider}>
         <p style={{ ...sectionLabel, marginBottom: "0.75rem" }}>Thinking</p>
@@ -857,6 +939,8 @@ function ProcessSections() {
         </p>
       </div>
 
+      <ImagerySection />
+
       {/* Pushback — last content block, so no bottom rule above "Next" */}
       <div style={{ ...divider, borderBottom: "none", paddingBottom: 0, marginBottom: 0 }}>
         <h2 style={sectionTitle}>Where the system met pushback</h2>
@@ -896,6 +980,43 @@ function ProcessSections() {
         />
       </div>
     </>
+  );
+}
+
+/**
+ * What a visitor without the password sees after the stats: a glimpse of the next section
+ * (a public image of the live site) fading into the page, with the lock card on top of the fade.
+ */
+function LockedPreview() {
+  return (
+    <div>
+      <div style={{ position: "relative", maxHeight: "440px", overflow: "hidden" }}>
+        <div inert aria-hidden style={{ pointerEvents: "none", userSelect: "none" }}>
+          <h2 style={sectionTitle}>Before / After</h2>
+          <div style={{ borderRadius: "12px", overflow: "hidden", lineHeight: 0 }}>
+            <Image
+              src="/images/home/projects/deriv.webp"
+              alt=""
+              width={2560}
+              height={1441}
+              sizes="(max-width: 640px) 100vw, 1016px"
+              style={{ width: "100%", height: "auto", display: "block" }}
+            />
+          </div>
+        </div>
+        <div
+          aria-hidden
+          style={{
+            position: "absolute",
+            inset: 0,
+            background: "linear-gradient(to bottom, transparent 0%, var(--color-bg) 88%)",
+          }}
+        />
+      </div>
+      <div style={{ position: "relative", marginTop: "clamp(-200px, -24vw, -72px)", display: "flex", justifyContent: "center" }}>
+        <CaseStudyLock requestSubject="Access request: Deriv case study" />
+      </div>
+    </div>
   );
 }
 
@@ -1005,98 +1126,9 @@ export default async function DerivCaseStudy() {
           </div>
         </div>
 
-        {/* Before / After */}
-        <div style={divider}>
-          <h2 style={sectionTitle}>Before / After</h2>
-          <SegmentedTabs
-            ariaLabel="Before and after"
-            defaultIndex={1}
-            tabs={[
-              {
-                label: "Before",
-                panel: (
-                  <div style={{ borderRadius: "12px", background: "rgba(0,0,0,0.04)", padding: "1.5rem" }} className="asset-bg">
-                    <ScrollImage src="/images/projects/deriv/deriv-website.webp" alt="The old Deriv.com homepage" />
-                  </div>
-                ),
-              },
-              {
-                label: "After",
-                panel: (
-                  <div style={{ borderRadius: "12px", background: "rgba(0,0,0,0.04)", padding: "1.5rem" }} className="asset-bg">
-                    <VideoSequence
-                      videos={[
-                        "/images/projects/deriv/derv-video-1.mp4",
-                        "/images/projects/deriv/derv-video-3.mp4",
-                        "/images/projects/deriv/derv-video-4.mp4",
-                      ]}
-                    />
-                  </div>
-                ),
-              },
-            ]}
-          />
-        </div>
-
-        {/* Imagery */}
-        <div style={divider}>
-          <h2 style={sectionTitle}>Imagery held to the same standard as the interface</h2>
-          <div className="deriv-split" style={{ marginBottom: "1.5rem" }}>
-          <div>
-          <p style={{ ...body, marginBottom: "1rem" }}>
-            A consistent interface next to inconsistent imagery still reads as inconsistent. So the 3D icons and
-            photography got their own rules: a chrome-and-coral material language, a fixed light direction, and
-            cropping that sits the object against the card edge so it works on every one of the four card surfaces.
-          </p>
-          <p style={{ ...body, margin: 0 }}>
-            Magnific was used to generate and refine the 3D icon set and lifestyle imagery, and to upscale every asset
-            to hero-ready resolution —{" "}
-            <span style={b}>so a single visual direction could scale across thousands of pages without a photoshoot for each one.</span>
-          </p>
-          </div>
-            <Figure
-              src="/images/projects/deriv/3d-asset-guidelines.webp"
-              width={968}
-              height={546}
-              caption="3D asset guidelines: material, colour and cropping rules that hold on every card surface."
-            />
-          </div>
-          <div className="cs-grid" style={{ display: "grid", gridTemplateColumns: "1fr", gap: "1.5rem" }}>
-            <div style={{ minWidth: 0, overflow: "hidden" }}>
-              <div style={{ borderRadius: "12px", background: "rgba(0,0,0,0.04)", padding: "1rem" }} className="asset-bg">
-                <AssetCarousel
-                  images={Array.from({ length: 6 }, (_, i) =>
-                    `/images/projects/deriv/derv-image-${String(i + 1).padStart(2, "0")}.webp`
-                  )}
-                  size="280px"
-                  speed={45}
-                  rows={1}
-                  style={{ borderRadius: "8px" }}
-                />
-              </div>
-              <figcaption style={caption}>Lifestyle photography — used across hero sections and product pages</figcaption>
-            </div>
-          </div>
-        </div>
-
-        {/* Process — public visitors see the lock, verified visitors see the process */}
-        {unlocked ? (
-          <ProcessSections />
-        ) : (
-          <CaseStudyLock
-            title="The process behind the system"
-            description="The thinking, the token architecture, the Figma-to-code pipeline and the stakeholder work cover internal work done at Deriv, so they're shared on request."
-            contents={[
-              "Audit & user insight",
-              "Constraints & decisions",
-              "Token architecture",
-              "Blocks & system coverage",
-              "Figma MCP → Claude Code pipeline",
-              "Stakeholder pushback",
-            ]}
-            requestSubject="Access request: Deriv case study"
-          />
-        )}
+        {/* Everything after the stats is locked: verified visitors get the full process,
+            everyone else gets a faded preview with the lock card on top. */}
+        {unlocked ? <ProcessSections /> : <LockedPreview />}
 
         {/* Next project */}
         <div style={{ paddingTop: "3rem", marginTop: "3rem", borderTop: "1px solid var(--border-section)" }}>
