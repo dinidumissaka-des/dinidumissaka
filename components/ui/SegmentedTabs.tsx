@@ -9,8 +9,16 @@ type Tab = { label: string; panel: ReactNode };
  * Segmented control that shows one panel at a time.
  * Follows the WAI-ARIA tabs pattern: arrow keys, Home and End move between segments.
  */
-export default function SegmentedTabs({ tabs, ariaLabel }: { tabs: Tab[]; ariaLabel: string }) {
-  const [active, setActive] = useState(0);
+export default function SegmentedTabs({
+  tabs,
+  ariaLabel,
+  defaultIndex = 0,
+}: {
+  tabs: Tab[];
+  ariaLabel: string;
+  defaultIndex?: number;
+}) {
+  const [active, setActive] = useState(defaultIndex);
   const refs = useRef<(HTMLButtonElement | null)[]>([]);
   const id = useId();
 

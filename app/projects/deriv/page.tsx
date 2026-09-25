@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import BackButton from "@/components/ui/BackButton";
 import { ParallaxWrapper } from "@/components/ui/ParallaxImage";
 import AssetCarousel from "@/components/ui/AssetCarousel";
@@ -140,7 +141,7 @@ const systemGroups: { tab: string; title: string; intro: string; items: { name: 
       {
         name: "Motion",
         detail:
-          "A dedicated Lottie package for animated illustrations and shared timing for interaction feedback. Motion explains things, such as how a trade opens and closes, rather than decorating, and it respects reduced-motion settings.",
+          "Motion is defined by trigger. On scroll, sections and elements reveal as they enter the viewport. On hover, cards lift and buttons move through their hover tokens. On click, buttons give press feedback and accordions and tabs open. Shared durations and easing make every interaction feel like the same site.",
       },
     ],
   },
@@ -152,7 +153,7 @@ const systemGroups: { tab: string; title: string; intro: string; items: { name: 
       {
         name: "Header & navigation",
         detail:
-          "One navigation model replaced the separate structures on deriv.com, the Academy and deriv.ae. Moving between them no longer feels like switching websites, and the menu collapses into a bottom sheet on mobile.",
+          "One navigation model replaced the separate structures on deriv.com, the Academy and deriv.ae. Moving between them no longer feels like switching websites.",
       },
       {
         name: "Heroes & above the fold",
@@ -198,7 +199,7 @@ const systemGroups: { tab: string; title: string; intro: string; items: { name: 
       },
       {
         name: "Bottom sheets & overlays",
-        detail: "Mobile-first menus and dialogs that replace desktop dropdowns below the tablet breakpoint.",
+        detail: "Below the tablet breakpoint, dropdowns open as bottom sheets, and overlays hold dialogs.",
       },
       {
         name: "Tags & status",
@@ -393,7 +394,19 @@ const pushback = [
   },
 ];
 
-function Figure({ caption: text, src, padded }: { caption: string; src: string; padded?: boolean }) {
+function Figure({
+  caption: text,
+  src,
+  width,
+  height,
+  padded,
+}: {
+  caption: string;
+  src: string;
+  width: number;
+  height: number;
+  padded?: boolean;
+}) {
   return (
     <figure style={{ margin: 0 }}>
       <div
@@ -401,7 +414,14 @@ function Figure({ caption: text, src, padded }: { caption: string; src: string; 
         className="asset-bg"
       >
         <ParallaxWrapper>
-          <img src={src} alt={text} style={{ width: "100%", display: "block" }} />
+          <Image
+            src={src}
+            alt={text}
+            width={width}
+            height={height}
+            sizes="(max-width: 640px) 100vw, 1016px"
+            style={{ width: "100%", height: "auto", display: "block" }}
+          />
         </ParallaxWrapper>
       </div>
       <figcaption style={caption}>{text}</figcaption>
@@ -687,26 +707,34 @@ export default function DerivCaseStudy() {
         {/* Before / After */}
         <div style={divider}>
           <h2 style={sectionTitle}>Before / After</h2>
-          <div className="cs-grid" style={{ display: "grid", gridTemplateColumns: "1fr", gap: "1.5rem" }}>
-            <div>
-              <div style={{ borderRadius: "12px", background: "rgba(0,0,0,0.04)", padding: "1.5rem" }} className="asset-bg">
-                <ScrollImage src="/images/projects/deriv/deriv-website.webp" />
-              </div>
-              <figcaption style={caption}>Before</figcaption>
-            </div>
-            <div>
-              <div style={{ borderRadius: "12px", background: "rgba(0,0,0,0.04)", padding: "1.5rem" }} className="asset-bg">
-                <VideoSequence
-                  videos={[
-                    "/images/projects/deriv/derv-video-1.mp4",
-                    "/images/projects/deriv/derv-video-3.mp4",
-                    "/images/projects/deriv/derv-video-4.mp4",
-                  ]}
-                />
-              </div>
-              <figcaption style={caption}>After</figcaption>
-            </div>
-          </div>
+          <SegmentedTabs
+            ariaLabel="Before and after"
+            defaultIndex={1}
+            tabs={[
+              {
+                label: "Before",
+                panel: (
+                  <div style={{ borderRadius: "12px", background: "rgba(0,0,0,0.04)", padding: "1.5rem" }} className="asset-bg">
+                    <ScrollImage src="/images/projects/deriv/deriv-website.webp" alt="The old Deriv.com homepage" />
+                  </div>
+                ),
+              },
+              {
+                label: "After",
+                panel: (
+                  <div style={{ borderRadius: "12px", background: "rgba(0,0,0,0.04)", padding: "1.5rem" }} className="asset-bg">
+                    <VideoSequence
+                      videos={[
+                        "/images/projects/deriv/derv-video-1.mp4",
+                        "/images/projects/deriv/derv-video-3.mp4",
+                        "/images/projects/deriv/derv-video-4.mp4",
+                      ]}
+                    />
+                  </div>
+                ),
+              },
+            ]}
+          />
         </div>
 
         {/* Thinking — audit */}
@@ -722,6 +750,8 @@ export default function DerivCaseStudy() {
           </p>
           <Figure
             src="/images/projects/deriv/page-templates.webp"
+            width={968}
+            height={546}
             caption="The seven page types the audit reduced the site to."
           />
           </div>
@@ -812,6 +842,8 @@ export default function DerivCaseStudy() {
                 panel: (
                   <Figure
                     src="/images/projects/deriv/responsive-type-scale.webp"
+                    width={5440}
+                    height={3060}
                     caption="The responsive type scale — five heading levels across mobile, tablet and desktop, defined once as tokens."
                   />
                 ),
@@ -849,6 +881,8 @@ export default function DerivCaseStudy() {
                 panel: (
                   <Figure
                     src="/images/projects/deriv/one-card-component.webp"
+                    width={1208}
+                    height={666}
                     caption="One of the four card structures: four surfaces and two sizes, with variation designed in rather than added page by page."
                   />
                 ),
@@ -858,6 +892,8 @@ export default function DerivCaseStudy() {
                 panel: (
                   <Figure
                     src="/images/projects/deriv/modular-component-library.webp"
+                    width={2720}
+                    height={1530}
                     caption="The block library — hero, cards, FAQs, stats, testimonials and CTA sections, composed from shared components."
                   />
                 ),
@@ -867,6 +903,8 @@ export default function DerivCaseStudy() {
                 panel: (
                   <Figure
                     src="/images/projects/deriv/layout-360-1440.webp"
+                    width={2720}
+                    height={1530}
                     caption="A block at 360 and 1440 on the twelve-column grid. Every block is designed at both extremes before it's built."
                   />
                 ),
@@ -968,6 +1006,8 @@ export default function DerivCaseStudy() {
           </div>
             <Figure
               src="/images/projects/deriv/3d-asset-guidelines.webp"
+              width={968}
+              height={546}
               caption="3D asset guidelines: material, colour and cropping rules that hold on every card surface."
             />
           </div>
