@@ -5,6 +5,7 @@ import { ParallaxWrapper } from "@/components/ui/ParallaxImage";
 import AssetCarousel from "@/components/ui/AssetCarousel";
 import ScrollImage from "@/components/ui/ScrollImage";
 import VideoSequence from "@/components/ui/VideoSequence";
+import SegmentedTabs from "@/components/ui/SegmentedTabs";
 
 export const metadata: Metadata = {
   title: "Deriv — Case Study",
@@ -96,8 +97,9 @@ const stats = [
 ];
 
 /* ── Everything a page is made of, grouped by layer ── */
-const systemGroups: { title: string; intro: string; items: { name: string; detail: string }[] }[] = [
+const systemGroups: { tab: string; title: string; intro: string; items: { name: string; detail: string }[] }[] = [
   {
+    tab: "Foundations",
     title: "Design system layer",
     intro: "The foundations every block inherits. None of them is set inside a block.",
     items: [
@@ -134,6 +136,7 @@ const systemGroups: { title: string; intro: string; items: { name: string; detai
     ],
   },
   {
+    tab: "Structure",
     title: "Structural components",
     intro: "The frame every page sits in. It is the same on all three properties.",
     items: [
@@ -160,6 +163,7 @@ const systemGroups: { title: string; intro: string; items: { name: string; detai
     ],
   },
   {
+    tab: "Interaction",
     title: "Interactive components",
     intro: "Each one has semantic tokens for every state it can be in.",
     items: [
@@ -194,6 +198,7 @@ const systemGroups: { title: string; intro: string; items: { name: string; detai
     ],
   },
   {
+    tab: "Qualities",
     title: "Cross-cutting qualities",
     intro: "Not components, but rules every component has to meet before it ships.",
     items: [
@@ -781,31 +786,34 @@ export default function DerivCaseStudy() {
             one-off margins to three different navigation structures. So the scope covered all of it, in four layers.
             Each layer depends on the one before it.
           </p>
-          <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
-            {systemGroups.map((g, gi) => (
-              <div
-                key={g.title}
-                style={{
-                  border: "1px solid var(--border-section)",
-                  borderRadius: "12px",
-                  background: "var(--bg-card)",
-                  padding: "1.5rem 1.75rem",
-                }}
-              >
-                <p style={{ ...mono, fontSize: "11px", color: "var(--color-muted)", marginBottom: "8px" }}>0{gi + 1}</p>
-                <h3 style={{ ...h3, fontSize: "22px" }}>{g.title}</h3>
-                <p style={{ ...body, marginBottom: "1.5rem" }}>{g.intro}</p>
-                <div className="deriv-system-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1.25rem 2rem" }}>
-                  {g.items.map((it) => (
-                    <div key={it.name} style={{ paddingLeft: "1rem", borderLeft: "1px solid var(--border-section)" }}>
-                      <p style={{ ...metaSmall, fontWeight: 500, color: "var(--color-fg)", marginBottom: "4px" }}>{it.name}</p>
-                      <p style={{ ...body, fontSize: "13px", margin: 0 }}>{it.detail}</p>
-                    </div>
-                  ))}
+          <SegmentedTabs
+            ariaLabel="System layers"
+            tabs={systemGroups.map((g, gi) => ({
+              label: g.tab,
+              panel: (
+                <div
+                  style={{
+                    border: "1px solid var(--border-section)",
+                    borderRadius: "12px",
+                    background: "var(--bg-card)",
+                    padding: "1.5rem 1.75rem",
+                  }}
+                >
+                  <p style={{ ...mono, fontSize: "11px", color: "var(--color-muted)", marginBottom: "8px" }}>0{gi + 1} / 04</p>
+                  <h3 style={{ ...h3, fontSize: "22px" }}>{g.title}</h3>
+                  <p style={{ ...body, marginBottom: "1.5rem" }}>{g.intro}</p>
+                  <div className="deriv-system-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1.25rem 2rem" }}>
+                    {g.items.map((it) => (
+                      <div key={it.name} style={{ paddingLeft: "1rem", borderLeft: "1px solid var(--border-section)" }}>
+                        <p style={{ ...metaSmall, fontWeight: 500, color: "var(--color-fg)", marginBottom: "4px" }}>{it.name}</p>
+                        <p style={{ ...body, fontSize: "13px", margin: 0 }}>{it.detail}</p>
+                      </div>
+                    ))}
+                  </div>
                 </div>
-              </div>
-            ))}
-          </div>
+              ),
+            }))}
+          />
         </div>
 
         {/* Tools & workflow */}
