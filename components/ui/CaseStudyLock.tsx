@@ -82,7 +82,8 @@ export default function CaseStudyLock({ project }: { project: string }) {
             autoComplete="current-password"
             aria-invalid={state.error ? true : undefined}
             aria-describedby={state.error ? `${id}-error` : undefined}
-            className="w-full sm:flex-1"
+            // 16px on mobile stops iOS Safari from zooming the page when the field is focused.
+            className="w-full text-[16px] sm:flex-1 sm:text-[13px]"
             // Same surface, border and 8px radius as the segmented controls.
             style={{
               minWidth: 0,
@@ -92,14 +93,13 @@ export default function CaseStudyLock({ project }: { project: string }) {
               background: "var(--bg-card)",
               color: "var(--color-fg)",
               fontFamily: "var(--font-manrope), sans-serif",
-              fontSize: "13px",
             }}
           />
           {/* Styled like the active segment: a translucent tint rather than a solid fill. */}
           <button
             type="submit"
             disabled={pending}
-            className="bg-[color-mix(in_srgb,var(--color-fg)_12%,transparent)] hover:bg-[color-mix(in_srgb,var(--color-fg)_18%,transparent)] transition-colors"
+            className="text-[16px] sm:text-[13px] bg-[color-mix(in_srgb,var(--color-fg)_12%,transparent)] hover:bg-[color-mix(in_srgb,var(--color-fg)_18%,transparent)] transition-colors"
             style={{
               padding: "8px 16px",
               borderRadius: "8px",
@@ -107,7 +107,6 @@ export default function CaseStudyLock({ project }: { project: string }) {
               border: "1px solid transparent",
               color: "var(--color-fg)",
               fontFamily: "var(--font-manrope), sans-serif",
-              fontSize: "13px",
               fontWeight: 600,
               cursor: pending ? "wait" : "pointer",
               opacity: pending ? 0.7 : 1,
