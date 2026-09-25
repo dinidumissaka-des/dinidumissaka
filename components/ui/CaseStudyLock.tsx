@@ -12,7 +12,7 @@ const body: React.CSSProperties = {
 };
 
 /**
- * Password prompt for the NDA part of a case study, sat on top of a faded preview.
+ * Password prompt for the protected part of a case study, sat on top of a faded preview.
  * The locked content is rendered on the server only after the password checks out,
  * so nothing is hidden client-side.
  */
@@ -49,7 +49,7 @@ export default function CaseStudyLock({ requestSubject }: { requestSubject: stri
       >
         Continue reading
       </h2>
-      <p style={{ ...body, marginBottom: "1.5rem" }}>The full process is under NDA and password protected.</p>
+      <p style={{ ...body, marginBottom: "1.5rem" }}>The full process is password protected.</p>
 
       <form action={action}>
         <label htmlFor={`${id}-password`} className="sr-only">

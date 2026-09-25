@@ -682,7 +682,7 @@ function ImagerySection() {
   );
 }
 
-/** The NDA part of the case study — only rendered on the server once the password checks out. */
+/** The protected part of the case study — only rendered on the server once the password checks out. */
 function ProcessSections() {
   return (
     <>
