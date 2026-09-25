@@ -55,7 +55,8 @@ export default function CaseStudyLock({ requestSubject }: { requestSubject: stri
         <label htmlFor={`${id}-password`} className="sr-only">
           Password
         </label>
-        <div style={{ display: "flex", gap: "8px" }}>
+        {/* Stacked on mobile, side by side from 640px */}
+        <div className="flex flex-col gap-2 sm:flex-row">
           <input
             id={`${id}-password`}
             name="password"
@@ -65,8 +66,8 @@ export default function CaseStudyLock({ requestSubject }: { requestSubject: stri
             autoComplete="current-password"
             aria-invalid={state.error ? true : undefined}
             aria-describedby={state.error ? `${id}-error` : undefined}
+            className="w-full sm:flex-1"
             style={{
-              flex: 1,
               minWidth: 0,
               padding: "10px 16px",
               borderRadius: "999px",
@@ -83,7 +84,8 @@ export default function CaseStudyLock({ requestSubject }: { requestSubject: stri
             style={{
               padding: "10px 20px",
               borderRadius: "999px",
-              border: "none",
+              // Transparent border matches the input's 1px border, so both are the same height.
+              border: "1px solid transparent",
               background: "var(--color-fg)",
               color: "var(--color-bg)",
               fontFamily: "var(--font-manrope), sans-serif",
