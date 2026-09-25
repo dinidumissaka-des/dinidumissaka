@@ -26,7 +26,6 @@ function requestAccessHref(project: string): string {
     "",
     "Name:",
     "Company:",
-    "Role:",
     "",
     "Thanks!",
   ].join("\n");
