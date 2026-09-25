@@ -210,7 +210,7 @@ export default function RataCaseStudy() {
           className="cs-meta"
           style={{
             display: "flex",
-            gap: "3rem",
+            gap: "1rem 3rem",
             flexWrap: "wrap",
             ...divider,
             paddingBottom: "2rem",

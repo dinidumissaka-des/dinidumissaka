@@ -161,7 +161,7 @@ export default function MintiCaseStudy() {
         <BackButton style={{ marginBottom: "2.5rem" }} />
 
         {/* Meta row */}
-        <div className="cs-meta" style={{ display: "flex", gap: "3rem", flexWrap: "wrap", ...divider, paddingBottom: "2rem", marginBottom: "2.5rem" }}>
+        <div className="cs-meta" style={{ display: "flex", gap: "1rem 3rem", flexWrap: "wrap", ...divider, paddingBottom: "2rem", marginBottom: "2.5rem" }}>
           {[
             { label: "Year", value: "2026 – ongoing" },
             { label: "Role", value: "Designer & Builder" },
