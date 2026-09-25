@@ -155,6 +155,41 @@ const tokenLayers = [
   },
 ];
 
+/* ── How a value travels through the layers (token diagram) ── */
+type Swatch = { name: string; hex?: string };
+const tokenFlows: { semantic: string; light: Swatch; dark: Swatch; usedBy: string[] }[] = [
+  {
+    semantic: "surface-brand",
+    light: { name: "red-500", hex: "#FF444F" },
+    dark: { name: "red-500", hex: "#FF444F" },
+    usedBy: ["Primary button", "Brand card"],
+  },
+  {
+    semantic: "surface-default",
+    light: { name: "white", hex: "#FFFFFF" },
+    dark: { name: "navy-900", hex: "#1F2230" },
+    usedBy: ["Section background", "Light card"],
+  },
+  {
+    semantic: "surface-inverse",
+    light: { name: "navy-900", hex: "#1F2230" },
+    dark: { name: "grey-50", hex: "#F4F5F7" },
+    usedBy: ["Dark card", "Footer"],
+  },
+  {
+    semantic: "text-primary",
+    light: { name: "navy-900", hex: "#1F2230" },
+    dark: { name: "white", hex: "#FFFFFF" },
+    usedBy: ["Headings", "Body copy"],
+  },
+  {
+    semantic: "gap-section",
+    light: { name: "space-80" },
+    dark: { name: "space-80" },
+    usedBy: ["Every block's vertical rhythm"],
+  },
+];
+
 /* ── The design-to-code workflow ── */
 const workflow = [
   {
@@ -224,6 +259,110 @@ function Figure({ caption: text, src, padded }: { caption: string; src: string; 
   );
 }
 
+function TokenChip({ swatch, mode }: { swatch: Swatch; mode: string }) {
+  return (
+    <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+      <span
+        aria-hidden
+        style={{
+          width: "14px",
+          height: "14px",
+          flexShrink: 0,
+          borderRadius: "4px",
+          border: "1px solid color-mix(in srgb, var(--color-muted) 45%, transparent)",
+          background: swatch.hex ?? "transparent",
+          backgroundImage: swatch.hex
+            ? undefined
+            : "repeating-linear-gradient(90deg, var(--color-muted) 0 1px, transparent 1px 4px)",
+          opacity: swatch.hex ? 1 : 0.5,
+        }}
+      />
+      <span style={{ ...mono, fontSize: "11px", color: "var(--color-muted)", minWidth: "2.5rem" }}>{mode}</span>
+      <span style={{ ...mono, fontSize: "12px" }}>{swatch.name}</span>
+    </div>
+  );
+}
+
+/**
+ * The token chain drawn as rows: each semantic token resolves to a primitive per mode,
+ * and blocks only ever point at the semantic name — so switching mode never touches a block.
+ */
+function TokenDiagram() {
+  const cell: React.CSSProperties = { minWidth: 0 };
+  const arrow = (
+    <span aria-hidden className="deriv-token-arrow" style={{ ...mono, color: "var(--color-muted)", textAlign: "center" }}>
+      →
+    </span>
+  );
+  const colLabel = (text: string) => (
+    <p className="deriv-token-label" style={{ ...mono, fontSize: "11px", color: "var(--color-muted)", marginBottom: "6px" }}>
+      {text}
+    </p>
+  );
+  return (
+    <figure style={{ margin: 0 }}>
+      <div
+        style={{
+          border: "1px solid var(--border-section)",
+          borderRadius: "12px",
+          background: "var(--bg-card)",
+          padding: "1.5rem",
+        }}
+      >
+        <div className="deriv-token-row deriv-token-head" style={{ paddingBottom: "0.75rem", borderBottom: "1px solid var(--border-section)" }}>
+          {["01 · Primitive", "", "02 · Semantic", "", "03 · Used by blocks"].map((h, i) => (
+            <p key={i} style={{ ...mono, fontSize: "11px", color: "var(--color-muted)", margin: 0 }}>{h}</p>
+          ))}
+        </div>
+        {tokenFlows.map((f, i) => (
+          <div
+            key={f.semantic}
+            className="deriv-token-row"
+            style={{ padding: "1rem 0", borderBottom: i < tokenFlows.length - 1 ? "1px solid var(--border-section)" : "none" }}
+          >
+            <div style={{ ...cell, display: "flex", flexDirection: "column", gap: "6px" }}>
+              {colLabel("Primitive")}
+              {f.light.name === f.dark.name ? (
+                <TokenChip swatch={f.light} mode="both" />
+              ) : (
+                <>
+                  <TokenChip swatch={f.light} mode="light" />
+                  <TokenChip swatch={f.dark} mode="dark" />
+                </>
+              )}
+            </div>
+            {arrow}
+            <div style={cell}>
+              {colLabel("Semantic")}
+              <span
+                style={{
+                  ...mono,
+                  fontSize: "12px",
+                  display: "inline-block",
+                  padding: "4px 10px",
+                  borderRadius: "999px",
+                  border: "1px solid var(--color-fg)",
+                }}
+              >
+                {f.semantic}
+              </span>
+            </div>
+            {arrow}
+            <div style={cell}>
+              {colLabel("Used by blocks")}
+              <p style={{ ...body, fontSize: "13px", margin: 0, color: "var(--color-fg)" }}>{f.usedBy.join(" · ")}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+      <figcaption style={caption}>
+        How a value travels through the system. Switching to dark mode changes only which primitive each semantic token
+        points to — nothing in the right-hand column changes.
+      </figcaption>
+    </figure>
+  );
+}
+
 function Notes({ items }: { items: { title: string; detail: string }[] }) {
   return (
     <div style={{ display: "flex", flexDirection: "column", gap: "1.25rem" }}>
@@ -246,7 +385,13 @@ export default function DerivCaseStudy() {
           .cs-meta { gap: 1.25rem !important; }
           .deriv-stats { grid-template-columns: repeat(2, 1fr) !important; }
           .deriv-layers { grid-template-columns: 1fr !important; }
+          .deriv-token-row { grid-template-columns: 1fr !important; gap: 0.5rem !important; }
+          .deriv-token-head { display: none !important; }
+          .deriv-token-label { display: block !important; }
+          .deriv-token-arrow { transform: rotate(90deg); width: 1rem; }
         }
+        .deriv-token-row { display: grid; grid-template-columns: 1.2fr 1.5rem 1fr 1.5rem 1.2fr; gap: 1rem; align-items: center; }
+        .deriv-token-label { display: none; }
         .dark .asset-bg { background: rgba(255,255,255,0.04) !important; }
       `}</style>
       <div className="container" style={{ paddingTop: "3rem", paddingBottom: "5rem" }}>
@@ -438,6 +583,9 @@ export default function DerivCaseStudy() {
                 <p style={{ ...body, fontSize: "13px", margin: 0 }}>{t.detail}</p>
               </div>
             ))}
+          </div>
+          <div style={{ marginBottom: "2rem" }}>
+            <TokenDiagram />
           </div>
           <p style={{ ...body, marginBottom: "2rem" }}>
             Type followed the same logic. One family, five heading levels, three breakpoints — an H1 steps from 48 to
