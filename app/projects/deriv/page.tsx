@@ -90,9 +90,145 @@ const caption: React.CSSProperties = {
 /* ── The project at a glance ── */
 const stats = [
   { value: "6,000+", label: "pages rebuilt across deriv.com, the Academy and deriv.ae" },
-  { value: "18", label: "languages, including Arabic right-to-left" },
   { value: "40", label: "blocks and 30+ components in one system" },
+  { value: "+25%", label: "user engagement across all 18 languages" },
   { value: "2–3 days", label: "to ship a new page, down from 3–5 weeks" },
+];
+
+/* ── Everything a page is made of, grouped by layer ── */
+const systemGroups: { title: string; intro: string; items: { name: string; detail: string }[] }[] = [
+  {
+    title: "Design system layer",
+    intro: "The foundations every block inherits. None of them is set inside a block.",
+    items: [
+      {
+        name: "Layout & grid",
+        detail:
+          "A twelve-column grid, content-width tokens and three breakpoints: mobile, tablet from 768 and desktop from 992. Every block lines up to the same edges on every page, so assembled pages look designed, not pasted together.",
+      },
+      {
+        name: "Typography",
+        detail:
+          "One family, five heading levels, and font size, weight and line height as separate core tokens that scale per breakpoint. The hierarchy reads the same in English, German and Arabic.",
+      },
+      {
+        name: "Colour",
+        detail:
+          "Slate and coral scales at the core, with semantic text, background, border and icon colour on top. Coral is reserved for action, so the primary CTA is always the most visible thing on the screen.",
+      },
+      {
+        name: "Spacing",
+        detail:
+          "One spacing scale for padding, gaps and section rhythm replaced the one-off margins the audit found on almost every page. Vertical rhythm is now the same from the hero to the footer.",
+      },
+      {
+        name: "Iconography",
+        detail:
+          "Interface icons live in their own package, one source instead of files exported page by page. A separate 3D icon set covers marketing moments, built to the same material rules.",
+      },
+      {
+        name: "Motion",
+        detail:
+          "A dedicated Lottie package for animated illustrations and shared timing for interaction feedback. Motion explains things, such as how a trade opens and closes, rather than decorating, and it respects reduced-motion settings.",
+      },
+    ],
+  },
+  {
+    title: "Structural components",
+    intro: "The frame every page sits in. It is the same on all three properties.",
+    items: [
+      {
+        name: "Header & navigation",
+        detail:
+          "One navigation model replaced the separate structures on deriv.com, the Academy and deriv.ae. Moving between them no longer feels like switching websites, and the menu collapses into a bottom sheet on mobile.",
+      },
+      {
+        name: "Heroes & above the fold",
+        detail:
+          "Hero variants with exactly one primary action and the risk warning in a fixed position. The first screen always answers what this is and what to do next, and compliance is never pushed below the fold.",
+      },
+      {
+        name: "Content sections",
+        detail:
+          "The 40 blocks: features, cards, stats, market tables, FAQs, testimonials and CTAs. Each is defined once, with its layout, content slots and allowed variants.",
+      },
+      {
+        name: "Footer",
+        detail:
+          "Footer tokens and a single component holding legal links, regulatory information and jurisdiction-specific disclaimers. The most compliance-sensitive part of the site is maintained in one place instead of 6,000.",
+      },
+    ],
+  },
+  {
+    title: "Interactive components",
+    intro: "Each one has semantic tokens for every state it can be in.",
+    items: [
+      {
+        name: "Buttons & links",
+        detail: "Primary, secondary and tertiary tiers, each with hover and active tokens. There is one clear action per section.",
+      },
+      {
+        name: "Accordions",
+        detail: "FAQ and legal content that stays scannable on mobile without hiding what regulators require to be visible.",
+      },
+      {
+        name: "Chips & chip dropdowns",
+        detail: "Filtering markets and instruments without leaving the page.",
+      },
+      {
+        name: "Fields",
+        detail: "Form inputs with defined default, focus, error and disabled states for sign-up and contact flows.",
+      },
+      {
+        name: "Breadcrumbs & pagination",
+        detail: "Wayfinding through the Academy's long-form learning content.",
+      },
+      {
+        name: "Bottom sheets & overlays",
+        detail: "Mobile-first menus and dialogs that replace desktop dropdowns below the tablet breakpoint.",
+      },
+      {
+        name: "Tags & status",
+        detail: "Labels for market state and content type, where colour always comes with text.",
+      },
+    ],
+  },
+  {
+    title: "Cross-cutting qualities",
+    intro: "Not components, but rules every component has to meet before it ships.",
+    items: [
+      {
+        name: "Responsiveness",
+        detail:
+          "Every block is designed at 360 and 1440 before it is built, and checked at every breakpoint in between. Components change form on mobile where needed, not just size.",
+      },
+      {
+        name: "Accessibility",
+        detail:
+          "Colour pairings are checked against WCAG AA contrast. Every interactive state has a visible focus style, and the heading structure is semantic, which serves screen readers and search engines alike.",
+      },
+      {
+        name: "States",
+        detail:
+          "Hover, active, focus, disabled, error and empty states are designed and named as tokens, not improvised in code. button.primary.background-hover exists because the hover was designed.",
+      },
+      {
+        name: "Content & copy",
+        detail:
+          "Each block defines its content slots, heading level and working copy lengths, agreed with the content team. Real copy fits the design instead of breaking it.",
+      },
+      {
+        name: "Translations",
+        detail:
+          "18 languages from one set of blocks. German and Arabic are the stress tests, and logical properties handle right-to-left, so there are no locale-specific forks.",
+      },
+      {
+        name: "Performance",
+        detail:
+          "Tokens compile to a single stylesheet, imagery ships as compressed WebP, and fixed media ratios stop layout shift. The system is lighter than the pages it replaced.",
+      },
+    ],
+  },
 ];
 
 /* ── Constraints that shaped every decision ── */
@@ -380,6 +516,7 @@ export default function DerivCaseStudy() {
           .deriv-stats { grid-template-columns: repeat(2, 1fr) !important; }
           .deriv-layers { grid-template-columns: 1fr !important; }
           .deriv-token-row { grid-template-columns: 1fr !important; gap: 0.5rem !important; }
+          .deriv-system-grid { grid-template-columns: 1fr !important; }
           .deriv-token-head { display: none !important; }
           .deriv-token-label { display: block !important; }
           .deriv-token-arrow { transform: rotate(90deg); width: 1rem; }
@@ -437,7 +574,7 @@ export default function DerivCaseStudy() {
             So the brief was never just a new look. It was a system that makes the right page the easy page: a
             three-layer token architecture, 40 blocks and 30+ components, designed in Figma and built end to end with
             Claude Code.{" "}
-            <span style={b}>New pages now ship in two to three days.</span>
+            <span style={b}>New pages now ship in two to three days, and engagement rose 25% across all eighteen languages.</span>
           </p>
         </div>
 
@@ -634,6 +771,41 @@ export default function DerivCaseStudy() {
             src="/images/projects/deriv/layout-360-1440.webp"
             caption="A block at 360 and 1440 on the twelve-column grid — every block is designed at both extremes before it's built."
           />
+        </div>
+
+        {/* What the system covers */}
+        <div style={divider}>
+          <h2 style={sectionTitle}>Everything a page is made of</h2>
+          <p style={{ ...body, marginBottom: "2rem" }}>
+            A system is only as strong as its least-considered part. The audit found problems at every level, from
+            one-off margins to three different navigation structures. So the scope covered all of it, in four layers.
+            Each layer depends on the one before it.
+          </p>
+          <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
+            {systemGroups.map((g, gi) => (
+              <div
+                key={g.title}
+                style={{
+                  border: "1px solid var(--border-section)",
+                  borderRadius: "12px",
+                  background: "var(--bg-card)",
+                  padding: "1.5rem 1.75rem",
+                }}
+              >
+                <p style={{ ...mono, fontSize: "11px", color: "var(--color-muted)", marginBottom: "8px" }}>0{gi + 1}</p>
+                <h3 style={{ ...h3, fontSize: "22px" }}>{g.title}</h3>
+                <p style={{ ...body, marginBottom: "1.5rem" }}>{g.intro}</p>
+                <div className="deriv-system-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1.25rem 2rem" }}>
+                  {g.items.map((it) => (
+                    <div key={it.name} style={{ paddingLeft: "1rem", borderLeft: "1px solid var(--border-section)" }}>
+                      <p style={{ ...metaSmall, fontWeight: 500, color: "var(--color-fg)", marginBottom: "4px" }}>{it.name}</p>
+                      <p style={{ ...body, fontSize: "13px", margin: 0 }}>{it.detail}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
 
         {/* Tools & workflow */}
