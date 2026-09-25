@@ -46,9 +46,10 @@ export default function SegmentedTabs({
         role="tablist"
         aria-label={ariaLabel}
         onKeyDown={onKeyDown}
+        // Full width on mobile with equal segments; compact (sized to labels) from 640px.
+        className="w-full sm:w-fit"
         style={{
           display: "flex",
-          width: "fit-content",
           maxWidth: "100%",
           gap: "2px",
           padding: "2px",
@@ -71,6 +72,7 @@ export default function SegmentedTabs({
               aria-controls={`${id}-panel-${i}`}
               tabIndex={selected ? 0 : -1}
               onClick={() => setActive(i)}
+              className="flex-1 sm:flex-none"
               style={{
                 position: "relative",
                 padding: "5px 8px",
