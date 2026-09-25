@@ -67,29 +67,31 @@ export default function CaseStudyLock({ requestSubject }: { requestSubject: stri
             aria-invalid={state.error ? true : undefined}
             aria-describedby={state.error ? `${id}-error` : undefined}
             className="w-full sm:flex-1"
+            // Same surface, border and 8px radius as the segmented controls.
             style={{
               minWidth: 0,
-              padding: "10px 16px",
-              borderRadius: "999px",
-              border: "1px solid color-mix(in srgb, var(--color-muted) 45%, transparent)",
-              background: "transparent",
+              padding: "8px 12px",
+              borderRadius: "8px",
+              border: "1px solid color-mix(in srgb, var(--color-muted) 35%, transparent)",
+              background: "var(--bg-card)",
               color: "var(--color-fg)",
               fontFamily: "var(--font-manrope), sans-serif",
-              fontSize: "14px",
+              fontSize: "13px",
             }}
           />
+          {/* Styled like the active segment: a translucent tint rather than a solid fill. */}
           <button
             type="submit"
             disabled={pending}
+            className="bg-[color-mix(in_srgb,var(--color-fg)_12%,transparent)] hover:bg-[color-mix(in_srgb,var(--color-fg)_18%,transparent)] transition-colors"
             style={{
-              padding: "10px 20px",
-              borderRadius: "999px",
+              padding: "8px 16px",
+              borderRadius: "8px",
               // Transparent border matches the input's 1px border, so both are the same height.
               border: "1px solid transparent",
-              background: "var(--color-fg)",
-              color: "var(--color-bg)",
+              color: "var(--color-fg)",
               fontFamily: "var(--font-manrope), sans-serif",
-              fontSize: "14px",
+              fontSize: "13px",
               fontWeight: 600,
               cursor: pending ? "wait" : "pointer",
               opacity: pending ? 0.7 : 1,
