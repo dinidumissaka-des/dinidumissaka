@@ -108,8 +108,55 @@ const stats = [
   { value: "1–2 days", label: "to ship a new page, down from 3–5 weeks" },
 ];
 
+/* ── Closing: what changed, and for whom ── */
+const outcomes = [
+  {
+    name: "For visitors",
+    detail: "One consistent site across deriv.com, the Academy and deriv.ae, in 18 locales, and 25% higher engagement after launch.",
+  },
+  {
+    name: "For the team",
+    detail: "Five designers assemble pages from 40+ blocks instead of drawing them, and a new page ships in one to two days.",
+  },
+  {
+    name: "For the business",
+    detail: "Compliance copy and search structure are guaranteed by the system, not checked by hand across 6,000 pages.",
+  },
+];
+
 /* ── Everything a page is made of, grouped by layer ── */
 const systemGroups: { tab: string; title: string; intro: string; items: { name: string; detail: string }[] }[] = [
+  {
+    tab: "Qualities",
+    title: "Cross-cutting qualities",
+    intro: "Not components, but rules every component has to meet before it ships.",
+    items: [
+      {
+        name: "Responsiveness",
+        detail: "Designed at 360 and 1440, checked at every breakpoint between. Components change form on mobile, not just size.",
+      },
+      {
+        name: "Accessibility",
+        detail: "Claude Code flags colour pairings that fail WCAG AA. Every state has a visible focus style, and headings stay semantic.",
+      },
+      {
+        name: "States",
+        detail: "Hover, active, focus, disabled, error and empty are designed and named as tokens, never improvised in code.",
+      },
+      {
+        name: "Content & copy",
+        detail: "Each block sets its content slots, heading level and copy lengths, agreed with the content team.",
+      },
+      {
+        name: "Translations",
+        detail: "18 languages from one set of blocks. Logical properties handle right-to-left, so there are no locale forks.",
+      },
+      {
+        name: "Performance",
+        detail: "Tokens compile to one stylesheet, images ship as WebP, and fixed media ratios prevent layout shift.",
+      },
+    ],
+  },
   {
     tab: "Foundations",
     title: "Design system layer",
@@ -117,33 +164,27 @@ const systemGroups: { tab: string; title: string; intro: string; items: { name: 
     items: [
       {
         name: "Layout & grid",
-        detail:
-          "A twelve-column grid, content-width tokens and three breakpoints: mobile, tablet from 768 and desktop from 992. Every block lines up to the same edges on every page, so assembled pages look designed, not pasted together.",
+        detail: "A twelve-column grid and three breakpoints (mobile, 768 and 992), so every block lines up to the same edges.",
       },
       {
         name: "Typography",
-        detail:
-          "One family, five heading levels, and font size, weight and line height as separate core tokens that scale per breakpoint. The hierarchy reads the same in English, German and Arabic.",
+        detail: "One family and five heading levels, with size, weight and line height as tokens that scale per breakpoint.",
       },
       {
         name: "Colour",
-        detail:
-          "Slate and coral scales at the core, with semantic text, background, border and icon colour on top. Coral is reserved for action, so the primary CTA is always the most visible thing on the screen.",
+        detail: "Slate and coral core scales with semantic roles on top. Coral is reserved for action, so CTAs always stand out.",
       },
       {
         name: "Spacing",
-        detail:
-          "One spacing scale for padding, gaps and section rhythm replaced the one-off margins the audit found on almost every page. Vertical rhythm is now the same from the hero to the footer.",
+        detail: "One scale for padding, gaps and section rhythm replaced the one-off margins found on almost every page.",
       },
       {
         name: "Iconography",
-        detail:
-          "Interface icons live in their own package, one source instead of files exported page by page. A separate 3D icon set covers marketing moments, built to the same material rules.",
+        detail: "Icons and illustrations are designer-owned packages, maintained in Figma and updated through Figma Code Connect.",
       },
       {
         name: "Motion",
-        detail:
-          "Motion is defined by trigger. On scroll, sections and elements reveal as they enter the viewport. On hover, cards lift and buttons move through their hover tokens. On click, buttons give press feedback and accordions and tabs open. Shared durations and easing make every interaction feel like the same site.",
+        detail: "Defined by trigger: elements reveal on scroll, cards lift on hover, and buttons give feedback on click.",
       },
     ],
   },
@@ -154,23 +195,19 @@ const systemGroups: { tab: string; title: string; intro: string; items: { name: 
     items: [
       {
         name: "Header & navigation",
-        detail:
-          "One navigation model replaced the separate structures on deriv.com, the Academy and deriv.ae. Moving between them no longer feels like switching websites.",
+        detail: "One navigation model replaced separate structures on deriv.com, the Academy and deriv.ae, so the three feel like one site.",
       },
       {
         name: "Heroes & above the fold",
-        detail:
-          "Hero variants with exactly one primary action and the risk warning in a reserved slot. On market pages the hero leads with the instrument, because that is what search visitors came for. Compliance copy is never pushed below the fold.",
+        detail: "One primary action and a reserved slot for the risk warning. Market-page heroes lead with the instrument.",
       },
       {
         name: "Content sections",
-        detail:
-          "The 40+ blocks: features, cards, stats, market tables, FAQs, testimonials and CTAs. Each is defined once, with its layout, content slots and allowed variants.",
+        detail: "The 40+ blocks, from features and stats to FAQs and CTAs, each defined once with its slots and variants.",
       },
       {
         name: "Footer",
-        detail:
-          "Footer tokens and a single component holding legal links, regulatory information and jurisdiction-specific disclaimers. The most compliance-sensitive part of the site is maintained in one place instead of 6,000.",
+        detail: "One component holds legal links and jurisdiction disclaimers, so compliance content lives in one place, not 6,000.",
       },
     ],
   },
@@ -181,23 +218,23 @@ const systemGroups: { tab: string; title: string; intro: string; items: { name: 
     items: [
       {
         name: "Buttons & links",
-        detail: "Primary, secondary and tertiary tiers, each with hover and active tokens. There is one clear action per section.",
+        detail: "Primary, secondary and tertiary tiers, each with hover and active tokens, and one clear action per section.",
       },
       {
         name: "Accordions",
-        detail: "FAQ and legal content that stays scannable on mobile without hiding what regulators require to be visible.",
+        detail: "FAQ and legal content that stays scannable on mobile without hiding anything regulators require.",
       },
       {
         name: "Chips & chip dropdowns",
-        detail: "Filtering markets and instruments without leaving the page.",
+        detail: "Filter markets and instruments in place, with the same states as every other control.",
       },
       {
         name: "Fields",
-        detail: "Form inputs with defined default, focus, error and disabled states for sign-up and contact flows.",
+        detail: "Default, focus, error and disabled states, designed for the sign-up and contact flows.",
       },
       {
         name: "Breadcrumbs & pagination",
-        detail: "Wayfinding through the Academy's long-form learning content.",
+        detail: "Wayfinding through the Academy's long-form learning content, so readers always know where they are.",
       },
       {
         name: "Bottom sheets & overlays",
@@ -206,43 +243,6 @@ const systemGroups: { tab: string; title: string; intro: string; items: { name: 
       {
         name: "Tags & status",
         detail: "Labels for market state and content type, where colour always comes with text.",
-      },
-    ],
-  },
-  {
-    tab: "Qualities",
-    title: "Cross-cutting qualities",
-    intro: "Not components, but rules every component has to meet before it ships.",
-    items: [
-      {
-        name: "Responsiveness",
-        detail:
-          "Every block is designed at 360 and 1440 before it is built, and checked at every breakpoint in between. Components change form on mobile where needed, not just size.",
-      },
-      {
-        name: "Accessibility",
-        detail:
-          "Claude Code flags any colour pairing that fails WCAG AA contrast while tokens are being written, so the colour tokens only include pairings that pass. Every interactive state has a visible focus style, and the heading structure is semantic, which serves screen readers and search engines alike.",
-      },
-      {
-        name: "States",
-        detail:
-          "Hover, active, focus, disabled, error and empty states are designed and named as tokens, not improvised in code. button.primary.background-hover exists because the hover was designed.",
-      },
-      {
-        name: "Content & copy",
-        detail:
-          "Each block defines its content slots, heading level and working copy lengths, agreed with the content team. Real copy fits the design instead of breaking it.",
-      },
-      {
-        name: "Translations",
-        detail:
-          "18 languages from one set of blocks. German and Arabic are the stress tests, and logical properties handle right-to-left, so there are no locale-specific forks.",
-      },
-      {
-        name: "Performance",
-        detail:
-          "Tokens compile to a single stylesheet, imagery ships as compressed WebP, and fixed media ratios stop layout shift. The system is lighter than the pages it replaced.",
       },
     ],
   },
@@ -268,24 +268,24 @@ const constraints = [
 ];
 
 /* ── Decisions, with the options that were weighed ── */
-const decisions = [
+const decisions: { title: string; options: Badge[]; detail: string }[] = [
   {
     title: "Design in sections, not pages",
-    options: "Page-by-page redesign · atomic components only · section-level blocks",
+    options: [{ label: "Page-by-page" }, { label: "Atomic only" }, { label: "Section blocks", chosen: true }],
     detail:
-      "Designing 6,000 pages individually was never realistic, and a library of buttons and inputs alone leaves every page to be composed from scratch. Blocks sized to real page sections — a hero, a pricing table, a market list — gave teams a unit that was large enough to be useful and small enough to recombine.",
+      "Redesigning 6,000 pages one by one was never realistic, and a kit of buttons alone still leaves every page built from scratch. Blocks sized to real sections, like a hero or a pricing table, recombine into any page.",
   },
   {
     title: "Three token layers, not four",
-    options: "Core · semantic · component · template  →  Core · semantic · blocks",
+    options: [{ label: "Four layers" }, { label: "Three layers", chosen: true }],
     detail:
-      "An earlier model kept semantic and component tokens as separate layers. In practice every semantic token ended up serving one component anyway, so the two were folded together: semantic tokens are named by component and state — button.primary.background-hover — and point straight at core values. One less layer to keep in sync, and no guessing which token a component should read.",
+      "Semantic and component tokens began as separate layers, but nearly every semantic token served one component anyway. Merging them into names like button.primary.background-hover left one less layer to sync and no guessing which token to use.",
   },
   {
     title: "Stress-test with the hardest two languages",
-    options: "Test all 18 · test English only · test German and Arabic",
+    options: [{ label: "All 18" }, { label: "English only" }, { label: "German + Arabic", chosen: true }],
     detail:
-      "German covered length; Arabic covered direction. If a block held in both, it held in all eighteen — which turned localisation QA from eighteen passes into two.",
+      "Checking every layout in all 18 languages was too slow, and English alone hid the problems. German exposed length and Arabic exposed direction, so a block that held in both held everywhere: two QA passes instead of eighteen.",
   },
 ];
 
@@ -324,22 +324,18 @@ const tokenFlows: { core: CoreToken; semantic: string[]; usedBy: string }[] = [
 const pipeline = [
   {
     title: "Figma frame",
-    tool: "Figma",
     points: ["Auto layout at every level", "Every fill, gap and radius bound to a variable", "Layers named after the block's content slots"],
   },
   {
     title: "Figma MCP",
-    tool: "Figma MCP",
     points: ["Reads the layout, not the pixels", "Passes variable names, not values", "Exposes component structure and variants"],
   },
   {
     title: "Claude Code",
-    tool: "Claude Code",
     points: ["Builds the block against semantic tokens", "Flags raw values that have no token", "Flags colour pairings that fail WCAG AA"],
   },
   {
     title: "Browser review",
-    tool: "Claude Code",
     points: ["Every breakpoint and every state", "German and Arabic", "Mismatches fixed at the source"],
   },
 ];
@@ -527,6 +523,49 @@ function TokenDiagram() {
   );
 }
 
+/** Typography through the same three layers, named after the real token files. */
+const typeChain = [
+  { layer: "01 · Core", tokens: ["font-size", "font-weight", "line-height"], detail: "Raw values for each breakpoint" },
+  { layer: "02 · Semantic", tokens: ["typography"], detail: "Five heading levels, H1 to H5" },
+  { layer: "03 · Used by blocks", tokens: ["every heading"], detail: "Inherits its level, never sets a size" },
+];
+
+function TypeChain() {
+  return (
+    <div
+      className="deriv-type-chain"
+      style={{
+        border: "1px solid var(--border-section)",
+        borderRadius: "12px",
+        background: "var(--bg-card)",
+        padding: "1.25rem 1.5rem",
+      }}
+    >
+      {typeChain.map((step, i) => (
+        <div key={step.layer} style={{ display: "contents" }}>
+          {i > 0 && (
+            <span aria-hidden className="deriv-type-arrow" style={{ ...mono, color: "var(--color-muted)", alignSelf: "center" }}>
+              →
+            </span>
+          )}
+          <div style={{ minWidth: 0 }}>
+            <p style={{ ...mono, fontSize: "11px", color: "var(--color-muted)", marginBottom: "6px" }}>{step.layer}</p>
+            <p style={{ ...mono, fontSize: "12px", marginBottom: "4px" }}>
+              {step.tokens.map((t, j) => (
+                <span key={t}>
+                  {j > 0 && " · "}
+                  <span style={{ whiteSpace: "nowrap" }}>{t}</span>
+                </span>
+              ))}
+            </p>
+            <p style={{ ...body, fontSize: "13px", margin: 0 }}>{step.detail}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  );
+}
+
 function PipelineDiagram() {
   const arrow = (
     <span aria-hidden className="deriv-pipe-arrow" style={{ ...mono, color: "var(--color-muted)", textAlign: "center", alignSelf: "center" }}>
@@ -548,9 +587,6 @@ function PipelineDiagram() {
             <div key={stage.title} style={{ display: "contents" }}>
               {i > 0 && arrow}
               <div style={{ minWidth: 0 }}>
-                <p style={{ ...mono, fontSize: "11px", color: "var(--color-muted)", marginBottom: "6px" }}>
-                  0{i + 1} · {stage.tool}
-                </p>
                 <h3 style={{ ...h3, marginBottom: "10px" }}>{stage.title}</h3>
                 <ul style={{ margin: 0, padding: 0, listStyle: "none", display: "flex", flexDirection: "column", gap: "6px" }}>
                   {stage.points.map((pt) => (
@@ -562,12 +598,8 @@ function PipelineDiagram() {
           ))}
         </div>
 
-        <p style={{ ...mono, fontSize: "11px", color: "var(--color-muted)", margin: "1.25rem 0 0" }}>
-          ↺ 04 → 01 · a mismatch goes back to where it started — Figma if the design was wrong, code if the build was
-        </p>
-
         <div style={{ borderTop: "1px solid var(--border-section)", marginTop: "1.25rem", paddingTop: "1.25rem" }}>
-          <p style={{ ...mono, fontSize: "11px", color: "var(--color-muted)", marginBottom: "10px" }}>What stage 03 checks</p>
+          <p style={{ ...mono, fontSize: "11px", color: "var(--color-muted)", marginBottom: "10px" }}>What Claude Code checks</p>
           <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
             {pipelineChecks.map((c) => (
               <div key={c.code} className="deriv-check-row">
@@ -589,7 +621,8 @@ function PipelineDiagram() {
   );
 }
 
-type PanelItem = { name: string; meta?: string; detail: string };
+type Badge = { label: string; chosen?: boolean };
+type PanelItem = { name: string; badges?: Badge[]; detail: string };
 
 /**
  * The one card style every tab panel uses: counter, serif title, optional intro, then
@@ -602,8 +635,8 @@ function TabPanel({
   items,
   columns = 2,
 }: {
-  counter: string;
-  title: string;
+  counter?: string;
+  title?: string;
   intro?: string;
   items: PanelItem[];
   columns?: 2 | 3;
@@ -617,8 +650,8 @@ function TabPanel({
         padding: "1.5rem clamp(1.25rem, 4vw, 1.75rem)",
       }}
     >
-      <p style={{ ...mono, fontSize: "11px", color: "var(--color-muted)", marginBottom: "8px" }}>{counter}</p>
-      <h3 style={{ ...h3, fontSize: "22px", marginBottom: intro ? "6px" : "1.5rem" }}>{title}</h3>
+      {counter && <p style={{ ...mono, fontSize: "11px", color: "var(--color-muted)", marginBottom: "8px" }}>{counter}</p>}
+      {title && <h3 style={{ ...h3, fontSize: "22px", marginBottom: intro ? "6px" : "1.5rem" }}>{title}</h3>}
       {intro && <p style={{ ...body, marginBottom: "1.5rem" }}>{intro}</p>}
       <div
         className={columns === 3 ? "deriv-panel-grid deriv-panel-grid-3" : "deriv-panel-grid"}
@@ -626,11 +659,32 @@ function TabPanel({
       >
         {items.map((it) => (
           <div key={it.name} style={{ paddingLeft: "1rem", borderLeft: "1px solid var(--border-section)" }}>
-            <p style={{ ...metaSmall, fontWeight: 500, color: "var(--color-fg)", marginBottom: it.meta ? "2px" : "4px" }}>
+            <p style={{ ...metaSmall, fontWeight: 500, color: "var(--color-fg)", marginBottom: it.badges ? "8px" : "4px" }}>
               {it.name}
             </p>
-            {it.meta && (
-              <p style={{ ...mono, fontSize: "11px", color: "var(--color-muted)", marginBottom: "6px" }}>{it.meta}</p>
+            {it.badges && (
+              <ul style={{ listStyle: "none", margin: "0 0 10px", padding: 0, display: "flex", flexWrap: "wrap", gap: "6px" }}>
+                {it.badges.map((badge) => (
+                  <li
+                    key={badge.label}
+                    style={{
+                      ...mono,
+                      fontSize: "11px",
+                      lineHeight: 1.4,
+                      padding: "2px 8px",
+                      borderRadius: "6px",
+                      // The option that was chosen gets full-strength outline and text; the rest are muted.
+                      border: badge.chosen
+                        ? "1px solid var(--color-fg)"
+                        : "1px solid color-mix(in srgb, var(--color-muted) 40%, transparent)",
+                      color: badge.chosen ? "var(--color-fg)" : "var(--color-muted)",
+                    }}
+                  >
+                    {badge.label}
+                    {badge.chosen && <span className="sr-only"> (chosen)</span>}
+                  </li>
+                ))}
+              </ul>
             )}
             <p style={{ ...body, fontSize: "13px", margin: 0 }}>{it.detail}</p>
           </div>
@@ -790,7 +844,7 @@ function ProcessSections() {
                 <TabPanel
                   counter="02 / 02"
                   title="Chosen on what holds at scale"
-                  items={decisions.map((d) => ({ name: d.title, meta: d.options, detail: d.detail }))}
+                  items={decisions.map((d) => ({ name: d.title, badges: d.options, detail: d.detail }))}
                   columns={3}
                 />
               ),
@@ -799,34 +853,64 @@ function ProcessSections() {
         />
       </div>
 
+      {/* Thinking — pushback */}
+      <div style={divider}>
+        <h2 style={sectionTitle}>Where the system met pushback</h2>
+        <p style={{ ...body, marginBottom: "2rem" }}>
+          Every group with a stake in the site, the design team included, had a reason to resist a system that took
+          decisions away from individual pages. The work was in turning each concern into something the system
+          could guarantee.
+        </p>
+        <SegmentedTabs
+          ariaLabel="Team and stakeholder pushback"
+          tabs={pushback.map((pb, i) => ({
+            label: pb.tab,
+            panel: (
+              <TabPanel
+                counter={`0${i + 1} / 0${pushback.length}`}
+                title={pb.title}
+                items={[
+                  { name: "The concern", detail: pb.concern },
+                  { name: "The resolution", detail: pb.resolution },
+                ]}
+              />
+            ),
+          }))}
+        />
+      </div>
+
       {/* Design — tokens */}
       <div style={divider}>
         <p style={{ ...sectionLabel, marginBottom: "0.75rem" }}>Design</p>
         <h2 style={sectionTitle}>Three layers, each with one job</h2>
-        <p style={{ ...body, marginBottom: "2rem" }}>
-          Every decision is made once, in one place. A colour is chosen at the core layer, given a role at the
-          semantic layer, and used, never redefined, by the blocks. Semantic tokens are named by component and state,
-          and{" "}
+        <p style={{ ...body, marginBottom: "1rem" }}>
+          Every decision is made once, in one place. A value is chosen at the core layer, given a role at the semantic
+          layer, and used, never redefined, by the blocks. Semantic tokens are named by the component and state they
+          serve, and{" "}
           <span style={b}>a block that reads a core value directly is treated as a bug.</span>
         </p>
         <p style={{ ...body, marginBottom: "2rem" }}>
-          Type followed the same logic. One family, five heading levels, three breakpoints held as core tokens — mobile,
-          tablet from 768 and desktop from 992. An H1 steps from 48 to 64 to 80 pixels, and every block inherits the step rather than setting its own size.{" "}
-          <span style={b}>No block is allowed to have opinions about typography.</span>
+          Colour and typography run through the same three layers. For colour, coral.700 at the core becomes
+          button.primary.background. For type, core size, weight and line-height values become five semantic heading
+          levels that step per breakpoint (an H1 goes from 48 to 64 to 80 pixels), and blocks inherit the level
+          rather than setting a size.
         </p>
         <SegmentedTabs
-          ariaLabel="Token diagram and type scale"
+          ariaLabel="The three token layers, for colour and for typography"
           tabs={[
-            { label: "Colour tokens", panel: <TokenDiagram /> },
+            { label: "Colour", panel: <TokenDiagram /> },
             {
-              label: "Type scale",
+              label: "Typography",
               panel: (
-                <Figure
-                  src="/images/projects/deriv/responsive-type-scale.webp"
-                  width={5440}
-                  height={3060}
-                  caption="The responsive type scale — five heading levels across mobile, tablet and desktop, defined once as tokens."
-                />
+                <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
+                  <TypeChain />
+                  <Figure
+                    src="/images/projects/deriv/responsive-type-scale.webp"
+                    width={5440}
+                    height={3060}
+                    caption="The semantic layer for type: five heading levels, each resolving to core size and line-height values at mobile, tablet and desktop."
+                  />
+                </div>
               ),
             },
           ]}
@@ -858,6 +942,17 @@ function ProcessSections() {
           ariaLabel="Blocks and layout"
           tabs={[
             {
+              label: "Blocks",
+              panel: (
+                <Figure
+                  src="/images/projects/deriv/modular-component-library.webp"
+                  width={2720}
+                  height={1530}
+                  caption="The block library — hero, cards, FAQs, stats, testimonials and CTA sections, composed from shared components."
+                />
+              ),
+            },
+            {
               label: "Cards",
               panel: (
                 <Figure
@@ -865,17 +960,6 @@ function ProcessSections() {
                   width={1208}
                   height={666}
                   caption="One of the four card structures: four surfaces and two sizes, with variation designed in rather than added page by page."
-                />
-              ),
-            },
-            {
-              label: "Library",
-              panel: (
-                <Figure
-                  src="/images/projects/deriv/modular-component-library.webp"
-                  width={2720}
-                  height={1530}
-                  caption="The block library — hero, cards, FAQs, stats, testimonials and CTA sections, composed from shared components."
                 />
               ),
             },
@@ -899,8 +983,8 @@ function ProcessSections() {
         <h2 style={sectionTitle}>Everything a page is made of</h2>
         <p style={{ ...body, marginBottom: "2rem" }}>
           A system is only as strong as its least-considered part. The audit found problems at every level, from
-          one-off margins to three different navigation structures. So the scope covered all of it, in four layers.
-          Each layer depends on the one before it.
+          one-off margins to three different navigation structures. So the scope covered all of it: the qualities
+          every component must meet, and the foundations, structure and interactions they are built from.
         </p>
         <SegmentedTabs
           ariaLabel="System layers"
@@ -910,6 +994,8 @@ function ProcessSections() {
           }))}
         />
       </div>
+
+      <ImagerySection />
 
       {/* Tools & workflow */}
       <div style={divider}>
@@ -927,9 +1013,10 @@ function ProcessSections() {
 
         <p style={{ ...body, marginBottom: "2rem" }}>
           Figma variables mirror the token layers name for name. The output ships as versioned packages: tokens
-          compile from JSON into one tokens.css, and components, icons and Lottie live in one monorepo, documented in
-          Storybook. Claude handled the sorting work, such as synthesising the audit, grouping URLs into page types
-          and drafting documentation.
+          compile from JSON into one tokens.css, and components are documented in Storybook. Icons and
+          illustrations are their own packages, which designers maintain in Figma and update through Figma Code
+          Connect, with no developer handoff. Claude handled the sorting work, such as synthesising the audit,
+          grouping URLs into page types and drafting documentation.
         </p>
 
         <div style={{ paddingLeft: "1.25rem", borderLeft: "1px solid var(--border-section)", marginBottom: "2rem" }}>
@@ -948,32 +1035,24 @@ function ProcessSections() {
         </p>
       </div>
 
-      <ImagerySection />
-
-      {/* Pushback — last content block, so no bottom rule above "Next" */}
+      {/* Outcome — last content block, so no bottom rule above "Next" */}
       <div style={{ ...divider, borderBottom: "none", paddingBottom: 0, marginBottom: 0 }}>
-        <h2 style={sectionTitle}>Where the system met pushback</h2>
-        <p style={{ ...body, marginBottom: "2rem" }}>
-          Every group with a stake in the site, the design team included, had a reason to resist a system that took
-          decisions away from individual pages. The work was in turning each concern into something the system
-          could guarantee.
+        <p style={{ ...sectionLabel, marginBottom: "0.75rem" }}>Outcome</p>
+        <h2 style={sectionTitle}>What changed, and for whom</h2>
+        <TabPanel items={outcomes} columns={3} />
+        <p
+          style={{
+            fontFamily: "var(--font-fraunces), Georgia, serif",
+            fontSize: "clamp(1.25rem, 3vw, 1.75rem)",
+            fontWeight: 300,
+            lineHeight: 1.3,
+            color: "var(--color-fg)",
+            textWrap: "balance",
+            margin: "2.5rem 0 0",
+          }}
+        >
+          The redesign is what visitors see. The system is what stops it drifting back.
         </p>
-        <SegmentedTabs
-          ariaLabel="Team and stakeholder pushback"
-          tabs={pushback.map((pb, i) => ({
-            label: pb.tab,
-            panel: (
-              <TabPanel
-                counter={`0${i + 1} / 0${pushback.length}`}
-                title={pb.title}
-                items={[
-                  { name: "The concern", detail: pb.concern },
-                  { name: "The resolution", detail: pb.resolution },
-                ]}
-              />
-            ),
-          }))}
-        />
       </div>
     </>
   );
@@ -1028,6 +1107,8 @@ export default async function DerivCaseStudy() {
           .deriv-stats { grid-template-columns: repeat(2, 1fr) !important; }
           .deriv-token-row { grid-template-columns: 1fr !important; gap: 0.5rem !important; }
           .deriv-panel-grid { grid-template-columns: 1fr !important; }
+          .deriv-type-chain { grid-template-columns: 1fr !important; gap: 0.5rem !important; }
+          .deriv-type-arrow { transform: rotate(90deg); width: 1rem; }
           .deriv-split { grid-template-columns: 1fr !important; gap: 1.5rem !important; }
           .deriv-summary { grid-template-columns: 1fr 1fr !important; }
           .deriv-pipe-row { grid-template-columns: 1fr !important; gap: 0.75rem !important; }
@@ -1040,6 +1121,7 @@ export default async function DerivCaseStudy() {
         }
         .deriv-token-row { display: grid; grid-template-columns: 1fr 1.5rem 1.3fr 1.5rem 1fr; gap: 1rem; align-items: center; }
         .deriv-token-label { display: none; }
+        .deriv-type-chain { display: grid; grid-template-columns: 1fr 1.25rem 1fr 1.25rem 1fr; gap: 1rem; }
         @media (max-width: 900px) { .deriv-panel-grid-3 { grid-template-columns: 1fr !important; } }
         .deriv-split { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; align-items: center; }
         .deriv-pipe-row { display: grid; grid-template-columns: 1fr 1.25rem 1fr 1.25rem 1fr 1.25rem 1fr; gap: 1rem; }
