@@ -288,7 +288,7 @@ const decisions = [
 ];
 
 /* ── How a value travels through the layers (token diagram) ──
- * Token names and slate values are the real ones from the Deriv tokens package; coral hex values are approximations. */
+ * Token names, slate values and coral.700 are real values from the Deriv tokens package; coral.800 is approximated. */
 type CoreToken = { name: string; hex?: string; kind?: "color" | "radius" };
 const tokenFlows: { core: CoreToken; semantic: string[]; usedBy: string }[] = [
   {
@@ -1029,8 +1029,8 @@ export default function DerivCaseStudy() {
           </div>
         </div>
 
-        {/* Pushback */}
-        <div style={divider}>
+        {/* Pushback — last content block, so no bottom rule above "Next" */}
+        <div style={{ ...divider, borderBottom: "none", paddingBottom: 0, marginBottom: 0 }}>
           <h2 style={sectionTitle}>Where the system met pushback</h2>
           <p style={{ ...body, marginBottom: "2rem" }}>
             Every group with a stake in the site, the design team included, had a reason to resist a system that took
@@ -1066,20 +1066,6 @@ export default function DerivCaseStudy() {
               ),
             }))}
           />
-        </div>
-
-        {/* Reflection — last content block, so no bottom rule above "Next" */}
-        <div style={{ ...divider, borderBottom: "none", paddingBottom: 0, marginBottom: 0 }}>
-          <h2 style={sectionTitle}>What would change next time</h2>
-          <p style={{ ...body, marginBottom: "1rem" }}>
-            The German-and-Arabic stress test worked, but it was manual. Automated visual checks across every locale
-            from day one would have caught layout regressions in minutes instead of review rounds.
-          </p>
-          <p style={body}>
-            And the content and SEO teams would join block definitions earlier. Several blocks were revised after
-            launch once real copy lengths and heading needs arrived.{" "}
-            <span style={b}>A block is only finished when it&apos;s been filled with real content, not placeholder text.</span>
-          </p>
         </div>
 
         {/* Next project */}
