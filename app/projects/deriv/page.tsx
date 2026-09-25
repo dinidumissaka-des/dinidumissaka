@@ -837,6 +837,32 @@ function ProcessSections() {
         />
       </div>
 
+      {/* Thinking — pushback */}
+      <div style={divider}>
+        <h2 style={sectionTitle}>Where the system met pushback</h2>
+        <p style={{ ...body, marginBottom: "2rem" }}>
+          Every group with a stake in the site, the design team included, had a reason to resist a system that took
+          decisions away from individual pages. The work was in turning each concern into something the system
+          could guarantee.
+        </p>
+        <SegmentedTabs
+          ariaLabel="Team and stakeholder pushback"
+          tabs={pushback.map((pb, i) => ({
+            label: pb.tab,
+            panel: (
+              <TabPanel
+                counter={`0${i + 1} / 0${pushback.length}`}
+                title={pb.title}
+                items={[
+                  { name: "The concern", detail: pb.concern },
+                  { name: "The resolution", detail: pb.resolution },
+                ]}
+              />
+            ),
+          }))}
+        />
+      </div>
+
       {/* Design — tokens */}
       <div style={divider}>
         <p style={{ ...sectionLabel, marginBottom: "0.75rem" }}>Design</p>
@@ -953,8 +979,10 @@ function ProcessSections() {
         />
       </div>
 
-      {/* Tools & workflow */}
-      <div style={divider}>
+      <ImagerySection />
+
+      {/* Tools & workflow — last content block, so no bottom rule above "Next" */}
+      <div style={{ ...divider, borderBottom: "none", paddingBottom: 0, marginBottom: 0 }}>
         <p style={{ ...sectionLabel, marginBottom: "0.75rem" }}>Tools &amp; workflow</p>
         <h2 style={sectionTitle}>From Figma to production without a translation step</h2>
         <p style={{ ...body, marginBottom: "2rem" }}>
@@ -989,34 +1017,6 @@ function ProcessSections() {
           <span style={b}>a new page stopped being a design-and-build project and became an assembly job.</span>{" "}
           That is how three to five weeks became one to two days.
         </p>
-      </div>
-
-      <ImagerySection />
-
-      {/* Pushback — last content block, so no bottom rule above "Next" */}
-      <div style={{ ...divider, borderBottom: "none", paddingBottom: 0, marginBottom: 0 }}>
-        <h2 style={sectionTitle}>Where the system met pushback</h2>
-        <p style={{ ...body, marginBottom: "2rem" }}>
-          Every group with a stake in the site, the design team included, had a reason to resist a system that took
-          decisions away from individual pages. The work was in turning each concern into something the system
-          could guarantee.
-        </p>
-        <SegmentedTabs
-          ariaLabel="Team and stakeholder pushback"
-          tabs={pushback.map((pb, i) => ({
-            label: pb.tab,
-            panel: (
-              <TabPanel
-                counter={`0${i + 1} / 0${pushback.length}`}
-                title={pb.title}
-                items={[
-                  { name: "The concern", detail: pb.concern },
-                  { name: "The resolution", detail: pb.resolution },
-                ]}
-              />
-            ),
-          }))}
-        />
       </div>
     </>
   );
