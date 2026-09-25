@@ -47,14 +47,16 @@ export default function SegmentedTabs({
         aria-label={ariaLabel}
         onKeyDown={onKeyDown}
         style={{
-          display: "grid",
-          gridTemplateColumns: `repeat(${tabs.length}, 1fr)`,
-          gap: "4px",
-          padding: "4px",
-          borderRadius: "999px",
+          display: "flex",
+          width: "fit-content",
+          maxWidth: "100%",
+          gap: "2px",
+          padding: "2px",
+          // Outer radius = inner radius (8px) + padding (2px), so the corners stay concentric.
+          borderRadius: "10px",
           border: "1px solid var(--border-section)",
           background: "var(--bg-card)",
-          marginBottom: "1.5rem",
+          marginBottom: "1.25rem",
         }}
       >
         {tabs.map((t, i) => {
@@ -71,15 +73,15 @@ export default function SegmentedTabs({
               onClick={() => setActive(i)}
               style={{
                 position: "relative",
-                padding: "8px 4px",
-                borderRadius: "999px",
+                padding: "5px 8px",
+                borderRadius: "8px",
                 border: "none",
                 background: "transparent",
                 cursor: "pointer",
                 fontFamily: "var(--font-manrope), sans-serif",
-                fontSize: "13px",
+                fontSize: "12px",
                 fontWeight: selected ? 600 : 500,
-                color: selected ? "var(--color-bg)" : "var(--color-muted)",
+                color: selected ? "var(--color-fg)" : "var(--color-muted)",
                 transition: "color 0.2s ease",
                 whiteSpace: "nowrap",
               }}
@@ -88,7 +90,12 @@ export default function SegmentedTabs({
                 <motion.span
                   layoutId={`${id}-indicator`}
                   transition={{ type: "spring", stiffness: 500, damping: 40 }}
-                  style={{ position: "absolute", inset: 0, borderRadius: "999px", background: "var(--color-fg)" }}
+                  style={{
+                    position: "absolute",
+                    inset: 0,
+                    borderRadius: "8px",
+                    background: "color-mix(in srgb, var(--color-fg) 12%, transparent)",
+                  }}
                 />
               )}
               <span style={{ position: "relative" }}>{t.label}</span>
