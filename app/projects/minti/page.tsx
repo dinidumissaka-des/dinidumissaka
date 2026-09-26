@@ -85,14 +85,6 @@ const summary = [
   { label: "Status", text: "Live at minti.one and in testing with friends, improving week to week." },
 ];
 
-/* ── Honest facts rather than metrics the project doesn't have yet ── */
-const stats = [
-  { value: "0", label: "bank connections: every expense is typed by hand" },
-  { value: "0", label: "Figma files: designed in specs and code" },
-  { value: "1", label: "accent colour across the whole app" },
-  { value: "6", label: "core views, from expenses to insights" },
-];
-
 type Badge = { label: string; chosen?: boolean };
 type PanelItem = { name: string; badges?: Badge[]; detail: string };
 
@@ -275,7 +267,6 @@ export default function MintiCaseStudy() {
           .cs-meta { gap: 1.25rem !important; }
           .minti-features-grid { grid-template-columns: 1fr !important; }
           .minti-summary { grid-template-columns: 1fr 1fr !important; }
-          .minti-stats { grid-template-columns: repeat(2, 1fr) !important; }
           .minti-panel-grid { grid-template-columns: 1fr !important; }
         }
         @media (max-width: 900px) { .minti-panel-grid-3 { grid-template-columns: 1fr !important; } }
@@ -338,29 +329,6 @@ export default function MintiCaseStudy() {
             you what changed.{" "}
             <span style={b}>You have to type in what you spent. That five seconds is the point.</span>
           </p>
-        </div>
-
-        {/* Stats */}
-        <div style={divider}>
-          <div className="minti-stats" style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: "2rem 1.5rem" }}>
-            {stats.map((s) => (
-              <div key={s.label}>
-                <p
-                  style={{
-                    fontFamily: "var(--font-fraunces), Georgia, serif",
-                    fontSize: "clamp(2rem, 4vw, 2.75rem)",
-                    fontWeight: 300,
-                    lineHeight: 1,
-                    color: "var(--color-fg)",
-                    marginBottom: "10px",
-                  }}
-                >
-                  {s.value}
-                </p>
-                <p style={{ ...body, fontSize: "13px", margin: 0 }}>{s.label}</p>
-              </div>
-            ))}
-          </div>
         </div>
 
         {/* Cover image */}
