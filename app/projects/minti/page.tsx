@@ -80,39 +80,57 @@ const b: React.CSSProperties = {
 /* ── For readers who skim ── */
 const summary = [
   { label: "Problem", text: "Finance apps either automate spending away or ask for a spreadsheet mindset." },
-  { label: "Role", text: "Sole designer and builder, from the first spec to the installed app." },
+  { label: "Role", text: "Design and build, working with a UX designer and a service designer." },
   { label: "Approach", text: "Designed in markdown specs and guidelines, built with Claude Code, with no Figma." },
   { label: "Status", text: "Live at minti.one and in testing with friends, improving week to week." },
 ];
 
 type Badge = { label: string; chosen?: boolean };
-type PanelItem = { name: string; badges?: Badge[]; detail: string };
+type PanelItem = { name: string; badges?: Badge[]; detail: string; tradeoff?: string };
 
-/* ── Decisions, with the option that was chosen ── */
+/* ── Decisions: the choice, the thinking behind it, and what it gave up ── */
 const decisions: PanelItem[] = [
   {
-    name: "Manual entry, not bank sync",
+    name: "Manual entry first",
     badges: [{ label: "Bank sync" }, { label: "Manual entry", chosen: true }],
     detail:
-      "Bank sync logs spending nobody notices. Typing each expense takes about five seconds, and that pause is the point: it is the moment you decide whether it was worth it.",
+      "The goal is responsibility, not bookkeeping. Typing an expense takes about five seconds, and that pause is when people decide whether it was worth it and what should come first next time.",
+    tradeoff: "Logging takes effort, so optional automation is planned for people too busy to add expenses one by one.",
   },
   {
     name: "Written insights, not charts",
     badges: [{ label: "Configurable charts" }, { label: "Written insights", chosen: true }],
     detail:
-      "Charts leave people to find the story themselves. Minti writes it instead: the biggest category, the projected month total or a category that jumped, each in one plain sentence.",
-  },
-  {
-    name: "An installable web app, not an app store app",
-    badges: [{ label: "Native app" }, { label: "PWA", chosen: true }],
-    detail:
-      "A progressive web app installs to the home screen like any other app, but ships without store reviews. That kept changes fast while friends tested it week to week.",
+      "Charts leave people to find the story themselves, and most never look. Minti writes it instead: the biggest category, the projected month total or a category that jumped, each in one plain sentence.",
+    tradeoff: "Less room to explore the data, in exchange for knowing what matters at a glance.",
   },
   {
     name: "One monthly limit, not a budget per category",
     badges: [{ label: "Category budgets" }, { label: "One monthly limit", chosen: true }],
     detail:
-      "A budget for every category is one more thing to maintain. A single limit and the average daily spend answer the question that matters: is this month on track?",
+      "A budget for every category is one more thing to maintain and one more reason to give up. A single limit and the average daily spend answer the question that matters: is this month on track?",
+    tradeoff: "Less control per category, though the By Category view still shows where the money goes.",
+  },
+  {
+    name: "Bills kept apart from daily spending",
+    badges: [{ label: "One list" }, { label: "Bills kept apart", chosen: true }],
+    detail:
+      "Rent and subscriptions are decided once a month, while coffee and taxis are decided every day. Mixing them hides the daily choices people can actually change, so fixed costs get their own view.",
+    tradeoff: "Two places to look instead of one, but each number now means something clear.",
+  },
+  {
+    name: "As few steps as possible to log",
+    badges: [{ label: "Full form" }, { label: "One-tap categories", chosen: true }],
+    detail:
+      "Every extra field is a reason to skip logging, and a skipped entry breaks the habit. Categories are one tap from a set of chips and the date starts as today, so an entry fits in a few seconds.",
+    tradeoff: "Set categories suit most spending, with a custom option for everything else.",
+  },
+  {
+    name: "A web app first, iOS next",
+    badges: [{ label: "Native app first" }, { label: "PWA first", chosen: true }],
+    detail:
+      "A progressive web app installs to the home screen like any other app and ships without store reviews. That kept changes fast while friends tested it, and proved the flows before building natively.",
+    tradeoff: "A web app feels less native, which is why an iOS app is now in progress.",
   },
 ];
 
@@ -136,19 +154,23 @@ const designProcess: PanelItem[] = [
   },
 ];
 
-/* ── Planned next (placeholders until confirmed) ── */
+/* ── Planned improvements, each secondary to the core idea: you add what you spend ── */
 const nextUp: PanelItem[] = [
   {
-    name: "More than one currency",
-    detail: "Many testers earn in one currency and send money home in another, so both should sit side by side.",
+    name: "Optional automation",
+    detail: "For people too busy to add expenses one by one. Manual entry stays the default, because feeling responsible is the point.",
   },
   {
-    name: "A gentle daily nudge",
-    detail: "An optional end-of-day reminder to log what was spent, keeping the habit without automating it.",
+    name: "Reminders to log",
+    detail: "Gentle prompts to keep entries up to date, so the habit sticks without anything being automated away.",
   },
   {
-    name: "Export",
-    detail: "A simple export, so the data always belongs to the person who typed it in the first place.",
+    name: "Notifications that sound human",
+    detail: "When saving improves, Minti says so warmly, recognising the habit behind it rather than just the number.",
+  },
+  {
+    name: "An iOS app",
+    detail: "A native iOS app is in progress, built on the flows the web app has already proven with real people.",
   },
 ];
 
@@ -229,6 +251,12 @@ function Panel({ items, columns = 2 }: { items: PanelItem[]; columns?: 2 | 3 }) 
               </ul>
             )}
             <p style={{ ...body, fontSize: "13px", margin: 0 }}>{it.detail}</p>
+            {it.tradeoff && (
+              <p style={{ ...body, fontSize: "13px", margin: "10px 0 0" }}>
+                <span style={{ ...mono, fontSize: "11px", color: "var(--color-muted)", marginRight: "8px" }}>Trade-off</span>
+                {it.tradeoff}
+              </p>
+            )}
           </div>
         ))}
       </div>
@@ -270,9 +298,6 @@ export default function MintiCaseStudy() {
           .minti-panel-grid { grid-template-columns: 1fr !important; }
         }
         @media (max-width: 900px) { .minti-panel-grid-3 { grid-template-columns: 1fr !important; } }
-        @media (min-width: 641px) and (max-width: 900px) {
-          .minti-features-grid { grid-template-columns: repeat(2, 1fr) !important; }
-        }
         .dark .asset-bg { background: rgba(255,255,255,0.04) !important; }
         .minti-feature-card .minti-overlay {
           opacity: 0;
@@ -291,7 +316,8 @@ export default function MintiCaseStudy() {
           {[
             { label: "Year", value: "2026 – ongoing" },
             { label: "Role", value: "Designer & Builder" },
-            { label: "Type", value: "PWA · Mobile-first" },
+            { label: "Team", value: "With a UX designer & a service designer" },
+            { label: "Type", value: "PWA · iOS in progress" },
             { label: "Live", value: "minti.one", href: "https://minti.one" },
           ].map((item) => (
             <div key={item.label} style={{ display: "flex", flexDirection: "row", alignItems: "center", gap: "12px" }}>
@@ -360,7 +386,12 @@ export default function MintiCaseStudy() {
 
         {/* Thinking — decisions */}
         <div style={divider}>
-          <h2 style={sectionTitle}>Four decisions, each with a real alternative</h2>
+          <h2 style={sectionTitle}>Six decisions, and what each one gave up</h2>
+          <p style={{ ...body, marginBottom: "2rem" }}>
+            Every decision started from the same principle:{" "}
+            <span style={b}>Minti should make people feel responsible for their spending, not do the thinking for them.</span>{" "}
+            Each choice had a real alternative, and each one gave something up.
+          </p>
           <Panel items={decisions} />
           <div className="cs-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1.5rem", marginTop: "1.5rem" }}>
             <Screen
@@ -394,7 +425,7 @@ export default function MintiCaseStudy() {
           <h2 style={sectionTitle}>What it does</h2>
           <div
             className="minti-features-grid"
-            style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "48px" }}
+            style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: "48px" }}
           >
             {mintiFeatures.map((feature) => (
               <div
@@ -402,14 +433,14 @@ export default function MintiCaseStudy() {
                 className="minti-feature-card"
                 style={{ position: "relative", overflow: "hidden", borderRadius: "16px" }}
               >
-                <div style={{ padding: "0 24px" }}>
+                <div style={{ padding: "0 24px", display: "flex", justifyContent: "center" }}>
                   <Image
                     src={feature.image}
                     alt={feature.title}
                     width={900}
                     height={1840}
-                    sizes="(max-width: 640px) 90vw, (max-width: 900px) 45vw, 320px"
-                    style={{ width: "100%", height: "auto", display: "block" }}
+                    sizes="(max-width: 640px) 90vw, 380px"
+                    style={{ width: "100%", maxWidth: "380px", height: "auto", display: "block" }}
                   />
                 </div>
                 <div
@@ -459,9 +490,10 @@ export default function MintiCaseStudy() {
           <h2 style={sectionTitle}>In testing, with friends first</h2>
           <p style={{ ...body, marginBottom: "2rem" }}>
             Minti is live and being tested by friends, most of them living away from home, the people it was shaped
-            around. Their feedback decides what changes each week. Next on the list:
+            around. Their feedback decides what changes each week. Planned next, each one kept secondary to the core
+            idea that you add what you spend:
           </p>
-          <Panel items={nextUp} columns={3} />
+          <Panel items={nextUp} />
         </div>
 
         {/* Next project */}
