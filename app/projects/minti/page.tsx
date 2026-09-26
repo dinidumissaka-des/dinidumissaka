@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import BackButton from "@/components/ui/BackButton";
-import ParallaxImage from "@/components/ui/ParallaxImage";
 
 export const metadata: Metadata = {
   title: "Minti — Case Study",
@@ -82,7 +81,7 @@ const summary = [
   { label: "Problem", text: "Finance apps either automate spending away or ask for a spreadsheet mindset." },
   { label: "Role", text: "Design and build, working with a UX designer and a service designer." },
   { label: "Approach", text: "Designed in markdown specs and guidelines, built with Claude Code, with no Figma." },
-  { label: "Status", text: "Live at minti.one and in testing with friends, improving week to week." },
+  { label: "Status", text: "Live at minti.one and in a closed test group, improving week to week." },
 ];
 
 type Badge = { label: string; chosen?: boolean };
@@ -129,9 +128,60 @@ const decisions: PanelItem[] = [
     name: "A web app first, iOS next",
     badges: [{ label: "Native app first" }, { label: "PWA first", chosen: true }],
     detail:
-      "A progressive web app installs to the home screen like any other app and ships without store reviews. That kept changes fast while friends tested it, and proved the flows before building natively.",
+      "A progressive web app installs to the home screen like any other app and ships without store reviews. That kept changes fast while early testers used it, and proved the flows before building natively.",
     tradeoff: "A web app feels less native, which is why an iOS app is now in progress.",
   },
+];
+
+/* ── Decisions grouped by theme, each group beside the screen it shaped ── */
+type Shot = { src: string; alt: string; text: string };
+const byName = (name: string) => decisions.find((d) => d.name === name)!;
+const decisionRows: { label: string; items: PanelItem[]; shots: Shot[] }[] = [
+  {
+    label: "Logging",
+    items: [byName("Manual entry first"), byName("As few steps as possible to log")],
+    shots: [
+      {
+        src: "/images/projects/minti/categories.webp",
+        alt: "Adding an expense in Minti: amount, note, category chips and date",
+        text: "Adding an expense: amount, note, category and date, in about five seconds.",
+      },
+    ],
+  },
+  {
+    label: "Knowing where you stand",
+    items: [byName("One monthly limit, not a budget per category"), byName("Bills kept apart from daily spending")],
+    shots: [
+      {
+        src: "/images/projects/minti/subscriptions.webp",
+        alt: "Minti showing one monthly budget bar above a separate list of recurring bills",
+        text: "One monthly budget at the top, recurring bills listed on their own below.",
+      },
+    ],
+  },
+  {
+    label: "Reading it, anywhere",
+    items: [byName("Written insights, not charts"), byName("A web app first, iOS next")],
+    shots: [
+      {
+        src: "/images/projects/minti/insights.webp",
+        alt: "Minti insight cards written as plain sentences",
+        text: "Insights written as sentences, not charts.",
+      },
+      {
+        src: "/images/projects/minti/app-icon.webp",
+        alt: "Minti installed on an iPhone home screen alongside native apps",
+        text: "Installed from the browser, like any other app.",
+      },
+    ],
+  },
+];
+
+/* ── Cover: three real screens instead of the app icon ── */
+const coverShots = [
+  { src: "/images/projects/minti/expences.webp", alt: "Minti home screen with the month total, today and daily average" },
+  { src: "/images/projects/minti/insights.webp", alt: "Minti insights written as plain sentences" },
+  { src: "/images/projects/minti/subscriptions.webp", alt: "Minti monthly budget and recurring bills" },
 ];
 
 /* ── How screens were designed without Figma ── */
@@ -208,7 +258,7 @@ const mintiFeatures = [
 ];
 
 /** One card, hairline-ruled items and optional option badges: the same panel style as the Deriv case study. */
-function Panel({ items, columns = 2 }: { items: PanelItem[]; columns?: 2 | 3 }) {
+function Panel({ items, columns = 2 }: { items: PanelItem[]; columns?: 1 | 2 | 3 }) {
   return (
     <div
       style={{
@@ -264,13 +314,72 @@ function Panel({ items, columns = 2 }: { items: PanelItem[]; columns?: 2 | 3 }) 
   );
 }
 
+/** Three real screens side by side, the middle one raised, on a soft brand-green glow. */
+function Cover() {
+  return (
+    <div
+      className="asset-bg minti-cover"
+      style={{
+        borderRadius: "12px",
+        background:
+          "radial-gradient(ellipse 70% 60% at 50% 0%, rgba(126, 211, 90, 0.22), transparent 70%), rgba(0,0,0,0.04)",
+        padding: "clamp(1.5rem, 5vw, 3.5rem) clamp(1rem, 4vw, 3rem) 0",
+        overflow: "hidden",
+      }}
+    >
+      <div className="minti-cover-row" style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "clamp(0.75rem, 3vw, 2.5rem)", alignItems: "end" }}>
+        {coverShots.map((shot, i) => (
+          <div
+            key={shot.src}
+            className={i === 0 ? "minti-cover-side" : undefined}
+            style={{ transform: i === 1 ? "translateY(0)" : "translateY(8%)", display: "flex", justifyContent: "center" }}
+          >
+            <Image
+              src={shot.src}
+              alt={shot.alt}
+              width={900}
+              height={1840}
+              sizes="(max-width: 640px) 45vw, 300px"
+              preload={i === 1}
+              style={{ width: "100%", maxWidth: "280px", height: "auto", display: "block" }}
+            />
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+/** A group of decisions beside the screen they shaped; rows alternate sides. */
+function DecisionRow({ label, items, shots, flip }: { label: string; items: PanelItem[]; shots: Shot[]; flip: boolean }) {
+  return (
+    <div>
+      <p style={{ ...mono, fontSize: "11px", color: "var(--color-muted)", marginBottom: "10px" }}>{label}</p>
+      {/* Rows with two screens split evenly so neither screen gets too small. */}
+      <div className="minti-decision-row" style={shots.length > 1 ? { gridTemplateColumns: "1fr 1fr" } : undefined}>
+        <div style={{ order: flip ? 2 : 1, minWidth: 0 }}>
+          <Panel items={items} columns={1} />
+        </div>
+        <div
+          className="minti-decision-shots"
+          style={{ order: flip ? 1 : 2, display: "grid", gridTemplateColumns: `repeat(${shots.length}, 1fr)`, gap: "1rem", minWidth: 0 }}
+        >
+          {shots.map((shot) => (
+            <Screen key={shot.src} src={shot.src} alt={shot.alt} text={shot.text} compact={shots.length > 1} />
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
 /** A phone screenshot, shown whole on a soft backdrop. */
-function Screen({ src, alt, text }: { src: string; alt: string; text: string }) {
+function Screen({ src, alt, text, compact }: { src: string; alt: string; text: string; compact?: boolean }) {
   return (
     <figure style={{ margin: 0 }}>
       <div
         className="asset-bg"
-        style={{ borderRadius: "12px", background: "rgba(0,0,0,0.04)", padding: "2rem 1.5rem", display: "flex", justifyContent: "center" }}
+        style={{ borderRadius: "12px", background: "rgba(0,0,0,0.04)", padding: compact ? "1.25rem 0.75rem" : "2rem 1.5rem", display: "flex", justifyContent: "center" }}
       >
         <Image
           src={src}
@@ -296,8 +405,13 @@ export default function MintiCaseStudy() {
           .minti-features-grid { grid-template-columns: 1fr !important; }
           .minti-summary { grid-template-columns: 1fr 1fr !important; }
           .minti-panel-grid { grid-template-columns: 1fr !important; }
+          .minti-decision-row { grid-template-columns: 1fr !important; }
+          .minti-decision-row > div { order: 0 !important; }
+          .minti-cover-row { grid-template-columns: repeat(2, 1fr) !important; }
+          .minti-cover-side { display: none !important; }
         }
         @media (max-width: 900px) { .minti-panel-grid-3 { grid-template-columns: 1fr !important; } }
+        .minti-decision-row { display: grid; grid-template-columns: 1.35fr 1fr; gap: 1.5rem; align-items: center; }
         .dark .asset-bg { background: rgba(255,255,255,0.04) !important; }
         .minti-feature-card .minti-overlay {
           opacity: 0;
@@ -357,14 +471,9 @@ export default function MintiCaseStudy() {
           </p>
         </div>
 
-        {/* Cover image */}
+        {/* Cover: the product itself */}
         <div style={divider}>
-          <ParallaxImage
-            src="/images/projects/minti/cover-image-minti.webp"
-            alt="Minti spending tracker app"
-            width={1920} height={1080}
-            style={{ width: "100%", aspectRatio: "16 / 9", objectFit: "cover", borderRadius: "12px", display: "block" }}
-          />
+          <Cover />
         </div>
 
         {/* Thinking — where it started */}
@@ -392,18 +501,10 @@ export default function MintiCaseStudy() {
             <span style={b}>Minti should make people feel responsible for their spending, not do the thinking for them.</span>{" "}
             Each choice had a real alternative, and each one gave something up.
           </p>
-          <Panel items={decisions} />
-          <div className="cs-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1.5rem", marginTop: "1.5rem" }}>
-            <Screen
-              src="/images/projects/minti/categories.webp"
-              alt="Adding an expense in Minti: amount, note, category and date"
-              text="Adding an expense: amount, note, category and date, in about five seconds."
-            />
-            <Screen
-              src="/images/projects/minti/app-icon.webp"
-              alt="Minti installed on an iPhone home screen alongside native apps"
-              text="Installed from the browser, it sits on the home screen like any other app."
-            />
+          <div style={{ display: "flex", flexDirection: "column", gap: "2.5rem" }}>
+            {decisionRows.map((row, i) => (
+              <DecisionRow key={row.label} label={row.label} items={row.items} shots={row.shots} flip={i % 2 === 1} />
+            ))}
           </div>
         </div>
 
@@ -487,9 +588,9 @@ export default function MintiCaseStudy() {
         {/* Status — last content block, so no bottom rule above "Next" */}
         <div style={{ ...divider, borderBottom: "none", paddingBottom: 0, marginBottom: 0 }}>
           <p style={{ ...sectionLabel, marginBottom: "0.75rem" }}>Status</p>
-          <h2 style={sectionTitle}>In testing, with friends first</h2>
+          <h2 style={sectionTitle}>In testing with a closed group</h2>
           <p style={{ ...body, marginBottom: "2rem" }}>
-            Minti is live and being tested by friends, most of them living away from home, the people it was shaped
+            Minti is live and being tested by a closed group of early testers, most of them living away from home, the people it was shaped
             around. Their feedback decides what changes each week. Planned next, each one kept secondary to the core
             idea that you add what you spend:
           </p>
