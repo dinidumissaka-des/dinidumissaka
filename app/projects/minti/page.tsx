@@ -7,7 +7,7 @@ import ParallaxImage from "@/components/ui/ParallaxImage";
 export const metadata: Metadata = {
   title: "Minti — Case Study",
   description:
-    "An ongoing experiment in designing by prompt: a design system written for machines, tested on Minti, a spending tracker built with Claude Code.",
+    "Designing and building Minti, a spending tracker that keeps the moment of reflection, designed from specs and built with Claude Code.",
 };
 
 const sectionLabel: React.CSSProperties = {
@@ -79,10 +79,10 @@ const b: React.CSSProperties = {
 
 /* ── For readers who skim ── */
 const summary = [
-  { label: "Problem", text: "AI builds screens fast, but they usually need many fixes before the UX and UI are good." },
-  { label: "Role", text: "Designer and builder of both the app and the system behind it." },
-  { label: "Approach", text: "A design system written for machines: specs, brand and rules Claude Code can follow." },
-  { label: "Status", text: "Ongoing. Minti is the testbed, live and in testing with friends." },
+  { label: "Problem", text: "Finance apps either automate spending away or ask for a spreadsheet mindset." },
+  { label: "Role", text: "Sole designer and builder, from the first spec to the installed app." },
+  { label: "Approach", text: "Designed in markdown specs and guidelines, built with Claude Code, with no Figma." },
+  { label: "Status", text: "Live at minti.one and in testing with friends, improving week to week." },
 ];
 
 type Badge = { label: string; chosen?: boolean };
@@ -132,32 +132,24 @@ const designProcess: PanelItem[] = [
   },
   {
     name: "Review with taste",
-    detail: "Every screen is judged on a real phone. Each fix becomes a new rule, so the same mistake isn't made twice.",
+    detail: "Every screen is judged on a real phone. Anything that feels off becomes a new rule in the guidelines.",
   },
 ];
 
-/* ── Where the experiment is heading ── */
-const roadmap: PanelItem[] = [
+/* ── Planned next (placeholders until confirmed) ── */
+const nextUp: PanelItem[] = [
   {
-    name: "Now: one app",
-    detail: "Minti's screens are built from specs and guidelines, and every fix makes the design system sharper.",
+    name: "More than one currency",
+    detail: "Many testers earn in one currency and send money home in another, so both should sit side by side.",
   },
   {
-    name: "Next: whole features",
-    detail: "Complete flows and features built from a spec, a brand and the design system, reviewed rather than redrawn.",
+    name: "A gentle daily nudge",
+    detail: "An optional end-of-day reminder to log what was spent, keeping the habit without automating it.",
   },
   {
-    name: "Later: complete projects",
-    detail: "Whole apps as high-fidelity prototypes from a full set of specs, needing the minimum of fixes.",
+    name: "Export",
+    detail: "A simple export, so the data always belongs to the person who typed it in the first place.",
   },
-];
-
-/* ── What goes in, and what should come out ── */
-const recipeInputs = [
-  { name: "Product spec", detail: "What it does, for whom, and the flows it needs" },
-  { name: "Brand", detail: "Voice, colour, type and imagery" },
-  { name: "Supporting specs", detail: "Content, states, edge cases and accessibility" },
-  { name: "Design system", detail: "Tokens, components and rules written for machines" },
 ];
 
 const mintiFeatures = [
@@ -244,51 +236,6 @@ function Panel({ items, columns = 2 }: { items: PanelItem[]; columns?: 2 | 3 }) 
   );
 }
 
-/** Inputs on the left, Claude Code in the middle, a prototype on the right. */
-function RecipeDiagram() {
-  const box: React.CSSProperties = {
-    border: "1px solid var(--border-section)",
-    borderRadius: "12px",
-    background: "var(--bg-card)",
-    padding: "1.25rem 1.5rem",
-  };
-  const arrow = (
-    <span aria-hidden className="minti-recipe-arrow" style={{ ...mono, color: "var(--color-muted)", alignSelf: "center", textAlign: "center" }}>
-      →
-    </span>
-  );
-  return (
-    <figure style={{ margin: 0 }}>
-      <div className="minti-recipe">
-        <div style={{ ...box, display: "flex", flexDirection: "column", gap: "0.9rem" }}>
-          <p style={{ ...mono, fontSize: "11px", color: "var(--color-muted)", margin: 0 }}>In</p>
-          {recipeInputs.map((input) => (
-            <div key={input.name} style={{ paddingLeft: "1rem", borderLeft: "1px solid var(--border-section)" }}>
-              <p style={{ ...metaSmall, fontWeight: 500, color: "var(--color-fg)", marginBottom: "2px" }}>{input.name}</p>
-              <p style={{ ...body, fontSize: "13px", margin: 0 }}>{input.detail}</p>
-            </div>
-          ))}
-        </div>
-        {arrow}
-        <div style={{ ...box, alignSelf: "center" }}>
-          <p style={{ ...mono, fontSize: "11px", color: "var(--color-muted)", marginBottom: "8px" }}>Build</p>
-          <p style={{ ...metaSmall, fontWeight: 500, color: "var(--color-fg)", marginBottom: "2px" }}>Claude Code</p>
-          <p style={{ ...body, fontSize: "13px", margin: 0 }}>Builds from all four, not from a mockup</p>
-        </div>
-        {arrow}
-        <div style={{ ...box, alignSelf: "center", borderColor: "var(--color-fg)" }}>
-          <p style={{ ...mono, fontSize: "11px", color: "var(--color-muted)", marginBottom: "8px" }}>Out</p>
-          <p style={{ ...metaSmall, fontWeight: 500, color: "var(--color-fg)", marginBottom: "2px" }}>High-fidelity prototype</p>
-          <p style={{ ...body, fontSize: "13px", margin: 0 }}>Ready to test, with the fewest fixes possible</p>
-        </div>
-      </div>
-      <figcaption style={caption}>
-        The end goal: every input a designer carries in their head, written down in a form an AI can build from.
-      </figcaption>
-    </figure>
-  );
-}
-
 /** A phone screenshot, shown whole on a soft backdrop. */
 function Screen({ src, alt, text }: { src: string; alt: string; text: string }) {
   return (
@@ -321,14 +268,11 @@ export default function MintiCaseStudy() {
           .minti-features-grid { grid-template-columns: 1fr !important; }
           .minti-summary { grid-template-columns: 1fr 1fr !important; }
           .minti-panel-grid { grid-template-columns: 1fr !important; }
-          .minti-recipe { grid-template-columns: 1fr !important; gap: 0.5rem !important; }
-          .minti-recipe-arrow { transform: rotate(90deg); width: 1rem; }
         }
         @media (max-width: 900px) { .minti-panel-grid-3 { grid-template-columns: 1fr !important; } }
         @media (min-width: 641px) and (max-width: 900px) {
           .minti-features-grid { grid-template-columns: repeat(2, 1fr) !important; }
         }
-        .minti-recipe { display: grid; grid-template-columns: 1.4fr 1.5rem 1fr 1.5rem 1fr; gap: 1rem; }
         .dark .asset-bg { background: rgba(255,255,255,0.04) !important; }
         .minti-feature-card .minti-overlay {
           opacity: 0;
@@ -347,7 +291,7 @@ export default function MintiCaseStudy() {
           {[
             { label: "Year", value: "2026 – ongoing" },
             { label: "Role", value: "Designer & Builder" },
-            { label: "Type", value: "PWA · Ongoing experiment" },
+            { label: "Type", value: "PWA · Mobile-first" },
             { label: "Live", value: "minti.one", href: "https://minti.one" },
           ].map((item) => (
             <div key={item.label} style={{ display: "flex", flexDirection: "row", alignItems: "center", gap: "12px" }}>
@@ -365,7 +309,7 @@ export default function MintiCaseStudy() {
         </div>
 
         {/* Title */}
-        <h1 style={pageTitle}>An experiment in designing by prompt, tested on a real app</h1>
+        <h1 style={pageTitle}>A spending tracker built for reflection, not automation</h1>
 
         {/* Summary — for readers who skim */}
         <div className="minti-summary" style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: "1.5rem", ...divider, paddingBottom: "2.5rem", marginBottom: "2.5rem" }}>
@@ -379,18 +323,11 @@ export default function MintiCaseStudy() {
 
         {/* Intro */}
         <div style={divider}>
-          <p style={{ ...body, marginBottom: "1rem" }}>
-            Minti is two things. On the surface, a spending tracker for people who want to understand where their money
-            goes, not automate it away. Underneath, an ongoing experiment: a design system written for machines, so AI
-            can build well-designed screens from a prompt with the fewest possible fixes.
-          </p>
           <p style={body}>
-            The end goal goes beyond one app.{" "}
-            <span style={b}>
-              Complete features, flows and projects built from a spec, a brand and the design system, as
-              high-fidelity prototypes that need little fixing.
-            </span>{" "}
-            Minti is where that gets tested, on real screens and with real people.
+            Minti is a spending tracker for people who want to understand where their money goes, not automate it
+            away. Set a monthly limit, log what you spend, keep bills apart from daily spending, and let the app tell
+            you what changed.{" "}
+            <span style={b}>You have to type in what you spent. That five seconds is the point.</span>
           </p>
         </div>
 
@@ -404,25 +341,13 @@ export default function MintiCaseStudy() {
           />
         </div>
 
-        {/* The experiment */}
-        <div style={divider}>
-          <p style={{ ...sectionLabel, marginBottom: "0.75rem" }}>The experiment</p>
-          <h2 style={sectionTitle}>Specs in, prototypes out</h2>
-          <p style={{ ...body, marginBottom: "2rem" }}>
-            Every input a designer would normally carry in their head is written down instead, in a form an AI can read.
-            Progress is measured by one thing:{" "}
-            <span style={b}>how many fixes a screen needs after it is first built.</span>
-          </p>
-          <RecipeDiagram />
-        </div>
-
         {/* Thinking — where it started */}
         <div style={divider}>
           <p style={{ ...sectionLabel, marginBottom: "0.75rem" }}>Thinking</p>
-          <h2 style={sectionTitle}>Why a spending tracker</h2>
+          <h2 style={sectionTitle}>It started as a personal habit</h2>
           <p style={{ ...body, marginBottom: "1rem" }}>
-            An experiment like this needs a real product with real users, not a demo. Minti began with a personal habit
-            of tracking spending by hand, and noticing that writing it down changed what got spent. Existing apps went one of two ways. Bank-connected apps automate everything and remove the
+            Minti began with a habit of tracking spending by hand and noticing that the act of writing it down changed
+            what got spent. Existing apps went one of two ways. Bank-connected apps automate everything and remove the
             moment of reflection. The rest are built for people who enjoy spreadsheets.
           </p>
           <p style={body}>
@@ -454,12 +379,12 @@ export default function MintiCaseStudy() {
         {/* Design — specs, not Figma */}
         <div style={divider}>
           <p style={{ ...sectionLabel, marginBottom: "0.75rem" }}>Design</p>
-          <h2 style={sectionTitle}>How the system learns</h2>
+          <h2 style={sectionTitle}>Designed in specs, not in Figma</h2>
           <p style={{ ...body, marginBottom: "2rem" }}>
-            There is no Figma file. Every screen is described in markdown, built by Claude Code and judged by eye.{" "}
-            <span style={b}>Each fix is written back into the guidelines as a rule, so the next screen needs fewer.</span>{" "}
-            The visual language lives in those rules: glass surfaces, consistent type and spacing tokens, and one green
-            accent that only marks the primary action or the current selection.
+            There is no Figma file. Every screen was described in markdown, built by Claude Code and judged by eye. The
+            visual language is written down as rules rather than drawn: glass surfaces, consistent type and spacing
+            tokens, and{" "}
+            <span style={b}>one green accent that only ever marks the primary action or the current selection.</span>
           </p>
           <Panel items={designProcess} />
         </div>
@@ -531,12 +456,12 @@ export default function MintiCaseStudy() {
         {/* Status — last content block, so no bottom rule above "Next" */}
         <div style={{ ...divider, borderBottom: "none", paddingBottom: 0, marginBottom: 0 }}>
           <p style={{ ...sectionLabel, marginBottom: "0.75rem" }}>Status</p>
-          <h2 style={sectionTitle}>Where it&apos;s heading</h2>
+          <h2 style={sectionTitle}>In testing, with friends first</h2>
           <p style={{ ...body, marginBottom: "2rem" }}>
-            Minti is live and being tested by friends, most of them living away from home. Their feedback shapes the
-            app, and the fixes it needs shape the design system.
+            Minti is live and being tested by friends, most of them living away from home, the people it was shaped
+            around. Their feedback decides what changes each week. Next on the list:
           </p>
-          <Panel items={roadmap} columns={3} />
+          <Panel items={nextUp} columns={3} />
         </div>
 
         {/* Next project */}
