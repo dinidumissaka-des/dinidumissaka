@@ -184,6 +184,54 @@ const coverShots = [
   { src: "/images/projects/minti/subscriptions.webp", alt: "Minti monthly budget and recurring bills" },
 ];
 
+/* ── Real failures from the repo history, and the decision each one changed ── */
+const realUseChanges = [
+  {
+    date: "Sep 8",
+    wrong: "An account displaying LKR while spending in AED showed a 205 AED registration fee as 2.49, and a 7,387 budget as 89.54.",
+    changed: "Currency became part of the data. Every amount records the currency it was entered in, and there is exactly one currency setting.",
+  },
+  {
+    date: "Sep 8",
+    wrong: "Switching currency changed the label but not the number: 40 AED became 40 USD.",
+    changed: "Amounts are converted when the currency changes, never relabelled.",
+  },
+  {
+    date: "Sep 8",
+    wrong: "Suggestions reset every month, so a metro top-up bought every month ranked below whatever was typed last week.",
+    changed: "Suggestions are ranked by how many months they recur in.",
+  },
+  {
+    date: "Sep 2",
+    wrong: "The biggest number on screen said only 4,522.74. Its month and currency were two taps deep in a menu.",
+    changed: "Month and currency moved onto the figure itself.",
+  },
+  {
+    date: "Aug 25",
+    wrong: "Google sign-in sat under the email form, though most people never need the form.",
+    changed: "Sign-in was rebuilt with Google and Apple first.",
+  },
+];
+
+/* ── One failure traced through the spec-driven process, quoted from the Minti repo ── */
+const specTrail = [
+  {
+    file: "specs/changes/0001-one-currency-setting.md",
+    label: "The change spec",
+    lines: [
+      "Problem: An account displaying LKR while spending in AED read a 205 AED registration fee as 2.49… with nothing on screen naming the cause.",
+      "Decision: Answer the question once, in the migration… rather than storing the answer as config that can later change underneath the data.",
+    ],
+  },
+  {
+    file: "specs/product/currency.md",
+    label: "The rule it became",
+    lines: [
+      "CUR-1 Given a 205 AED expense, when the display currency is LKR, then it shows the LKR conversion, never 205 relabelled.",
+    ],
+  },
+];
+
 /* ── How screens were designed without Figma ── */
 const designProcess: PanelItem[] = [
   {
@@ -373,6 +421,76 @@ function DecisionRow({ label, items, shots, flip }: { label: string; items: Pane
   );
 }
 
+/** Each row: what went wrong on the left, the decision it changed on the right. */
+function ChangeLog() {
+  return (
+    <div
+      style={{
+        border: "1px solid var(--border-section)",
+        borderRadius: "12px",
+        background: "var(--bg-card)",
+        padding: "0.5rem clamp(1.25rem, 4vw, 1.75rem)",
+      }}
+    >
+      <div className="minti-change-row minti-change-head" style={{ padding: "0.75rem 0", borderBottom: "1px solid var(--border-section)" }}>
+        {["When", "What went wrong", "What it changed"].map((h) => (
+          <p key={h} style={{ ...mono, fontSize: "11px", color: "var(--color-muted)", margin: 0 }}>{h}</p>
+        ))}
+      </div>
+      {realUseChanges.map((c, i) => (
+        <div
+          key={c.wrong}
+          className="minti-change-row"
+          style={{ padding: "1rem 0", borderBottom: i < realUseChanges.length - 1 ? "1px solid var(--border-section)" : "none" }}
+        >
+          <p style={{ ...mono, fontSize: "11px", color: "var(--color-muted)", margin: 0 }}>{c.date}</p>
+          <p style={{ ...body, fontSize: "13px", margin: 0 }}>{c.wrong}</p>
+          <p style={{ ...body, fontSize: "13px", color: "var(--color-fg)", margin: 0 }}>{c.changed}</p>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+/** A real failure traced from the change spec to the product rule, quoted as written. */
+function SpecTrail() {
+  return (
+    <figure style={{ margin: 0 }}>
+      <div className="minti-spec-trail">
+        {specTrail.map((step, i) => (
+          <div key={step.file} style={{ display: "contents" }}>
+            {i > 0 && (
+              <span aria-hidden className="minti-spec-arrow" style={{ ...mono, color: "var(--color-muted)", alignSelf: "center", textAlign: "center" }}>
+                →
+              </span>
+            )}
+            <div
+              style={{
+                border: "1px solid var(--border-section)",
+                borderRadius: "12px",
+                background: "var(--bg-card)",
+                padding: "1.25rem 1.5rem",
+                minWidth: 0,
+              }}
+            >
+              <p style={{ ...metaSmall, fontWeight: 500, color: "var(--color-fg)", marginBottom: "2px" }}>{step.label}</p>
+              <p style={{ ...mono, fontSize: "11px", color: "var(--color-muted)", marginBottom: "12px", overflowWrap: "anywhere" }}>{step.file}</p>
+              {step.lines.map((line) => (
+                <p key={line} style={{ ...mono, fontSize: "12px", lineHeight: 1.6, color: "var(--color-fg)", margin: "0 0 8px", overflowWrap: "anywhere" }}>
+                  {line}
+                </p>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+      <figcaption style={caption}>
+        One real failure, traced from the change spec to the product rule it became, quoted from the Minti repo.
+      </figcaption>
+    </figure>
+  );
+}
+
 /** A phone screenshot, shown whole on a soft backdrop. */
 function Screen({ src, alt, text, compact }: { src: string; alt: string; text: string; compact?: boolean }) {
   return (
@@ -405,6 +523,10 @@ export default function MintiCaseStudy() {
           .minti-features-grid { grid-template-columns: 1fr !important; }
           .minti-summary { grid-template-columns: 1fr 1fr !important; }
           .minti-panel-grid { grid-template-columns: 1fr !important; }
+          .minti-change-row { grid-template-columns: 1fr !important; gap: 0.35rem !important; }
+          .minti-change-head { display: none !important; }
+          .minti-spec-trail { grid-template-columns: 1fr !important; gap: 0.5rem !important; }
+          .minti-spec-arrow { transform: rotate(90deg); width: 1rem; }
           .minti-decision-row { grid-template-columns: 1fr !important; }
           .minti-decision-row > div { order: 0 !important; }
           .minti-cover-row { grid-template-columns: repeat(2, 1fr) !important; }
@@ -412,6 +534,8 @@ export default function MintiCaseStudy() {
         }
         @media (max-width: 900px) { .minti-panel-grid-3 { grid-template-columns: 1fr !important; } }
         .minti-decision-row { display: grid; grid-template-columns: 1.35fr 1fr; gap: 1.5rem; align-items: center; }
+        .minti-change-row { display: grid; grid-template-columns: 4rem 1fr 1fr; gap: 1.5rem; align-items: baseline; }
+        .minti-spec-trail { display: grid; grid-template-columns: 1.3fr 1.5rem 1fr; gap: 1rem; }
         .dark .asset-bg { background: rgba(255,255,255,0.04) !important; }
         .minti-feature-card .minti-overlay {
           opacity: 0;
@@ -508,6 +632,18 @@ export default function MintiCaseStudy() {
           </div>
         </div>
 
+        {/* Testing — what real use changed */}
+        <div style={divider}>
+          <p style={{ ...sectionLabel, marginBottom: "0.75rem" }}>Testing</p>
+          <h2 style={sectionTitle}>What real use changed</h2>
+          <p style={{ ...body, marginBottom: "2rem" }}>
+            Real use surfaced problems no spec anticipated. Each of these started as something that went wrong and ended
+            as a product decision. The biggest lesson:{" "}
+            <span style={b}>currency looked like a display setting, but it is really part of the data.</span>
+          </p>
+          <ChangeLog />
+        </div>
+
         {/* Design — specs, not Figma */}
         <div style={divider}>
           <p style={{ ...sectionLabel, marginBottom: "0.75rem" }}>Design</p>
@@ -519,6 +655,9 @@ export default function MintiCaseStudy() {
             <span style={b}>one green accent that only ever marks the primary action or the current selection.</span>
           </p>
           <Panel items={designProcess} />
+          <div style={{ marginTop: "2rem" }}>
+            <SpecTrail />
+          </div>
         </div>
 
         {/* Features */}
