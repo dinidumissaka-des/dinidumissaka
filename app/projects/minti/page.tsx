@@ -79,7 +79,7 @@ const b: React.CSSProperties = {
 /* ── For readers who skim ── */
 const summary = [
   { label: "Problem", text: "Finance apps either automate spending away or ask for a spreadsheet mindset." },
-  { label: "Role", text: "Design and build, working with a UX designer and a service designer." },
+  { label: "Role", text: "Product design and build, alongside a UX designer and a service designer." },
   { label: "Approach", text: "Designed in markdown specs and guidelines, built with Claude Code, with no Figma." },
   { label: "Status", text: "Live at minti.one and in a closed test group, improving week to week." },
 ];
@@ -182,6 +182,88 @@ const coverShots = [
   { src: "/images/projects/minti/expences.webp", alt: "Minti home screen with the month total, today and daily average" },
   { src: "/images/projects/minti/insights.webp", alt: "Minti insights written as plain sentences" },
   { src: "/images/projects/minti/subscriptions.webp", alt: "Minti monthly budget and recurring bills" },
+];
+
+/* ── Real failures from the repo history, and the decision each one changed ── */
+const realUseChanges = [
+  {
+    date: "Sep 8",
+    foundBy: "Early tester, Dubai",
+    wrong: "An account displaying LKR while spending in AED showed a 205 AED registration fee as 2.49, and a 7,387 budget as 89.54.",
+    changed: "Currency became part of the data. Every amount records the currency it was entered in, and there is exactly one currency setting.",
+  },
+  {
+    date: "Sep 8",
+    foundBy: "Early tester",
+    wrong: "Switching currency changed the label but not the number: 40 AED became 40 USD.",
+    changed: "Amounts are converted when the currency changes, never relabelled.",
+  },
+  {
+    date: "Sep 8",
+    foundBy: "Early tester",
+    wrong: "Suggestions reset every month, so a metro top-up bought every month ranked below whatever was typed last week.",
+    changed: "Suggestions are ranked by how many months they recur in.",
+  },
+  {
+    date: "Sep 2",
+    foundBy: "UX designer review",
+    wrong: "The biggest number on screen said only 4,522.74. Its month and currency were two taps deep in a menu.",
+    changed: "Month and currency moved onto the figure itself.",
+  },
+  {
+    date: "Aug 25",
+    foundBy: "Service designer review",
+    wrong: "Google sign-in sat under the email form, though most people never need the form.",
+    changed: "Sign-in was rebuilt with Google and Apple first.",
+  },
+];
+
+/* ── One failure traced through the spec-driven process, quoted from the Minti repo ── */
+const specTrail = [
+  {
+    file: "specs/changes/0001-one-currency-setting.md",
+    label: "The change spec",
+    lines: [
+      "Problem: An account displaying LKR while spending in AED read a 205 AED registration fee as 2.49… with nothing on screen naming the cause.",
+      "Decision: Answer the question once, in the migration… rather than storing the answer as config that can later change underneath the data.",
+    ],
+  },
+  {
+    file: "specs/product/currency.md",
+    label: "The rule it became",
+    lines: [
+      "CUR-1 Given a 205 AED expense, when the display currency is LKR, then it shows the LKR conversion, never 205 relabelled.",
+    ],
+  },
+  {
+    file: "tests/currency.test.ts",
+    label: "The test that holds it",
+    lines: [
+      `test("CUR-1: converts, never relabels", () => {
+  const fee = expense({ amount: 205, currency: "AED" });
+  const shown = display(fee, { currency: "LKR", rates });
+
+  expect(shown.currency).toBe("LKR");
+  expect(shown.amount).not.toBe(205);
+});`,
+    ],
+  },
+];
+
+/* ── Who did what ── */
+const team: PanelItem[] = [
+  {
+    name: "Product design & build",
+    detail: "Decided what Minti does, wrote the specs and guidelines, built it for web and iOS with Claude Code, and reviewed every change.",
+  },
+  {
+    name: "UX designer",
+    detail: "Ran usability sessions with early testers, reviewed each flow against its spec, and pushed for context on key figures.",
+  },
+  {
+    name: "Service designer",
+    detail: "Mapped the journey around the app, from sign-up to habit, shaping onboarding, sign-in and the reminder plans.",
+  },
 ];
 
 /* ── How screens were designed without Figma ── */
@@ -373,6 +455,81 @@ function DecisionRow({ label, items, shots, flip }: { label: string; items: Pane
   );
 }
 
+/** Each row: what went wrong on the left, the decision it changed on the right. */
+function ChangeLog() {
+  return (
+    <div
+      style={{
+        border: "1px solid var(--border-section)",
+        borderRadius: "12px",
+        background: "var(--bg-card)",
+        padding: "0.5rem clamp(1.25rem, 4vw, 1.75rem)",
+      }}
+    >
+      <div className="minti-change-row minti-change-head" style={{ padding: "0.75rem 0", borderBottom: "1px solid var(--border-section)" }}>
+        {["When · found by", "What went wrong", "What it changed"].map((h) => (
+          <p key={h} style={{ ...mono, fontSize: "11px", color: "var(--color-muted)", margin: 0 }}>{h}</p>
+        ))}
+      </div>
+      {realUseChanges.map((c, i) => (
+        <div
+          key={c.wrong}
+          className="minti-change-row"
+          style={{ padding: "1rem 0", borderBottom: i < realUseChanges.length - 1 ? "1px solid var(--border-section)" : "none" }}
+        >
+          <p style={{ ...mono, fontSize: "11px", lineHeight: 1.6, color: "var(--color-muted)", margin: 0 }}>
+            {c.date}
+            <br />
+            {c.foundBy}
+          </p>
+          <p style={{ ...body, fontSize: "13px", margin: 0 }}>{c.wrong}</p>
+          <p style={{ ...body, fontSize: "13px", color: "var(--color-fg)", margin: 0 }}>{c.changed}</p>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+/** A real failure traced from the change spec to the product rule, quoted as written. */
+function SpecTrail() {
+  return (
+    <figure style={{ margin: 0 }}>
+      <div className="minti-spec-trail">
+        {specTrail.map((step, i) => (
+          <div key={step.file} style={{ display: "contents" }}>
+            {i > 0 && (
+              <span aria-hidden className="minti-spec-arrow" style={{ ...mono, color: "var(--color-muted)", alignSelf: "center", textAlign: "center" }}>
+                →
+              </span>
+            )}
+            <div
+              style={{
+                border: "1px solid var(--border-section)",
+                borderRadius: "12px",
+                background: "var(--bg-card)",
+                padding: "1.25rem 1.5rem",
+                minWidth: 0,
+              }}
+            >
+              <p style={{ ...metaSmall, fontWeight: 500, color: "var(--color-fg)", marginBottom: "2px" }}>{step.label}</p>
+              <p style={{ ...mono, fontSize: "11px", color: "var(--color-muted)", marginBottom: "12px", overflowWrap: "anywhere" }}>{step.file}</p>
+              {step.lines.map((line) => (
+                <p key={line} style={{ ...mono, fontSize: "12px", lineHeight: 1.6, color: "var(--color-fg)", margin: "0 0 8px", overflowWrap: "anywhere", whiteSpace: "pre-wrap" }}>
+                  {line}
+                </p>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+      <figcaption style={caption}>
+        One real failure, traced from the change spec to the product rule and the test that holds it. The spec and rule
+        are quoted from the Minti repo; the test is simplified.
+      </figcaption>
+    </figure>
+  );
+}
+
 /** A phone screenshot, shown whole on a soft backdrop. */
 function Screen({ src, alt, text, compact }: { src: string; alt: string; text: string; compact?: boolean }) {
   return (
@@ -405,6 +562,8 @@ export default function MintiCaseStudy() {
           .minti-features-grid { grid-template-columns: 1fr !important; }
           .minti-summary { grid-template-columns: 1fr 1fr !important; }
           .minti-panel-grid { grid-template-columns: 1fr !important; }
+          .minti-change-row { grid-template-columns: 1fr !important; gap: 0.35rem !important; }
+          .minti-change-head { display: none !important; }
           .minti-decision-row { grid-template-columns: 1fr !important; }
           .minti-decision-row > div { order: 0 !important; }
           .minti-cover-row { grid-template-columns: repeat(2, 1fr) !important; }
@@ -412,6 +571,10 @@ export default function MintiCaseStudy() {
         }
         @media (max-width: 900px) { .minti-panel-grid-3 { grid-template-columns: 1fr !important; } }
         .minti-decision-row { display: grid; grid-template-columns: 1.35fr 1fr; gap: 1.5rem; align-items: center; }
+        .minti-change-row { display: grid; grid-template-columns: 8.5rem 1fr 1fr; gap: 1.5rem; align-items: baseline; }
+        /* Stacked at every width, so the quoted spec and the test code keep their full line length. */
+        .minti-spec-trail { display: grid; grid-template-columns: 1fr; gap: 0.5rem; }
+        .minti-spec-arrow { transform: rotate(90deg); width: 1rem; justify-self: start; margin-left: 1.5rem; }
         .dark .asset-bg { background: rgba(255,255,255,0.04) !important; }
         .minti-feature-card .minti-overlay {
           opacity: 0;
@@ -476,6 +639,13 @@ export default function MintiCaseStudy() {
           <Cover />
         </div>
 
+        {/* Team */}
+        <div style={divider}>
+          <p style={{ ...sectionLabel, marginBottom: "0.75rem" }}>Team</p>
+          <h2 style={sectionTitle}>Who did what</h2>
+          <Panel items={team} columns={3} />
+        </div>
+
         {/* Thinking — where it started */}
         <div style={divider}>
           <p style={{ ...sectionLabel, marginBottom: "0.75rem" }}>Thinking</p>
@@ -485,12 +655,27 @@ export default function MintiCaseStudy() {
             what got spent. Existing apps went one of two ways. Bank-connected apps automate everything and remove the
             moment of reflection. The rest are built for people who enjoy spreadsheets.
           </p>
-          <p style={body}>
-            Conversations with people living away from their home country shaped it most. A new city, a new cost of
-            living, and income that doesn&apos;t follow the patterns of home make one question more important than any
-            chart:{" "}
+          <p style={{ ...body, marginBottom: "2rem" }}>
+            Twelve conversations with people living away from their home country, most of them in Dubai, shaped it
+            most. A new city, a new cost of living, and income that doesn&apos;t follow the patterns of home make one
+            question more important than any chart:{" "}
             <span style={b}>is this month on track?</span>
           </p>
+          <blockquote style={{ margin: 0, paddingLeft: "1.25rem", borderLeft: "1px solid var(--color-fg)" }}>
+            <p
+              style={{
+                fontFamily: "var(--font-fraunces), Georgia, serif",
+                fontSize: "clamp(1.15rem, 2.6vw, 1.5rem)",
+                fontWeight: 300,
+                lineHeight: 1.35,
+                color: "var(--color-fg)",
+                margin: "0 0 8px",
+              }}
+            >
+              &ldquo;I only notice I&apos;ve overspent when the month is already over.&rdquo;
+            </p>
+            <p style={{ ...mono, fontSize: "11px", color: "var(--color-muted)", margin: 0 }}>Research participant, living in Dubai</p>
+          </blockquote>
         </div>
 
         {/* Thinking — decisions */}
@@ -508,6 +693,19 @@ export default function MintiCaseStudy() {
           </div>
         </div>
 
+        {/* Testing — what real use changed */}
+        <div style={divider}>
+          <p style={{ ...sectionLabel, marginBottom: "0.75rem" }}>Testing</p>
+          <h2 style={sectionTitle}>What real use changed</h2>
+          <p style={{ ...body, marginBottom: "2rem" }}>
+            Real use surfaced problems no spec anticipated: three came from early testers and two from reviews within the
+            team. The first set the direction. A tester in Dubai saw a 205 AED fee appear as 2.49, and the lesson
+            changed the data model:{" "}
+            <span style={b}>currency looked like a display setting, but it is really part of the data.</span>
+          </p>
+          <ChangeLog />
+        </div>
+
         {/* Design — specs, not Figma */}
         <div style={divider}>
           <p style={{ ...sectionLabel, marginBottom: "0.75rem" }}>Design</p>
@@ -519,6 +717,9 @@ export default function MintiCaseStudy() {
             <span style={b}>one green accent that only ever marks the primary action or the current selection.</span>
           </p>
           <Panel items={designProcess} />
+          <div style={{ marginTop: "2rem" }}>
+            <SpecTrail />
+          </div>
         </div>
 
         {/* Features */}
