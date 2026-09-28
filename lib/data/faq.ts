@@ -9,19 +9,19 @@ export const faqItems: FAQItem[] = [
     id: "1",
     question: "How many years of experience do you have?",
     answer:
-      "I have over 5 years of experience designing for fintech, SaaS, and web products. I've worked with startups, scale-ups, and enterprise companies — spanning from early-stage 0→1 products to large design system overhauls.",
+      "Over 5 years across fintech, SaaS and web, from 0→1 products to enterprise scale. At Deriv, that meant owning the design of a website with 21 million monthly visitors and the block system behind its 6,000+ pages.",
   },
   {
     id: "2",
     question: "What tools do you primarily use?",
     answer:
-      "My primary design tools are Figma for UI/UX and prototyping, and Adobe Creative Suite for visual and brand work. For building and shipping, I use Webflow, Framer, and increasingly code-based tools like VS Code and Cursor with AI assistance.",
+      "Figma for ideas and UI, with Figma MCP and Code Connect linking designs to code. Claude Code for building, Claude for thinking problems through and writing specs, Storybook for documenting components, and Magnific for imagery and 3D.",
   },
   {
     id: "3",
     question: "How do you integrate AI into your design workflow?",
     answer:
-      "I use AI as a force multiplier — from generating design concepts and copy with Claude, to automating repetitive tasks and exploring visual directions faster. AI helps me spend more time on the thinking and strategy, and less on the mechanical.",
+      "AI makes producing options fast, so more time goes into judging them. Decisions are written down as specs and design guidelines, Claude Code builds against them, and every change is reviewed by eye on a real device before it ships. Taste is the part that doesn't automate.",
   },
   {
     id: "4",
@@ -39,6 +39,6 @@ export const faqItems: FAQItem[] = [
     id: "6",
     question: "What does your design process look like?",
     answer:
-      "I start with understanding — the user, the business goal, and the constraints. Then I move to exploration (wireframes, concepts), validation (research or testing), and refinement into high-fidelity designs. I keep stakeholders in the loop throughout and believe good communication is half the design work.",
+      "It starts with understanding the user, the business goal and the constraints. Then exploration in Figma, a written spec for what each screen must do, a build, and testing with real people. What testing finds goes back into the spec, so the same problem can't quietly return. Stakeholders stay in the loop throughout.",
   },
 ];

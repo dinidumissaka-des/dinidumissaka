@@ -25,22 +25,22 @@ const manrope = Manrope({
 
 
 export const metadata: Metadata = {
-  title: "Dinidu Missaka — Senior UX/UI Designer",
+  title: "Dinidu Missaka — Product Designer who builds",
   description:
-    "AI-Driven Design | Scalable Systems | Visual Storyteller. Crafting people-friendly digital journeys with over 5 years of experience in fintech and web.",
-  keywords: ["UX Designer", "UI Designer", "Fintech", "Dubai", "Design Systems", "AI Design"],
+    "Product designer in Dubai with 5+ years in fintech and web. Design systems, spec-driven design and products built with Claude Code.",
+  keywords: ["Product Designer", "UX Designer", "Design Engineer", "Design Systems", "Fintech", "Dubai", "Claude Code", "AI Design"],
   authors: [{ name: "Dinidu Missaka" }],
   openGraph: {
-    title: "Dinidu Missaka — Senior UX/UI Designer",
-    description: "Crafting people-friendly digital journeys!",
+    title: "Dinidu Missaka — Product Designer who builds",
+    description: "AI makes options cheap. Choosing the right one is the job.",
     url: "https://www.dinidumissaka.com",
     siteName: "Dinidu Missaka",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Dinidu Missaka — Senior UX/UI Designer",
-    description: "Crafting people-friendly digital journeys!",
+    title: "Dinidu Missaka — Product Designer who builds",
+    description: "AI makes options cheap. Choosing the right one is the job.",
   },
 };
 
