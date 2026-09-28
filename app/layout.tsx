@@ -12,6 +12,7 @@ import SkipLink from "@/components/ui/SkipLink";
 const fraunces = Fraunces({
   subsets: ["latin"],
   axes: ["SOFT", "WONK", "opsz"],
+  style: ["normal", "italic"],
   variable: "--font-fraunces",
   display: "swap",
 });
@@ -32,7 +33,7 @@ export const metadata: Metadata = {
   authors: [{ name: "Dinidu Missaka" }],
   openGraph: {
     title: "Dinidu Missaka — Product Designer who builds",
-    description: "Crafting people-friendly digital journeys!",
+    description: "A Dubai-based product designer who pairs taste with AI.",
     url: "https://www.dinidumissaka.com",
     siteName: "Dinidu Missaka",
     type: "website",
@@ -40,7 +41,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Dinidu Missaka — Product Designer who builds",
-    description: "Crafting people-friendly digital journeys!",
+    description: "A Dubai-based product designer who pairs taste with AI.",
   },
 };
 

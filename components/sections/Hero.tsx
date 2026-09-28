@@ -43,7 +43,8 @@ export default function Hero() {
               color: "var(--color-fg)",
             }}
           >
-            Crafting people friendly digital journeys!
+            A Dubai-based product designer who{" "}
+            <em style={{ fontStyle: "italic" }}>pairs taste with AI.</em>
           </motion.h1>
 
           <motion.p
@@ -53,9 +54,9 @@ export default function Hero() {
             className="mt-7 text-muted leading-relaxed"
             style={{ fontSize: "14px" }}
           >
-            A product designer who builds, based in Dubai with 5+ years in fintech and web. From a
-            design system behind a 21M-visitor website to products live today, designed in Figma
-            and specs, built with Claude Code, and refined until every detail earns its place.
+            5+ years in fintech and web, from a design system behind a 21M-visitor website to
+            products live today. Designed in Figma and specs, built with Claude Code, and refined
+            until every detail earns its place.
           </motion.p>
         </div>
 
