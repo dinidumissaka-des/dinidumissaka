@@ -43,7 +43,7 @@ export default function Hero() {
               color: "var(--color-fg)",
             }}
           >
-            AI makes options cheap. Choosing the right one is the job.
+            Crafting people friendly digital journeys!
           </motion.h1>
 
           <motion.p

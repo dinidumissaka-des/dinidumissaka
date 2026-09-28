@@ -32,7 +32,7 @@ export const metadata: Metadata = {
   authors: [{ name: "Dinidu Missaka" }],
   openGraph: {
     title: "Dinidu Missaka — Product Designer who builds",
-    description: "AI makes options cheap. Choosing the right one is the job.",
+    description: "Crafting people-friendly digital journeys!",
     url: "https://www.dinidumissaka.com",
     siteName: "Dinidu Missaka",
     type: "website",
@@ -40,7 +40,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Dinidu Missaka — Product Designer who builds",
-    description: "AI makes options cheap. Choosing the right one is the job.",
+    description: "Crafting people-friendly digital journeys!",
   },
 };
 
