@@ -528,7 +528,7 @@ export default function RataCaseStudy() {
         <div style={{ paddingTop: "3rem", marginTop: "3rem", borderTop: "1px solid var(--border-section)" }}>
           <p style={sectionLabel}>Next</p>
           <Link
-            href="/projects/ecobyte"
+            href="/projects/deriv"
             style={{
               display: "inline-block",
               fontFamily: "var(--font-fraunces), Georgia, serif",
@@ -542,9 +542,9 @@ export default function RataCaseStudy() {
               marginTop: "0.75rem",
             }}
           >
-            EcoByte{" "}
+            Deriv{" "}
             <span style={{ fontFamily: "var(--font-fraunces), Georgia, serif", fontWeight: 300, color: "var(--color-muted)", marginLeft: "0.75rem" }}>
-              — Digital Sustainability
+              — Enterprise Website
             </span>
           </Link>
         </div>

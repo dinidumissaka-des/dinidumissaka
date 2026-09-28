@@ -747,7 +747,7 @@ export default function MintiCaseStudy() {
               marginTop: "0.75rem",
             }}
           >
-            Ratā
+            Rata
             <span style={{ fontFamily: "var(--font-fraunces), Georgia, serif", fontWeight: 300, color: "var(--color-muted)", marginLeft: "0.75rem" }}>
               — Design System
             </span>

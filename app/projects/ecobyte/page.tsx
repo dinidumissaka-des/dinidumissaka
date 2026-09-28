@@ -7,6 +7,8 @@ export const metadata: Metadata = {
   title: "EcoByte — Case Study",
   description:
     "Designing EcoByte — a gamified sustainability platform that makes the carbon footprint of everyday digital activity visible and actionable.",
+  // Hidden from the portfolio list, so keep it out of search results too.
+  robots: { index: false, follow: false },
 };
 
 const sectionLabel: React.CSSProperties = {

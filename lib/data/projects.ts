@@ -8,6 +8,8 @@ export interface Project {
   image: string;
   homeImage: string;
   url?: string;
+  /** Kept out of the homepage list; the case study stays reachable by direct link. */
+  hidden?: boolean;
 }
 
 export const projects: Project[] = [
@@ -29,7 +31,7 @@ export const projects: Project[] = [
     rotatingTexts: ["Consultation Platform", "Web Application", "Vibe Coding", "Claude Code"],
     description: "Designed and built Planr, a consultation platform connecting Sri Lankans abroad with verified architects and construction specialists back home.",
     image: "/images/projects/project-planr.webp",
-    homeImage: "/images/home/projects/planr.webp",
+    homeImage: "/images/projects/planr/l1.webp",
   },
   {
     id: "minti",
@@ -43,7 +45,7 @@ export const projects: Project[] = [
   },
   {
     id: "rata",
-    title: "Ratā",
+    title: "Rata", // plain "a": Fraunces draws the ā macron offset
     subtitle: "Design System",
     year: "2026",
     rotatingTexts: ["Design System", "Multi-Brand Theming", "Accessibility", "Design Tokens"],
@@ -62,5 +64,6 @@ export const projects: Project[] = [
     description: "Built a sustainability-focused digital experience helping businesses track and reduce their environmental footprint.",
     image: "/images/projects/project-ecobyte.webp",
     homeImage: "/images/home/projects/ecobyte.avif",
+    hidden: true,
   },
 ];
