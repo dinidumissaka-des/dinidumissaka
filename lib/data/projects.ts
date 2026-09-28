@@ -15,7 +15,7 @@ export const projects: Project[] = [
     id: "deriv",
     title: "Deriv",
     subtitle: "Enterprise Website",
-    year: "2024–2025",
+    year: "2025",
     rotatingTexts: ["Enterprise Website", "Web Design System", "Claude Code", "6000+ pages"],
     description: "Rebuilt the website of a global trading platform, 21M monthly visitors, on a token-based block system with Figma MCP and Claude Code.",
     image: "/images/projects/project-deriv.webp",

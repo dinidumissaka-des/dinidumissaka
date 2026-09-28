@@ -1135,7 +1135,7 @@ export default async function DerivCaseStudy() {
         <div className="cs-meta" style={{ display: "flex", gap: "1rem 3rem", flexWrap: "wrap", ...divider, paddingBottom: "2rem", marginBottom: "2.5rem" }}>
           {(
             [
-              { label: "Year", value: "2024–2025" },
+              { label: "Year", value: "2025" },
               { label: "Company", value: "Deriv" },
               { label: "Role", value: "Senior UI/UX Designer · Design owner" },
               { label: "Team", value: "5 web designers" },
