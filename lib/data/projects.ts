@@ -45,7 +45,7 @@ export const projects: Project[] = [
   },
   {
     id: "rata",
-    title: "Ratā",
+    title: "Rata", // plain "a": Fraunces draws the ā macron offset
     subtitle: "Design System",
     year: "2026",
     rotatingTexts: ["Design System", "Multi-Brand Theming", "Accessibility", "Design Tokens"],
