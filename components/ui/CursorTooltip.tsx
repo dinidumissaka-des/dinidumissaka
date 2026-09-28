@@ -2,6 +2,7 @@
 import React, { useState, useRef, useEffect, useCallback, useId } from "react";
 import { createPortal } from "react-dom";
 import { motion, AnimatePresence } from "motion/react";
+import { X } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 export const CursorTooltip = ({
@@ -178,6 +179,24 @@ export const CursorTooltip = ({
                     if (info.offset.y > 80 || info.velocity.y > 500) setSheetOpen(false);
                   }}
                 >
+                  <button
+                    type="button"
+                    autoFocus
+                    aria-label="Close"
+                    onClick={() => setSheetOpen(false)}
+                    className="absolute right-4 flex items-center justify-center rounded-full"
+                    style={{
+                      top: -52,
+                      width: 40,
+                      height: 40,
+                      color: "var(--color-fg)",
+                      background: "var(--color-bg)",
+                      border: "1px solid color-mix(in srgb, var(--color-fg) 12%, transparent)",
+                      boxShadow: "0 4px 16px rgba(0,0,0,0.24)",
+                    }}
+                  >
+                    <X size={18} strokeWidth={1.75} aria-hidden="true" />
+                  </button>
                   <div className="flex justify-center pt-3 pb-2">
                     <span
                       aria-hidden="true"
@@ -185,23 +204,6 @@ export const CursorTooltip = ({
                     />
                   </div>
                   <div className="px-5 pt-1 text-sm text-neutral-600 dark:text-neutral-400">{content}</div>
-                  <div className="px-5 pt-5">
-                    <button
-                      type="button"
-                      autoFocus
-                      onClick={() => setSheetOpen(false)}
-                      className="w-full"
-                      style={{
-                        fontSize: "14px",
-                        padding: "10px 12px",
-                        borderRadius: "10px",
-                        color: "var(--color-fg)",
-                        background: "color-mix(in srgb, var(--color-fg) 10%, transparent)",
-                      }}
-                    >
-                      Close
-                    </button>
-                  </div>
                 </motion.div>
               </div>
             )}
