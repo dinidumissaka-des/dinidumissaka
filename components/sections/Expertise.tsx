@@ -6,7 +6,6 @@ import { motion, useInView } from "motion/react";
 import Image from "next/image";
 
 const CircularText    = dynamic(() => import("@/components/ui/CircularText"),    { ssr: false });
-const VariableProximity = dynamic(() => import("@/components/ui/VariableProximity"), { ssr: false });
 const CursorTooltip   = dynamic(() => import("@/components/ui/CursorTooltip").then(m => ({ default: m.CursorTooltip })), { ssr: false });
 
 const tooltipCardStyle: React.CSSProperties = {
@@ -101,7 +100,6 @@ function TooltipVisualCraft() {
 
 export default function Expertise() {
   const ref = useRef<HTMLDivElement>(null);
-  const containerRef = useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { once: true, margin: "-80px" });
 
   return (
@@ -115,7 +113,6 @@ export default function Expertise() {
 
           {/* Left: label + paragraph */}
           <motion.div
-            ref={containerRef}
             initial={{ opacity: 0, y: 20 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6 }}
@@ -146,51 +143,21 @@ export default function Expertise() {
             >
               Design, AI &amp; craft
             </h2>
-            <div style={{ position: "relative" }}>
-              {/* Invisible spacer rendered at max weight — locks layout height so hover never causes shift */}
-              <div
-                aria-hidden="true"
-                style={{
-                  fontSize: "16px",
-                  lineHeight: 1.55,
-                  fontVariationSettings: "'wght' 450, 'opsz' 40",
-                  visibility: "hidden",
-                  pointerEvents: "none",
-                  userSelect: "none",
-                }}
-              >
-                The work sits where three things meet: user-centred design, building with AI, and visual craft. AI can generate a hundred versions of a screen. The value is knowing which one respects the user, fits the system and feels right, then shipping it. That judgement runs from a single token name to a 6,000-page website, and it ends in working product, not just files.
-              </div>
-
-              {/* Animated text — absolutely positioned over spacer, can't affect layout */}
-              <div
-                style={{
-                  position: "absolute",
-                  top: 0,
-                  left: 0,
-                  right: 0,
-                  fontSize: "16px",
-                  lineHeight: 1.55,
-                  color: "var(--color-muted)",
-                }}
-              >
-                {inView && (<>
-                  <VariableProximity label="The work sits where three things meet: " fromFontVariationSettings="'wght' 300, 'opsz' 9" toFontVariationSettings="'wght' 450, 'opsz' 40" containerRef={containerRef} radius={120} falloff="gaussian" />
-                  <CursorTooltip content={<TooltipUserCentred />} containerClassName="inline">
-                    <span style={{ color: "var(--color-fg)", cursor: "default", textDecoration: "underline", textDecorationColor: "var(--color-muted)", textUnderlineOffset: "3px", textDecorationThickness: "1px" }}><VariableProximity label="user-centred design" fromFontVariationSettings="'wght' 300, 'opsz' 9" toFontVariationSettings="'wght' 450, 'opsz' 40" containerRef={containerRef} radius={120} falloff="gaussian" /></span>
-                  </CursorTooltip>
-                  <VariableProximity label=", " fromFontVariationSettings="'wght' 300, 'opsz' 9" toFontVariationSettings="'wght' 450, 'opsz' 40" containerRef={containerRef} radius={120} falloff="gaussian" />
-                  <CursorTooltip content={<TooltipAIPowered />} containerClassName="inline">
-                    <span style={{ color: "var(--color-fg)", cursor: "default", textDecoration: "underline", textDecorationColor: "var(--color-muted)", textUnderlineOffset: "3px", textDecorationThickness: "1px" }}><VariableProximity label="building with AI" fromFontVariationSettings="'wght' 300, 'opsz' 9" toFontVariationSettings="'wght' 450, 'opsz' 40" containerRef={containerRef} radius={120} falloff="gaussian" /></span>
-                  </CursorTooltip>
-                  <VariableProximity label=", and " fromFontVariationSettings="'wght' 300, 'opsz' 9" toFontVariationSettings="'wght' 450, 'opsz' 40" containerRef={containerRef} radius={120} falloff="gaussian" />
-                  <CursorTooltip content={<TooltipVisualCraft />} containerClassName="inline">
-                    <span style={{ color: "var(--color-fg)", cursor: "default", textDecoration: "underline", textDecorationColor: "var(--color-muted)", textUnderlineOffset: "3px", textDecorationThickness: "1px" }}><VariableProximity label="visual craft" fromFontVariationSettings="'wght' 300, 'opsz' 9" toFontVariationSettings="'wght' 450, 'opsz' 40" containerRef={containerRef} radius={120} falloff="gaussian" /></span>
-                  </CursorTooltip>
-                  <VariableProximity label=". AI can generate a hundred versions of a screen. The value is knowing which one respects the user, fits the system and feels right, then shipping it. That judgement runs from a single token name to a 6,000-page website, and it ends in working product, not just files." fromFontVariationSettings="'wght' 300, 'opsz' 9" toFontVariationSettings="'wght' 450, 'opsz' 40" containerRef={containerRef} radius={120} falloff="gaussian" />
-                </>)}
-              </div>
-            </div>
+            <p className="text-muted leading-relaxed" style={{ fontSize: "14px" }}>
+              The work sits where three things meet:{" "}
+              <CursorTooltip content={<TooltipUserCentred />} containerClassName="inline">
+                <span style={{ color: "var(--color-fg)", cursor: "default", textDecoration: "underline", textDecorationColor: "var(--color-muted)", textUnderlineOffset: "3px", textDecorationThickness: "1px" }}>user-centred design</span>
+              </CursorTooltip>
+              ,{" "}
+              <CursorTooltip content={<TooltipAIPowered />} containerClassName="inline">
+                <span style={{ color: "var(--color-fg)", cursor: "default", textDecoration: "underline", textDecorationColor: "var(--color-muted)", textUnderlineOffset: "3px", textDecorationThickness: "1px" }}>building with AI</span>
+              </CursorTooltip>
+              , and{" "}
+              <CursorTooltip content={<TooltipVisualCraft />} containerClassName="inline">
+                <span style={{ color: "var(--color-fg)", cursor: "default", textDecoration: "underline", textDecorationColor: "var(--color-muted)", textUnderlineOffset: "3px", textDecorationThickness: "1px" }}>visual craft</span>
+              </CursorTooltip>
+              . AI can generate a hundred versions of a screen. The value is knowing which one respects the user, fits the system and feels right, then shipping it. That judgement runs from a single token name to a 6,000-page website, and it ends in working product, not just files.
+            </p>
           </motion.div>
 
           {/* Right: CircularText badge */}
