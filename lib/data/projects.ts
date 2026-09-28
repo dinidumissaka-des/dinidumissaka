@@ -29,7 +29,7 @@ export const projects: Project[] = [
     rotatingTexts: ["Consultation Platform", "Web Application", "Vibe Coding", "Claude Code"],
     description: "Designed and built Planr, a consultation platform connecting Sri Lankans abroad with verified architects and construction specialists back home.",
     image: "/images/projects/project-planr.webp",
-    homeImage: "/images/home/projects/planr.webp",
+    homeImage: "/images/projects/planr/l1.webp",
   },
   {
     id: "minti",
