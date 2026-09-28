@@ -61,9 +61,9 @@ function TooltipUserCentred() {
         <Image src="/images/figma.webp" alt="" width={20} height={20} style={{ borderRadius: "50%" }} />
         <span style={tooltipTitleStyle}>User-Centred Design</span>
       </div>
-      <p style={tooltipDescStyle}>Research-led design that puts people first — from discovery to delivery.</p>
+      <p style={tooltipDescStyle}>Research shapes what gets built, and real use decides what changes.</p>
       <div style={tooltipTagsStyle}>
-        {["UX Research", "Journey Mapping", "Interaction Design", "Design Systems"].map(t => <TooltipTag key={t} label={t} />)}
+        {["UX Research", "Usability Testing", "Interaction Design", "Journey Mapping"].map(t => <TooltipTag key={t} label={t} />)}
       </div>
     </div>
   );
@@ -74,11 +74,11 @@ function TooltipAIPowered() {
     <div style={tooltipCardStyle}>
       <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
         <Image src="/images/claude.webp" alt="" width={20} height={20} style={{ borderRadius: "50%" }} />
-        <span style={tooltipTitleStyle}>AI-Powered Systems</span>
+        <span style={tooltipTitleStyle}>Building with AI</span>
       </div>
-      <p style={tooltipDescStyle}>Leveraging AI to accelerate design workflows and explore new creative possibilities.</p>
+      <p style={tooltipDescStyle}>Figma MCP, Claude Code and written specs turn design decisions into shipped, tested product.</p>
       <div style={tooltipTagsStyle}>
-        {["Prompt Engineering", "Generative Design", "AI Workflows", "Automation"].map(t => <TooltipTag key={t} label={t} />)}
+        {["Claude Code", "Figma MCP", "Spec-Driven Design", "Design Tokens"].map(t => <TooltipTag key={t} label={t} />)}
       </div>
     </div>
   );
@@ -91,7 +91,7 @@ function TooltipVisualCraft() {
         <Image src="/images/adobe-creative.webp" alt="" width={20} height={20} style={{ borderRadius: "50%" }} />
         <span style={tooltipTitleStyle}>Visual Craft</span>
       </div>
-      <p style={tooltipDescStyle}>Thoughtful visual language that communicates clearly and leaves a lasting impression.</p>
+      <p style={tooltipDescStyle}>An eye for type, spacing and detail, applied until nothing feels off.</p>
       <div style={tooltipTagsStyle}>
         {["Brand Identity", "Typography", "Illustration", "Visual Systems"].map(t => <TooltipTag key={t} label={t} />)}
       </div>
@@ -132,7 +132,7 @@ export default function Expertise() {
                 gap: "8px",
               }}
             >
-              What I do
+              Expertise
             </div>
             <h2
               style={{
@@ -159,7 +159,7 @@ export default function Expertise() {
                   userSelect: "none",
                 }}
               >
-                My work lives at the intersection of three things: user-centred design, AI-powered systems, and visual craft. I create engaging, intuitive experiences through cohesive UX and design systems that elevate brands — spanning web, app, and end-to-end product design. I leverage AI to optimise design workflows, scale digital experiences, and explore what's possible at the edge of design and technology.
+                The work sits where three things meet: user-centred design, building with AI, and visual craft. AI can generate a hundred versions of a screen. The value is knowing which one respects the user, fits the system and feels right, then shipping it. That judgement runs from a single token name to a 6,000-page website, and it ends in working product, not just files.
               </div>
 
               {/* Animated text — absolutely positioned over spacer, can't affect layout */}
@@ -175,19 +175,19 @@ export default function Expertise() {
                 }}
               >
                 {inView && (<>
-                  <VariableProximity label="My work lives at the intersection of three things: " fromFontVariationSettings="'wght' 300, 'opsz' 9" toFontVariationSettings="'wght' 450, 'opsz' 40" containerRef={containerRef} radius={120} falloff="gaussian" />
+                  <VariableProximity label="The work sits where three things meet: " fromFontVariationSettings="'wght' 300, 'opsz' 9" toFontVariationSettings="'wght' 450, 'opsz' 40" containerRef={containerRef} radius={120} falloff="gaussian" />
                   <CursorTooltip content={<TooltipUserCentred />} containerClassName="inline">
                     <span style={{ color: "var(--color-fg)", cursor: "default", textDecoration: "underline", textDecorationColor: "var(--color-muted)", textUnderlineOffset: "3px", textDecorationThickness: "1px" }}><VariableProximity label="user-centred design" fromFontVariationSettings="'wght' 300, 'opsz' 9" toFontVariationSettings="'wght' 450, 'opsz' 40" containerRef={containerRef} radius={120} falloff="gaussian" /></span>
                   </CursorTooltip>
                   <VariableProximity label=", " fromFontVariationSettings="'wght' 300, 'opsz' 9" toFontVariationSettings="'wght' 450, 'opsz' 40" containerRef={containerRef} radius={120} falloff="gaussian" />
                   <CursorTooltip content={<TooltipAIPowered />} containerClassName="inline">
-                    <span style={{ color: "var(--color-fg)", cursor: "default", textDecoration: "underline", textDecorationColor: "var(--color-muted)", textUnderlineOffset: "3px", textDecorationThickness: "1px" }}><VariableProximity label="AI-powered systems" fromFontVariationSettings="'wght' 300, 'opsz' 9" toFontVariationSettings="'wght' 450, 'opsz' 40" containerRef={containerRef} radius={120} falloff="gaussian" /></span>
+                    <span style={{ color: "var(--color-fg)", cursor: "default", textDecoration: "underline", textDecorationColor: "var(--color-muted)", textUnderlineOffset: "3px", textDecorationThickness: "1px" }}><VariableProximity label="building with AI" fromFontVariationSettings="'wght' 300, 'opsz' 9" toFontVariationSettings="'wght' 450, 'opsz' 40" containerRef={containerRef} radius={120} falloff="gaussian" /></span>
                   </CursorTooltip>
                   <VariableProximity label=", and " fromFontVariationSettings="'wght' 300, 'opsz' 9" toFontVariationSettings="'wght' 450, 'opsz' 40" containerRef={containerRef} radius={120} falloff="gaussian" />
                   <CursorTooltip content={<TooltipVisualCraft />} containerClassName="inline">
                     <span style={{ color: "var(--color-fg)", cursor: "default", textDecoration: "underline", textDecorationColor: "var(--color-muted)", textUnderlineOffset: "3px", textDecorationThickness: "1px" }}><VariableProximity label="visual craft" fromFontVariationSettings="'wght' 300, 'opsz' 9" toFontVariationSettings="'wght' 450, 'opsz' 40" containerRef={containerRef} radius={120} falloff="gaussian" /></span>
                   </CursorTooltip>
-                  <VariableProximity label=". I create engaging, intuitive experiences through cohesive UX and design systems that elevate brands — spanning web, app, and end-to-end product design. I leverage AI to optimise design workflows, scale digital experiences, and explore what's possible at the edge of design and technology." fromFontVariationSettings="'wght' 300, 'opsz' 9" toFontVariationSettings="'wght' 450, 'opsz' 40" containerRef={containerRef} radius={120} falloff="gaussian" />
+                  <VariableProximity label=". AI can generate a hundred versions of a screen. The value is knowing which one respects the user, fits the system and feels right, then shipping it. That judgement runs from a single token name to a 6,000-page website, and it ends in working product, not just files." fromFontVariationSettings="'wght' 300, 'opsz' 9" toFontVariationSettings="'wght' 450, 'opsz' 40" containerRef={containerRef} radius={120} falloff="gaussian" />
                 </>)}
               </div>
             </div>

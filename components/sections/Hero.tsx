@@ -27,7 +27,7 @@ export default function Hero() {
             className="text-muted mb-5"
             style={{ fontSize: "12px" }}
           >
-            AI-Driven Design&nbsp;|&nbsp;Scalable Systems&nbsp;|&nbsp;Visual Storyteller
+            Product Designer&nbsp;|&nbsp;Design Systems&nbsp;|&nbsp;Builds with AI
           </motion.p>
 
           <motion.h1
@@ -43,7 +43,7 @@ export default function Hero() {
               color: "var(--color-fg)",
             }}
           >
-            Crafting people friendly digital journeys!
+            AI makes options cheap. Choosing the right one is the job.
           </motion.h1>
 
           <motion.p
@@ -53,9 +53,9 @@ export default function Hero() {
             className="mt-7 text-muted leading-relaxed"
             style={{ fontSize: "14px" }}
           >
-            A Senior UX &amp; UI Designer based in Dubai, UAE with over 5 years of experience,
-            crafting user-centric fintech and web experiences. Combining AI, product thinking
-            and visual design to scale digital experiences.
+            A product designer who builds, based in Dubai with 5+ years in fintech and web. From a
+            design system behind a 21M-visitor website to products live today, designed in Figma
+            and specs, built with Claude Code, and refined until every detail earns its place.
           </motion.p>
         </div>
 

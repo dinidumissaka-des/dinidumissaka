@@ -79,7 +79,7 @@ const b: React.CSSProperties = {
 /* ── For readers who skim ── */
 const summary = [
   { label: "Problem", text: "Finance apps either automate spending away or ask for a spreadsheet mindset." },
-  { label: "Role", text: "Product design and build, alongside a UX designer and a service designer." },
+  { label: "Role", text: "Designer and builder, end to end: research, specs, design and code." },
   { label: "Approach", text: "Designed in markdown specs and guidelines, built with Claude Code, with no Figma." },
   { label: "Status", text: "Live at minti.one and in a closed test group, improving week to week." },
 ];
@@ -206,13 +206,13 @@ const realUseChanges = [
   },
   {
     date: "Sep 2",
-    foundBy: "UX designer review",
+    foundBy: "Usability session",
     wrong: "The biggest number on screen said only 4,522.74. Its month and currency were two taps deep in a menu.",
     changed: "Month and currency moved onto the figure itself.",
   },
   {
     date: "Aug 25",
-    foundBy: "Service designer review",
+    foundBy: "Usability session",
     wrong: "Google sign-in sat under the email form, though most people never need the form.",
     changed: "Sign-in was rebuilt with Google and Apple first.",
   },
@@ -247,22 +247,6 @@ const specTrail = [
   expect(shown.amount).not.toBe(205);
 });`,
     ],
-  },
-];
-
-/* ── Who did what ── */
-const team: PanelItem[] = [
-  {
-    name: "Product design & build",
-    detail: "Decided what Minti does, wrote the specs and guidelines, built it for web and iOS with Claude Code, and reviewed every change.",
-  },
-  {
-    name: "UX designer",
-    detail: "Ran usability sessions with early testers, reviewed each flow against its spec, and pushed for context on key figures.",
-  },
-  {
-    name: "Service designer",
-    detail: "Mapped the journey around the app, from sign-up to habit, shaping onboarding, sign-in and the reminder plans.",
   },
 ];
 
@@ -593,7 +577,6 @@ export default function MintiCaseStudy() {
           {[
             { label: "Year", value: "2026 – ongoing" },
             { label: "Role", value: "Designer & Builder" },
-            { label: "Team", value: "With a UX designer & a service designer" },
             { label: "Type", value: "PWA · iOS in progress" },
             { label: "Live", value: "minti.one", href: "https://minti.one" },
           ].map((item) => (
@@ -637,13 +620,6 @@ export default function MintiCaseStudy() {
         {/* Cover: the product itself */}
         <div style={divider}>
           <Cover />
-        </div>
-
-        {/* Team */}
-        <div style={divider}>
-          <p style={{ ...sectionLabel, marginBottom: "0.75rem" }}>Team</p>
-          <h2 style={sectionTitle}>Who did what</h2>
-          <Panel items={team} columns={3} />
         </div>
 
         {/* Thinking — where it started */}
@@ -698,8 +674,8 @@ export default function MintiCaseStudy() {
           <p style={{ ...sectionLabel, marginBottom: "0.75rem" }}>Testing</p>
           <h2 style={sectionTitle}>What real use changed</h2>
           <p style={{ ...body, marginBottom: "2rem" }}>
-            Real use surfaced problems no spec anticipated: three came from early testers and two from reviews within the
-            team. The first set the direction. A tester in Dubai saw a 205 AED fee appear as 2.49, and the lesson
+            Real use surfaced problems no spec anticipated: three came from early testers in daily use and two from
+            usability sessions. The first set the direction. A tester in Dubai saw a 205 AED fee appear as 2.49, and the lesson
             changed the data model:{" "}
             <span style={b}>currency looked like a display setting, but it is really part of the data.</span>
           </p>
