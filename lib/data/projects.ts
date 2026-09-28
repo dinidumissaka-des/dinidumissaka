@@ -8,6 +8,8 @@ export interface Project {
   image: string;
   homeImage: string;
   url?: string;
+  /** Kept out of the homepage list; the case study stays reachable by direct link. */
+  hidden?: boolean;
 }
 
 export const projects: Project[] = [
@@ -62,5 +64,6 @@ export const projects: Project[] = [
     description: "Built a sustainability-focused digital experience helping businesses track and reduce their environmental footprint.",
     image: "/images/projects/project-ecobyte.webp",
     homeImage: "/images/home/projects/ecobyte.avif",
+    hidden: true,
   },
 ];

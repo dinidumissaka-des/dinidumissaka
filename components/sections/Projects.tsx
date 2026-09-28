@@ -6,6 +6,8 @@ import Link from "next/link";
 import Image from "next/image";
 import { projects } from "@/lib/data/projects";
 
+const visibleProjects = projects.filter((p) => !p.hidden);
+
 export default function Projects() {
   const ref = useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { once: true, margin: "-80px" });
@@ -71,10 +73,13 @@ export default function Projects() {
         </motion.h2>
 
         <div className="projects-grid">
-          {projects.map((project, i) => (
+          {visibleProjects.map((project, i) => {
+            // The first card leads at full width; if the rest can't pair up, the last one spans too.
+            const wide = i === 0 || (i === visibleProjects.length - 1 && visibleProjects.length % 2 === 0);
+            return (
             <motion.div
               key={project.id}
-              className={i === 0 ? "projects-lead" : undefined}
+              className={wide ? "projects-lead" : undefined}
               initial={{ opacity: 0, y: 20 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: 0.15 + i * 0.05 }}
@@ -85,8 +90,9 @@ export default function Projects() {
                     src={project.homeImage}
                     alt=""
                     fill
-                    sizes={i === 0 ? "(max-width: 640px) 100vw, 860px" : "(max-width: 640px) 100vw, 430px"}
-                    style={{ objectFit: "cover" }}
+                    sizes={wide ? "(max-width: 640px) 100vw, 860px" : "(max-width: 640px) 100vw, 430px"}
+                    // Screenshots read from the top, so a wide crop keeps the top edge
+                    style={{ objectFit: "cover", objectPosition: wide && i > 0 ? "top" : "center" }}
                   />
                 </span>
                 <span style={{ display: "block", marginTop: "14px" }}>
@@ -121,7 +127,8 @@ export default function Projects() {
                 </span>
               </Link>
             </motion.div>
-          ))}
+            );
+          })}
         </div>
 
         <motion.p
