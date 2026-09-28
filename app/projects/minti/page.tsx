@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import BackButton from "@/components/ui/BackButton";
+import Decisions, { type DecisionGroup, type DecisionShot } from "./Decisions";
 
 export const metadata: Metadata = {
   title: "Minti — Case Study",
@@ -87,91 +88,97 @@ const summary = [
 type Badge = { label: string; chosen?: boolean };
 type PanelItem = { name: string; badges?: Badge[]; detail: string; tradeoff?: string };
 
-/* ── Decisions: the choice, the thinking behind it, and what it gave up ── */
-const decisions: PanelItem[] = [
+/* ── Decisions: the choice, the thinking behind it, what it gave up, and the screen it shaped ── */
+const decisionShots: DecisionShot[] = [
   {
-    name: "Manual entry first",
-    badges: [{ label: "Bank sync" }, { label: "Manual entry", chosen: true }],
-    detail:
-      "The goal is responsibility, not bookkeeping. Typing an expense takes about five seconds, and that pause is when people decide whether it was worth it and what should come first next time.",
-    tradeoff: "Logging takes effort, so optional automation is planned for people too busy to add expenses one by one.",
+    src: "/images/projects/minti/categories.webp",
+    alt: "Adding an expense in Minti: amount, note, category chips and date",
+    text: "Adding an expense: amount, note, category and date, in about five seconds.",
   },
   {
-    name: "Written insights, not charts",
-    badges: [{ label: "Configurable charts" }, { label: "Written insights", chosen: true }],
-    detail:
-      "Charts leave people to find the story themselves, and most never look. Minti writes it instead: the biggest category, the projected month total or a category that jumped, each in one plain sentence.",
-    tradeoff: "Less room to explore the data, in exchange for knowing what matters at a glance.",
+    src: "/images/projects/minti/subscriptions.webp",
+    alt: "Minti showing one monthly budget bar above a separate list of recurring bills",
+    text: "One monthly budget at the top, recurring bills listed on their own below.",
   },
   {
-    name: "One monthly limit, not a budget per category",
-    badges: [{ label: "Category budgets" }, { label: "One monthly limit", chosen: true }],
-    detail:
-      "A budget for every category is one more thing to maintain and one more reason to give up. A single limit and the average daily spend answer the question that matters: is this month on track?",
-    tradeoff: "Less control per category, though the By Category view still shows where the money goes.",
+    src: "/images/projects/minti/insights.webp",
+    alt: "Minti insight cards written as plain sentences",
+    text: "Insights written as sentences, not charts.",
   },
   {
-    name: "Bills kept apart from daily spending",
-    badges: [{ label: "One list" }, { label: "Bills kept apart", chosen: true }],
-    detail:
-      "Rent and subscriptions are decided once a month, while coffee and taxis are decided every day. Mixing them hides the daily choices people can actually change, so fixed costs get their own view.",
-    tradeoff: "Two places to look instead of one, but each number now means something clear.",
-  },
-  {
-    name: "As few steps as possible to log",
-    badges: [{ label: "Full form" }, { label: "One-tap categories", chosen: true }],
-    detail:
-      "Every extra field is a reason to skip logging, and a skipped entry breaks the habit. Categories are one tap from a set of chips and the date starts as today, so an entry fits in a few seconds.",
-    tradeoff: "Set categories suit most spending, with a custom option for everything else.",
-  },
-  {
-    name: "A web app first, iOS next",
-    badges: [{ label: "Native app first" }, { label: "PWA first", chosen: true }],
-    detail:
-      "A progressive web app installs to the home screen like any other app and ships without store reviews. That kept changes fast while early testers used it, and proved the flows before building natively.",
-    tradeoff: "A web app feels less native, which is why an iOS app is now in progress.",
+    src: "/images/projects/minti/app-icon.webp",
+    alt: "Minti installed on an iPhone home screen alongside native apps",
+    text: "Installed from the browser, like any other app.",
   },
 ];
 
-/* ── Decisions grouped by theme, each group beside the screen it shaped ── */
-type Shot = { src: string; alt: string; text: string };
-const byName = (name: string) => decisions.find((d) => d.name === name)!;
-const decisionRows: { label: string; items: PanelItem[]; shots: Shot[] }[] = [
+const decisionGroups: DecisionGroup[] = [
   {
     label: "Logging",
-    items: [byName("Manual entry first"), byName("As few steps as possible to log")],
-    shots: [
+    items: [
       {
-        src: "/images/projects/minti/categories.webp",
-        alt: "Adding an expense in Minti: amount, note, category chips and date",
-        text: "Adding an expense: amount, note, category and date, in about five seconds.",
+        name: "Manual entry first",
+        rejected: "Bank sync",
+        chosen: "Manual entry",
+        detail:
+          "The goal is responsibility, not bookkeeping. Typing an expense takes about five seconds, and that pause is when people decide whether it was worth it and what should come first next time.",
+        tradeoff: "Logging takes effort, so optional automation is planned for people too busy to add expenses one by one.",
+        shot: 0,
+      },
+      {
+        name: "As few steps as possible to log",
+        rejected: "Full form",
+        chosen: "One-tap categories",
+        detail:
+          "Every extra field is a reason to skip logging, and a skipped entry breaks the habit. Categories are one tap from a set of chips and the date starts as today, so an entry fits in a few seconds.",
+        tradeoff: "Set categories suit most spending, with a custom option for everything else.",
+        shot: 0,
       },
     ],
   },
   {
     label: "Knowing where you stand",
-    items: [byName("One monthly limit, not a budget per category"), byName("Bills kept apart from daily spending")],
-    shots: [
+    items: [
       {
-        src: "/images/projects/minti/subscriptions.webp",
-        alt: "Minti showing one monthly budget bar above a separate list of recurring bills",
-        text: "One monthly budget at the top, recurring bills listed on their own below.",
+        name: "One monthly limit, not a budget per category",
+        rejected: "Category budgets",
+        chosen: "One monthly limit",
+        detail:
+          "A budget for every category is one more thing to maintain and one more reason to give up. A single limit and the average daily spend answer the question that matters: is this month on track?",
+        tradeoff: "Less control per category, though the By Category view still shows where the money goes.",
+        shot: 1,
+      },
+      {
+        name: "Bills kept apart from daily spending",
+        rejected: "One list",
+        chosen: "Bills kept apart",
+        detail:
+          "Rent and subscriptions are decided once a month, while coffee and taxis are decided every day. Mixing them hides the daily choices people can actually change, so fixed costs get their own view.",
+        tradeoff: "Two places to look instead of one, but each number now means something clear.",
+        shot: 1,
       },
     ],
   },
   {
     label: "Reading it, anywhere",
-    items: [byName("Written insights, not charts"), byName("A web app first, iOS next")],
-    shots: [
+    items: [
       {
-        src: "/images/projects/minti/insights.webp",
-        alt: "Minti insight cards written as plain sentences",
-        text: "Insights written as sentences, not charts.",
+        name: "Written insights, not charts",
+        rejected: "Configurable charts",
+        chosen: "Written insights",
+        detail:
+          "Charts leave people to find the story themselves, and most never look. Minti writes it instead: the biggest category, the projected month total or a category that jumped, each in one plain sentence.",
+        tradeoff: "Less room to explore the data, in exchange for knowing what matters at a glance.",
+        shot: 2,
       },
       {
-        src: "/images/projects/minti/app-icon.webp",
-        alt: "Minti installed on an iPhone home screen alongside native apps",
-        text: "Installed from the browser, like any other app.",
+        name: "A web app first, iOS next",
+        rejected: "Native app first",
+        chosen: "PWA first",
+        detail:
+          "A progressive web app installs to the home screen like any other app and ships without store reviews. That kept changes fast while early testers used it, and proved the flows before building natively.",
+        tradeoff: "A web app feels less native, which is why an iOS app is now in progress.",
+        shot: 3,
       },
     ],
   },
@@ -416,29 +423,6 @@ function Cover() {
   );
 }
 
-/** A group of decisions beside the screen they shaped; rows alternate sides. */
-function DecisionRow({ label, items, shots, flip }: { label: string; items: PanelItem[]; shots: Shot[]; flip: boolean }) {
-  return (
-    <div>
-      <p style={{ ...mono, fontSize: "11px", color: "var(--color-muted)", marginBottom: "10px" }}>{label}</p>
-      {/* Rows with two screens split evenly so neither screen gets too small. */}
-      <div className="minti-decision-row" style={shots.length > 1 ? { gridTemplateColumns: "1fr 1fr" } : undefined}>
-        <div style={{ order: flip ? 2 : 1, minWidth: 0 }}>
-          <Panel items={items} columns={1} />
-        </div>
-        <div
-          className="minti-decision-shots"
-          style={{ order: flip ? 1 : 2, display: "grid", gridTemplateColumns: `repeat(${shots.length}, 1fr)`, gap: "1rem", minWidth: 0 }}
-        >
-          {shots.map((shot) => (
-            <Screen key={shot.src} src={shot.src} alt={shot.alt} text={shot.text} compact={shots.length > 1} />
-          ))}
-        </div>
-      </div>
-    </div>
-  );
-}
-
 /** Each row: what went wrong on the left, the decision it changed on the right. */
 function ChangeLog() {
   return (
@@ -514,28 +498,6 @@ function SpecTrail() {
   );
 }
 
-/** A phone screenshot, shown whole on a soft backdrop. */
-function Screen({ src, alt, text, compact }: { src: string; alt: string; text: string; compact?: boolean }) {
-  return (
-    <figure style={{ margin: 0 }}>
-      <div
-        className="asset-bg"
-        style={{ borderRadius: "12px", background: "rgba(0,0,0,0.04)", padding: compact ? "1.25rem 0.75rem" : "2rem 1.5rem", display: "flex", justifyContent: "center" }}
-      >
-        <Image
-          src={src}
-          alt={alt}
-          width={900}
-          height={1840}
-          sizes="(max-width: 640px) 70vw, 280px"
-          style={{ width: "100%", maxWidth: "260px", height: "auto", display: "block" }}
-        />
-      </div>
-      <figcaption style={caption}>{text}</figcaption>
-    </figure>
-  );
-}
-
 export default function MintiCaseStudy() {
   return (
     <main>
@@ -548,13 +510,10 @@ export default function MintiCaseStudy() {
           .minti-panel-grid { grid-template-columns: 1fr !important; }
           .minti-change-row { grid-template-columns: 1fr !important; gap: 0.35rem !important; }
           .minti-change-head { display: none !important; }
-          .minti-decision-row { grid-template-columns: 1fr !important; }
-          .minti-decision-row > div { order: 0 !important; }
           .minti-cover-row { grid-template-columns: repeat(2, 1fr) !important; }
           .minti-cover-side { display: none !important; }
         }
         @media (max-width: 900px) { .minti-panel-grid-3 { grid-template-columns: 1fr !important; } }
-        .minti-decision-row { display: grid; grid-template-columns: 1.35fr 1fr; gap: 1.5rem; align-items: center; }
         .minti-change-row { display: grid; grid-template-columns: 8.5rem 1fr 1fr; gap: 1.5rem; align-items: baseline; }
         /* Stacked at every width, so the quoted spec and the test code keep their full line length. */
         .minti-spec-trail { display: grid; grid-template-columns: 1fr; gap: 0.5rem; }
@@ -662,11 +621,7 @@ export default function MintiCaseStudy() {
             <span style={b}>Minti should make people feel responsible for their spending, not do the thinking for them.</span>{" "}
             Each choice had a real alternative, and each one gave something up.
           </p>
-          <div style={{ display: "flex", flexDirection: "column", gap: "2.5rem" }}>
-            {decisionRows.map((row, i) => (
-              <DecisionRow key={row.label} label={row.label} items={row.items} shots={row.shots} flip={i % 2 === 1} />
-            ))}
-          </div>
+          <Decisions groups={decisionGroups} shots={decisionShots} />
         </div>
 
         {/* Testing — what real use changed */}
