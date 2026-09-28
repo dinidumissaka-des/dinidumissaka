@@ -3,7 +3,7 @@
 import { useRef } from "react";
 import { motion, useInView } from "motion/react";
 import Link from "next/link";
-import Image from "next/image";
+import ProjectThumb from "@/components/ui/ProjectThumb";
 import { projects } from "@/lib/data/projects";
 
 const visibleProjects = projects.filter((p) => !p.hidden);
@@ -28,12 +28,12 @@ export default function Projects() {
           background: var(--bg-card);
         }
         .projects-lead .project-thumb { aspect-ratio: 2 / 1; }
-        .project-thumb img { transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1); }
-        .project-card:hover .project-thumb img { transform: scale(1.03); }
+        .project-thumb > span { transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1); }
+        .project-card:hover .project-thumb > span { transform: scale(1.03); }
         .project-sub { transition: color 0.2s ease; }
         .project-card:hover .project-sub { color: var(--color-fg) !important; }
         .project-card:focus-visible { outline: 2px solid var(--color-fg); outline-offset: 4px; border-radius: 12px; }
-        @media (prefers-reduced-motion: reduce) { .project-thumb img { transition: none; } }
+        @media (prefers-reduced-motion: reduce) { .project-thumb > span, .thumb-frame { transition: none !important; } }
         @media (max-width: 640px) {
           .projects-grid { grid-template-columns: 1fr; gap: 2rem; }
           .projects-lead .project-thumb { aspect-ratio: 16 / 10; }
@@ -86,13 +86,12 @@ export default function Projects() {
             >
               <Link href={`/projects/${project.id}`} className="project-card">
                 <span className="project-thumb">
-                  <Image
-                    src={project.homeImage}
-                    alt=""
-                    fill
+                  <ProjectThumb
+                    id={project.id}
+                    still={project.homeImage}
                     sizes={wide ? "(max-width: 640px) 100vw, 860px" : "(max-width: 640px) 100vw, 430px"}
                     // Screenshots read from the top, so a wide crop keeps the top edge
-                    style={{ objectFit: "cover", objectPosition: wide && i > 0 ? "top" : "center" }}
+                    position={wide && i > 0 ? "top" : "center"}
                   />
                 </span>
                 <span style={{ display: "block", marginTop: "14px" }}>
