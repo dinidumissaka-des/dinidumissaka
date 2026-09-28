@@ -132,7 +132,7 @@ export default function Expertise() {
                 gap: "8px",
               }}
             >
-              What I do
+              Expertise
             </div>
             <h2
               style={{

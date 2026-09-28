@@ -27,13 +27,13 @@ export const faqItems: FAQItem[] = [
     id: "4",
     question: "Are you available for freelance or contract work?",
     answer:
-      "Yes! I'm open to freelance, contract, and part-time engagements alongside my current work. Whether it's a focused sprint or an ongoing collaboration, feel free to reach out and we can discuss fit.",
+      "Yes, open to freelance, contract and part-time work alongside current commitments, from a focused sprint to an ongoing collaboration. Reach out to talk about fit.",
   },
   {
     id: "5",
     question: "Do you work remotely?",
     answer:
-      "Absolutely. I'm based in Dubai but work with clients globally. I'm comfortable with async workflows and have collaborated with teams across Europe, the US, and Southeast Asia.",
+      "Yes. Based in Dubai and working with teams globally, comfortable with async workflows, with collaboration across Europe, the US and Southeast Asia.",
   },
   {
     id: "6",

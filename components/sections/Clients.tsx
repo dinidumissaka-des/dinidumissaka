@@ -39,7 +39,7 @@ export default function Clients() {
           hoverSpeed={0}
           fadeOut
           scaleOnHover
-          ariaLabel="Tools I use"
+          ariaLabel="Tools used"
         />
         </div>
       </div>
