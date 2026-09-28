@@ -16,7 +16,6 @@ export default function Projects() {
     <section id="projects">
       <style>{`
         .projects-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2.5rem 1.5rem; }
-        .projects-lead { grid-column: 1 / -1; }
         .project-card { display: block; text-decoration: none; }
         .project-thumb {
           display: block;
@@ -27,7 +26,6 @@ export default function Projects() {
           border: 1px solid var(--border-section);
           background: var(--bg-card);
         }
-        .projects-lead .project-thumb { aspect-ratio: 2 / 1; }
         .project-thumb > span { transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1); }
         .project-card:hover .project-thumb > span { transform: scale(1.03); }
         .project-sub { transition: color 0.2s ease; }
@@ -36,7 +34,6 @@ export default function Projects() {
         @media (prefers-reduced-motion: reduce) { .project-thumb > span, .thumb-frame { transition: none !important; } }
         @media (max-width: 640px) {
           .projects-grid { grid-template-columns: 1fr; gap: 2rem; }
-          .projects-lead .project-thumb { aspect-ratio: 16 / 10; }
         }
       `}</style>
 
@@ -73,13 +70,9 @@ export default function Projects() {
         </motion.h2>
 
         <div className="projects-grid">
-          {visibleProjects.map((project, i) => {
-            // The first card leads at full width; if the rest can't pair up, the last one spans too.
-            const wide = i === 0 || (i === visibleProjects.length - 1 && visibleProjects.length % 2 === 0);
-            return (
+          {visibleProjects.map((project, i) => (
             <motion.div
               key={project.id}
-              className={wide ? "projects-lead" : undefined}
               initial={{ opacity: 0, y: 20 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: 0.15 + i * 0.05 }}
@@ -89,9 +82,8 @@ export default function Projects() {
                   <ProjectThumb
                     id={project.id}
                     still={project.homeImage}
-                    sizes={wide ? "(max-width: 640px) 100vw, 860px" : "(max-width: 640px) 100vw, 430px"}
-                    // Screenshots read from the top, so a wide crop keeps the top edge
-                    position={wide && i > 0 ? "top" : "center"}
+                    sizes="(max-width: 640px) 100vw, 430px"
+                    position="center"
                   />
                 </span>
                 <span style={{ display: "block", marginTop: "14px" }}>
@@ -126,8 +118,7 @@ export default function Projects() {
                 </span>
               </Link>
             </motion.div>
-            );
-          })}
+          ))}
         </div>
 
         <motion.p
