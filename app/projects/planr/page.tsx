@@ -91,7 +91,7 @@ const summary = [
   { label: "Problem", text: "Building in Sri Lanka from abroad runs on trust and presence, with nowhere to find verified experts." },
   { label: "Role", text: "Designer and builder, end to end: product, marketing site, both apps and the design system." },
   { label: "Approach", text: "One booking loop, an AI first responder and one design system for two roles, built with Claude Code." },
-  { label: "Status", text: "Paused after the MVP. The prototype is still live to explore." },
+  { label: "Status", text: "Built to MVP and live as a working prototype to explore." },
 ];
 
 /* ── Decisions: the choice, the alternative it beat, and what it gave up ── */
@@ -138,7 +138,7 @@ const screens = [
   { src: "/images/projects/planr/l4-1.webp", alt: "The Planr consultant dashboard on a laptop, with bookings, sessions and questions from clients", text: "Consultant dashboard: the same components, arranged for managing bookings." },
 ];
 
-/* ── What was built before the pause ── */
+/* ── What the MVP covers ── */
 const built = [
   { name: "Marketing site", detail: "Explains the service to people deciding from abroad, and leads to early-access signups." },
   { name: "Client app", detail: "Browse verified profiles, book from live availability and follow each consultation." },
@@ -196,7 +196,7 @@ export default function PlanrCaseStudy() {
           {[
             { label: "Year", value: "2025" },
             { label: "Role", value: "Designer & Builder" },
-            { label: "Type", value: "SaaS · MVP · Paused" },
+            { label: "Type", value: "SaaS · MVP" },
             { label: "Prototype", value: "planr-khaki.vercel.app", href: LIVE_URL },
           ].map((item) => (
             <div key={item.label} style={{ display: "flex", flexDirection: "row", alignItems: "center", gap: "12px" }}>
@@ -304,9 +304,9 @@ export default function PlanrCaseStudy() {
         {/* Status — last content block, so no bottom rule above "Next" */}
         <div style={{ ...divider, borderBottom: "none", paddingBottom: 0, marginBottom: 0 }}>
           <p style={{ ...sectionLabel, marginBottom: "0.75rem" }}>Status</p>
-          <h2 style={sectionTitle}>Built to MVP, then paused</h2>
+          <h2 style={sectionTitle}>What the MVP covers</h2>
           <p style={{ ...body, marginBottom: "2rem" }}>
-            The full loop was designed and built with Claude Code and works end to end. The project is paused, and{" "}
+            The full loop was designed and built with Claude Code and works end to end, and{" "}
             <a href={LIVE_URL} target="_blank" rel="noopener noreferrer" style={{ color: "var(--color-fg)", textDecoration: "underline", textUnderlineOffset: "3px" }}>
               the prototype
             </a>{" "}
