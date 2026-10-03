@@ -210,8 +210,8 @@ const nextUp = [
 ];
 
 /**
- * Documentation screenshots are evidence, so they are shown whole: no crop,
- * no parallax scale that would clip the sidebar or the heading off the edge.
+ * Documentation screenshots in a 16:9 frame, cropped from the top down so the
+ * page heading and navigation always stay in view.
  */
 function Figure({
   src,
@@ -234,6 +234,7 @@ function Figure({
           overflow: "hidden",
           border: "1px solid var(--border-section)",
           lineHeight: 0,
+          aspectRatio: "16 / 9",
         }}
       >
         <Image
@@ -242,7 +243,7 @@ function Figure({
           width={width}
           height={height}
           sizes="(max-width: 640px) 100vw, 1016px"
-          style={{ width: "100%", height: "auto", display: "block" }}
+          style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "top", display: "block" }}
         />
       </div>
       <figcaption
