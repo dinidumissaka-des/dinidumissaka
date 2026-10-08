@@ -5,7 +5,6 @@ import Image from "next/image";
 
 type Frame = { src: string; position?: string };
 type Loop =
-  | { kind: "video"; src: string; poster: string }
   | { kind: "slides"; frames: Frame[]; interval: number; zoom?: boolean }
   | { kind: "phone"; frames: Frame[]; interval: number }
   | { kind: "wipe"; from: string; to: string; interval: number };
@@ -13,9 +12,15 @@ type Loop =
 /** Simple loops built from each project's own screens; anything not listed keeps its still thumbnail. */
 const loops: Record<string, Loop> = {
   deriv: {
-    kind: "video",
-    src: "/images/projects/deriv/derv-video-1.mp4",
-    poster: "/images/home/projects/deriv.webp",
+    kind: "slides",
+    interval: 2800,
+    zoom: true,
+    frames: [
+      { src: "/images/home/projects/deriv.webp" },
+      { src: "/images/projects/deriv/layout-360-1440.webp" },
+      { src: "/images/projects/deriv/modular-component-library.webp" },
+      { src: "/images/projects/deriv/responsive-type-scale.webp" },
+    ],
   },
   planr: {
     kind: "slides",
@@ -83,35 +88,14 @@ function useTick(playing: boolean, count: number, interval: number) {
 export default function ProjectThumb({ id, still, sizes, position }: { id: string; still: string; sizes: string; position: string }) {
   const loop = loops[id];
   const { ref, playing } = usePlaying<HTMLSpanElement>();
-  const count = !loop || loop.kind === "video" ? 0 : loop.kind === "wipe" ? 2 : loop.frames.length;
-  const index = useTick(playing, count, loop && loop.kind !== "video" ? loop.interval : 0);
-  const videoRef = useRef<HTMLVideoElement>(null);
-
-  useEffect(() => {
-    const video = videoRef.current;
-    if (!video) return;
-    if (playing) video.play().catch(() => {});
-    else video.pause();
-  }, [playing]);
+  const count = !loop ? 0 : loop.kind === "wipe" ? 2 : loop.frames.length;
+  const index = useTick(playing, count, loop ? loop.interval : 0);
 
   const layer: React.CSSProperties = { position: "absolute", inset: 0 };
 
   return (
     <span ref={ref} aria-hidden="true" style={{ ...layer, display: "block" }}>
       {!loop && <Image src={still} alt="" fill sizes={sizes} style={{ objectFit: "cover", objectPosition: position }} />}
-
-      {loop?.kind === "video" && (
-        <video
-          ref={videoRef}
-          src={loop.src}
-          poster={loop.poster}
-          muted
-          loop
-          playsInline
-          preload="none"
-          style={{ ...layer, width: "100%", height: "100%", objectFit: "cover" }}
-        />
-      )}
 
       {loop?.kind === "slides" &&
         loop.frames.map((f, i) => (
